@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA['hello']]></title>
-    <url>%2F2018%2F12%2F29%2Fhello%2F</url>
-    <content type="text"><![CDATA[我对你的爱不仅仅是喜欢]]></content>
+    <title><![CDATA[geoserver+postgresql搭建]]></title>
+    <url>%2F2019%2F01%2F02%2Fgeoserver-postgresql%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[其实挺好的]]></content>
+      <categories>
+        <category>geoserver</category>
+      </categories>
+      <tags>
+        <tag>geoserver</tag>
+        <tag>postgresql</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
