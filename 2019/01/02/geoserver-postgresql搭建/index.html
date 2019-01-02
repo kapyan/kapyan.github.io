@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="其实挺好的">
+<meta name="description" content="geoserver简介:&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Geoserver是一个功能齐全,遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现),同时也提供了修改,删除和新增的功能(利用WFS-T)。它是开源的 ,允许用户查看和编辑地理数据。GeoServer">
 <meta name="keywords" content="geoserver,postgresql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="geoserver+postgresql搭建">
 <meta property="og:url" content="http://blog.kapyan.top/2019/01/02/geoserver-postgresql搭建/index.html">
 <meta property="og:site_name" content="运维之窗">
-<meta property="og:description" content="其实挺好的">
+<meta property="og:description" content="geoserver简介:&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Geoserver是一个功能齐全,遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现),同时也提供了修改,删除和新增的功能(利用WFS-T)。它是开源的 ,允许用户查看和编辑地理数据。GeoServer">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-02T03:09:18.788Z">
+<meta property="og:updated_time" content="2019-01-02T08:26:03.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="geoserver+postgresql搭建">
-<meta name="twitter:description" content="其实挺好的">
+<meta name="twitter:description" content="geoserver简介:&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Geoserver是一个功能齐全,遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现),同时也提供了修改,删除和新增的功能(利用WFS-T)。它是开源的 ,允许用户查看和编辑地理数据。GeoServer">
 
 
 
@@ -149,6 +149,9 @@
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
 
   
   
@@ -394,7 +397,18 @@
       
 
       
-        <p>其实挺好的</p>
+        <h2 id="geoserver简介"><a href="#geoserver简介" class="headerlink" title="geoserver简介:"></a><strong>geoserver简介:</strong></h2><p>&ensp;&ensp;&ensp;&ensp;Geoserver是一个功能齐全,遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现),同时也提供了修改,删除和新增的功能(利用WFS-T)。它是开源的 ,允许用户查看和编辑地理数据。GeoServer 是符合OGC 规范的一个全功能的WFS-T 和WMS server。</p>
+<h2 id="geoserver-postgresql环境搭建："><a href="#geoserver-postgresql环境搭建：" class="headerlink" title="geoserver+postgresql环境搭建："></a><strong>geoserver+postgresql环境搭建：</strong></h2><p>&ensp;&ensp;&ensp;&ensp;本实验环境</p>
+<ul>
+<li>系统及版本：Ubuntu16.0.4</li>
+<li>jdk版本：1.8.0</li>
+<li>tomcat版本：8.5</li>
+<li>geoserver版本：2.14.1</li>
+<li>postgresql版本：9.6</li>
+</ul>
+<h3 id="开始搭建："><a href="#开始搭建：" class="headerlink" title="开始搭建："></a><strong>开始搭建：</strong></h3><h4 id="1-安装jdk"><a href="#1-安装jdk" class="headerlink" title="1. 安装jdk"></a>1. 安装jdk</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y openjdk-8-jdk</span><br></pre></td></tr></table></figure>
+<h4 id="2-安装tomcat"><a href="#2-安装tomcat" class="headerlink" title="2. 安装tomcat"></a>2. 安装tomcat</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo wget https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz	<span class="comment">#下载Tomcat</span></span><br><span class="line">tar xf apache-tomcat-8.5.37.tar.gz -C /usr/<span class="built_in">local</span>/ &amp;&amp; mv /usr/<span class="built_in">local</span>/apache-tomcat-8.5.37 /usr/<span class="built_in">local</span>/tomcat    <span class="comment">#解压Tomcat至/usr/local/tomcat目录</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-安装geoserver"><a href="#3-安装geoserver" class="headerlink" title="3. 安装geoserver"></a>3. 安装geoserver</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget https://nchc.dl.sourceforge.net/project/geoserver/GeoServer/2.14.1/geoserver-2.14.1-war.zip		<span class="comment">#下载geoserver</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -402,6 +416,14 @@
     
     
 
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="没有风的晴天 wechat" style="width: 200px; max-width: 100%;">
+    <div>扫一扫，加我微信</div>
+</div>
+
+      </div>
     
 
     
@@ -516,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -545,7 +576,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -556,7 +587,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -579,6 +610,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#geoserver简介"><span class="nav-number">1.</span> <span class="nav-text">geoserver简介:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geoserver-postgresql环境搭建："><span class="nav-number">2.</span> <span class="nav-text">geoserver+postgresql环境搭建：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始搭建："><span class="nav-number">2.1.</span> <span class="nav-text">开始搭建：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装jdk"><span class="nav-number">2.1.1.</span> <span class="nav-text">1. 安装jdk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装tomcat"><span class="nav-number">2.1.2.</span> <span class="nav-text">2. 安装tomcat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安装geoserver"><span class="nav-number">2.1.3.</span> <span class="nav-text">3. 安装geoserver</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -652,6 +699,8 @@
   
 
 
+  
+
 
 
 
@@ -690,6 +739,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
