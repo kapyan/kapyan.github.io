@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -53,16 +60,16 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
 
 
 
@@ -73,6 +80,8 @@
 
 
 
+
+  <link rel="alternate" href="/atom.xml" title="运维之窗" type="application/atom+xml">
 
 
 
@@ -87,7 +96,7 @@
 <meta property="og:site_name" content="运维之窗">
 <meta property="og:description" content="geoserver简介:&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Geoserver是一个功能齐全,遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现),同时也提供了修改,删除和新增的功能(利用WFS-T)。它是开源的 ,允许用户查看和编辑地理数据。GeoServer">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-02T08:26:03.660Z">
+<meta property="og:updated_time" content="2019-01-03T05:45:59.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="geoserver+postgresql搭建">
 <meta name="twitter:description" content="geoserver简介:&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Geoserver是一个功能齐全,遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现),同时也提供了修改,删除和新增的功能(利用WFS-T)。它是开源的 ,允许用户查看和编辑地理数据。GeoServer">
@@ -100,7 +109,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -133,26 +142,12 @@
 
 
 
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?f0c3a61f13d92f5860625352d1d7d52d";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
 
 
 
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
-  <!-- 代码块复制功能 -->
-<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
-<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
-
   
   
     
@@ -313,7 +308,7 @@
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="没有风的晴天">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -343,7 +338,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-03T13:45:59+08:00">
+                2019-01-03
+              </time>
             
           </span>
 
@@ -406,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  272
+                  273
                 </span>
               
 
@@ -453,7 +460,8 @@
 <li>postgresql版本：9.6</li>
 </ul>
 <h3 id="开始搭建："><a href="#开始搭建：" class="headerlink" title="开始搭建："></a><strong>开始搭建：</strong></h3><h4 id="1-安装jdk"><a href="#1-安装jdk" class="headerlink" title="1. 安装jdk"></a>1. 安装jdk</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y openjdk-8-jdk</span><br></pre></td></tr></table></figure>
-<h4 id="2-安装tomcat"><a href="#2-安装tomcat" class="headerlink" title="2. 安装tomcat"></a>2. 安装tomcat</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo wget https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz	<span class="comment">#下载Tomcat</span></span><br><span class="line">tar xf apache-tomcat-8.5.37.tar.gz -C /usr/<span class="built_in">local</span>/ &amp;&amp; mv /usr/<span class="built_in">local</span>/apache-tomcat-8.5.37 /usr/<span class="built_in">local</span>/tomcat    <span class="comment">#解压Tomcat至/usr/local/tomcat目录</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-安装tomcat"><a href="#2-安装tomcat" class="headerlink" title="2. 安装tomcat"></a>2. 安装tomcat</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz	<span class="comment">#下载Tomcat</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xf apache-tomcat-8.5.37.tar.gz -C /usr/<span class="built_in">local</span>/ &amp;&amp; mv /usr/<span class="built_in">local</span>/apache-tomcat-8.5.37 /usr/<span class="built_in">local</span>/tomcat    <span class="comment">#解压Tomcat至/usr/local/tomcat目录</span></span><br></pre></td></tr></table></figure>
 <h4 id="3-安装geoserver"><a href="#3-安装geoserver" class="headerlink" title="3. 安装geoserver"></a>3. 安装geoserver</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget https://nchc.dl.sourceforge.net/project/geoserver/GeoServer/2.14.1/geoserver-2.14.1-war.zip		<span class="comment">#下载geoserver</span></span><br></pre></td></tr></table></figure>
 
       
@@ -461,15 +469,6 @@
     
     
     <div style="text-align:center;color: #ccc;font-size:14px;">---------------- (*￣︶￣)我是结束线(*￣︶￣) ----------------</div>
-    
-      <div>
-        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="没有风的晴天 wechat" style="width: 200px; max-width: 100%;">
-    <div>扫一扫，加我微信</div>
-</div>
-
-      </div>
-    
 
     
 
@@ -647,7 +646,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="没有风的晴天">
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="没有风的晴天">
             
               <p class="site-author-name" itemprop="name">没有风的晴天</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -671,7 +670,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -682,7 +681,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -690,6 +689,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -715,7 +721,10 @@
 
           
           
-
+          <!-- CloudCalendar -->
+          <div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+            <div class="widget" id="CloudCalendar"></div>
+          </div>
           
 
         </div>
@@ -765,7 +774,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">345</span>
+    <span title="Site words total count">346</span>
   
 </div>
 
@@ -812,15 +821,11 @@
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
 
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
     
 
   </div>
@@ -1332,18 +1337,6 @@
       new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
-      flOptions = {};
-      
-          flOptions.iconStyle = "default";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
   </script>
 
   
@@ -1351,8 +1344,40 @@
   
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
 
   
 
-</body>
+  <!-- calendar widget -->
+
+
+    <script src="/lib/CloudCalendar/CloudCalendar.js"></script>
+    <script src="/lib/CloudCalendar/languages.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN', 
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+
+
+   
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
