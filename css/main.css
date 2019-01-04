@@ -1990,7 +1990,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #870f44;
+  background: #8e8e47;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3425,4 +3425,14 @@ pre {
 }
 .highlight:hover .btn-copy {
   opacity: 1;
+}
+.hider_title {
+  font-family: "Microsoft Yahei";
+  cursor: pointer;
+}
+.close:after {
+  content: "▼";
+}
+.open:after {
+  content: "▲";
 }
