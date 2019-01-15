@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="运维之窗">
 <meta property="og:description" content="geoserver简介:&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Geoserver是一个功能齐全,遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现),同时也提供了修改,删除和新增的功能(利用WFS-T)。它是开源的 ,允许用户查看和编辑地理数据。GeoServer">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-09T02:46:57.153Z">
+<meta property="og:updated_time" content="2019-01-14T05:53:51.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="geoserver+postgresql搭建">
 <meta name="twitter:description" content="geoserver简介:&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Geoserver是一个功能齐全,遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现),同时也提供了修改,删除和新增的功能(利用WFS-T)。它是开源的 ,允许用户查看和编辑地理数据。GeoServer">
@@ -365,8 +365,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-09T10:46:57+08:00">
-                2019-01-09
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-14T13:53:51+08:00">
+                2019-01-14
               </time>
             
           </span>
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.5k
+                  1.6k
                 </span>
               
 
@@ -498,6 +498,8 @@
 <h3 id="geoserver添加Vector-Tiles扩展"><a href="#geoserver添加Vector-Tiles扩展" class="headerlink" title="geoserver添加Vector Tiles扩展"></a>geoserver添加Vector Tiles扩展</h3><p>下载相应版本的Vector Tiles扩展并解压至geoserver所在目录的WEB-INF/lib/目录下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/geoserver/GeoServer/2.14.1/extensions/geoserver-2.14.1-vectortiles-plugin.zip    <span class="comment">#下载Vector Tiles扩展</span></span><br><span class="line">unzip -d /usr/<span class="built_in">local</span>/tomcat/webapps/geoserver/WEB-INF/lib/ geoserver-2.14.1-vectortiles-plugin.zip      <span class="comment">#解压至geoserver所在目录的WEB-INF/lib/目录下</span></span><br></pre></td></tr></table></figure></p>
 <p>编辑geoserver所在目录的/WEB-INF/web.xml文件，在第4行下添加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--切片缓存目录--&gt;</span><br><span class="line">&lt;context-param&gt;</span><br><span class="line">    &lt;param-name&gt;GEOWEBCACHE_CACHE_DIR&lt;/param-name&gt;</span><br><span class="line">    &lt;param-value&gt;/usr/local/tomcat/webapps/geoserver/geo_web_cache_dir&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br></pre></td></tr></table></figure></p>
 <p>然后重启tomcat<br> 注：“/usr/local/tomcat/webapps/geoserver/geo_web_cache_dir”替换为自定义目录</p>
+<h3 id="geoserver开启jsonp"><a href="#geoserver开启jsonp" class="headerlink" title="geoserver开启jsonp"></a>geoserver开启jsonp</h3><p>编辑geoserver所在目录的/WEB-INF/web.xml文件，去掉以下注释：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">43   &lt;!--&lt;context-param&gt;</span><br><span class="line">44     &lt;param-name&gt;ENABLE_JSONP&lt;/param-name&gt;</span><br><span class="line">45     &lt;param-value&gt;true&lt;/param-value&gt;</span><br><span class="line">46     &lt;/context-param&gt;--&gt;</span><br></pre></td></tr></table></figure></p>
+<p>改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">43   &lt;context-param&gt;</span><br><span class="line">44     &lt;param-name&gt;ENABLE_JSONP&lt;/param-name&gt;</span><br><span class="line">45     &lt;param-value&gt;true&lt;/param-value&gt;</span><br><span class="line">46   &lt;/context-param&gt;</span><br></pre></td></tr></table></figure></p>
 <h3 id="postgresql开启远程连接"><a href="#postgresql开启远程连接" class="headerlink" title="postgresql开启远程连接"></a>postgresql开启远程连接</h3><p>1.修改/etc/postgresql/9.6/main/postgresql.conf第59行：</p>
 <pre><code>#listen_addresses = &apos;localhost&apos;  为    listen_addresses = &apos;*&apos;
 </code></pre><p>2.在/etc/postgresql/9.6/main/pg_hba.conf的</p>
@@ -716,7 +718,7 @@ host all all 0.0.0.0/0 md5
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -727,7 +729,7 @@ host all all 0.0.0.0/0 md5
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -797,7 +799,7 @@ host all all 0.0.0.0/0 md5
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#geoserver简介"><span class="nav-number">1.</span> <span class="nav-text">geoserver简介:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geoserver-postgresql环境搭建："><span class="nav-number">2.</span> <span class="nav-text">geoserver+postgresql环境搭建：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验环境"><span class="nav-number">2.1.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始搭建："><span class="nav-number">2.2.</span> <span class="nav-text">开始搭建：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装jdk1-8"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 安装jdk1.8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装tomcat8-5"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. 安装tomcat8.5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安装geoserver"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. 安装geoserver</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-安装postgresql-9-6和postgis-2-5"><span class="nav-number">2.2.4.</span> <span class="nav-text">4. 安装postgresql-9.6和postgis-2.5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过docker安装"><span class="nav-number">2.2.5.</span> <span class="nav-text">通过docker安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAQ"><span class="nav-number">3.</span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加nginx反向代理"><span class="nav-number">3.1.</span> <span class="nav-text">添加nginx反向代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geoserver添加JDBC-Image-Mosaic扩展"><span class="nav-number">3.2.</span> <span class="nav-text">geoserver添加JDBC Image Mosaic扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geoserver添加Vector-Tiles扩展"><span class="nav-number">3.3.</span> <span class="nav-text">geoserver添加Vector Tiles扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#postgresql开启远程连接"><span class="nav-number">3.4.</span> <span class="nav-text">postgresql开启远程连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#postgresql创建超级用户"><span class="nav-number">3.5.</span> <span class="nav-text">postgresql创建超级用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为数据库添加postgis空间数据库扩展"><span class="nav-number">3.6.</span> <span class="nav-text">为数据库添加postgis空间数据库扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GDAL-PostGIS-Raster-driver未找到"><span class="nav-number">3.7.</span> <span class="nav-text">GDAL PostGIS Raster driver未找到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中文字段乱码问题"><span class="nav-number">3.8.</span> <span class="nav-text">中文字段乱码问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#geoserver简介"><span class="nav-number">1.</span> <span class="nav-text">geoserver简介:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geoserver-postgresql环境搭建："><span class="nav-number">2.</span> <span class="nav-text">geoserver+postgresql环境搭建：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验环境"><span class="nav-number">2.1.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始搭建："><span class="nav-number">2.2.</span> <span class="nav-text">开始搭建：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装jdk1-8"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 安装jdk1.8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装tomcat8-5"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. 安装tomcat8.5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安装geoserver"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. 安装geoserver</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-安装postgresql-9-6和postgis-2-5"><span class="nav-number">2.2.4.</span> <span class="nav-text">4. 安装postgresql-9.6和postgis-2.5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过docker安装"><span class="nav-number">2.2.5.</span> <span class="nav-text">通过docker安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAQ"><span class="nav-number">3.</span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加nginx反向代理"><span class="nav-number">3.1.</span> <span class="nav-text">添加nginx反向代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geoserver添加JDBC-Image-Mosaic扩展"><span class="nav-number">3.2.</span> <span class="nav-text">geoserver添加JDBC Image Mosaic扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geoserver添加Vector-Tiles扩展"><span class="nav-number">3.3.</span> <span class="nav-text">geoserver添加Vector Tiles扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geoserver开启jsonp"><span class="nav-number">3.4.</span> <span class="nav-text">geoserver开启jsonp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#postgresql开启远程连接"><span class="nav-number">3.5.</span> <span class="nav-text">postgresql开启远程连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#postgresql创建超级用户"><span class="nav-number">3.6.</span> <span class="nav-text">postgresql创建超级用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为数据库添加postgis空间数据库扩展"><span class="nav-number">3.7.</span> <span class="nav-text">为数据库添加postgis空间数据库扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GDAL-PostGIS-Raster-driver未找到"><span class="nav-number">3.8.</span> <span class="nav-text">GDAL PostGIS Raster driver未找到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中文字段乱码问题"><span class="nav-number">3.9.</span> <span class="nav-text">中文字段乱码问题</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -831,7 +833,7 @@ host all all 0.0.0.0/0 md5
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">4.7k</span>
+    <span title="Site words total count">5.7k</span>
   
 </div>
 
@@ -1432,10 +1434,6 @@ host all all 0.0.0.0/0 md5
    
   <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
   <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
-  
-   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
-   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
   
 
 </body>

@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.kapyan.top/geoserver-postgresql%E6%90%AD%E5%BB%BA.html</loc>
+    <loc>http://blog.kapyan.top/nginx%E5%AE%89%E8%A3%85.html</loc>
     
-    <lastmod>2019-01-09T02:46:57.153Z</lastmod>
+    <lastmod>2019-01-15T03:23:45.102Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.kapyan.top/nginx%E5%AE%89%E8%A3%85.html</loc>
+    <loc>http://blog.kapyan.top/geoserver-postgresql%E6%90%AD%E5%BB%BA.html</loc>
     
-    <lastmod>2019-01-07T09:42:40.178Z</lastmod>
+    <lastmod>2019-01-14T05:53:51.671Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.kapyan.top/gitlab%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E3%80%81%E8%BF%98%E5%8E%9F%E3%80%81%E8%BF%81%E7%A7%BB.html</loc>
+    
+    <lastmod>2019-01-14T05:18:19.239Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.kapyan.top/gitlab%E5%AE%89%E8%A3%85.html</loc>
+    
+    <lastmod>2019-01-14T03:28:09.051Z</lastmod>
     
   </url>
   
