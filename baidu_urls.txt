@@ -3,4 +3,3 @@ http://blog.kapyan.top/gitlab安装.html
 http://blog.kapyan.top/nginx安装.html
 http://blog.kapyan.top/gitlab个人的简单使用.html
 http://blog.kapyan.top/geoserver-postgresql搭建.html
-http://blog.kapyan.top/hello-world.html
