@@ -91,7 +91,7 @@
 
 
 
-  <meta name="keywords" content="gitlab简单使用">
+  <meta name="keywords" content="mysql主主互备">
 
 
 
@@ -104,29 +104,21 @@
 
 
 
-<meta name="description" content="个人设置 头像、语言设置 修改密码 免密设置添加公钥后可在操作git仓库时免去输入用户名、密码的步骤。公钥获取：windows系统：打开C:\用户\username\\.ssh\id_rsa.pub文件，将内容复制到填写公钥的位置，其中username为当前用户名，一般是administratorlinux系统：输入cat ~/.ssh/id_rsa.pub命令，将内容复制到填写公钥的位置。如果没">
-<meta name="keywords" content="gitlab简单使用">
+<meta name="description" content="DB1和DB2互为主从，保证两台数据库始终是同步的，同时在DB1和DB2上还需要安装高可用软件Keepalived。正常情况下，web server主机仅从BD1进行数据的读、写操作，DB2只负责从DB1同步数据。而Keepalived维护着一个VIP,此ip用来对外提供连接服务，同时，Keepalived还负责监控DB1和DB2上mysql数据库的运行状态，当DB1主机出现故障或mysql运行异">
+<meta name="keywords" content="mysql主主互备">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gitlab个人的简单使用">
-<meta property="og:url" content="http://blog.kapyan.top/gitlab个人的简单使用.html">
+<meta property="og:title" content="mysql主主互备模式架构">
+<meta property="og:url" content="http://blog.kapyan.top/mysql主主互备模式架构.html">
 <meta property="og:site_name" content="运维之窗">
-<meta property="og:description" content="个人设置 头像、语言设置 修改密码 免密设置添加公钥后可在操作git仓库时免去输入用户名、密码的步骤。公钥获取：windows系统：打开C:\用户\username\\.ssh\id_rsa.pub文件，将内容复制到填写公钥的位置，其中username为当前用户名，一般是administratorlinux系统：输入cat ~/.ssh/id_rsa.pub命令，将内容复制到填写公钥的位置。如果没">
+<meta property="og:description" content="DB1和DB2互为主从，保证两台数据库始终是同步的，同时在DB1和DB2上还需要安装高可用软件Keepalived。正常情况下，web server主机仅从BD1进行数据的读、写操作，DB2只负责从DB1同步数据。而Keepalived维护着一个VIP,此ip用来对外提供连接服务，同时，Keepalived还负责监控DB1和DB2上mysql数据库的运行状态，当DB1主机出现故障或mysql运行异">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://blog.kapyan.top/gitlab个人的简单使用/setting.png">
-<meta property="og:image" content="http://blog.kapyan.top/gitlab个人的简单使用/baseset.png">
-<meta property="og:image" content="http://blog.kapyan.top/gitlab个人的简单使用/updatepassword.png">
-<meta property="og:image" content="http://blog.kapyan.top/gitlab个人的简单使用/ssh.png">
-<meta property="og:image" content="http://blog.kapyan.top/gitlab个人的简单使用/newproject.png">
-<meta property="og:image" content="http://blog.kapyan.top/gitlab个人的简单使用/project.png">
-<meta property="og:image" content="http://blog.kapyan.top/gitlab个人的简单使用/projectadd.png">
-<meta property="og:image" content="http://blog.kapyan.top/gitlab个人的简单使用/getproject.png">
-<meta property="og:image" content="http://blog.kapyan.top/gitlab个人的简单使用/setproject.png">
-<meta property="og:image" content="http://blog.kapyan.top/gitlab个人的简单使用/projectmu.png">
-<meta property="og:updated_time" content="2019-01-05T07:15:41.648Z">
+<meta property="og:image" content="http://blog.kapyan.top/mysql主主互备模式架构/jiagou.png">
+<meta property="og:image" content="http://blog.kapyan.top/mysql主主互备模式架构/masterstatus.png">
+<meta property="og:updated_time" content="2019-01-18T07:35:59.157Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gitlab个人的简单使用">
-<meta name="twitter:description" content="个人设置 头像、语言设置 修改密码 免密设置添加公钥后可在操作git仓库时免去输入用户名、密码的步骤。公钥获取：windows系统：打开C:\用户\username\\.ssh\id_rsa.pub文件，将内容复制到填写公钥的位置，其中username为当前用户名，一般是administratorlinux系统：输入cat ~/.ssh/id_rsa.pub命令，将内容复制到填写公钥的位置。如果没">
-<meta name="twitter:image" content="http://blog.kapyan.top/gitlab个人的简单使用/setting.png">
+<meta name="twitter:title" content="mysql主主互备模式架构">
+<meta name="twitter:description" content="DB1和DB2互为主从，保证两台数据库始终是同步的，同时在DB1和DB2上还需要安装高可用软件Keepalived。正常情况下，web server主机仅从BD1进行数据的读、写操作，DB2只负责从DB1同步数据。而Keepalived维护着一个VIP,此ip用来对外提供连接服务，同时，Keepalived还负责监控DB1和DB2上mysql数据库的运行状态，当DB1主机出现故障或mysql运行异">
+<meta name="twitter:image" content="http://blog.kapyan.top/mysql主主互备模式架构/jiagou.png">
 
 
 
@@ -156,14 +148,14 @@
 
 
 
-  <link rel="canonical" href="http://blog.kapyan.top/gitlab个人的简单使用.html">
+  <link rel="canonical" href="http://blog.kapyan.top/mysql主主互备模式架构.html">
 
 
 
 
 
 
-  <title>gitlab个人的简单使用 | 运维之窗</title>
+  <title>mysql主主互备模式架构 | 运维之窗</title>
   
 
 
@@ -331,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.kapyan.top/gitlab个人的简单使用.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.kapyan.top/mysql主主互备模式架构.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="没有风的晴天">
@@ -348,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">gitlab个人的简单使用</h1>
+          <h1 class="post-title" itemprop="name headline">mysql主主互备模式架构</h1>
         
 
         <div class="post-meta">
@@ -360,8 +352,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-04T17:30:37+08:00">
-                2019-01-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-18T15:14:43+08:00">
+                2019-01-18
               </time>
             
 
@@ -376,8 +368,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-05T15:15:41+08:00">
-                2019-01-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-18T15:35:59+08:00">
+                2019-01-18
               </time>
             
           </span>
@@ -395,8 +387,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/gitlab/" itemprop="url" rel="index">
-                    <span itemprop="name">gitlab</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -413,8 +405,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/gitlab个人的简单使用.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/gitlab个人的简单使用.html" itemprop="commentCount"></span>
+                <a href="/mysql主主互备模式架构.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/mysql主主互备模式架构.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -441,7 +433,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  210
+                  1k
                 </span>
               
 
@@ -457,7 +449,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -478,13 +470,22 @@
       
 
       
-        <h2 id="个人设置"><a href="#个人设置" class="headerlink" title="个人设置"></a>个人设置</h2><p><img src="/gitlab个人的简单使用/setting.png" alt="个人设置"></p>
-<h2 id="头像、语言设置"><a href="#头像、语言设置" class="headerlink" title="头像、语言设置"></a>头像、语言设置</h2><p><img src="/gitlab个人的简单使用/baseset.png" alt="头像、语言设置"></p>
-<h2 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h2><p><img src="/gitlab个人的简单使用/updatepassword.png" alt="修改密码"></p>
-<h2 id="免密设置"><a href="#免密设置" class="headerlink" title="免密设置"></a>免密设置</h2><p><img src="/gitlab个人的简单使用/ssh.png" alt="免密设置"><br>添加公钥后可在操作git仓库时免去输入用户名、密码的步骤。<br>公钥获取：<br><code>windows系统：打开C:\用户\username\\.ssh\id_rsa.pub文件，将内容复制到填写公钥的位置，其中username为当前用户名，一般是administrator</code><br><code>linux系统：输入cat ~/.ssh/id_rsa.pub命令，将内容复制到填写公钥的位置。</code><br>如果没有id_rsa.pub文件，则需要创建秘钥，创建方法如下：<br><code>windows系统：按“win+R”键，输入“cmd”并回车打开cmd窗口，输入“ssh-keygen”，按三次回车键，创建完成</code><br><code>linux系统：在终端里输入“ssh-keygen”，按三次回车键，创建完成</code></p>
-<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p><img src="/gitlab个人的简单使用/newproject.png" alt="创建项目"><br><img src="/gitlab个人的简单使用/project.png" alt="创建项目"></p>
-<h2 id="获取项目地址、下载项目"><a href="#获取项目地址、下载项目" class="headerlink" title="获取项目地址、下载项目"></a>获取项目地址、下载项目</h2><p><img src="/gitlab个人的简单使用/projectadd.png" alt="项目地址"><br><img src="/gitlab个人的简单使用/getproject.png" alt="项目地址"></p>
-<h2 id="项目权限设置、添加项目成员"><a href="#项目权限设置、添加项目成员" class="headerlink" title="项目权限设置、添加项目成员"></a>项目权限设置、添加项目成员</h2><p><img src="/gitlab个人的简单使用/setproject.png" alt="项目权限设置"><br><img src="/gitlab个人的简单使用/projectmu.png" alt="添加项目成员"></p>
+        <p>DB1和DB2互为主从，保证两台数据库始终是同步的，同时在DB1和DB2上还需要安装高可用软件Keepalived。正常情况下，web server主机仅从BD1进行数据的读、写操作，DB2只负责从DB1同步数据。而Keepalived维护着一个VIP,此ip用来对外提供连接服务，同时，Keepalived还负责监控DB1和DB2上mysql数据库的运行状态，当DB1主机出现故障或mysql运行异常时，自动将VIP地址和mysql服务切换到DB2上，此时web server主机继续从DB2进行数据的读、写操作。通过Keepalived保持了数据库服务的连续性，整个切换过程非常快，并且对前端web server主机是透明的。这种方式可以实现95.000%的SLA（服务水平协定）。<br><img src="/mysql主主互备模式架构/jiagou.png" alt="双主"></p>
+<h2 id="修改mysql配置文件"><a href="#修改mysql配置文件" class="headerlink" title="修改mysql配置文件"></a>修改mysql配置文件</h2><p>   修改DB1主机的配置文件，在/etc/my.cnf文件中的”[mysqld]”段加如下内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server-id = 1</span><br><span class="line"><span class="built_in">log</span>-bin = mysql-bin</span><br><span class="line">replicate-wild-ignore-table = mysql.%</span><br><span class="line">replicate-wild-ignore-table = <span class="built_in">test</span>.%</span><br><span class="line">replicate-wild-ignore-table = information_schema.%</span><br></pre></td></tr></table></figure></p>
+<p>   修改DB2主机的配置文件，在/etc/my.cnf文件中的”[mysqld]”段加如下内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server-id = 2</span><br><span class="line"><span class="built_in">log</span>-bin = mysql-bin</span><br><span class="line">relay-log = mysql-relay-bin</span><br><span class="line">replicate-wild-ignore-table = mysql.%</span><br><span class="line">replicate-wild-ignore-table = <span class="built_in">test</span>.%</span><br><span class="line">replicate-wild-ignore-table = information_schema.%</span><br></pre></td></tr></table></figure></p>
+<p>重启DB1和DB2的mysql服务</p>
+<h2 id="手动同步数据库："><a href="#手动同步数据库：" class="headerlink" title="手动同步数据库："></a>手动同步数据库：</h2><p>如果DB1上已经有mysql数据，在执行主主互备之前，需要将DB1和DB2上两个mysql数据保持一致</p>
+<h2 id="创建复制用户并授权："><a href="#创建复制用户并授权：" class="headerlink" title="创建复制用户并授权："></a>创建复制用户并授权：</h2><p>在DB1中创建复制用户<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grant replication slave on *.* to <span class="string">'repl_user'</span>@<span class="string">'192.168.88.12'</span> identified by <span class="string">'password'</span>;</span><br><span class="line">flush privileges;</span><br><span class="line">show master status;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/mysql主主互备模式架构/masterstatus.png" alt="主库状态"><br>在DB2的mysql库中将DB1设为自己主服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host=<span class="string">'192.168.88.11'</span>,master_port=3306,master_user=<span class="string">'repl_user'</span>, master_password=<span class="string">'123456'</span>,master_log_file=<span class="string">'mysql-bin.000028'</span>,master_log_pos=4264031;  <span class="comment">#将master_log_file的值替换为在DB1中执行"show master status"显示的File的值，将master_log_pos的值替换为Position的值</span></span><br></pre></td></tr></table></figure></p>
+<p>在DB2上启动slave服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start slave;</span><br></pre></td></tr></table></figure></p>
+<p>配置从DB2到DB1的mysql主从复制，这个配置过程与上面完全一样</p>
+<p>在DB2上创建复制用户<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant replication slave on *.* to <span class="string">'repl_user'</span>@<span class="string">'192.168.88.11'</span> identified by <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>在DB1的mysql库中将DB2设为自己的主服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host=<span class="string">'192.168.88.12'</span>,master_port=3306,master_user=<span class="string">'repl_user'</span>, master_password=<span class="string">'123456'</span>,master_log_file=<span class="string">'mysql-bin.000028'</span>,master_log_pos=480; <span class="comment">#将master_log_file的值替换为在DB2中执行"show master status"显示的File的值，将master_log_pos的值替换为Position的值</span></span><br></pre></td></tr></table></figure></p>
+<p>在DB1上启动slave服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start slave;</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置Keepalived实现mysql双主高可用"><a href="#配置Keepalived实现mysql双主高可用" class="headerlink" title="配置Keepalived实现mysql双主高可用"></a>配置Keepalived实现mysql双主高可用</h2><p>在进行高可用配置之前，需要在DB1和DB2服务器上安装Keepalived软件。DB1服务器上/etc/keepalived/keepalived.conf文件内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">global_defs	&#123;</span><br><span class="line">notification_email	&#123;</span><br><span class="line">acassen@firewall.loc</span><br><span class="line">failover@firewall.loc</span><br><span class="line">sysadmin@firewall.loc</span><br><span class="line">&#125;</span><br><span class="line">notification_email_from Alexandre.Cassen@firewall.loc</span><br><span class="line">smtp_server	192.168.200.1</span><br><span class="line">smtp_connect_timeout 30</span><br><span class="line">router_id MySQLHA_DEVEL</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vrrp_script check_mysqld &#123;</span><br><span class="line">script <span class="string">"/etc/keepalived/mysqlcheck/check_slave.pl 127.0.0.1"</span><span class="comment">#检测mysql复制状态的脚本</span></span><br><span class="line">interval 2</span><br><span class="line">weight 21</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vrrp_instance	HA_1	&#123;</span><br><span class="line">state	BACKUP		<span class="comment">#在DB1和DB2上均配置为BACKUP</span></span><br><span class="line">interface eth0</span><br><span class="line">virtual_router_id	80</span><br><span class="line">priority	100</span><br><span class="line">advert_int	2</span><br><span class="line">nopreempt		<span class="comment">#不抢占模式，只在优先级高的机器上设置，优先级低的机器不可设置</span></span><br><span class="line"></span><br><span class="line">authentication	&#123;</span><br><span class="line">auth_type	PASS</span><br><span class="line">auth_pass	qweasdzxc</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">track_script	&#123;</span><br><span class="line">check_mysqld</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">virtual_ipaddress	&#123;</span><br><span class="line">192.168.88.10/24	dev eth0	<span class="comment">#mysql的对外服务ip,即VIP</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中，check_slave.pl文件内容为<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/perl -w</span></span><br><span class="line"><span class="keyword">use</span> DBI;</span><br><span class="line"><span class="keyword">use</span> DBD::mysql;</span><br><span class="line"></span><br><span class="line"><span class="comment"># CONFIG VARIABLES</span></span><br><span class="line">$SBM = <span class="number">120</span>;</span><br><span class="line">$db = <span class="string">"aaa"</span>;</span><br><span class="line">$host = $ARGV[<span class="number">0</span>];</span><br><span class="line">$port = <span class="number">3306</span>;</span><br><span class="line">$user = <span class="string">'root'</span>;</span><br><span class="line">$pw = <span class="string">'123456'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># SQL query</span></span><br><span class="line">$query = <span class="string">"show slave status"</span>;</span><br><span class="line"></span><br><span class="line">$dbh = DBI-&gt;<span class="keyword">connect</span>(<span class="string">"DBI:mysql:$db:$host:$port"</span>, $user, $pw, &#123; <span class="string">RaiseError =&gt;</span> <span class="number">0</span>,<span class="string">PrintError =&gt;</span> <span class="number">0</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">defined</span>($dbh))     &#123;</span><br><span class="line">        <span class="keyword">exit</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$sqlQuery = $dbh-&gt;prepare($query);</span><br><span class="line">$sqlQuery-&gt;execute;</span><br><span class="line">$Slave_IO_Running = <span class="string">""</span>;</span><br><span class="line">$Slave_SQL_Running = <span class="string">""</span>;</span><br><span class="line">$Seconds_Behind_Master = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">my</span> $ref = $sqlQuery-&gt;fetchrow_hashref()) &#123;</span><br><span class="line">        $Slave_IO_Running = $ref-&gt;&#123;<span class="string">'Slave_IO_Running'</span>&#125;;</span><br><span class="line">        $Slave_SQL_Running = $ref-&gt;&#123;<span class="string">'Slave_SQL_Running'</span>&#125;;</span><br><span class="line">        $Seconds_Behind_Master = $ref-&gt;&#123;<span class="string">'Seconds_Behind_Master'</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$sqlQuery-&gt;finish;</span><br><span class="line">$dbh-&gt;disconnect();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ( $Slave_IO_Running eq <span class="string">"No"</span>  || $Slave_SQL_Running eq <span class="string">"No"</span> ) &#123;</span><br><span class="line">        <span class="keyword">exit</span> <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> ( $Seconds_Behind_Master &gt; $SBM ) &#123;</span><br><span class="line">                <span class="keyword">exit</span> <span class="number">1</span>;</span><br><span class="line">        &#125;       <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">exit</span> <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装per连接数据库驱动"><a href="#安装per连接数据库驱动" class="headerlink" title="安装per连接数据库驱动"></a>安装per连接数据库驱动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install perl-DBD-MySQL <span class="comment">#安装per连接数据库驱动</span></span><br></pre></td></tr></table></figure>
+<p>这是用perl写的检测mysql复制状态的脚本，只需修改文件中mysql数据库的数据库、端口，用户名密码即可直接使用，但在使用前要保证此脚本有可执行权限。<br>接着将Keepalived.conf文件和check_slave.pl文件复制到DB2服务器上的对应位置，将Keepalived.conf文件中priority值修改为90，由于配置的不是抢占模式，因此，还需要去掉nopreempt选项。在完成所有配置后，分别在DB1和DB2上启动Keepalived服务，在正常情况下VIP地址应该运行在DB1服务器上。</p>
 
       
     </div>
@@ -544,7 +545,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.kapyan.top/gitlab个人的简单使用.html" title="gitlab个人的简单使用">http://blog.kapyan.top/gitlab个人的简单使用.html</a>
+    <a href="http://blog.kapyan.top/mysql主主互备模式架构.html" title="mysql主主互备模式架构">http://blog.kapyan.top/mysql主主互备模式架构.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -559,7 +560,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/gitlab/" rel="tag"><i class="fa fa-tag"></i> gitlab</a>
+            <a href="/tags/mysql主主互备/" rel="tag"><i class="fa fa-tag"></i> mysql主主互备</a>
           
         </div>
       
@@ -587,8 +588,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/geoserver-postgresql搭建.html" rel="next" title="geoserver+postgresql搭建">
-                <i class="fa fa-chevron-left"></i> geoserver+postgresql搭建
+              <a href="/通过阿里云源安装zabbix.html" rel="next" title="centos7通过阿里源安装zabbix">
+                <i class="fa fa-chevron-left"></i> centos7通过阿里源安装zabbix
               </a>
             
           </div>
@@ -596,10 +597,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/nginx安装.html" rel="prev" title="nginx安装">
-                nginx安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -764,7 +761,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#个人设置"><span class="nav-number">1.</span> <span class="nav-text">个人设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头像、语言设置"><span class="nav-number">2.</span> <span class="nav-text">头像、语言设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改密码"><span class="nav-number">3.</span> <span class="nav-text">修改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#免密设置"><span class="nav-number">4.</span> <span class="nav-text">免密设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">5.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取项目地址、下载项目"><span class="nav-number">6.</span> <span class="nav-text">获取项目地址、下载项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目权限设置、添加项目成员"><span class="nav-number">7.</span> <span class="nav-text">项目权限设置、添加项目成员</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改mysql配置文件"><span class="nav-number">1.</span> <span class="nav-text">修改mysql配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手动同步数据库："><span class="nav-number">2.</span> <span class="nav-text">手动同步数据库：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建复制用户并授权："><span class="nav-number">3.</span> <span class="nav-text">创建复制用户并授权：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Keepalived实现mysql双主高可用"><span class="nav-number">4.</span> <span class="nav-text">配置Keepalived实现mysql双主高可用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装per连接数据库驱动"><span class="nav-number">5.</span> <span class="nav-text">安装per连接数据库驱动</span></a></li></ol></div>
             
 
           </div>
