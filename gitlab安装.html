@@ -112,12 +112,12 @@
 <meta property="og:site_name" content="运维之窗">
 <meta property="og:description" content="脚本快速安装12345curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash	#debcurl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.kapyan.top/gitlab安装/sshport.png">
+<meta property="og:image" content="http://blog.kapyan.top/gitlab安装/sshport.png">
 <meta property="og:updated_time" content="2019-01-14T03:28:09.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gitlab安装">
 <meta name="twitter:description" content="脚本快速安装12345curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash	#debcurl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.">
-<meta name="twitter:image" content="http://www.kapyan.top/gitlab安装/sshport.png">
+<meta name="twitter:image" content="http://blog.kapyan.top/gitlab安装/sshport.png">
 
 
 
@@ -472,7 +472,7 @@
         <h3 id="脚本快速安装"><a href="#脚本快速安装" class="headerlink" title="脚本快速安装"></a>脚本快速安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash	<span class="comment">#deb</span></span><br><span class="line">curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash	<span class="comment">#rpm</span></span><br><span class="line">curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.node.sh | bash	<span class="comment">#node</span></span><br><span class="line">curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.python.sh | bash <span class="comment">#python</span></span><br><span class="line">curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.gem.sh | bash <span class="comment">#gem(ruby)</span></span><br></pre></td></tr></table></figure>
 <p>访问gitlab地址：<a href="http://your_host_ip" target="_blank" rel="noopener">http://your_host_ip</a></p>
 <h3 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker pull registry.cn-zhangjiakou.aliyuncs.com/kapyan/gitlab:11.5.4</span><br><span class="line">docker run --detach \</span><br><span class="line">    --hostname 192.168.1.208:8000 \</span><br><span class="line">    --publish 10000:443 --publish 8000:8000 --publish 20000:22 \</span><br><span class="line">    --name gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    --volume /home/gitlab/config:/etc/gitlab \</span><br><span class="line">    --volume /home/gitlab/logs:/var/<span class="built_in">log</span>/gitlab \</span><br><span class="line">    --volume /home/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    gitlab 	<span class="comment">#运行容器</span></span><br></pre></td></tr></table></figure>
-<p>docker exec -it gitlab /bin/bash  #进入容器<br>vim /etc/gitlab/gitlab.rb<br><img src="/gitlab安装/sshport.png" alt="修改ssh端口号"><br>gitlab-ctl reconfigure    #重新加载gitlab配置<br>gitlab-ctl restart        #重启gitlab<br>访问gitlab地址：<a href="http://your_host_ip:8000" target="_blank" rel="noopener">http://your_host_ip:8000</a><br><a href="https://packages.gitlab.com/gitlab/gitlab-ce" target="_blank" rel="noopener">官方安装包</a></p>
+<p>docker exec -it gitlab /bin/bash  #进入容器<br>vim /etc/gitlab/gitlab.rb<br><img src="//blog.kapyan.top/gitlab安装/sshport.png" alt="修改ssh端口号"><br>gitlab-ctl reconfigure    #重新加载gitlab配置<br>gitlab-ctl restart        #重启gitlab<br>访问gitlab地址：<a href="http://your_host_ip:8000" target="_blank" rel="noopener">http://your_host_ip:8000</a><br><a href="https://packages.gitlab.com/gitlab/gitlab-ce" target="_blank" rel="noopener">官方安装包</a></p>
 
       
     </div>
