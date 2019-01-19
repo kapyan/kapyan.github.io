@@ -1,7 +1,7 @@
-http://blog.kapyan.top/mysql主主互备模式架构.html
-http://blog.kapyan.top/通过阿里云源安装zabbix.html
-http://blog.kapyan.top/gitlab数据备份、还原、迁移.html
-http://blog.kapyan.top/gitlab安装.html
-http://blog.kapyan.top/nginx安装.html
-http://blog.kapyan.top/gitlab个人的简单使用.html
-http://blog.kapyan.top/geoserver-postgresql搭建.html
+http://www.kapyan.top/mysql主主互备模式架构.html
+http://www.kapyan.top/通过阿里云源安装zabbix.html
+http://www.kapyan.top/gitlab数据备份、还原、迁移.html
+http://www.kapyan.top/gitlab安装.html
+http://www.kapyan.top/nginx安装.html
+http://www.kapyan.top/gitlab个人的简单使用.html
+http://www.kapyan.top/geoserver-postgresql搭建.html

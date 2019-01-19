@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://blog.kapyan.top/"/>
+  <link href="http://www.kapyan.top/"/>
   <updated>2019-01-18T07:50:38.295Z</updated>
-  <id>http://blog.kapyan.top/</id>
+  <id>http://www.kapyan.top/</id>
   
   <author>
     <name>没有风的晴天</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>mysql主主互备模式架构</title>
-    <link href="http://blog.kapyan.top/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87%E6%A8%A1%E5%BC%8F%E6%9E%B6%E6%9E%84.html"/>
-    <id>http://blog.kapyan.top/mysql主主互备模式架构.html</id>
+    <link href="http://www.kapyan.top/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87%E6%A8%A1%E5%BC%8F%E6%9E%B6%E6%9E%84.html"/>
+    <id>http://www.kapyan.top/mysql主主互备模式架构.html</id>
     <published>2019-01-18T07:14:43.000Z</published>
     <updated>2019-01-18T07:50:38.295Z</updated>
     
@@ -34,17 +34,17 @@
     
     </summary>
     
-      <category term="mysql" scheme="http://blog.kapyan.top/categories/mysql/"/>
+      <category term="mysql" scheme="http://www.kapyan.top/categories/mysql/"/>
     
     
-      <category term="mysql主主互备" scheme="http://blog.kapyan.top/tags/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/"/>
+      <category term="mysql主主互备" scheme="http://www.kapyan.top/tags/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/"/>
     
   </entry>
   
   <entry>
     <title>centos7通过阿里源安装zabbix</title>
-    <link href="http://blog.kapyan.top/%E9%80%9A%E8%BF%87%E9%98%BF%E9%87%8C%E4%BA%91%E6%BA%90%E5%AE%89%E8%A3%85zabbix.html"/>
-    <id>http://blog.kapyan.top/通过阿里云源安装zabbix.html</id>
+    <link href="http://www.kapyan.top/%E9%80%9A%E8%BF%87%E9%98%BF%E9%87%8C%E4%BA%91%E6%BA%90%E5%AE%89%E8%A3%85zabbix.html"/>
+    <id>http://www.kapyan.top/通过阿里云源安装zabbix.html</id>
     <published>2019-01-17T06:53:08.000Z</published>
     <updated>2019-01-18T08:26:30.989Z</updated>
     
@@ -60,17 +60,17 @@
     
     </summary>
     
-      <category term="zabbix" scheme="http://blog.kapyan.top/categories/zabbix/"/>
+      <category term="zabbix" scheme="http://www.kapyan.top/categories/zabbix/"/>
     
     
-      <category term="zabbix安装" scheme="http://blog.kapyan.top/tags/zabbix%E5%AE%89%E8%A3%85/"/>
+      <category term="zabbix安装" scheme="http://www.kapyan.top/tags/zabbix%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
   <entry>
     <title>gitlab数据备份、还原、迁移</title>
-    <link href="http://blog.kapyan.top/gitlab%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E3%80%81%E8%BF%98%E5%8E%9F%E3%80%81%E8%BF%81%E7%A7%BB.html"/>
-    <id>http://blog.kapyan.top/gitlab数据备份、还原、迁移.html</id>
+    <link href="http://www.kapyan.top/gitlab%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E3%80%81%E8%BF%98%E5%8E%9F%E3%80%81%E8%BF%81%E7%A7%BB.html"/>
+    <id>http://www.kapyan.top/gitlab数据备份、还原、迁移.html</id>
     <published>2019-01-14T03:23:20.000Z</published>
     <updated>2019-01-14T05:18:19.239Z</updated>
     
@@ -85,17 +85,17 @@
     
     </summary>
     
-      <category term="gitlab" scheme="http://blog.kapyan.top/categories/gitlab/"/>
+      <category term="gitlab" scheme="http://www.kapyan.top/categories/gitlab/"/>
     
     
-      <category term="gitlab" scheme="http://blog.kapyan.top/tags/gitlab/"/>
+      <category term="gitlab" scheme="http://www.kapyan.top/tags/gitlab/"/>
     
   </entry>
   
   <entry>
     <title>gitlab安装</title>
-    <link href="http://blog.kapyan.top/gitlab%E5%AE%89%E8%A3%85.html"/>
-    <id>http://blog.kapyan.top/gitlab安装.html</id>
+    <link href="http://www.kapyan.top/gitlab%E5%AE%89%E8%A3%85.html"/>
+    <id>http://www.kapyan.top/gitlab安装.html</id>
     <published>2019-01-09T05:13:29.000Z</published>
     <updated>2019-01-14T03:28:09.051Z</updated>
     
@@ -110,17 +110,17 @@
     
     </summary>
     
-      <category term="gitlab" scheme="http://blog.kapyan.top/categories/gitlab/"/>
+      <category term="gitlab" scheme="http://www.kapyan.top/categories/gitlab/"/>
     
     
-      <category term="gitlab" scheme="http://blog.kapyan.top/tags/gitlab/"/>
+      <category term="gitlab" scheme="http://www.kapyan.top/tags/gitlab/"/>
     
   </entry>
   
   <entry>
     <title>nginx安装</title>
-    <link href="http://blog.kapyan.top/nginx%E5%AE%89%E8%A3%85.html"/>
-    <id>http://blog.kapyan.top/nginx安装.html</id>
+    <link href="http://www.kapyan.top/nginx%E5%AE%89%E8%A3%85.html"/>
+    <id>http://www.kapyan.top/nginx安装.html</id>
     <published>2019-01-05T07:16:53.000Z</published>
     <updated>2019-01-15T05:47:49.961Z</updated>
     
@@ -135,17 +135,17 @@
     
     </summary>
     
-      <category term="nginx" scheme="http://blog.kapyan.top/categories/nginx/"/>
+      <category term="nginx" scheme="http://www.kapyan.top/categories/nginx/"/>
     
     
-      <category term="nginx" scheme="http://blog.kapyan.top/tags/nginx/"/>
+      <category term="nginx" scheme="http://www.kapyan.top/tags/nginx/"/>
     
   </entry>
   
   <entry>
     <title>gitlab个人的简单使用</title>
-    <link href="http://blog.kapyan.top/gitlab%E4%B8%AA%E4%BA%BA%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.html"/>
-    <id>http://blog.kapyan.top/gitlab个人的简单使用.html</id>
+    <link href="http://www.kapyan.top/gitlab%E4%B8%AA%E4%BA%BA%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.html"/>
+    <id>http://www.kapyan.top/gitlab个人的简单使用.html</id>
     <published>2019-01-04T09:30:37.000Z</published>
     <updated>2019-01-05T07:15:41.648Z</updated>
     
@@ -161,17 +161,17 @@
     
     </summary>
     
-      <category term="gitlab" scheme="http://blog.kapyan.top/categories/gitlab/"/>
+      <category term="gitlab" scheme="http://www.kapyan.top/categories/gitlab/"/>
     
     
-      <category term="gitlab" scheme="http://blog.kapyan.top/tags/gitlab/"/>
+      <category term="gitlab" scheme="http://www.kapyan.top/tags/gitlab/"/>
     
   </entry>
   
   <entry>
     <title>geoserver+postgresql搭建</title>
-    <link href="http://blog.kapyan.top/geoserver-postgresql%E6%90%AD%E5%BB%BA.html"/>
-    <id>http://blog.kapyan.top/geoserver-postgresql搭建.html</id>
+    <link href="http://www.kapyan.top/geoserver-postgresql%E6%90%AD%E5%BB%BA.html"/>
+    <id>http://www.kapyan.top/geoserver-postgresql搭建.html</id>
     <published>2019-01-02T03:05:47.000Z</published>
     <updated>2019-01-14T05:53:51.671Z</updated>
     
@@ -186,12 +186,12 @@
     
     </summary>
     
-      <category term="geoserver" scheme="http://blog.kapyan.top/categories/geoserver/"/>
+      <category term="geoserver" scheme="http://www.kapyan.top/categories/geoserver/"/>
     
     
-      <category term="geoserver" scheme="http://blog.kapyan.top/tags/geoserver/"/>
+      <category term="geoserver" scheme="http://www.kapyan.top/tags/geoserver/"/>
     
-      <category term="postgresql" scheme="http://blog.kapyan.top/tags/postgresql/"/>
+      <category term="postgresql" scheme="http://www.kapyan.top/tags/postgresql/"/>
     
   </entry>
   
