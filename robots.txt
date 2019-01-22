@@ -10,5 +10,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://blog.kapyan.top/sitemap.xml
-Sitemap: http://blog.kapyan.top/baidusitemap.xml
+Sitemap: https://www.kapyan.top/sitemap.xml
+Sitemap: https://www.kapyan.top/baidusitemap.xml
