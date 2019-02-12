@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="运维之窗">
 <meta property="og:description" content="介绍  Redis是一个使用ANSIC编写的开源、支持网络、基于内存、可选持久性的键值对（key-value）存储数据库。从2015年6月开始，Redis的开发由Redis Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMware赞助。根据月度排行榜网站DB-Engines.com的数据显示，Redis是最流行的键值对存储数据库。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-12T03:13:15.745Z">
+<meta property="og:updated_time" content="2019-02-12T03:24:03.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Redis的一些了解">
 <meta name="twitter:description" content="介绍  Redis是一个使用ANSIC编写的开源、支持网络、基于内存、可选持久性的键值对（key-value）存储数据库。从2015年6月开始，Redis的开发由Redis Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMware赞助。根据月度排行榜网站DB-Engines.com的数据显示，Redis是最流行的键值对存储数据库。">
@@ -365,7 +365,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-12T11:13:15+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-12T11:24:03+08:00">
                 2019-02-12
               </time>
             
@@ -537,9 +537,9 @@
 <blockquote>
 <p>执行说明：<br>执行的第一条命令开启了AOF功能：Redis会阻塞直到初始AOF文件创建完成为止，之后Redis会继续处理命令请求，并开始将写入命令追加到AOF文件末尾。<br>执行的第二条命令用于关闭RDB功能。这一步是可选的，也可以同时使用RDB和AOF这两种持久化功能。</p>
 </blockquote>
-<h2 id="备份redis数据"><a href="#备份redis数据" class="headerlink" title="备份redis数据"></a>备份redis数据</h2><p>Redis对于数据备份是非常友好的，因为可以在服务器运行的时候对RDB文件进行复制：<br>RDB文件一旦被创建，就不会进行任何修改。当服务器要创建一个新的RDB文件时，它先将文件的内容保存在一个临时文件里面，当临时文件写入完毕时，程序才使用rename(2)原子地用临时文件替换原来的RDB文件。<br>这也就是说，无论何时，复制RDB文件都是绝对安全的。<br>创建一个定期任务（cron job），每小时将一个RDB文件备份到一个文件夹，并且每天将一个RDB文件备份到另一个文件夹。<br>确保快照的备份都带有相应的日期和时间信息，每次执行定期任务脚本时，使用find命令来删除过期的快照：可以保留最近48小时内的快照，还可以保留最近一两个月的每日快照。<br>至少每天一次，将RDB备份到数据中心之外，或者至少备份到运行Redis服务器的物理机器之外。</p>
 </li>
 </ol>
+<h2 id="备份redis数据"><a href="#备份redis数据" class="headerlink" title="备份redis数据"></a>备份redis数据</h2><p>Redis对于数据备份是非常友好的，因为可以在服务器运行的时候对RDB文件进行复制：<br>RDB文件一旦被创建，就不会进行任何修改。当服务器要创建一个新的RDB文件时，它先将文件的内容保存在一个临时文件里面，当临时文件写入完毕时，程序才使用rename(2)原子地用临时文件替换原来的RDB文件。<br>这也就是说，无论何时，复制RDB文件都是绝对安全的。<br>创建一个定期任务（cron job），每小时将一个RDB文件备份到一个文件夹，并且每天将一个RDB文件备份到另一个文件夹。<br>确保快照的备份都带有相应的日期和时间信息，每次执行定期任务脚本时，使用find命令来删除过期的快照：可以保留最近48小时内的快照，还可以保留最近一两个月的每日快照。<br>至少每天一次，将RDB备份到数据中心之外，或者至少备份到运行Redis服务器的物理机器之外。</p>
 
       
     </div>
