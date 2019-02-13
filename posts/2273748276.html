@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="运维之窗">
 <meta property="og:description" content="基本数据类型   类型 说明     String 字符串 Redis字符串数据类型的相关命令用于管理redis字符串值   Hash 哈希 Redishash是一个string类型的field和value的映射表，hash特别适合由于存储对象。Redis中每个hash可以存储2³²-1键值对（40多亿）。   List 列表 Redis列表是简单的字符串列表，按照插入顺序排序。可以添加一个元素到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-12T05:57:45.573Z">
+<meta property="og:updated_time" content="2019-02-13T08:33:41.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis管理">
 <meta name="twitter:description" content="基本数据类型   类型 说明     String 字符串 Redis字符串数据类型的相关命令用于管理redis字符串值   Hash 哈希 Redishash是一个string类型的field和value的映射表，hash特别适合由于存储对象。Redis中每个hash可以存储2³²-1键值对（40多亿）。   List 列表 Redis列表是简单的字符串列表，按照插入顺序排序。可以添加一个元素到">
@@ -365,8 +365,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-12T13:57:45+08:00">
-                2019-02-12
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-13T16:33:41+08:00">
+                2019-02-13
               </time>
             
           </span>
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  660
+                  4.8k
                 </span>
               
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  17
                 </span>
               
             </div>
@@ -623,8 +623,593 @@
 <td>INCRBY key increment</td>
 <td>将key所存储的值加上给定的增量值（increment）</td>
 </tr>
+<tr>
+<td>INCRBYFLOAT key increment</td>
+<td>将 key 所储存的值加上给定的浮点增量值（increment）</td>
+</tr>
+<tr>
+<td>DECR key</td>
+<td>将key中存储的数字值减一</td>
+</tr>
+<tr>
+<td>DECRBY key decrementkey</td>
+<td>所储存的值减去给定的减量值（decrement）</td>
+</tr>
+<tr>
+<td>APPEND key value</td>
+<td>如果 key 已经存在并且是一个字符串，APPEND 命令将 指定value 追加到改 key 原来的值（value）的末尾</td>
+</tr>
 </tbody>
 </table>
+<blockquote>
+<p>应用场景：<br>常规计数：微博数、粉丝数等。</p>
+</blockquote>
+<h2 id="Hash（字典）"><a href="#Hash（字典）" class="headerlink" title="Hash（字典）"></a>Hash（字典）</h2><p>我们可以将Redis中的Hashes类型看成具有String Key和String Value的map容器。<br>该类型非常适合用于存储值对象的信息。如Username、Password和Age等。如果Hash中包含很少的字段，那么该类型的数据也将仅占用很少的磁盘空间。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HDEL key field [field2]</td>
+<td>删除一个或多个哈希表字段</td>
+</tr>
+<tr>
+<td>HEXISTS key field</td>
+<td>查看哈希表key中，指定的字段是否存在</td>
+</tr>
+<tr>
+<td>HGET key field</td>
+<td>获取存储在哈希表中指定字段的值</td>
+</tr>
+<tr>
+<td>HGETALL key</td>
+<td>获取在哈希表中指定key的所有字段和值</td>
+</tr>
+<tr>
+<td>HINCRBY key field increment</td>
+<td>为哈希表key中的指定字段的整数值加上增量increment</td>
+</tr>
+<tr>
+<td>HINCRBYFLOAT key field increment</td>
+<td>为哈希表key中的指定字段的浮点数值加上增量increment</td>
+</tr>
+<tr>
+<td>HKEYS key</td>
+<td>获取所有哈希表中的字段</td>
+</tr>
+<tr>
+<td>HLEN key</td>
+<td>获取哈希表中字段的数量</td>
+</tr>
+<tr>
+<td>HMGET key field1 [field2]</td>
+<td>获取所有给定字段的值</td>
+</tr>
+<tr>
+<td>HMSET key field1 value1 [field2 value2]</td>
+<td>同时将多个field-value（域-值）对设置到哈希表key中</td>
+</tr>
+<tr>
+<td>HSET key field value</td>
+<td>将哈希表key中的字段field的值设为value</td>
+</tr>
+<tr>
+<td>HSETNX key field value</td>
+<td>只有在字段field不存在时，设置哈希表字段的值</td>
+</tr>
+<tr>
+<td>HVALS key</td>
+<td>获取哈希表中所有值</td>
+</tr>
+<tr>
+<td>HSCAN key cursor [MATCH pattern] [COUNT count]</td>
+<td>迭代哈希表中的键值对</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>应用场景：存储部分变更的数据，如用户信息等。</p>
+</blockquote>
+<h2 id="list（列表）"><a href="#list（列表）" class="headerlink" title="list（列表）"></a>list（列表）</h2><p>List类型是按照插入顺序排序的字符串链表。和数据结构中的普通链表一样，我们可以在其头部和尾部添加新的元素。在插入时，如果该键并不存在，Redis将为该键创建一个新的链表。与此相反，如果链表中所有的元素均被移除，那么该键也将会被从数据库中删除。List中可以包含的最大元素数量是4294967295。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BLPOP key1 [key2] timeout</td>
+<td>移除并获取列表的第一个元素，如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止</td>
+</tr>
+<tr>
+<td>BRPOP key1 [key2] timeout</td>
+<td>移除并获取列表的最后一个元素，如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止</td>
+</tr>
+<tr>
+<td>BRPOPLPUSH source destination timeout</td>
+<td>从列表弹出一个值，将弹出的元素插入到另外一列表中并返回它；如果列表没有元素会阻塞列表直到等到</td>
+</tr>
+<tr>
+<td>LINDEX key index</td>
+<td>通过索引获取列表中的元素</td>
+</tr>
+<tr>
+<td>LINSERT key BEFORE/AFTER pivot value</td>
+<td>在列表的元素前/后插入元素</td>
+</tr>
+<tr>
+<td>LLen key</td>
+<td>获取列表长度</td>
+</tr>
+<tr>
+<td>LPOP key</td>
+<td>移出并获取列表的第一个元素</td>
+</tr>
+<tr>
+<td>LPUSH key value1 [value2]</td>
+<td>将一个或多个值插入到列表头部</td>
+</tr>
+<tr>
+<td>LPUSHX key value</td>
+<td>将一个值插入到已存在的列表头部</td>
+</tr>
+<tr>
+<td>LRANGE key start stop</td>
+<td>获取列表指定范围内的元素</td>
+</tr>
+<tr>
+<td>LREM key count value</td>
+<td>移出列表元素</td>
+</tr>
+<tr>
+<td>LSET key index value</td>
+<td>通过索引设置列表元素的值</td>
+</tr>
+<tr>
+<td>LTRIM key start stop</td>
+<td>对一个列表进行修剪（trim），就是说，让列表只保留指定区间内的元素，不在指定区间内的元素都将被删除</td>
+</tr>
+<tr>
+<td>RPOP key</td>
+<td>移出并获取列表最后一个元素</td>
+</tr>
+<tr>
+<td>RPOPLPUSH source destination</td>
+<td>移出列表的最后一个元素，并将该元素加到另一个列表并返回</td>
+</tr>
+<tr>
+<td>RPUSH key value1 [value2]</td>
+<td>在列表中添加一个或多个值</td>
+</tr>
+<tr>
+<td>RPUSHX key value</td>
+<td>为已存在的列表添加值</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>应用场景：消息队列系统，比如sina微博。<br>在Redis中我们的最新微博ID使用了常驻缓存，这是一直更新的。但是做了限制不能超过5000个ID,因此获取ID的函数会一直询问Redis。只有在start/count参数超出了这个范围的时候，才需要去访问数据库。<br>系统不会像传统方式那样“刷新”缓存，Redis实例中的信息永远是一致的。SQL数据库（或是硬盘上的其他类型数据库）只是在用户需要获取“很远”的数据时才会被触发，而主页或第一个评论页是不会麻烦到硬盘上的数据库。</p>
+</blockquote>
+<h2 id="SET-集合"><a href="#SET-集合" class="headerlink" title="SET (集合)"></a>SET (集合)</h2><p>Set类型看作为没有排序的字符集合。Set可包含的最大元素数量是4294967295。如果多次添加相同元素，Set中将仅保留该元素的一份拷贝。</p>
+<table>
+<thead>
+<tr>
+<th>名令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SADD key member1 [member2]</td>
+<td>向集合添加一个或多个成员</td>
+</tr>
+<tr>
+<td>SCARD key</td>
+<td>获取集合的成员数</td>
+</tr>
+<tr>
+<td>SDIFF key1 [key2]</td>
+<td>返回给定所有集合的差集</td>
+</tr>
+<tr>
+<td>SDIFFSTORE destination key1 [key2]</td>
+<td>返回给定所有集合的差集并存储在destination中</td>
+</tr>
+<tr>
+<td>SISMEMBER key member</td>
+<td>判断member元素是否是集合key的成员</td>
+</tr>
+<tr>
+<td>SMEMBERS key</td>
+<td>返回集合中的所有成员</td>
+</tr>
+<tr>
+<td>SMOVE source destination member</td>
+<td>将member元素从source集合移动到destination集合</td>
+</tr>
+<tr>
+<td>SPOP key</td>
+<td>移除并返回集合中的一个随机元素</td>
+</tr>
+<tr>
+<td>SRANDMEMBER key [count]</td>
+<td>返回集合中一个或者多个随机数</td>
+</tr>
+<tr>
+<td>SREM key member1 [member2]</td>
+<td>移除集合中一个或多个成员</td>
+</tr>
+<tr>
+<td>SUNION key1 [key2]</td>
+<td>返回所有给定集合的并集</td>
+</tr>
+<tr>
+<td>SUNIONSTORE destination key1 [key2]</td>
+<td>所有给定集合的并集存储在destination集合中</td>
+</tr>
+<tr>
+<td>SSCAN key cursor [MATCH pattern] [COUNT count]</td>
+<td>迭代集合中的元素</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>应用场景：<br>在微博应用中，可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。<br>Redis还为集合提供了求交集、并集、差集等操作，可以非常方便地实现如共同关注、共同喜好、共同好友等功能，对上面的所有集合操作，还可以使用不同的命令选择将结果返回给客户端还是存集到一个新的结合中。</p>
+</blockquote>
+<h2 id="SortedSet-（有序集合）"><a href="#SortedSet-（有序集合）" class="headerlink" title="SortedSet （有序集合）"></a>SortedSet （有序集合）</h2><p>Sorted-Set中的每一个成员都会有一个分数（score）与之关联，Redis正是通过分数来为集合中的成员进行从小到大的排序。成员是唯一的，但是分数（score）却是可以重复的。<br>集合是通过哈希表实现的，所以添加、删除、查找的复杂度都是O(1)。集合中最大的成员数为2³²-1（4294967295, 每个集合可存储40多亿个成员）。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZADD key score1 member1 [score2 member2]</td>
+<td>向有序集合添加一个或多个成员，或者更新已存在成员的分数</td>
+</tr>
+<tr>
+<td>ZCARD key</td>
+<td>获取有序集合的成员数</td>
+</tr>
+<tr>
+<td>ZCOUNT key min max</td>
+<td>计算在有序集合中指定区间分数的成员数</td>
+</tr>
+<tr>
+<td>ZINCRBY key increment member</td>
+<td>有序集合中对指定成员的分数加上增量increment</td>
+</tr>
+<tr>
+<td>ZINTERSTORE destination numkeys key [key …]</td>
+<td>计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合key中</td>
+</tr>
+<tr>
+<td>ZLEXCOUNT key min max</td>
+<td>在有序集合中计算指定字典区间内成员数量</td>
+</tr>
+<tr>
+<td>ZRANGE key start stop [WITHSCORES]</td>
+<td>通过索引区间返回有序集合中指定区间内的成员</td>
+</tr>
+<tr>
+<td>ZRANGEBYLEX key min max [LIMIT offset count]</td>
+<td>通过字典区间返回有序集合的成员</td>
+</tr>
+<tr>
+<td>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT]</td>
+<td>通过分数返回有序集合指定区间内的成员</td>
+</tr>
+<tr>
+<td>ZRANK key member</td>
+<td>返回有序集合中指定成员的索引</td>
+</tr>
+<tr>
+<td>ZREM key member [member …]</td>
+<td>移除有序集合中的一个或多个成员</td>
+</tr>
+<tr>
+<td>ZREMRANGEBYLEX key min max</td>
+<td>移除有序集合中给定的字典区间的所有成员</td>
+</tr>
+<tr>
+<td>ZREMRANGEBYRANK key start stop</td>
+<td>移除有序集合中给定的排名区间的所有成员</td>
+</tr>
+<tr>
+<td>ZREMRANGEBYSCORE key min max</td>
+<td>移除有序集合中给定的分数区间的所成员</td>
+</tr>
+<tr>
+<td>ZREVRANGE key start stop [WITHSCORES]</td>
+<td>返回有序集合中指定区间的成员，通过索引，分数从高到低</td>
+</tr>
+<tr>
+<td>ZREVRANGEBYSCORE key max min [WITH SCORES]</td>
+<td>返回有序集合中指定分数区间内的成员，分数从高到低排序</td>
+</tr>
+<tr>
+<td>ZREVRANK key member</td>
+<td>返回有序集合中指定成员的排名，有序集合成员按分数值递减（从大到小）排序</td>
+</tr>
+<tr>
+<td>ZSCORE key member</td>
+<td>返回有序集合中，成员的分数值</td>
+</tr>
+<tr>
+<td>ZUNIONSTORE destination nunkeys key [key …]</td>
+<td>计算给定的一个或多个有序集的并集，并存储在新的key中</td>
+</tr>
+<tr>
+<td>ZSCAN key cursor [MATCH pattern] [COUNT count]</td>
+<td>迭代有序集合中的元素（包括元素成员和分数）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>应用场景：<br>排行榜应用，取TOP N操作这个需求与上面需求的不同之处在于，前面操作以时间为权重，这个是以某个条件为权重，比如按顶的次数排序，这时候就需要我们的SortedSet了，将要排序的值设置成sorted set的score,将具体的数据设置成相应的value，每次只需要执行一条ZADD命令即可。</p>
+</blockquote>
+<h2 id="消息模式"><a href="#消息模式" class="headerlink" title="消息模式"></a>消息模式</h2><p>Redis发布消息通常有两种模式：</p>
+<ol>
+<li>队列模式（queuing）</li>
+<li>发布-订阅模式（publish-subscribe）<br>任务队列：顾名思义，就是“传递消息的队列”。与任务对列进行交互的实体有两类，一类是生产者（producer），另一类则是消费者（consumer）。生产者将需要处理的任务放入任务队列中，而消费者则不断地从任务独立中读入任务信息并执行。</li>
+</ol>
+<p>任务队列的好处：</p>
+<ol>
+<li>松耦合</li>
+<li>生产者消费者只需按照约定的任务描述格式，进行编写代码</li>
+<li>易于扩展</li>
+<li>多消费者模式下，消费者可以分布在多个不同的服务器中，由次降低单台服务器的负载</li>
+</ol>
+<h2 id="Redis发布订阅"><a href="#Redis发布订阅" class="headerlink" title="Redis发布订阅"></a>Redis发布订阅</h2><p>其实从Pub/Sub的机制来看，它更像是一个广播系统，多个Subscriber可以订阅多个Channel，多个Publisher可以往多个Channel中发布消息。可以简单的理解：</p>
+<blockquote>
+<p>Subscriber：收音机，可以收到多个频道，并以队列方式显示<br>Publisher：电台，可以往不同的FM频道中发消息<br>Channel：不同频率的FM频道</p>
+</blockquote>
+<h3 id="发布订阅模型"><a href="#发布订阅模型" class="headerlink" title="发布订阅模型"></a>发布订阅模型</h3><p><strong>一个Publisher，多个Subscriber模型</strong><br>可以作为消息队列或者消息管道。<br>主要应用：通知、公告。<br><strong>多个Publisher，一个Subscriber模型</strong><br>可以将Pub/Sub做成独立的HTTP接口，各应用程序作为Publisher向Channel中发送消息，Subscriber端收到消息后执行相应的业务逻辑，比如写数据库，显示等等。<br>主要应用：排行榜、投票、计数。<br><strong>多个Publisher，多个Subscriber模型</strong><br>顾名思义，就是可以向不同的Channel中发送消息，由不同的Subscriber接收。<br>主要应用：群聊、聊天。</p>
+<h3 id="实践发布订阅"><a href="#实践发布订阅" class="headerlink" title="实践发布订阅"></a>实践发布订阅</h3><p>发布订阅命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PUBLISH channel msg</td>
+<td>将信息message发送到指定的频道channel</td>
+</tr>
+<tr>
+<td>SUBSCRIBE channel [channel …]</td>
+<td>订阅频道，可以同时订阅多个频道</td>
+</tr>
+<tr>
+<td>UNSUBSCRIBE [channel …]</td>
+<td>取消订阅指定的频道，如果不指定频道，则会取消订阅所有频道</td>
+</tr>
+<tr>
+<td>PSUBSCRIBE pattern [pattern …]</td>
+<td>订阅一个或个符合给定模式的频道，每个模式以*作为匹配符，比如it*匹配所有以it开头的频道（it.news、it.blog、it.tweets等），new.*匹配所有以news.开头的频道</td>
+</tr>
+<tr>
+<td>PUNSUBSCRIBE pattern [pattern…]</td>
+<td>退订指定的规则，如果没有参数则会退订所有规则</td>
+</tr>
+<tr>
+<td>PUBSUB subcommand [argument [argument …]]</td>
+<td>查看订阅与发布系统状态</td>
+</tr>
+</tbody>
+</table>
+<font color="red" size="2">注意：使用发布订阅模式实现的消息队列，当有客户端订阅channel后只能收到后续发布到该频道的消息，之前发送的不会缓存，必须Provider和Consumer同时在线。</font>
+
+<h3 id="消息队列系统对比"><a href="#消息队列系统对比" class="headerlink" title="消息队列系统对比"></a>消息队列系统对比</h3><p>客户端在执行订阅命令只有进入了订阅状态，只能接受SUBSCRIBE、PSUBSCRIBE、UNSUBSCRIBE、PUNSUBSCRIBE四个命令。<br>开启的订阅客户端，无法收到该频道之前的消息，因为Redis不会对发布的消息进行持久化。<br>和很多专业的消息队列系统（例如kafka、rocketMQ）相比，Redis的发布订阅略显粗糙，例如：无法实现消息堆积和回溯。但胜在足够简单，如果当前场景可以容忍这些缺点，也不失为一个不错的选择。</p>
+<h2 id="Redis事务管理"><a href="#Redis事务管理" class="headerlink" title="Redis事务管理"></a>Redis事务管理</h2><p>redis中的事务跟关系型数据库中的事务是一个相似的概念，但是有不同之处。<br>关系型数据库事务执行失败后面的sql语句不再执行，而redis中的一条命令执行失败，其余的命令照常执行。<br>redis中开启一个事务是使用multi，相当于begin/start transaction，exec提交事务，discard取消队列命令（非回滚操作）。<br>redis、mysql事务对比：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Mysql</th>
+<th>Redis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开启</td>
+<td>start/begin transaction</td>
+<td>multi</td>
+</tr>
+<tr>
+<td>语句</td>
+<td>普通SQL</td>
+<td>普通命令</td>
+</tr>
+<tr>
+<td>失败</td>
+<td>rollback回滚</td>
+<td>discard取消（是队列里面的命令不执行，队列里面的任务根本就没有执行。而不是执行了也可以撤回来）</td>
+</tr>
+<tr>
+<td>成功</td>
+<td>commit</td>
+<td>exec</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Redis事务命令"><a href="#Redis事务命令" class="headerlink" title="Redis事务命令"></a>Redis事务命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DISCARD</td>
+<td>取消事务，放弃执行事务块内的所有命令</td>
+</tr>
+<tr>
+<td>EXEC</td>
+<td>执行所有事务块内的命令</td>
+</tr>
+<tr>
+<td>MULTI</td>
+<td>标记一个事务块的开始</td>
+</tr>
+<tr>
+<td>UNWATCH</td>
+<td>取消WATCH命令对所有key的监视</td>
+</tr>
+<tr>
+<td>WATCH key [key …]</td>
+<td>监视一个或多个key,如果在事务执行之前这个或这些被其他命令所改动，那么事务将被打断</td>
+</tr>
+</tbody>
+</table>
+<p>事务执行举例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ZADD salary 2000 user1</span><br><span class="line">ZADD salary 3000 user2</span><br><span class="line">ZRANGE salary 0 -1 WITHSCORES</span><br><span class="line">MULTI</span><br><span class="line">ZINCRBY salary 1000 user1</span><br><span class="line">ZINCRBY salary -1000 user2</span><br><span class="line">EXEC</span><br></pre></td></tr></table></figure></p>
+<h3 id="redis中事务的锁机制"><a href="#redis中事务的锁机制" class="headerlink" title="redis中事务的锁机制"></a>redis中事务的锁机制</h3><p>举例：我正在买票 Ticket -1 ，money -100<br>而票只有1张，如果在multi之后，和exec之前，票被别人买了，即ticket变成了0。<br>我该如何观察这种情景，并不再提交：</p>
+<blockquote>
+<p>悲观的想法：<br>世界充满危险，肯定有人和我抢，给ticket上锁，只有我能操作。[悲观锁]<br>乐观的想法：<br>没有那么多人和我抢，只要注意，有没有人更改ticket的值就可以了。[乐观锁]</p>
+</blockquote>
+<p>Redis的事务中，启用的是乐观锁，只负责监测key有没有被改动。</p>
+<h2 id="Redis服务管理命令"><a href="#Redis服务管理命令" class="headerlink" title="Redis服务管理命令"></a>Redis服务管理命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BGREWRITEAOF</td>
+<td>异步执行一个AOF文件重写操作</td>
+</tr>
+<tr>
+<td>BGSAVE</td>
+<td>在后台异步保存当前数据库的数据到磁盘</td>
+</tr>
+<tr>
+<td>CLIENT KILL [ip:port] [ID client-id]</td>
+<td>关闭客户端连接</td>
+</tr>
+<tr>
+<td>CLINET LIST</td>
+<td>后去连接到服务器的客户端连接列表</td>
+</tr>
+<tr>
+<td>CLINET GETNAME</td>
+<td>后去连接名称</td>
+</tr>
+<tr>
+<td>CLINET PAUSE timeout</td>
+<td>在指定时间内终止运行来自客户端的命令</td>
+</tr>
+<tr>
+<td>CLINET SETNAME connection-name</td>
+<td>设置当前连接的名称</td>
+</tr>
+<tr>
+<td>CLUSTER SLOTS</td>
+<td>获取集群节点的映射数组</td>
+</tr>
+<tr>
+<td>COMMAND</td>
+<td>获取redis命令详情数组</td>
+</tr>
+<tr>
+<td>COMMAND COUNT</td>
+<td>获取redis命令总数</td>
+</tr>
+<tr>
+<td>COMMAND GETKEYS</td>
+<td>获取给定命令的所有键</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>返回当前服务器时间</td>
+</tr>
+<tr>
+<td>COMMAND INFO command-name [command-name…]</td>
+<td>获取指定redis命令描述的数组</td>
+</tr>
+<tr>
+<td>CONFIG GET parameter</td>
+<td>获取指定配置参数的值</td>
+</tr>
+<tr>
+<td>CONFIG REWRITE</td>
+<td>对启动redis服务器时所指定的redis.conf配置文件进行改写</td>
+</tr>
+<tr>
+<td>CONFIG SET parameter value</td>
+<td>修改redis配置参数，无需重启</td>
+</tr>
+<tr>
+<td>CONFIG RESETSTAT</td>
+<td>重置INFO命令中的某些统计数据</td>
+</tr>
+<tr>
+<td>DBSIZE</td>
+<td>返回当前数据库的key的数量</td>
+</tr>
+<tr>
+<td>DEBUG OBJECT key</td>
+<td>获取key的调试信息</td>
+</tr>
+<tr>
+<td>DEBUG SEGFAULT</td>
+<td>让redis服务崩溃</td>
+</tr>
+<tr>
+<td>FLUSHALL</td>
+<td>删除所有数据库的所有key</td>
+</tr>
+<tr>
+<td>FLUSHDB</td>
+<td>删除当前数据库的所有key</td>
+</tr>
+<tr>
+<td>INFO [section]</td>
+<td>获取redis服务器的各种信息和统计数值</td>
+</tr>
+<tr>
+<td>LASTSAVE</td>
+<td>返回最近一次redis成功将数据保存到磁盘上的时间，以unix时间戳格式表示</td>
+</tr>
+<tr>
+<td>MONITOR</td>
+<td>实时打印出redis服务器接受到的命令，调试用</td>
+</tr>
+<tr>
+<td>ROLE</td>
+<td>返回主从实例所属的角色</td>
+</tr>
+<tr>
+<td>SHUTDOWN [NOSAVE] [SAVE]</td>
+<td>异步保存数据到硬盘，并关闭服务器</td>
+</tr>
+<tr>
+<td>SLAVEOF host port</td>
+<td>将当前服务器转变为指定服务器的从属服务器（slave server）</td>
+</tr>
+<tr>
+<td>SLOWLOG subcommand [argument]</td>
+<td>管理redis的慢日志</td>
+</tr>
+<tr>
+<td>SYNC</td>
+<td>用于复制功能（replication）的内部命令</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Redis慢日志查询"><a href="#Redis慢日志查询" class="headerlink" title="Redis慢日志查询"></a>Redis慢日志查询</h2><p>Slow log是Redis用来记录查询执行时间的日志系统<br>slow log保存在内存里面，读写速度非常快<br>可以通过修改redis.conf文件或者用CONFIG GET和CONFIG SET 命令对他们动态地进行修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#redis.conf修改</span></span><br><span class="line">slowlog-log-slower-than 10000 超过多少微秒</span><br><span class="line"><span class="comment">#命令行修改</span></span><br><span class="line">CONFIG SET slowlog-log-slower-than 10000</span><br><span class="line">CONFIG SET sloelog-max-len 1000	保存多少条慢日志</span><br><span class="line">CONFIG GET slow*</span><br><span class="line">SLOWLOG GET</span><br><span class="line">SLOWLOG RESET</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -904,7 +1489,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局key操作"><span class="nav-number">2.</span> <span class="nav-text">全局key操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String（字符串）"><span class="nav-number">3.</span> <span class="nav-text">String（字符串）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局key操作"><span class="nav-number">2.</span> <span class="nav-text">全局key操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String（字符串）"><span class="nav-number">3.</span> <span class="nav-text">String（字符串）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash（字典）"><span class="nav-number">4.</span> <span class="nav-text">Hash（字典）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list（列表）"><span class="nav-number">5.</span> <span class="nav-text">list（列表）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SET-集合"><span class="nav-number">6.</span> <span class="nav-text">SET (集合)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SortedSet-（有序集合）"><span class="nav-number">7.</span> <span class="nav-text">SortedSet （有序集合）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息模式"><span class="nav-number">8.</span> <span class="nav-text">消息模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis发布订阅"><span class="nav-number">9.</span> <span class="nav-text">Redis发布订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发布订阅模型"><span class="nav-number">9.1.</span> <span class="nav-text">发布订阅模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践发布订阅"><span class="nav-number">9.2.</span> <span class="nav-text">实践发布订阅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列系统对比"><span class="nav-number">9.3.</span> <span class="nav-text">消息队列系统对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis事务管理"><span class="nav-number">10.</span> <span class="nav-text">Redis事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis事务命令"><span class="nav-number">10.1.</span> <span class="nav-text">Redis事务命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis中事务的锁机制"><span class="nav-number">10.2.</span> <span class="nav-text">redis中事务的锁机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis服务管理命令"><span class="nav-number">11.</span> <span class="nav-text">Redis服务管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis慢日志查询"><span class="nav-number">12.</span> <span class="nav-text">Redis慢日志查询</span></a></li></ol></div>
             
 
           </div>
@@ -938,7 +1523,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.1k</span>
+    <span title="Site words total count">20.2k</span>
   
 </div>
 
