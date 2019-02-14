@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="运维之窗">
 <meta property="og:description" content="基本数据类型   类型 说明     String 字符串 Redis字符串数据类型的相关命令用于管理redis字符串值   Hash 哈希 Redishash是一个string类型的field和value的映射表，hash特别适合由于存储对象。Redis中每个hash可以存储2³²-1键值对（40多亿）。   List 列表 Redis列表是简单的字符串列表，按照插入顺序排序。可以添加一个元素到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-13T08:44:19.075Z">
+<meta property="og:updated_time" content="2019-02-14T01:26:47.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis管理">
 <meta name="twitter:description" content="基本数据类型   类型 说明     String 字符串 Redis字符串数据类型的相关命令用于管理redis字符串值   Hash 哈希 Redishash是一个string类型的field和value的映射表，hash特别适合由于存储对象。Redis中每个hash可以存储2³²-1键值对（40多亿）。   List 列表 Redis列表是简单的字符串列表，按照插入顺序排序。可以添加一个元素到">
@@ -365,8 +365,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-13T16:44:19+08:00">
-                2019-02-13
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-14T09:26:47+08:00">
+                2019-02-14
               </time>
             
           </span>
@@ -398,14 +398,15 @@
           
             
               <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/2273748276.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/2273748276.html" itemprop="commentCount"></span>
-                </a>
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
               </span>
+              
+                <a href="/posts/2273748276.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="posts/2273748276.html" itemprop="commentsCount"></span>
+                </a>
+              
             
           
 
@@ -454,7 +455,7 @@
 
           
 
-        </div>
+        </span></div>
       </header>
     
 
@@ -1219,6 +1220,9 @@
 
     
 
+
+
+
     
       <div>
         <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
@@ -1355,7 +1359,9 @@
 
   
     <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
     </div>
+
   
 
 
@@ -1408,7 +1414,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1430,7 +1436,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1469,6 +1475,24 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://music.kapyan.top" title="在线音乐" target="_blank" rel="external nofollow">在线音乐</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://video.kapyan.top" title="小熊影院" target="_blank" rel="external nofollow">小熊影院</a>
+                  </li>
+                
+              </ul>
+            </div>
           
           <!-- CloudCalendar -->
           <div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
@@ -1523,7 +1547,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">20.2k</span>
+    <span title="Site words total count">20.3k</span>
   
 </div>
 
@@ -1705,33 +1729,26 @@
 
 
 
-
-
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: '1uJhiP6vGE0RaH5RJqLlYUox-gzGzoHsz',
-        appKey: '4EOLRvSTdvlcznGaj6HrfHKs',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cyu5jPBKt';
+      var conf = 'c5ce34b4cfb52fb37a87120bf5d492e1';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
 
 
 

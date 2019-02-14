@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Redis主从复制和集群]]></title>
+    <url>%2Fposts%2F655286048.html</url>
+    <content type="text"><![CDATA[Redis主从复制redis复制特性 使用异步复制 一个主服务器可以有多个从服务器 从服务也可以有自己的从服务器 复制功能不会阻塞主服务器 可以通过复制功能来让主服务器免于执行持久化操作，由从服务器去执行持久化操作即可 mermaidgraph TD A –&gt; B]]></content>
+      <categories>
+        <category>redis</category>
+      </categories>
+      <tags>
+        <tag>Redis集群</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[echo 0 > /proc/sys/kernel/hung_task_timeout_secs disables this message故障处理]]></title>
     <url>%2Fposts%2F3397780315.html</url>
     <content type="text"><![CDATA[用xshell连接服务器出错:ssh_exchange_identification: Connection closed by remote host在阿里云控制台通过vnc连接服务器后出现如下信息： 问题原因：默认情况下，linux会最多使用40%的可用内存作为文件系统缓存。当超过此阈值后，文件系统会将缓存中的内存全部写入磁盘，导致后续的I/O请求都是同步的。将缓存写入磁盘时，有一个默认120秒的超时时间。出现上面问题的原因是I/O子系统的处理速度不够快，不能在120秒将缓存中的数据全部写入磁盘。I/O系统响应缓慢，导致越来越多的请求堆积，最终系统内存全部被占用，导致系统失去响应。 解决方法根据应用程序情况，对vm.dirty_ratio:当文件系统缓存脏页数量达到系统内存百分之多少时（如10%），系统不得不开始处理缓存脏页（因为此时脏页数量已经比较多，为了避免数据丢失需要将一定脏页刷入外存）；在此过程中很多应用进程可能会因系统转而处理文件I/O而阻塞vm.dirty_background_ratio:当文件系统缓存脏页数量达到系统内存百分之多少时（5%）就会触发pdflush/flush/kdmflush等后台会写进程运行，将一定缓存的脏页异步地刷入外存两个参数进行调优设置 。推荐如下设置：123sysctl -w vm.dirty_ratio=10sysctl -w vm.dirty_background_ratio=5sysctl -p 如果让系统永久生效123echo "vm.dirty_background_ratio = 5"&gt;&gt;/etc/sysctl.confecho "vm.dirty_ratio = 10"&gt;&gt;/etc/sysctl.confsysctl -p]]></content>
