@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Redis主从复制和集群]]></title>
     <url>%2Fposts%2F655286048.html</url>
-    <content type="text"><![CDATA[Redis主从复制redis复制特性 使用异步复制 一个主服务器可以有多个从服务器 从服务也可以有自己的从服务器 复制功能不会阻塞主服务器 可以通过复制功能来让主服务器免于执行持久化操作，由从服务器去执行持久化操作即可 mermaidgraph TD A –&gt; B]]></content>
+    <content type="text"><![CDATA[Redis主从复制redis复制特性 使用异步复制 一个主服务器可以有多个从服务器 从服务也可以有自己的从服务器 复制功能不会阻塞主服务器 可以通过复制功能来让主服务器免于执行持久化操作，由从服务器去执行持久化操作即可]]></content>
       <categories>
         <category>redis</category>
       </categories>
