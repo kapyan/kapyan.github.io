@@ -43,8 +43,7 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
-.fancybox-outer,
-.fancybox-inner {
+.fancybox-outer, .fancybox-inner {
   position: relative;
 }
 
@@ -64,8 +63,7 @@
   white-space: nowrap;
 }
 
-.fancybox-image,
-.fancybox-iframe {
+.fancybox-image, .fancybox-iframe {
   display: block;
   width: 100%;
   height: 100%;
@@ -76,10 +74,7 @@
   max-height: 100%;
 }
 
-#fancybox-loading,
-.fancybox-close,
-.fancybox-prev span,
-.fancybox-next span {
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
   background-image: url('fancybox_sprite.png');
 }
 
@@ -268,10 +263,7 @@
 only screen and (min--moz-device-pixel-ratio: 1.5),
 only screen and (min-device-pixel-ratio: 1.5) {
 
-  #fancybox-loading,
-  .fancybox-close,
-  .fancybox-prev span,
-  .fancybox-next span {
+  #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
     background-image: url('fancybox_sprite@2x.png');
     background-size: 44px 152px;
     /*The size of the normal image, half the size of the hi-res image*/

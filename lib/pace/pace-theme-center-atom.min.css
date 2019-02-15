@@ -1,12 +1,10 @@
-.pace,
-.pace .pace-progress {
+.pace, .pace .pace-progress {
   z-index: 2000;
   height: 60px;
   width: 100px
 }
 
-.pace .pace-activity,
-.pace .pace-progress:before {
+.pace .pace-activity, .pace .pace-progress:before {
   border-radius: 50%;
   display: block;
   position: absolute
@@ -69,8 +67,7 @@
   width: 100px
 }
 
-.pace .pace-activity:after,
-.pace .pace-activity:before {
+.pace .pace-activity:after, .pace .pace-activity:before {
   content: ' ';
   display: block;
   position: absolute;

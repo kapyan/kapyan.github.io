@@ -1,11 +1,9 @@
 /* global NexT: true */
-
-$(document).ready(function() {
-
+$(document).ready(function () {
   // Create Base64 Object
   var Base64 = {
     _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
-    encode: function(e) {
+    encode: function (e) {
       var t = "";
       var n, r, i, s, o, u, a;
       var f = 0;
@@ -23,11 +21,12 @@ $(document).ready(function() {
         } else if (isNaN(i)) {
           a = 64
         }
-        t = t + this._keyStr.charAt(s) + this._keyStr.charAt(o) + this._keyStr.charAt(u) + this._keyStr.charAt(a)
+        t = t + this._keyStr.charAt(s) + this._keyStr.charAt(o) + this._keyStr
+          .charAt(u) + this._keyStr.charAt(a)
       }
       return t
     },
-    decode: function(e) {
+    decode: function (e) {
       var t = "";
       var n, r, i;
       var s, o, u, a;
@@ -52,7 +51,7 @@ $(document).ready(function() {
       t = Base64._utf8_decode(t);
       return t
     },
-    _utf8_encode: function(e) {
+    _utf8_encode: function (e) {
       e = e.replace(/rn/g, "n");
       var t = "";
       for (var n = 0; n < e.length; n++) {
@@ -70,7 +69,7 @@ $(document).ready(function() {
       }
       return t
     },
-    _utf8_decode: function(e) {
+    _utf8_decode: function (e) {
       var t = "";
       var n = 0;
       var r = c1 = c2 = 0;
@@ -86,19 +85,18 @@ $(document).ready(function() {
         } else {
           c2 = e.charCodeAt(n + 1);
           c3 = e.charCodeAt(n + 2);
-          t += String.fromCharCode((r & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+          t += String.fromCharCode((r & 15) << 12 | (c2 & 63) << 6 | c3 &
+            63);
           n += 3
         }
       }
       return t
     }
   };
-
-  $('.exturl').on('click', function() {
+  $('.exturl').on('click', function () {
     var $exturl = $(this).attr('data-url');
     var $decurl = Base64.decode($exturl);
     window.open($decurl, '_blank');
     return false;
   });
-
 });

@@ -1,7 +1,5 @@
-$(document).ready(function() {
-
+$(document).ready(function () {
   var sidebarInner = $('.sidebar-inner');
-
   initAffix();
   resizeListener();
 
@@ -10,7 +8,6 @@ $(document).ready(function() {
       footerOffset = getFooterOffset(),
       sidebarHeight = $('#sidebar').height() + NexT.utils.getSidebarb2tHeight(),
       contentHeight = $('#content').height();
-
     // Not affix if sidebar taller then content (to prevent bottom jumping).
     if (headerOffset + sidebarHeight < contentHeight) {
       sidebarInner.affix({
@@ -20,7 +17,6 @@ $(document).ready(function() {
         }
       });
     }
-
     setSidebarMarginTop(headerOffset).css({
       'margin-left': 'initial'
     });
@@ -28,7 +24,7 @@ $(document).ready(function() {
 
   function resizeListener() {
     var mql = window.matchMedia('(min-width: 991px)');
-    mql.addListener(function(e) {
+    mql.addListener(function (e) {
       if (e.matches) {
         recalculateAffixPosition();
       }
@@ -54,8 +50,8 @@ $(document).ready(function() {
 
   function recalculateAffixPosition() {
     $(window).off('.affix');
-    sidebarInner.removeData('bs.affix').removeClass('affix affix-top affix-bottom');
+    sidebarInner.removeData('bs.affix').removeClass(
+      'affix affix-top affix-bottom');
     initAffix();
   }
-
 });

@@ -1,5 +1,4 @@
-.pace,
-.pace .pace-activity {
+.pace, .pace .pace-activity {
   z-index: 2000;
   height: 90px;
   width: 90px
@@ -23,8 +22,7 @@
   display: none
 }
 
-.pace .pace-activity,
-.pace .pace-activity:before {
+.pace .pace-activity, .pace .pace-activity:before {
   position: absolute;
   display: block;
   border-color: #29d transparent transparent;

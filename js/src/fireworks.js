@@ -7,7 +7,9 @@
 "use strict";
 
 function updateCoords(e) {
-  pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect().left, pointerY = e.clientY || e.touches[0].clientY - canvasEl.getBoundingClientRect().top
+  pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect()
+    .left, pointerY = e.clientY || e.touches[0].clientY - canvasEl.getBoundingClientRect()
+    .top
 }
 
 function setParticuleDirection(e) {
@@ -22,16 +24,22 @@ function setParticuleDirection(e) {
 
 function createParticule(e, t) {
   var a = {};
-  return a.x = e, a.y = t, a.color = colors[anime.random(0, colors.length - 1)], a.radius = anime.random(16, 32), a.endPos = setParticuleDirection(a), a.draw = function() {
-    ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.fillStyle = a.color, ctx.fill()
-  }, a
+  return a.x = e, a.y = t, a.color = colors[anime.random(0, colors.length - 1)],
+    a.radius = anime.random(16, 32), a.endPos = setParticuleDirection(a), a.draw =
+    function () {
+      ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.fillStyle =
+        a.color, ctx.fill()
+    }, a
 }
 
 function createCircle(e, t) {
   var a = {};
-  return a.x = e, a.y = t, a.color = "#F00", a.radius = 0.1, a.alpha = 0.5, a.lineWidth = 6, a.draw = function() {
-    ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color, ctx.stroke(), ctx.globalAlpha = 1
-  }, a
+  return a.x = e, a.y = t, a.color = "#F00", a.radius = 0.1, a.alpha = 0.5, a.lineWidth =
+    6, a.draw = function () {
+      ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0,
+          2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color,
+        ctx.stroke(), ctx.globalAlpha = 1
+    }, a
 }
 
 function renderParticule(e) {
@@ -46,10 +54,10 @@ function animateParticules(e, t) {
   }
   anime.timeline().add({
     targets: n,
-    x: function(e) {
+    x: function (e) {
       return e.endPos.x
     },
-    y: function(e) {
+    y: function (e) {
       return e.endPos.y
     },
     radius: 0.1,
@@ -74,10 +82,10 @@ function animateParticules(e, t) {
 
 function debounce(e, t) {
   var a;
-  return function() {
+  return function () {
     var n = this,
       i = arguments;
-    clearTimeout(a), a = setTimeout(function() {
+    clearTimeout(a), a = setTimeout(function () {
       e.apply(n, i)
     }, t)
   }
@@ -90,23 +98,30 @@ if (canvasEl) {
     pointerY = 0,
     tap = "mousedown",
     colors = ["#FF1461", "#18FF92", "#5A87FF", "#FBF38C"],
-    setCanvasSize = debounce(function() {
-      canvasEl.width = 2 * window.innerWidth, canvasEl.height = 2 * window.innerHeight, canvasEl.style.width = window.innerWidth + "px", canvasEl.style.height = window.innerHeight + "px", canvasEl.getContext("2d").scale(2, 2)
+    setCanvasSize = debounce(function () {
+      canvasEl.width = 2 * window.innerWidth, canvasEl.height = 2 * window.innerHeight,
+        canvasEl.style.width = window.innerWidth + "px", canvasEl.style.height =
+        window.innerHeight + "px", canvasEl.getContext("2d").scale(2, 2)
     }, 500),
     render = anime({
       duration: 1 / 0,
-      update: function() {
+      update: function () {
         ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
       }
     });
-  document.addEventListener(tap, function(e) {
-    "sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName && (render.play(), updateCoords(e), animateParticules(pointerX, pointerY))
-  }, !1), setCanvasSize(), window.addEventListener("resize", setCanvasSize, !1)
+  document.addEventListener(tap, function (e) {
+    "sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !==
+      e.target.nodeName && "IMG" !== e.target.nodeName && (render.play(),
+        updateCoords(e), animateParticules(pointerX, pointerY))
+  }, !1), setCanvasSize(), window.addEventListener("resize", setCanvasSize, !
+    1)
 }
 "use strict";
 
 function updateCoords(e) {
-  pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect().left, pointerY = e.clientY || e.touches[0].clientY - canvasEl.getBoundingClientRect().top
+  pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect()
+    .left, pointerY = e.clientY || e.touches[0].clientY - canvasEl.getBoundingClientRect()
+    .top
 }
 
 function setParticuleDirection(e) {
@@ -121,16 +136,22 @@ function setParticuleDirection(e) {
 
 function createParticule(e, t) {
   var a = {};
-  return a.x = e, a.y = t, a.color = colors[anime.random(0, colors.length - 1)], a.radius = anime.random(16, 32), a.endPos = setParticuleDirection(a), a.draw = function() {
-    ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.fillStyle = a.color, ctx.fill()
-  }, a
+  return a.x = e, a.y = t, a.color = colors[anime.random(0, colors.length - 1)],
+    a.radius = anime.random(16, 32), a.endPos = setParticuleDirection(a), a.draw =
+    function () {
+      ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.fillStyle =
+        a.color, ctx.fill()
+    }, a
 }
 
 function createCircle(e, t) {
   var a = {};
-  return a.x = e, a.y = t, a.color = "#F00", a.radius = 0.1, a.alpha = 0.5, a.lineWidth = 6, a.draw = function() {
-    ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color, ctx.stroke(), ctx.globalAlpha = 1
-  }, a
+  return a.x = e, a.y = t, a.color = "#F00", a.radius = 0.1, a.alpha = 0.5, a.lineWidth =
+    6, a.draw = function () {
+      ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0,
+          2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color,
+        ctx.stroke(), ctx.globalAlpha = 1
+    }, a
 }
 
 function renderParticule(e) {
@@ -145,10 +166,10 @@ function animateParticules(e, t) {
   }
   anime.timeline().add({
     targets: n,
-    x: function(e) {
+    x: function (e) {
       return e.endPos.x
     },
-    y: function(e) {
+    y: function (e) {
       return e.endPos.y
     },
     radius: 0.1,
@@ -173,10 +194,10 @@ function animateParticules(e, t) {
 
 function debounce(e, t) {
   var a;
-  return function() {
+  return function () {
     var n = this,
       i = arguments;
-    clearTimeout(a), a = setTimeout(function() {
+    clearTimeout(a), a = setTimeout(function () {
       e.apply(n, i)
     }, t)
   }
@@ -189,16 +210,21 @@ if (canvasEl) {
     pointerY = 0,
     tap = "mousedown",
     colors = ["#FF1461", "#18FF92", "#5A87FF", "#FBF38C"],
-    setCanvasSize = debounce(function() {
-      canvasEl.width = 2 * window.innerWidth, canvasEl.height = 2 * window.innerHeight, canvasEl.style.width = window.innerWidth + "px", canvasEl.style.height = window.innerHeight + "px", canvasEl.getContext("2d").scale(2, 2)
+    setCanvasSize = debounce(function () {
+      canvasEl.width = 2 * window.innerWidth, canvasEl.height = 2 * window.innerHeight,
+        canvasEl.style.width = window.innerWidth + "px", canvasEl.style.height =
+        window.innerHeight + "px", canvasEl.getContext("2d").scale(2, 2)
     }, 500),
     render = anime({
       duration: 1 / 0,
-      update: function() {
+      update: function () {
         ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
       }
     });
-  document.addEventListener(tap, function(e) {
-    "sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName && (render.play(), updateCoords(e), animateParticules(pointerX, pointerY))
-  }, !1), setCanvasSize(), window.addEventListener("resize", setCanvasSize, !1)
+  document.addEventListener(tap, function (e) {
+    "sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !==
+      e.target.nodeName && "IMG" !== e.target.nodeName && (render.play(),
+        updateCoords(e), animateParticules(pointerX, pointerY))
+  }, !1), setCanvasSize(), window.addEventListener("resize", setCanvasSize, !
+    1)
 };

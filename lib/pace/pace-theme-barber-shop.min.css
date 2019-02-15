@@ -1,11 +1,9 @@
-.pace,
-.pace .pace-progress {
+.pace, .pace .pace-progress {
   width: 100%;
   overflow: hidden
 }
 
-.pace,
-.pace .pace-activity {
+.pace, .pace .pace-activity {
   position: fixed;
   top: 0;
   left: 0

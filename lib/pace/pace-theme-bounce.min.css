@@ -65,10 +65,7 @@
 }
 
 @-webkit-keyframes pace-bounce {
-
-  0%,
-  100%,
-  95% {
+  0%, 100%, 95% {
     top: 0;
     -webkit-animation-timing-function: ease-in
   }
@@ -95,10 +92,7 @@
 }
 
 @-moz-keyframes pace-bounce {
-
-  0%,
-  100%,
-  95% {
+  0%, 100%, 95% {
     top: 0;
     -moz-animation-timing-function: ease-in
   }
@@ -125,10 +119,7 @@
 }
 
 @keyframes pace-bounce {
-
-  0%,
-  100%,
-  95% {
+  0%, 100%, 95% {
     top: 0;
     animation-timing-function: ease-in
   }

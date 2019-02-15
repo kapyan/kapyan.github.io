@@ -51,18 +51,18 @@
 
   <link rel="alternate" href="/atom.xml" title="运维之窗" type="application/atom+xml">
 
-  <meta name="description" content="介绍  Redis是一个使用ANSIC编写的开源、支持网络、基于内存、可选持久性的键值对（key-value）存储数据库。从2015年6月开始，Redis的开发由Redis Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMware赞助。根据月度排行榜网站DB-Engines.com的数据显示，Redis是最流行的键值对存储数据库。">
+  <meta name="description" content="介绍    Redis是一个使用ANSIC编写的开源、支持网络、基于内存、可选持久性的键值对（key-value）存储数据库。从2015年6月开始，Redis的开发由Redis   Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMware赞助。根据月度排行榜网站DB-Engines.com的数据显示，Redis是最流行的键值对存储数">
   <meta name="keywords" content="redis">
   <meta property="og:type" content="article">
   <meta property="og:title" content="关于Redis的一些了解">
   <meta property="og:url" content="https://www.kapyan.top/posts/424997909.html">
   <meta property="og:site_name" content="运维之窗">
-  <meta property="og:description" content="介绍  Redis是一个使用ANSIC编写的开源、支持网络、基于内存、可选持久性的键值对（key-value）存储数据库。从2015年6月开始，Redis的开发由Redis Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMware赞助。根据月度排行榜网站DB-Engines.com的数据显示，Redis是最流行的键值对存储数据库。">
+  <meta property="og:description" content="介绍    Redis是一个使用ANSIC编写的开源、支持网络、基于内存、可选持久性的键值对（key-value）存储数据库。从2015年6月开始，Redis的开发由Redis   Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMware赞助。根据月度排行榜网站DB-Engines.com的数据显示，Redis是最流行的键值对存储数">
   <meta property="og:locale" content="zh-Hans">
   <meta property="og:updated_time" content="2019-02-14T02:52:39.774Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="关于Redis的一些了解">
-  <meta name="twitter:description" content="介绍  Redis是一个使用ANSIC编写的开源、支持网络、基于内存、可选持久性的键值对（key-value）存储数据库。从2015年6月开始，Redis的开发由Redis Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMware赞助。根据月度排行榜网站DB-Engines.com的数据显示，Redis是最流行的键值对存储数据库。">
+  <meta name="twitter:description" content="介绍    Redis是一个使用ANSIC编写的开源、支持网络、基于内存、可选持久性的键值对（key-value）存储数据库。从2015年6月开始，Redis的开发由Redis   Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMware赞助。根据月度排行榜网站DB-Engines.com的数据显示，Redis是最流行的键值对存储数">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -427,14 +427,18 @@
                     <p>redis提供了多种不同级别的持久化方式：一种是RDB，另一种是AOF。</p>
                     <h3 id="RDB持久化"><a href="#RDB持久化" class="headerlink" title="RDB持久化"></a>RDB持久化</h3>
                     <p>可以在指定的时间间隔内生成数据集的时间点快照（point-in-time-snapshot）。<br>在默认情况下，Redis
-                      将数据库快照保存在名字为 dump.rdb的二进制文件中。你可以对 Redis 进行设置，让它在“ N
-                      秒内数据集至少有 M 个改动”这一条件被满足时，自动保存一次数据集。也可以通过调用 SAVE或者
-                      BGSAVE，手动让 Redis 进行数据集保存操作。比如说，以下设置会让 Redis 在满足“ 60
-                      秒内有至少有 1000 个键被改动”这一条件时，自动保存一次数据集:<code>save 60 1000</code><br>这种持久化方式被称为快照
+                      将数据库快照保存在名字为
+                      dump.rdb的二进制文件中。你可以对 Redis 进行设置，让它在“ N 秒内数据集至少有 M
+                      个改动”这一条件被满足时，自动保存一次数据集。也可以通过调用 SAVE或者 BGSAVE，手动让 Redis
+                      进行数据集保存操作。比如说，以下设置会让
+                      Redis 在满足“ 60 秒内有至少有 1000 个键被改动”这一条件时，自动保存一次数据集:<code>save
+                        60 1000</code><br>这种持久化方式被称为快照
                       snapshotting。<br>当 Redis 需要保存 dump.rdb 文件时，服务器执行以下操作<br>Redis
-                      调用forks. 同时拥有父进程和子进程。<br>子进程将数据集写入到一个临时 RDB 文件中。<br>当子进程完成对新
-                      RDB 文件的写入时，Redis 用新 RDB 文件替换原来的 RDB 文件，并删除旧的 RDB 文件。<br>这种工作方式使得
-                      Redis 可以从写时复制（copy-on-write）机制中获益。<br>优点：</p>
+                      调用forks.
+                      同时拥有父进程和子进程。<br>子进程将数据集写入到一个临时 RDB 文件中。<br>当子进程完成对新 RDB
+                      文件的写入时，Redis 用新 RDB
+                      文件替换原来的 RDB 文件，并删除旧的 RDB 文件。<br>这种工作方式使得 Redis
+                      可以从写时复制（copy-on-write）机制中获益。<br>优点：</p>
                     <ul>
                       <li>RDB是一个非常紧凑（compact）的文件，它保存了Redis在某个时间点上的数据集。这种文件非常适合用于进行备份：比如说，可以在最近的24小时内，每小时备份一次RDB文件，并且在每个月的每一天，也备份一个RDB文件，即使遇到问题，也可以随时将数据集还原到不同的版本。</li>
                       <li>RDB非常适用于灾难恢复（disaster
@@ -895,7 +899,7 @@
 
           <span class="post-meta-item-text">Site words total count&#58;</span>
 
-          <span title="Site words total count">20.4k</span>
+          <span title="Site words total count">23.9k</span>
 
         </div>
 
