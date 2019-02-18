@@ -66,7 +66,11 @@
   <meta property="og:image" content="https://www.kapyan.top/posts/655286048/sentinelslj.svg">
   <meta property="og:image" content="https://www.kapyan.top/posts/655286048/sentinels.svg">
   <meta property="og:image" content="https://www.kapyan.top/posts/655286048/sentinelmss.svg">
-  <meta property="og:updated_time" content="2019-02-15T09:36:22.820Z">
+  <meta property="og:image" content="https://www.kapyan.top/posts/655286048/sharding.svg">
+  <meta property="og:image" content="https://www.kapyan.top/posts/655286048/slot.svg">
+  <meta property="og:image" content="https://www.kapyan.top/posts/655286048/cluster1.svg">
+  <meta property="og:image" content="https://www.kapyan.top/posts/655286048/cluster2.svg">
+  <meta property="og:updated_time" content="2019-02-18T08:36:29.578Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Redis主从复制和集群">
   <meta name="twitter:description" content="Redis主从复制 redis复制特性    使用异步复制   一个主服务器可以有多个从服务器   从服务也可以有自己的从服务器   复制功能不会阻塞主服务器   可以通过复制功能来让主服务器免于执行持久化操作，由从服务器去执行持久化操作即可  graph TD;     M --&amp;gt; S1;     M --&amp;gt; S2;     M --&amp;gt; S3;     S1 --&amp;gt; S4;     S1 --&amp;gt;">
@@ -292,8 +296,8 @@
 
                         <span class="post-meta-item-text">更新于&#58;</span>
 
-                        <time title="更新于" itemprop="dateModified" datetime="2019-02-15T17:36:22+08:00">
-                          2019-02-15
+                        <time title="更新于" itemprop="dateModified" datetime="2019-02-18T16:36:29+08:00">
+                          2019-02-18
                         </time>
 
                       </span>
@@ -342,7 +346,7 @@
                           <span class="post-meta-item-text">字数统计&#58;</span>
 
                           <span title="字数统计">
-                            3.6k
+                            5.5k
                           </span>
 
                           <span class="post-meta-divider">|</span>
@@ -354,7 +358,7 @@
                           <span class="post-meta-item-text">阅读时长 &asymp;</span>
 
                           <span title="阅读时长">
-                            13
+                            20
                           </span>
 
                         </div>
@@ -676,6 +680,289 @@
                     <h3 id="Redis集群"><a href="#Redis集群" class="headerlink"
                                                                                                       title="Redis集群"></a>Redis集群</h3>
                     <p>Redis集群是一个可以在多个Redis节点之间进行数据共享的设施（installation）。<br>Redis集群不支持那些需要同时处理多个键的Redis命令，因为执行这些命令需要在多个Redis节点之间移动数据，并且在高负载的情况下，这些命令将降低Redis集群的性能，并导致不可预测的行为。<br>Redis集群通过分区（partition）来提供一定程度的可用性（availability）：即使集群中一部分节点失效或者无法进行通讯，集群也可以继续处理命令请求。将数据自动切分（split）到多个节点的能力。<br>当集群中的一部分节点失效或者无法进行通讯时，仍然可以继续处理命令请求的能力。</p>
+                    <h3 id="Redis集群数据共享"><a href="#Redis集群数据共享" class="headerlink"
+                                                                                                      title="Redis集群数据共享"></a>Redis集群数据共享</h3>
+                    <p>Redis集群使用数据分片（sharding）而非一致性哈希（consistency
+                      hashing）来实现：一个Redis集群包含16384个哈希槽（hash
+                      slot），数据库中的每个键都属于这16384个哈希槽的其中一个，集群使用公式CRC16（key）%16384来计算键key属于哪个槽，其中CRC16（key）语句用于计算键key的CRC校验和。</p>
+                    <blockquote>
+                      <p>节点A负责处理0号至5500号哈希槽<br>节点B负责处理5501号至11000号哈希槽<br>节点C负责处理11001号至16384号哈希槽</p>
+                    </blockquote>
+                    <p>槽的计算公式： CRC16(key) % 16383</p>
+                    <p><img src="/posts/655286048/sharding.svg" alt="sharding"></p>
+                    <h3 id="集群运行机制"><a href="#集群运行机制" class="headerlink" title="集群运行机制"></a>集群运行机制</h3>
+                    <p>所有的redis节点彼此互联（PING-PONG机制），内部使用二进制协议优化传输速度和带宽。<br>节点的fail是通过集群中超过半数的master节点检测失效时才失效。<br>客户端与redis节点直连，不需要中间proxy层。客户端不需要连接集群所有节点，连接集群中任何一个可用节点即可。<br>把所有的物理节点映射到[0-16383]slot上，cluster负责维护node<->slot<->key</->
+                      </->
+                    </p>
+                    <p><img src="/posts/655286048/slot.svg" alt="sharding"></p>
+                    <p>为了使得集群在一部分节点下线或者无法与集群的大多数（majority）节点进行通讯的情况下，仍然可以正常运作，Redis集群对节点使用了主从复制功能：集群中的每个节点都有1个至N个复制品（replication），其中一个复制品为主节点（master），而其余的N-1个复制品为从节点（slave）。</p>
+                    <blockquote>
+                      <p>在之前列举的节点A、B、C的例子中，如果节点B下线了，那么集群将无法正常运行，因为集群找不到节点来处理5501号至11000号的哈希槽。<br>假如在创建集群的时候（或者至少在节点B下线之前），我们为主节点B添加了从节点B1，那么当主节点B下线的时候，集群就会将B1设置为新的主节点，并让它代替下线的主节点B,继续处理5501号至11000号的哈希槽，这样集群就不会因为主节点B的下线而无法正常运作了。<br>不过，如果节点B和B1都下线的话，Redis集群还是会停止工作。</p>
+                    </blockquote>
+                    <p>集群的复制特性重用了SLAVEOF命令代码，所以集群节点的复制行为和SLAVEOF命令的复制行为完全相同。</p>
+                    <h3 id="集群的故障转移"><a href="#集群的故障转移" class="headerlink"
+                                                                                                      title="集群的故障转移"></a>集群的故障转移</h3>
+                    <ol>
+                      <li>在集群里面，节点会对其他节点进行下线检测。</li>
+                      <li>当一个主节点下线时，集群里面的其它主节点会负责对下线主节点进行故障转移。</li>
+                      <li>换句话说，集群的节点集成了下线检测和故障转移等类似Sentinel的功能。</li>
+                      <li>因为Sentinel是一个独立运行的监控程序，而集群的下线检测和故障转移等功能是集成在节点里面的，它们的运行模式非常地不同，所以尽管这两者功能很相似，但集群的实现没有重用Sentinel的代码。</li>
+                    </ol>
+                    <p>在集群里执行命令的两种情况：</p>
+                    <ol>
+                      <li>命令发送到了正确的节点：<br>命令要处理的键所在的槽正好是由接收命令的节点负责，那么该节点执行命令，就像单机Redis服务器一样。</li>
+                    </ol>
+                    <p><img src="/posts/655286048/cluster1.svg" alt="sharding"></p>
+                    <blockquote>
+                      <p>槽位说明：<br>7000：槽0~5000 7001：槽5001~10000
+                        7002：槽10001~16383<br>键date位于2022槽，该槽由节点7000负责，命令会直接执行。</p>
+                    </blockquote>
+                    <ol start="2">
+                      <li>命令发送到了错误的节点：<br>接收到命令的节点并非处理键所在槽的节点，那么节点将向客户端返回一个转向（redirection）错误，告知客户端应该到哪个节点去执行这个命令，客户端会根据错误提示的信息，重新向正确的节点发送命令。</li>
+                    </ol>
+                    <p><img src="/posts/655286048/cluster2.svg" alt="sharding"></p>
+                    <blockquote>
+                      <p>键date位于2022槽，该槽点由7000负责，但错误发送到了7001节点，7001向客户返回转向错误。<br>客户端根据转向错误的指引，转向到节点7000，并重新发送命令。</p>
+                    </blockquote>
+                    <h3 id="关于转向错误"><a href="#关于转向错误" class="headerlink" title="关于转向错误"></a>关于转向错误</h3>
+                    <p>在集群中的节点会互相告知对方，自己负责处理哪些槽点。集群中的每个节点都会记录16384个槽分别由哪个节点负责，从而形成一个“槽表”（slot
+                      table）。<br>节点在接收到命令请求时，会通过槽表检查键所在的槽是否由本节点处理：</p>
+                    <ul>
+                      <li>如果是，那么节点直接执行命令</li>
+                      <li>如果不是，那么节点就从槽表里面提取出正确节点的地址信息，然后返回转向错误。</li>
+                    </ul>
+                    <h3 id="配置集群"><a href="#配置集群" class="headerlink" title="配置集群"></a>配置集群</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">yum install centos-release-scl-rh　　<span class="comment">#会在/etc/yum.repos.d/目录下多出一个CentOS-SCLo-scl-rh.repo源</span></span><br><span class="line">yum install rh-ruby23  -y </span><br><span class="line">scl  <span class="built_in">enable</span>  rh-ruby23 bash <span class="comment">#必须执行</span></span><br><span class="line">ruby -v <span class="comment">#查看ruby版本</span></span><br><span class="line">gem install redis -v 4.1.0 <span class="comment">#redis-trib 工具执行需要安装redis gem才能执行</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>配置文件<br>Redis集群由多个运行在集群模式（cluster
+                      mode）下的Redis实例组成，实例的集群模式需要通过配置来开启，开启集群模式的实例将可以使用集群特有的功能和命令。<br>以下是一个包含了最少选项的集群配置文件示例：<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">port 7000</span><br><span class="line">cluster-enabled yes</span><br><span class="line">cluster-config-file nodes.conf</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line">appendonly yes</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>创建程序目录<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="built_in">cd</span> /application/redis</span><br><span class="line">mkdir 7000 7001 7002 7003 7004 7005</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>拷贝应用<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 0 1 2 3 4 5</span><br><span class="line"><span class="keyword">do</span> cp /usr/<span class="built_in">local</span>/redis/bin/redis-server  ./700<span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>创建配置文件<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 7000 7001 7002 7003 7004 7005</span><br><span class="line"><span class="keyword">do</span> </span><br><span class="line"><span class="built_in">echo</span> <span class="string">"port <span class="variable">$i</span></span></span><br><span class="line"><span class="string">cluster-enabled yes</span></span><br><span class="line"><span class="string">cluster-config-file nodes.conf</span></span><br><span class="line"><span class="string">cluster-node-timeout 5000</span></span><br><span class="line"><span class="string">appendonly yes</span></span><br><span class="line"><span class="string">daemonize yes"</span>&gt;<span class="variable">$i</span>/redis.conf</span><br><span class="line"><span class="keyword">done</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>启动redis集群<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 7000 7001 7002 7003 7004 7005</span><br><span class="line"><span class="keyword">do</span> </span><br><span class="line">	<span class="built_in">cd</span> <span class="variable">$i</span></span><br><span class="line">	./redis-server ./redis.conf &amp;</span><br><span class="line">	<span class="built_in">cd</span> ../</span><br><span class="line"><span class="keyword">done</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>创建集群<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/src/</span><br><span class="line">./redis-trib.rb  create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <blockquote>
+                      <p>给定redis-trib.rb程序的命令是create，表示创建一个新的集群。<br>选项–replicas
+                        1
+                        表示集群中的每个主节点创建一个从节点。</p>
+                    </blockquote>
+                    <h3 id="集群管理"><a href="#集群管理" class="headerlink" title="集群管理"></a>集群管理</h3>
+                    <p>写数据，查看集群状态<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">redis-cli -c -p 7000</span><br><span class="line"><span class="built_in">set</span> foo bar</span><br><span class="line">get foo</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>重新分片实践<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/src/</span><br><span class="line">./redis-trib.rb reshard 127.0.0.1:7000</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>集群状态<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">redis-cli -p 7000 cluster nodes |grep master</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>故障转移<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">redis-cli -p 7002 debug segfault</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>查看状态<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">redis-cli -p 7000 cluster info|grep master</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>增加新的节点<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">./redis-trib.rb add-node 127.0.0.1:7006 127.0.0.1:7000</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>删除一个节点<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">redis-trib del-node ip:port <span class="string">'&lt;node-id&gt;'</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>删除master节点之前首先使用reshard移除master的全部slot，然后再删除当前节点<br>添加一个从节点<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">./redis-trib.rb add-node --slave --master-id $[nodeid] 127.0.0.1:7008 127.0.0.1:7000</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h3 id="状态说明"><a href="#状态说明" class="headerlink" title="状态说明"></a>状态说明</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">[root@localhost ~]<span class="comment"># redis-cli -p 7000 cluster nodes | grep master</span></span><br><span class="line">35b7fac5750c997412dc6826802bfb78d5b81abf 127.0.0.1:7001@17001 master - 0 1548925480000 2 connected 5461-10922</span><br><span class="line">3c3106bd8740706bebe2341e90d08554ab2bcd52 127.0.0.1:7000@17000 myself,master - 0 1548925480000 1 connected 0-5460</span><br><span class="line">e190049acbd61ecb16e82cca3d6aa06dd0927305 127.0.0.1:7002@17002 master - 0 1548925481046 3 connected 10923-16383</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>集群最近一次向节点发送PING命令之后，过去了多长时间还没接到回复。<br>节点最近一次返回PONG回复的时间。<br>节点的配置节点（configuration
+                      epoch）。<br>本节点的网络连接情况：例如connected。<br>节点目前包含的槽：例如127.0.0.1:7001目前包含号码为
+                      5461-10922的哈希槽。</p>
 
                   </div>
 
@@ -996,6 +1283,34 @@
                                                                                                           href="#Redis集群"><span
                                                                                                             class="nav-number">3.1.</span>
                             <span class="nav-text">Redis集群</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#Redis集群数据共享"><span
+                                                                                                            class="nav-number">3.2.</span>
+                            <span class="nav-text">Redis集群数据共享</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#集群运行机制"><span
+                                                                                                            class="nav-number">3.3.</span>
+                            <span class="nav-text">集群运行机制</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#集群的故障转移"><span
+                                                                                                            class="nav-number">3.4.</span>
+                            <span class="nav-text">集群的故障转移</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#关于转向错误"><span
+                                                                                                            class="nav-number">3.5.</span>
+                            <span class="nav-text">关于转向错误</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#配置集群"><span
+                                                                                                            class="nav-number">3.6.</span>
+                            <span class="nav-text">配置集群</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#集群管理"><span
+                                                                                                            class="nav-number">3.7.</span>
+                            <span class="nav-text">集群管理</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#状态说明"><span
+                                                                                                            class="nav-number">3.8.</span>
+                            <span class="nav-text">状态说明</span></a></li>
                       </ol>
                     </li>
                   </ol>
@@ -1026,7 +1341,7 @@
 
           <span class="post-meta-item-text">Site words total count&#58;</span>
 
-          <span title="Site words total count">23.9k</span>
+          <span title="Site words total count">25.7k</span>
 
         </div>
 
