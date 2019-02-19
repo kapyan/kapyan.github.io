@@ -72,7 +72,7 @@
   <meta property="og:image" content="https://www.kapyan.top/posts/655286048/slot.svg">
   <meta property="og:image" content="https://www.kapyan.top/posts/655286048/cluster1.svg">
   <meta property="og:image" content="https://www.kapyan.top/posts/655286048/cluster2.svg">
-  <meta property="og:updated_time" content="2019-02-19T01:45:19.004Z">
+  <meta property="og:updated_time" content="2019-02-19T02:05:31.186Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Redis主从复制和集群">
   <meta name="twitter:description" content="Redis主从复制 redis复制特性    使用异步复制   一个主服务器可以有多个从服务器   从服务也可以有自己的从服务器   复制功能不会阻塞主服务器   可以通过复制功能来让主服务器免于执行持久化操作，由从服务器去执行持久化操作即可            关闭主服务器持久化时，复制功能的数据安全    当配置Redis复制功能时，强烈建议打开主服务器的持久化功能。否则，由于延迟等问题，部">
@@ -298,7 +298,7 @@
 
                         <span class="post-meta-item-text">更新于&#58;</span>
 
-                        <time title="更新于" itemprop="dateModified" datetime="2019-02-19T09:45:19+08:00">
+                        <time title="更新于" itemprop="dateModified" datetime="2019-02-19T10:05:31+08:00">
                           2019-02-19
                         </time>
 
@@ -822,7 +822,7 @@
                               <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                             </td>
                             <td class="code">
-                              <pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/src/</span><br><span class="line">. /redis-trib.rb  create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005</span><br></pre>
+                              <pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/src/</span><br><span class="line">./redis-trib.rb  create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005</span><br></pre>
                             </td>
                           </tr>
                         </table>
