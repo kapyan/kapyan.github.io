@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+
+<head>
+  <meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="baidu-site-verification" content="8zMDGR7I0p">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#222">
+
+  <script>
+    (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet"
+                                                                                  type="text/css">
+
+  <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"
+                                                                                  type="text/css">
+
+  <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+  <meta name="keywords" content="go">
+
+  <link rel="alternate" href="/atom.xml" title="运维之窗" type="application/atom+xml">
+
+  <meta name="description" content="Go语言fmt包 格式化输出函数 1func Print(a ...interface&amp;#123;&amp;#125;) (n int, err error) Print采用默认格式将其参数格式化并写入标准输出。如果两个相邻的参数都不是字符串，会在它们的输出之间添加空格，返回写入的字节数和遇到的任何错误。   1func Printf(format string,a ...interface&amp;#123;&amp;">
+  <meta name="keywords" content="go">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Go语言学习笔记（三）">
+  <meta property="og:url" content="https://www.kapyan.top/posts/2830198955.html">
+  <meta property="og:site_name" content="运维之窗">
+  <meta property="og:description" content="Go语言fmt包 格式化输出函数 1func Print(a ...interface&amp;#123;&amp;#125;) (n int, err error) Print采用默认格式将其参数格式化并写入标准输出。如果两个相邻的参数都不是字符串，会在它们的输出之间添加空格，返回写入的字节数和遇到的任何错误。   1func Printf(format string,a ...interface&amp;#123;&amp;">
+  <meta property="og:locale" content="zh-Hans">
+  <meta property="og:updated_time" content="2019-02-21T06:38:10.905Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Go语言学习笔记（三）">
+  <meta name="twitter:description" content="Go语言fmt包 格式化输出函数 1func Print(a ...interface&amp;#123;&amp;#125;) (n int, err error) Print采用默认格式将其参数格式化并写入标准输出。如果两个相邻的参数都不是字符串，会在它们的输出之间添加空格，返回写入的字节数和遇到的任何错误。   1func Printf(format string,a ...interface&amp;#123;&amp;">
+
+  <script type="text/javascript" id="hexo.configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      root: '/',
+      scheme: 'Pisces',
+      version: '5.1.4',
+      sidebar: {
+        "position": "left",
+        "display": "post",
+        "offset": 12,
+        "b2t": false,
+        "scrollpercent": true,
+        "onmobile": true
+      },
+      fancybox: true,
+      tabs: true,
+      motion: {
+        "enable": true,
+        "async": false,
+        "transition": {
+          "post_block": "fadeIn",
+          "post_header": "slideDownIn",
+          "post_body": "slideDownIn",
+          "coll_header": "slideLeftIn",
+          "sidebar": "slideUpIn"
+        }
+      },
+      duoshuo: {
+        userId: '0',
+        author: '没有风的晴天'
+      },
+      algolia: {
+        applicationID: '',
+        apiKey: '',
+        indexName: '',
+        hits: {
+          "per_page": 10
+        },
+        labels: {
+          "input_placeholder": "Search for Posts",
+          "hits_empty": "We didn't find any results for the search: ${query}",
+          "hits_stats": "${hits} results found in ${time} ms"
+        }
+      }
+    };
+
+  </script>
+
+  <link rel="canonical" href="https://www.kapyan.top/posts/2830198955.html">
+
+  <title>Go语言学习笔记（三） | 运维之窗</title>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        <div class="site-brand-wrapper">
+          <div class="site-meta ">
+
+            <div class="custom-logo-site-title">
+              <a href="/" class="brand" rel="start">
+                <span class="logo-line-before"><i></i></span>
+                <span class="site-title">运维之窗</span>
+                <span class="logo-line-after"><i></i></span>
+              </a>
+            </div>
+
+            <h1 class="site-subtitle" itemprop="description"></h1>
+
+          </div>
+
+          <div class="site-nav-toggle">
+            <button>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+            </button>
+          </div>
+        </div>
+
+        <nav class="site-nav">
+
+          <ul id="menu" class="menu">
+
+            <li class="menu-item menu-item-home">
+              <a href="/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+
+                首页
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-tags">
+              <a href="/tags/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+
+                标签
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-categories">
+              <a href="/categories/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+
+                分类
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-archives">
+              <a href="/archives/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+
+                归档
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-about">
+              <a href="/about/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+
+                关于
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-search">
+
+              <a href="javascript:;" class="popup-trigger">
+
+                <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+
+                搜索
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="site-search">
+
+            <div class="popup search-popup local-search-popup">
+              <div class="local-search-header clearfix">
+                <span class="search-icon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <span class="popup-btn-close">
+                  <i class="fa fa-times-circle"></i>
+                </span>
+                <div class="local-search-input-wrapper">
+                  <input autocomplete="off" placeholder="搜索..." spellcheck="false"
+                                                                                                  type="text"
+                                                                                                  id="local-search-input">
+                </div>
+              </div>
+              <div id="local-search-result"></div>
+            </div>
+
+          </div>
+
+        </nav>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+
+            <div id="posts" class="posts-expand">
+
+              <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="https://www.kapyan.top/posts/2830198955.html">
+
+                  <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="没有风的晴天">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.png">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="运维之窗">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h2 class="post-title" itemprop="name headline">Go语言学习笔记（三）</h2>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">发表于</span>
+
+                        <time title="创建于" itemprop="dateCreated datePublished"
+                                                                                                        datetime="2019-02-21T08:44:12+08:00">
+                          2019-02-21
+                        </time>
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-check-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">更新于&#58;</span>
+
+                        <time title="更新于" itemprop="dateModified" datetime="2019-02-21T14:38:10+08:00">
+                          2019-02-21
+                        </time>
+
+                      </span>
+
+                      <span class="post-category">
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-folder-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">分类于</span>
+
+                        <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                          <a href="/categories/Go语言/" itemprop="url" rel="index">
+                            <span itemprop="name">Go语言</span>
+                          </a>
+                        </span>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+
+                        <a href="/posts/2830198955.html#SOHUCS" itemprop="discussionUrl">
+                          <span id="changyan_count_unit" class="post-comments-count hc-comment-count"
+                                                                                                          data-xid="posts/2830198955.html"
+                                                                                                          itemprop="commentsCount"></span>
+                        </a>
+
+                        <span class="post-meta-divider">|</span>
+                        <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+                          <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+                        </span>
+
+                        <div class="post-wordcount">
+
+                          <span class="post-meta-item-icon">
+                            <i class="fa fa-file-word-o"></i>
+                          </span>
+
+                          <span class="post-meta-item-text">字数统计&#58;</span>
+
+                          <span title="字数统计">
+                            4.9k
+                          </span>
+
+                          <span class="post-meta-divider">|</span>
+
+                          <span class="post-meta-item-icon">
+                            <i class="fa fa-clock-o"></i>
+                          </span>
+
+                          <span class="post-meta-item-text">阅读时长 &asymp;</span>
+
+                          <span title="阅读时长">
+                            20
+                          </span>
+
+                        </div>
+
+                      </span></div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <h2 id="Go语言fmt包"><a href="#Go语言fmt包" class="headerlink"
+                                                                                                      title="Go语言fmt包"></a>Go语言fmt包</h2>
+                    <h3 id="格式化输出函数"><a href="#格式化输出函数" class="headerlink"
+                                                                                                      title="格式化输出函数"></a>格式化输出函数</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Print</span><span class="params">(a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>Print采用默认格式将其参数格式化并写入标准输出。如果两个相邻的参数都不是字符串，会在它们的输出之间添加空格，返回写入的字节数和遇到的任何错误。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Printf</span><span class="params">(format <span class="keyword">string</span>,a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>,err error)</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>Printf根据format参数生成格式化的字符串并写入标准输出，返回写入的字节数和遇到的任何错误。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Println</span><span class="params">(a ...<span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(n <span class="keyword">int</span>,err error)</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>Println采用默认格式将其参数格式化并写入标准输出。总是会在相邻参数的输出之间添加空格并在输出结束后添加换行符，返回写入的字节数和遇到的任何错误。</p>
+                    <h3 id="常用的格式化"><a href="#常用的格式化" class="headerlink" title="常用的格式化"></a>常用的格式化</h3>
+                    <p>Go语言的标准输出流在打印到屏幕时有些参数跟别的语言（比如C#和Java）不同。</p>
+                    <h4 id="普通占位符"><a href="#普通占位符" class="headerlink" title="普通占位符"></a>普通占位符</h4>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>占位符</th>
+                          <th>说明</th>
+                          <th>举例</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>%v</td>
+                          <td>以默认的方式打印变量的值</td>
+                          <td>fmt.Printf(“%v”,site)</td>
+                        </tr>
+                        <tr>
+                          <td>%+v</td>
+                          <td>在打印结构体时，会添加字段名</td>
+                          <td>fmt.Printf(“%+v”, site)</td>
+                        </tr>
+                        <tr>
+                          <td>%#v</td>
+                          <td>在打印结构体时，会添加字段名和包名</td>
+                          <td>fmt.Printf(“%#v”, site)</td>
+                        </tr>
+                        <tr>
+                          <td>%T</td>
+                          <td>打印变量的类型</td>
+                          <td>fmt.Printf(“%T”, site)</td>
+                        </tr>
+                        <tr>
+                          <td>%%</td>
+                          <td>字面上的百分号，并非值的占位符</td>
+                          <td>fmt.Printf(“%%”)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h4 id="布尔占位符"><a href="#布尔占位符" class="headerlink" title="布尔占位符"></a>布尔占位符</h4>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>占位符</th>
+                          <th>说明</th>
+                          <th>举例</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>%t</td>
+                          <td>打印true或fasle</td>
+                          <td>fmt.Printf(“%t”,true)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h4 id="整数占位符"><a href="#整数占位符" class="headerlink" title="整数占位符"></a>整数占位符</h4>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>占位符</th>
+                          <th>说明</th>
+                          <th>举例</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>%b</td>
+                          <td>表示为二进制</td>
+                          <td>fmt.Printf(“%b”,100)</td>
+                        </tr>
+                        <tr>
+                          <td>%c</td>
+                          <td>该值对应的Unicode码值</td>
+                          <td>fmt.Printf(“%c”,0x4E2D)</td>
+                        </tr>
+                        <tr>
+                          <td>%d</td>
+                          <td>表示为十进制</td>
+                          <td>fmt.Printf(“%d”,0x12)</td>
+                        </tr>
+                        <tr>
+                          <td>%o</td>
+                          <td>表示为八进制</td>
+                          <td>fmt.Printf(“%d”, 10)</td>
+                        </tr>
+                        <tr>
+                          <td>%q</td>
+                          <td>该值对应的单引号括起来的go语法字符字面值，必要时会采用安全的转义表示</td>
+                          <td>fmt.Printf(“%q”, 0x4E2D)</td>
+                        </tr>
+                        <tr>
+                          <td>%x</td>
+                          <td>十六进制表示，字母形式为小写 a-f</td>
+                          <td>fmt.Printf(“%x”, 13)</td>
+                        </tr>
+                        <tr>
+                          <td>%X</td>
+                          <td>十六进制表示，字母形式为大写 A-F</td>
+                          <td>fmt.Printf(“%x”, 13)</td>
+                        </tr>
+                        <tr>
+                          <td>%U</td>
+                          <td>表示为Unicode格式：U+1234，等价于”U+%04X”</td>
+                          <td>fmt.Printf(“%U”, 0x4E2D)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h4 id="浮点数和复数的组成部分（实部和虚部）"><a href="#浮点数和复数的组成部分（实部和虚部）"
+                                                                                                      class="headerlink"
+                                                                                                      title="浮点数和复数的组成部分（实部和虚部）"></a>浮点数和复数的组成部分（实部和虚部）</h4>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>占位符</th>
+                          <th>说明</th>
+                          <th>举例</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>%e</td>
+                          <td>(=%.6e) 6位小数点科学计数法，例如 -1234.456e+78</td>
+                          <td>fmt.Printf(“%e”, 10.2)</td>
+                        </tr>
+                        <tr>
+                          <td>%E</td>
+                          <td>科学计数法，如-1234.456E+78</td>
+                          <td>fmt.Printf(“%e”, 10.2)</td>
+                        </tr>
+                        <tr>
+                          <td>%f</td>
+                          <td>(=%.6f) 6位小数点有小数点而无指数，例如 123.456</td>
+                          <td>fmt.Printf(“%f”, 10.2)</td>
+                        </tr>
+                        <tr>
+                          <td>%g</td>
+                          <td>根据情况选择 %e 或 %f 以产生更紧凑的（无末尾的0）输出</td>
+                          <td>fmt.Printf(“%g”, 10.20)</td>
+                        </tr>
+                        <tr>
+                          <td>%G</td>
+                          <td>根据情况选择 %E 或 %f 以产生更紧凑的（无末尾的0）输出</td>
+                          <td>fmt.Printf(“%G”, 10.20+2i)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h4 id="字符串与字节切片"><a href="#字符串与字节切片" class="headerlink"
+                                                                                                      title="字符串与字节切片"></a>字符串与字节切片</h4>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>占位符</th>
+                          <th>说明</th>
+                          <th>举例</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>%s</td>
+                          <td>输出字符串表示（string类型或[]byte）</td>
+                          <td>fmt.Printf(“%s”, []byte(“haha”))</td>
+                        </tr>
+                        <tr>
+                          <td>%10s</td>
+                          <td>输出字符串最小宽度为10(右对齐)</td>
+                          <td>fmt.Printf(“%10s”, “haha”)</td>
+                        </tr>
+                        <tr>
+                          <td>%-10s</td>
+                          <td>输出字符串最小宽度为10(左对齐)</td>
+                          <td>fmt.Printf(“%-10s”, “haha”)</td>
+                        </tr>
+                        <tr>
+                          <td>%.5s</td>
+                          <td>输出字符串最大宽度为5</td>
+                          <td>fmt.Printf(“%.5s”, “haha”)</td>
+                        </tr>
+                        <tr>
+                          <td>%5.10s</td>
+                          <td>输出字符串最小宽度为5，最大宽度为10</td>
+                          <td>fmt.Printf(“%5.10s”, “haha”)</td>
+                        </tr>
+                        <tr>
+                          <td>%-5.10s</td>
+                          <td>输出字符串最小宽度为5，最大宽度为10(左对齐)</td>
+                          <td>fmt.Printf(“%-5.10s”, “haha”)</td>
+                        </tr>
+                        <tr>
+                          <td>%5.3s</td>
+                          <td>输出字符串宽度为5,如果原字符串宽度大于3,则截断</td>
+                          <td>fmt.Printf(“%5.3s”, “haha”)</td>
+                        </tr>
+                        <tr>
+                          <td>%010s</td>
+                          <td>如果宽度小于10，就会在字符串前面补零</td>
+                          <td>fmt.Printf(“%010s”, “haha”)</td>
+                        </tr>
+                        <tr>
+                          <td>%q</td>
+                          <td>双引号围绕的字符串，由Go语法安全地转义</td>
+                          <td>fmt.Printf(“%q”, “haha”)</td>
+                        </tr>
+                        <tr>
+                          <td>%x</td>
+                          <td>十六进制，小写字母，每字节两个字符</td>
+                          <td>fmt.Printf(“%x”, “haha”)</td>
+                        </tr>
+                        <tr>
+                          <td>%X</td>
+                          <td>十六进制，大写字母，每字节两个字符</td>
+                          <td>fmt.Printf(“%X”, “haha”)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>占位符</th>
+                          <th>说明</th>
+                          <th>举例</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>%p</td>
+                          <td>十六进制表示，前缀0x</td>
+                          <td>fmt.Printf(“%p”,&amp;site)</td>
+                        </tr>
+                        <tr>
+                          <td>%#p</td>
+                          <td>不带前缀0x</td>
+                          <td>fmt.Printf(“%#p”,&amp;site)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h2 id="Go语言字符串"><a href="#Go语言字符串" class="headerlink"
+                                                                                                      title="Go语言字符串"></a>Go语言字符串</h2>
+                    <p>Go语言的字符串是一个用UTF-8编码的变宽字符序列，它的每一个字符都用一个或多个字节表示。<br>在Go语言中，没有字符类型，字符类型是rune类型，rune是int32的别称。可用[]byte()获取字节，使用[]rune()获取字符，可对中文进行转换。</p>
+                    <h3 id="定义字符串"><a href="#定义字符串" class="headerlink" title="定义字符串"></a>定义字符串</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">str := <span class="string">"Go语言字符串\n不能跨行赋值"</span>	<span class="comment">//双引号，用来创建可解析的字符串字面量（支持转义，但不能用来引用多行）</span></span><br><span class="line">str := <span class="string">`Go原生原格式字符串</span></span><br><span class="line"><span class="string">	可以跨行`</span>	<span class="comment">//反引号，用来创建原生的字符串字面量，这些字符串可能由多行组成（不支持任何转义序列），原生的字符串字面量多用于书写多行消息、HTML以及正则表达式</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <font color="red">注意:单引号不能用于定义字符串，单引号用于定义Go语言的一个特殊类型rune，类似其他语言的byte但又不完全一样，是指码点字面量（Unicode
+                      code point），不做任何转义的原始内容。</font>
+
+                    <h3 id="连接字符串"><a href="#连接字符串" class="headerlink" title="连接字符串"></a>连接字符串</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">str := <span class="string">"hello"</span> + <span class="string">"world"</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>golang里字符串都是不可变的，每次运算都会产生一个新的字符串，所以会产生很多临时无用的字符串，不仅没有用，还会给gc带来额外的负担，所以性能比较差。<font
+                                                                                                      color="red"
+                                                                                                      size="2">(注意：连接跨行字符串时，”+”必须在上一行末尾，否则导致编译错误)</font><br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">str := fmt.Sprintf(<span class="string">"%s,%s"</span>,<span class="string">"hello"</span>,<span class="string">"world"</span>)</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>内部使用[]byte实现，不像直接运算符这种会产生很多临时的字符串，但是内部逻辑比较复杂，有很多额外的判断，还用到了interface，所以性能也不是很好。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">str := strings.Join([]<span class="keyword">string</span>&#123;<span class="string">"hello"</span>,<span class="string">"world"</span>&#125;,<span class="string">","</span>)</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>join会先根据字符串数组的内容，计算出一个拼接之后的长度，然后申请对应大小的内存，一个一个字符串填入，在已有一个数组的情况下，这种效率会很高，但是本来没有，去构造这个数据的代价也不小。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">import</span> <span class="string">"bytes"</span></span><br><span class="line"><span class="keyword">var</span> buffer bytes.Buffer</span><br><span class="line">buffer.WriteString(<span class="string">"hello"</span>)</span><br><span class="line">buffer.WriteString(<span class="string">","</span>)</span><br><span class="line">buffer.WriteString(<span class="string">"world"</span>)</span><br><span class="line">str := buffer.String()</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>这个比较理想,可以当成可变字符使用，对内存的增长也有优化。</p>
+                    <blockquote>
+                      <p>总结：</p>
+                      <ol>
+                        <li>在已有字符串数组的场合，使用strings.Join()能有比较好的性能；</li>
+                        <li>在一些性能要求比较高的场合，尽量使用buffer.WriteString() 以获得更好的性能；</li>
+                        <li>“+” 运算符在较少字符串连接的场景下性能最好，而且代码更简短清晰，可读性更好；</li>
+                        <li>如果需要拼接的不仅仅是字符串，还有数字之类的其他需求的话，可以考虑 fmt.Sprintf()。</li>
+                      </ol>
+                    </blockquote>
+                    <h3 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h3>
+                    <p>1.将字符串转换为[]rune后调用len函数进行统计<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    str := <span class="string">"hello world"</span></span><br><span class="line">    length := <span class="built_in">len</span>([]<span class="keyword">rune</span>(str))</span><br><span class="line">    fmt.Println(length)</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <blockquote>
+                      <p>在golang中，如果字符串出现中文字符不能直接调用len函数来统计字符串字符长度，这是因为在Go中，字符串是以UTF-8为格式进行存储的，在字符串上调用len函数，取得的是字符串包含的byte的个数。</p>
+                    </blockquote>
+                    <p>2.使用bytes.Count()统计<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"bytes"</span></span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    str := <span class="string">"hello world"</span></span><br><span class="line">    length := bytes.Count([]<span class="keyword">byte</span>(str), <span class="literal">nil</span>) - <span class="number">1</span></span><br><span class="line">    fmt.Println(length)</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>计算字节切片sep在字节切片s中非重叠显示的个数，如果 sep 为 nil，则返回 s 中的字符个数 + 1。</p>
+                    <p>3.使用strings.Count()统计<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    str := <span class="string">"hello world"</span></span><br><span class="line">    length := strings.Count(str, <span class="string">""</span>) - <span class="number">1</span></span><br><span class="line">    fmt.Println(length)</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>判断字符sep在字符串s中出现的次数，没有找到则返回-1，如果为空字符串(“”)则返回字符串的长度+1。</p>
+                    <p>4.使用 utf8.RuneCountInString() 统计<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"unicode/utf8"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    str := <span class="string">"hello world"</span></span><br><span class="line">    length := utf8.RuneCountInString(str)</span><br><span class="line">    fmt.Println(length)</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>返回 s 字符串长度，可以正常解析中文，一个中文被当做一个字符。</p>
+                    <h3 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h3>
+                    <p>使用索引号“[]”返回子串。返回的字符串依然指向原字节数组，仅修改了指针和长度属性。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    str := <span class="string">"hello, world"</span></span><br><span class="line">    s1 := str[<span class="number">0</span>:<span class="number">5</span>]</span><br><span class="line">    s2 := str[<span class="number">7</span>:<span class="number">13</span>]</span><br><span class="line">    fmt.Println(s1, s2)</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>运行结果<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">hello world</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>修改字符串，可先将其转换成 []rune 或
+                      []byte，完成后再转换为string。无论哪种转换，都会重新分配内存，并复制字节数组。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    str1 := <span class="string">"hello world"</span></span><br><span class="line">    s1 := []<span class="keyword">byte</span>(str1)</span><br><span class="line">    s1[<span class="number">0</span>] = <span class="string">'H'</span></span><br><span class="line">    fmt.Println(<span class="keyword">string</span>(s1))</span><br><span class="line"></span><br><span class="line">    str2 := <span class="string">"鸟宿池边树，僧推月下门。"</span></span><br><span class="line">    s2 := []<span class="keyword">rune</span>(str2)</span><br><span class="line">    s2[<span class="number">7</span>] = <span class="string">'敲'</span></span><br><span class="line">    fmt.Println(<span class="keyword">string</span>(s2))</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>运行结果<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">Hello world</span><br><span class="line">鸟宿池边树，僧敲月下门。</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h2 id="Go语言string包"><a href="#Go语言string包" class="headerlink"
+                                                                                                      title="Go语言string包"></a>Go语言string包</h2>
+                    <p>strings包实现了用于操作字符的简单函数。</p>
+                    <h3 id="查找操作"><a href="#查找操作" class="headerlink" title="查找操作"></a>查找操作</h3>
+                    <p>判断给定字符串s中是否包含子串substr,找到返回true, 找不到返回false。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">fmt.Println(<span class="string">"包含子串返回："</span>, strings.Contains(<span class="string">"hello world"</span>, <span class="string">"hello"</span>))</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>在字符串s中查找sep所在的位置,返回位置值,找不到返回-1<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"存在返回第一个匹配字符的位置："</span>, strings.Index(<span class="string">"hello"</span>, <span class="string">"o"</span>))</span><br><span class="line">    fmt.Println(<span class="string">"不存在返回："</span>, strings.Index(<span class="string">"hello"</span>, <span class="string">"world"</span>))</span><br><span class="line">    fmt.Println(<span class="string">"中文字符串存在返回："</span>, strings.Index(<span class="string">"呜呼哈哈"</span>, <span class="string">"哈哈"</span>))</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>运行结果：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">存在返回第一个匹配字符的位置： <span class="number">4</span></span><br><span class="line">不存在返回： <span class="number">-1</span></span><br><span class="line">中文字符串存在返回： <span class="number">6</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>统计给定子串sep的出现次数, sep为空时, 返回字符串的长度 + 1<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"子字符串出现次数："</span>, strings.Count(<span class="string">"hello ooo"</span>, <span class="string">"o"</span>))</span><br><span class="line">    fmt.Println(<span class="string">"子字符串为空时, 返回："</span>, strings.Count(<span class="string">"hello"</span>, <span class="string">""</span>))</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>运行结果：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">子字符串出现次数： <span class="number">4</span></span><br><span class="line">子字符串为空时, 返回： <span class="number">6</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h3 id="重复操作"><a href="#重复操作" class="headerlink" title="重复操作"></a>重复操作</h3>
+                    <p>重复s字符串count次，最后返回新生成的重复的字符串<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	fmt.Println(strings.Repeat(<span class="string">"嘀嗒"</span>,<span class="number">4</span>),<span class="string">"时针它不停在转动"</span>)</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>运行结果：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">嘀嗒嘀嗒嘀嗒嘀嗒 时针它不停在转动</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h3 id="替换操作"><a href="#替换操作" class="headerlink" title="替换操作"></a>替换操作</h3>
+                    <p>在s字符串中，把old字符串替换为new字符串，n表示替换的次数，如果n&lt;0会替换所有old子串。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(strings.Replace(<span class="string">"luck luck luck"</span>, <span class="string">"k"</span>, <span class="string">"ky"</span>, <span class="number">2</span>))</span><br><span class="line">    fmt.Println(strings.Replace(<span class="string">"luck luck luck"</span>, <span class="string">"k"</span>, <span class="string">"ky"</span>, <span class="number">-1</span>))</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>运行结果：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">lucky lucky luck</span><br><span class="line">lucky lucky lucky</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3>
+                    <p>删除在s字符串的头部和尾部中由cutset指定的字符，并返回删除后的字符串<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(strings.Trim(<span class="string">"   hello   "</span>, <span class="string">" "</span>))</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>运行结果：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">hello</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h3 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="comment">//给定字符串转换为英文标题的首字母大写的格式（不能正确处理unicode标点）</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Title</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">//返回将所有字母都转为对应的小写版本的拷贝</span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="title">ToLower</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">//返回将所有字母都转为对应的大写版本的拷贝</span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="title">ToUpper</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="字符串前后缀"><a href="#字符串前后缀" class="headerlink" title="字符串前后缀"></a>字符串前后缀</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="comment">//判断字符串是否包含前缀prefix，大小写敏感</span></span><br><span class="line"><span class="function"><span class="keyword">func</span>  <span class="title">HasPrefix</span><span class="params">(s,prefix <span class="keyword">string</span>)</span> <span class="title">bool</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">//判断<span class="title">s</span>是否有后缀字符串<span class="title">suffix</span>，大小写敏感</span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="title">HasSuffix</span><span class="params">(s,suffix <span class="keyword">string</span>)</span> <span class="title">bool</span></span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="字符串分割"><a href="#字符串分割" class="headerlink" title="字符串分割"></a>字符串分割</h3>
+                    <p>用去掉s中出现的sep的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Split</span><span class="params">(s,sep <span class="keyword">string</span>)</span> []<span class="title">string</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>返回将字符串按照空白（Unicode.IsSpace确定，可以是一个到多个连续的空白字符）分割的多个字符串。如果字符串全部是空白或者空字符串的话，会返回空切片。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Fields</span><span class="params">(s <span class="keyword">string</span>)</span> []<span class="title">string</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h2 id="Go语言数组"><a href="#Go语言数组" class="headerlink" title="Go语言数组"></a>Go语言数组</h2>
+                    <p>数组是具有相同唯一类型的一组已编号且长度固定的数据项序列，这种类型可以是任意的原始类型，如：整形、字符串或自定义类型。<br>在go中数组是固定长度的数据类型，它包含相同类型的连续的元素，这些元素可以是内建类型，像数字和字符串，也可以是结构类型，元素可以通过唯一的索引值访问，从0开始。<br>数组是很有价值的数据结构，因为它的内存分配是连续的，内存连续意味着可以让它在CPU缓存中待更久，所以迭代数组和移动元素都会非常迅速。</p>
+                    <h3 id="数组定义"><a href="#数组定义" class="headerlink" title="数组定义"></a>数组定义</h3>
+                    <p>1.通过指定数据类型和元素个数（数组长度）来声明数组。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">var</span> array [<span class="number">5</span>]<span class="keyword">int</span> 	<span class="comment">//声明一个长度为5的整数数组</span></span><br><span class="line"><span class="keyword">var</span> array [<span class="number">5</span>]<span class="keyword">int</span> = [<span class="number">5</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;	<span class="comment">//声明一个长度为5的整数数组并初始化</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>2.一种快速创建和初始化数组的方法是使用数组字面值。数组字面值允许我们声明我们需要的元素个数并指定数据类型。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">array := [<span class="number">5</span>]<span class="keyword">string</span>&#123;<span class="string">"Linux"</span>, <span class="string">"Python"</span>, <span class="string">"Java"</span>, <span class="string">"Golang"</span>, <span class="string">"DBA"</span>&#125;		<span class="comment">//声明一个长度为5的字符串数组并初始化每个元素</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>3.如果把长度写成…，go编译器将会根据元素来推导出长度<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">array := [...]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125; 	<span class="comment">//通过初始化值的个数来推导出数组容量</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>4.如果知道想要数组的长度，但是希望对指定位置元素初始化。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">arry := [<span class="number">5</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>:<span class="number">1</span>,<span class="number">3</span>:<span class="number">3</span>&#125;		<span class="comment">//声明一个长度为5的整数数组，为索引为1和3的位置指定元素初始化，剩余元素为该元素类型的默认值</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <font color="red" size="2">注意:当一个数组被声明时，它里面包含的每个元素都会被初始化为该元素类型的默认值。一旦数组被声明了，那么它的数据类型和长度都不能再被改变。如果需要更多的元素，那么只能创建一个想要长度的新的数组，然后把原有数组的元素拷贝过去。</font>
+
+                    <h3 id="数组操作"><a href="#数组操作" class="headerlink" title="数组操作"></a>数组操作</h3>
+                    <p>使用内置函数len()和cap()返回数组长度和数组容量。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	array := [<span class="number">2</span>]<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"数组长度：%d，数组容量：%d\n"</span>, <span class="built_in">len</span>(array), <span class="built_in">cap</span>(array))</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>运行结果:<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">数组长度：<span class="number">2</span>，数组容量：<span class="number">2</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>使用[]操作符来访问数组元素：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="comment">//改变索引为2的元素的值：</span></span><br><span class="line">array := [<span class="number">5</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line">array[<span class="number">2</span>] = <span class="number">100</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <font color="red" size="2">注意：数组可以通过下标进行访问，数组下标是从0开始，最后一个元素下标是：len(array)-1。如果下标在数组合法范围之外，则触发访问越界。</font><br>数组赋值操作，一个数组可以被赋值给任意相同类型的数组：<br>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">var</span> arr1 [<span class="number">5</span>]<span class="keyword">string</span></span><br><span class="line">arr2 := [<span class="number">5</span>]<span class="keyword">string</span>&#123;<span class="string">"Linux"</span>, <span class="string">"Python"</span>, <span class="string">"Java"</span>, <span class="string">"Golang"</span>, <span class="string">"DBA"</span>&#125;</span><br><span class="line">arr1 = arr2</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure><br><br>
+                    <font color="red" size="2">注意：数组的类型同时包括数组的长度和可以被存储的元素类型，数组类型完全相同才可以互相赋值。</font>
+
+                    <h3 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h3>
+                    <p>数组总是一维的，但是可以组合成多维的。多维数组通常用于有父子关系的数据或者是坐标系数据：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">var</span> array [<span class="number">3</span>][<span class="number">6</span>]<span class="keyword">int</span>  	<span class="comment">//声明一个二维数组</span></span><br><span class="line">array := [<span class="number">4</span>][<span class="number">2</span>]<span class="keyword">int</span>&#123;&#123;<span class="number">10</span>, <span class="number">11</span>&#125;, &#123;<span class="number">20</span>, <span class="number">21</span>&#125;, &#123;<span class="number">30</span>, <span class="number">31</span>&#125;, &#123;<span class="number">40</span>, <span class="number">41</span>&#125;&#125;		<span class="comment">//使用数组字面值声明并初始化</span></span><br><span class="line">array := [<span class="number">4</span>][<span class="number">2</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>: &#123;<span class="number">20</span>, <span class="number">21</span>&#125;, <span class="number">3</span>: &#123;<span class="number">40</span>, <span class="number">41</span>&#125;&#125;	<span class="comment">//指定外部数组索引位置初始化</span></span><br><span class="line">array := [<span class="number">4</span>][<span class="number">2</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>: &#123;<span class="number">1</span>, <span class="number">2</span>&#125;, <span class="number">3</span>: &#123;<span class="number">1</span>: <span class="number">41</span>&#125;&#125; 		<span class="comment">//同时指定内外部数组索引位置初始化</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>使用内置函数len()和cap返回多维数组长度和多维数组容量。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    array := [<span class="number">3</span>][<span class="number">6</span>]<span class="keyword">int</span>&#123;&#125;</span><br><span class="line">    fmt.Printf(<span class="string">"数组长度：%d，数组容量：%d\n"</span>, <span class="built_in">len</span>(array), <span class="built_in">cap</span>(array))</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>运行结果：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">数组长度：<span class="number">3</span>，数组容量：<span class="number">3</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h2 id="Go语言类型转换"><a href="#Go语言类型转换" class="headerlink"
+                                                                                                      title="Go语言类型转换"></a>Go语言类型转换</h2>
+                    <p>类型转换用于将一种数据类型的变量转换为另一种类型的变量。<br>Go语言类型转换基本格式如下：<br>表达式T(v)将值v转换为类型T。</p>
+                    <p>Go语言各种类型转换及函数的高级用法：<br>strconv包实现了基本数据类型和其字符串表示的相互转换。</p>
+                    <h3 id="字符串转字节"><a href="#字符串转字节" class="headerlink" title="字符串转字节"></a>字符串转字节</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> str <span class="keyword">string</span> = <span class="string">"hello"</span></span><br><span class="line">    result := []<span class="keyword">byte</span>(str)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="32位整型转字节"><a href="#32位整型转字节" class="headerlink"
+                                                                                                      title="32位整型转字节"></a>32位整型转字节</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"bytes"</span></span><br><span class="line">    <span class="string">"encoding/binary"</span></span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x <span class="keyword">int32</span></span><br><span class="line">    x = <span class="number">100</span></span><br><span class="line">    bytesBuffer := bytes.NewBuffer([]<span class="keyword">byte</span>&#123;&#125;)</span><br><span class="line">    binary.Write(bytesBuffer, binary.BigEndian, x)</span><br><span class="line">    result := bytesBuffer.Bytes()</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>字节转字符串<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> b []<span class="keyword">byte</span> = []<span class="keyword">byte</span>&#123;<span class="number">111</span>, <span class="number">108</span>, <span class="number">100</span>, <span class="number">98</span>, <span class="number">111</span>, <span class="number">121</span>&#125;</span><br><span class="line">    result := <span class="keyword">string</span>(b)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h3 id="整型转字符串"><a href="#整型转字符串" class="headerlink" title="整型转字符串"></a>整型转字符串</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">    <span class="string">"strconv"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x <span class="keyword">int</span></span><br><span class="line">    x = <span class="number">100</span></span><br><span class="line">    result := strconv.Itoa(x)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>FormatInt 将 int 型整数 i 转换为字符串形式<br>base：进位制（2 进制到 36 进制）
+                      大于 10 进制的数，返回值使用小写字母
+                      ‘a’ 到 ‘z’<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">FormatInt</span><span class="params">(i <span class="keyword">int64</span>, base <span class="keyword">int</span>)</span> <span class="title">string</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>Itoa 相当于 FormatInt(i, 10)</p>
+                    <h3 id="64位整形转字符串"><a href="#64位整形转字符串" class="headerlink"
+                                                                                                      title="64位整形转字符串"></a>64位整形转字符串</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">    <span class="string">"strconv"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> i <span class="keyword">int64</span></span><br><span class="line">    i = <span class="number">0x100</span></span><br><span class="line">    result := strconv.FormatInt(i, <span class="number">10</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="布尔值转字符串"><a href="#布尔值转字符串" class="headerlink"
+                                                                                                      title="布尔值转字符串"></a>布尔值转字符串</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">    <span class="string">"strconv"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    t := strconv.FormatBool(<span class="literal">true</span>)</span><br><span class="line">    f := strconv.FormatBool(<span class="literal">false</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"t is %v , t type is %v\n"</span>, t, reflect.TypeOf(t))</span><br><span class="line">    fmt.Printf(<span class="string">"f is %v , f type is %v\n"</span>, f, reflect.TypeOf(f))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="浮点数转字符串"><a href="#浮点数转字符串" class="headerlink"
+                                                                                                      title="浮点数转字符串"></a>浮点数转字符串</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">strconv.FormatFloat(f,fmt,prec,bitSize)</span><br><span class="line">f：要转换的浮点数 </span><br><span class="line">fmt：格式标记（b、e、E、,f、g、G） </span><br><span class="line">prec：精度（数字部分的长度，不包括指数部分） </span><br><span class="line">bitSize：指定浮点类型（<span class="number">32</span>:<span class="keyword">float32</span>、<span class="number">64</span>:<span class="keyword">float64</span>）</span><br><span class="line"></span><br><span class="line">格式标记： </span><br><span class="line">‘b’ (-ddddp±ddd，二进制指数) </span><br><span class="line">‘e’ (-d.dddde±dd，十进制指数) </span><br><span class="line">‘E’ (-d.ddddE±dd，十进制指数) </span><br><span class="line">‘f’ (-ddd.dddd，没有指数) </span><br><span class="line">‘g’ (‘e’:大指数，’f’:其它情况) </span><br><span class="line">‘G’ (‘E’:大指数，’f’:其它情况)</span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">    <span class="string">"strconv"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    f := <span class="number">100.12345678901234567890123456789</span></span><br><span class="line">    result := strconv.FormatFloat(f, <span class="string">'e'</span>, <span class="number">30</span>, <span class="number">32</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="int转int64"><a href="#int转int64" class="headerlink"
+                                                                                                      title="int转int64"></a>int转int64</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x <span class="keyword">int</span> = <span class="number">100</span></span><br><span class="line">    result := <span class="keyword">int64</span>(x)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="字符串转整形"><a href="#字符串转整形" class="headerlink" title="字符串转整形"></a>字符串转整形</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">    <span class="string">"strconv"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> str <span class="keyword">string</span></span><br><span class="line">    str = <span class="string">"100"</span></span><br><span class="line">    result, _ := strconv.Atoi(str)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="字节转32位整形"><a href="#字节转32位整形" class="headerlink"
+                                                                                                      title="字节转32位整形"></a>字节转32位整形</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"bytes"</span></span><br><span class="line">    <span class="string">"encoding/binary"</span></span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    b := []<span class="keyword">byte</span>&#123;<span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x03</span>, <span class="number">0xe8</span>&#125;</span><br><span class="line">    bytesBuffer := bytes.NewBuffer(b)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> result <span class="keyword">int32</span></span><br><span class="line">    binary.Read(bytesBuffer, binary.BigEndian, &amp;result)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="float32转float64"><a href="#float32转float64" class="headerlink"
+                                                                                                      title="float32转float64"></a>float32转float64</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x <span class="keyword">float32</span> = <span class="number">100</span></span><br><span class="line">    result := <span class="keyword">float64</span>(x)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="整型转浮点型"><a href="#整型转浮点型" class="headerlink" title="整型转浮点型"></a>整型转浮点型</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x <span class="keyword">int</span> = <span class="number">100</span></span><br><span class="line">    result := <span class="keyword">float32</span>(x)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="字符串转浮点数"><a href="#字符串转浮点数" class="headerlink"
+                                                                                                      title="字符串转浮点数"></a>字符串转浮点数</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">strconv.ParseFloat(str,bitSize)</span><br><span class="line">str：要转换的字符串</span><br><span class="line">bitSize：指定浮点类型（<span class="number">32</span>:<span class="keyword">float32</span>、<span class="number">64</span>:<span class="keyword">float64</span>）</span><br><span class="line">如果 str 是合法的格式，而且接近一个浮点值，</span><br><span class="line">则返回浮点数的四舍五入值（依据 IEEE754 的四舍五入标准）</span><br><span class="line">如果 str 不是合法的格式，则返回“语法错误”</span><br><span class="line">如果转换结果超出 bitSize 范围，则返回“超出范围”</span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">    <span class="string">"strconv"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> str <span class="keyword">string</span> = <span class="string">"0.12345678901234567890"</span></span><br><span class="line">    result, _ := strconv.ParseFloat(str, <span class="number">32</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="字符串转布尔值"><a href="#字符串转布尔值" class="headerlink"
+                                                                                                      title="字符串转布尔值"></a>字符串转布尔值</h3>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">ParseBool 将字符串转换为布尔值 </span><br><span class="line">它接受真值：<span class="number">1</span>, t, T, TRUE, <span class="literal">true</span>, True </span><br><span class="line">它接受假值：<span class="number">0</span>, f, F, FALSE, <span class="literal">false</span>, False. </span><br><span class="line">其它任何值都返回一个错误</span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">    <span class="string">"strconv"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    result, _ := strconv.ParseBool(<span class="string">"1"</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"result is %v , result type is %v\n"</span>, result, reflect.TypeOf(result))</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>注意：Go语言不能将其他类型当bool值使用</p>
+
+                  </div>
+
+                  <div style="text-align:center;color: #ccc;font-size:14px;">----------------
+                    (*￣︶￣)我是结束线(*￣︶￣) ----------------</div>
+
+                  <div>
+                    <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+                      <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg"
+                                                                                                      alt="没有风的晴天 wechat"
+                                                                                                      style="width: 200px; max-width: 100%;">
+                      <div>扫一扫，加我微信</div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>打赏</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wechatpay.jpg" alt="没有风的晴天 微信支付">
+                          <p>微信支付</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/alipay.jpg" alt="没有风的晴天 支付宝">
+                          <p>支付宝</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <ul class="post-copyright">
+                      <li class="post-copyright-author">
+                        <strong>本文作者：</strong>
+                        没有风的晴天
+                      </li>
+                      <li class="post-copyright-link">
+                        <strong>本文链接：</strong>
+                        <a href="https://www.kapyan.top/posts/2830198955.html"
+                                                                                                        title="Go语言学习笔记（三）">https://www.kapyan.top/posts/2830198955.html</a>
+                      </li>
+                      <li class="post-copyright-license">
+                        <strong>版权声明： </strong>
+                        本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
+                                                                                                        rel="external nofollow"
+                                                                                                        target="_blank">CC
+                          BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+                      </li>
+                    </ul>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-tags">
+
+                      <a href="/tags/go/" rel="tag"><i class="fa fa-tag"></i>
+                        go</a>
+
+                    </div>
+
+                    <div class="post-series">
+                      <h4>Go语言-相关文章：</h4>
+
+                      <li><a href="/posts/3585681187.html"> Go语言学习笔记（一） </a></li>
+
+                      <li><a href="/posts/3853503483.html"> Go语言学习笔记（二） </a></li>
+
+                    </div>
+
+                    <div class="post-widgets">
+
+                      <div id="needsharebutton-postbottom">
+                        <span class="btn">
+                          <i class="fa fa-share-alt" aria-hidden="true"></i>
+                        </span>
+                      </div>
+
+                    </div>
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/posts/3853503483.html" rel="next" title="Go语言学习笔记（二）">
+                          <i class="fa fa-chevron-left"></i> Go语言学习笔记（二）
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                      </div>
+                    </div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <div class="post-spread">
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="comments" id="comments">
+            <div id="SOHUCS"></div>
+          </div>
+
+        </div>
+
+        <div class="sidebar-toggle">
+          <div class="sidebar-toggle-line-wrap">
+            <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+          </div>
+        </div>
+
+        <aside id="sidebar" class="sidebar">
+
+          <div id="sidebar-dimmer"></div>
+
+          <div class="sidebar-inner">
+
+            <ul class="sidebar-nav motion-element">
+              <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                文章目录
+              </li>
+              <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+                站点概览
+              </li>
+            </ul>
+
+            <section class="site-overview-wrap sidebar-panel">
+              <div class="site-overview">
+                <div class="site-author motion-element" itemprop="author"
+                                                                                                itemscope=""
+                                                                                                itemtype="http://schema.org/Person">
+
+                  <img class="site-author-image" itemprop="image" src="/images/avatar.png"
+                                                                                                  alt="没有风的晴天">
+
+                  <p class="site-author-name" itemprop="name">没有风的晴天</p>
+                  <p class="site-description motion-element" itemprop="description"></p>
+                </div>
+
+                <nav class="site-state motion-element">
+
+                  <div class="site-state-item site-state-posts">
+
+                    <a href="/archives/">
+
+                      <span class="site-state-item-count">16</span>
+                      <span class="site-state-item-name">日志</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-categories">
+                    <a href="/categories/index.html">
+                      <span class="site-state-item-count">8</span>
+                      <span class="site-state-item-name">分类</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-tags">
+                    <a href="/tags/index.html">
+                      <span class="site-state-item-count">13</span>
+                      <span class="site-state-item-name">标签</span>
+                    </a>
+                  </div>
+
+                </nav>
+
+                <div class="feed-link motion-element">
+                  <a href="/atom.xml" rel="alternate">
+                    <i class="fa fa-rss"></i>
+                    RSS
+                  </a>
+                </div>
+
+                <div class="links-of-author motion-element">
+
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kapyan" target="_blank" title="GitHub">
+
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+
+                  <span class="links-of-author-item">
+                    <a href="mailto:15929461370@163.com" target="_blank" title="E-Mail">
+
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+
+                </div>
+
+                <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+                  <div class="links-of-blogroll-title">
+                    <i class="fa  fa-fw fa-link"></i>
+                    友情链接
+                  </div>
+                  <ul class="links-of-blogroll-list">
+
+                    <li class="links-of-blogroll-item">
+                      <a href="http://music.kapyan.top" title="在线音乐" target="_blank"
+                                                                                                      rel="external nofollow">在线音乐</a>
+                    </li>
+
+                    <li class="links-of-blogroll-item">
+                      <a href="http://video.kapyan.top" title="小熊影院" target="_blank"
+                                                                                                      rel="external nofollow">小熊影院</a>
+                    </li>
+
+                  </ul>
+                </div>
+
+                <!-- CloudCalendar -->
+                <div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+                  <div class="widget" id="CloudCalendar"></div>
+                </div>
+
+              </div>
+            </section>
+
+            <!--noindex-->
+            <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+              <div class="post-toc">
+
+                <div class="post-toc-content">
+                  <ol class="nav">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Go语言fmt包"><span
+                                                                                                        class="nav-number">1.</span>
+                        <span class="nav-text">Go语言fmt包</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#格式化输出函数"><span
+                                                                                                            class="nav-number">1.1.</span>
+                            <span class="nav-text">格式化输出函数</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#常用的格式化"><span
+                                                                                                            class="nav-number">1.2.</span>
+                            <span class="nav-text">常用的格式化</span></a>
+                          <ol class="nav-child">
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#普通占位符"><span
+                                                                                                                class="nav-number">1.2.1.</span>
+                                <span class="nav-text">普通占位符</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#布尔占位符"><span
+                                                                                                                class="nav-number">1.2.2.</span>
+                                <span class="nav-text">布尔占位符</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#整数占位符"><span
+                                                                                                                class="nav-number">1.2.3.</span>
+                                <span class="nav-text">整数占位符</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#浮点数和复数的组成部分（实部和虚部）"><span
+                                                                                                                class="nav-number">1.2.4.</span>
+                                <span class="nav-text">浮点数和复数的组成部分（实部和虚部）</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#字符串与字节切片"><span
+                                                                                                                class="nav-number">1.2.5.</span>
+                                <span class="nav-text">字符串与字节切片</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#指针"><span
+                                                                                                                class="nav-number">1.2.6.</span>
+                                <span class="nav-text">指针</span></a></li>
+                          </ol>
+                        </li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Go语言字符串"><span
+                                                                                                        class="nav-number">2.</span>
+                        <span class="nav-text">Go语言字符串</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#定义字符串"><span
+                                                                                                            class="nav-number">2.1.</span>
+                            <span class="nav-text">定义字符串</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#连接字符串"><span
+                                                                                                            class="nav-number">2.2.</span>
+                            <span class="nav-text">连接字符串</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#字符串长度"><span
+                                                                                                            class="nav-number">2.3.</span>
+                            <span class="nav-text">字符串长度</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#字符串操作"><span
+                                                                                                            class="nav-number">2.4.</span>
+                            <span class="nav-text">字符串操作</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Go语言string包"><span
+                                                                                                        class="nav-number">3.</span>
+                        <span class="nav-text">Go语言string包</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#查找操作"><span
+                                                                                                            class="nav-number">3.1.</span>
+                            <span class="nav-text">查找操作</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#重复操作"><span
+                                                                                                            class="nav-number">3.2.</span>
+                            <span class="nav-text">重复操作</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#替换操作"><span
+                                                                                                            class="nav-number">3.3.</span>
+                            <span class="nav-text">替换操作</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#删除操作"><span
+                                                                                                            class="nav-number">3.4.</span>
+                            <span class="nav-text">删除操作</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#大小写转换"><span
+                                                                                                            class="nav-number">3.5.</span>
+                            <span class="nav-text">大小写转换</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#字符串前后缀"><span
+                                                                                                            class="nav-number">3.6.</span>
+                            <span class="nav-text">字符串前后缀</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#字符串分割"><span
+                                                                                                            class="nav-number">3.7.</span>
+                            <span class="nav-text">字符串分割</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Go语言数组"><span
+                                                                                                        class="nav-number">4.</span>
+                        <span class="nav-text">Go语言数组</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#数组定义"><span
+                                                                                                            class="nav-number">4.1.</span>
+                            <span class="nav-text">数组定义</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#数组操作"><span
+                                                                                                            class="nav-number">4.2.</span>
+                            <span class="nav-text">数组操作</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#多维数组"><span
+                                                                                                            class="nav-number">4.3.</span>
+                            <span class="nav-text">多维数组</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Go语言类型转换"><span
+                                                                                                        class="nav-number">5.</span>
+                        <span class="nav-text">Go语言类型转换</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#字符串转字节"><span
+                                                                                                            class="nav-number">5.1.</span>
+                            <span class="nav-text">字符串转字节</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#32位整型转字节"><span
+                                                                                                            class="nav-number">5.2.</span>
+                            <span class="nav-text">32位整型转字节</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#整型转字符串"><span
+                                                                                                            class="nav-number">5.3.</span>
+                            <span class="nav-text">整型转字符串</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#64位整形转字符串"><span
+                                                                                                            class="nav-number">5.4.</span>
+                            <span class="nav-text">64位整形转字符串</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#布尔值转字符串"><span
+                                                                                                            class="nav-number">5.5.</span>
+                            <span class="nav-text">布尔值转字符串</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#浮点数转字符串"><span
+                                                                                                            class="nav-number">5.6.</span>
+                            <span class="nav-text">浮点数转字符串</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#int转int64"><span
+                                                                                                            class="nav-number">5.7.</span>
+                            <span class="nav-text">int转int64</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#字符串转整形"><span
+                                                                                                            class="nav-number">5.8.</span>
+                            <span class="nav-text">字符串转整形</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#字节转32位整形"><span
+                                                                                                            class="nav-number">5.9.</span>
+                            <span class="nav-text">字节转32位整形</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#float32转float64"><span
+                                                                                                            class="nav-number">5.10.</span>
+                            <span class="nav-text">float32转float64</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#整型转浮点型"><span
+                                                                                                            class="nav-number">5.11.</span>
+                            <span class="nav-text">整型转浮点型</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#字符串转浮点数"><span
+                                                                                                            class="nav-number">5.12.</span>
+                            <span class="nav-text">字符串转浮点数</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#字符串转布尔值"><span
+                                                                                                            class="nav-number">5.13.</span>
+                            <span class="nav-text">字符串转布尔值</span></a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </div>
+
+              </div>
+            </section>
+            <!--/noindex-->
+
+          </div>
+        </aside>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+          <span class="with-love">
+            <i class="fa fa-user"></i>
+          </span>
+          <span class="author" itemprop="copyrightHolder">没有风的晴天</span>
+
+          <span class="post-meta-divider">|</span>
+          <span class="post-meta-item-icon">
+            <i class="fa fa-area-chart"></i>
+          </span>
+
+          <span class="post-meta-item-text">Site words total count&#58;</span>
+
+          <span title="Site words total count">36.5k</span>
+
+        </div>
+
+        <div class="footer-custom">
+          <div class="BbeiAn-info">陕ICP备-<a target="_blank" href="http://www.miitbeian.gov.cn/">17003351号-1</a></div>
+        </div>
+
+        <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+        <script>
+          if (window.mermaid) {
+            mermaid.initialize("");
+          }
+
+        </script>
+
+        <div class="busuanzi-count">
+          <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+          <span class="site-uv">
+            <i class="fa fa-user"></i> 访问人数
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+
+          </span>
+
+          <span class="site-pv">
+            <i class="fa fa-eye"></i> 总访问量
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+
+          </span>
+
+        </div>
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+
+      <span id="scrollpercent"><span>0</span>%</span>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+      window.Promise = null;
+    }
+
+  </script>
+
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+  <script type="text/javascript">
+    (function() {
+      var appid = 'cyu5jPBKt';
+      var conf = 'c5ce34b4cfb52fb37a87120bf5d492e1';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+        window.document.write(
+          '<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' +
+          appid + '&conf=' + conf + '"><\/script>');
+      } else {
+        var loadJs = function(d, a) {
+          var c = document.getElementsByTagName("head")[0] || document.head ||
+            document.documentElement;
+          var b = document.createElement("script");
+          b.setAttribute("type", "text/javascript");
+          b.setAttribute("charset", "UTF-8");
+          b.setAttribute("src", d);
+          if (typeof a === "function") {
+            if (window.attachEvent) {
+              b.onreadystatechange = function() {
+                var e = b.readyState;
+                if (e === "loaded" || e === "complete") {
+                  b.onreadystatechange = null;
+                  a()
+                }
+              }
+            } else {
+              b.onload = a
+            }
+          }
+          c.appendChild(b)
+        };
+        loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
+          window.changyan.api.config({
+            appid: appid,
+            conf: conf
+          })
+        });
+      }
+    })();
+
+  </script>
+  <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+    var onPopupClose = function(e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append(
+          '<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css(
+        'text-align', 'center');
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(
+                  /<[^>]+>/g, "");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if (title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text,
+                      caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0,
+                        position = [],
+                        index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word,
+                          startPosition)) > -1) {
+                        index.push({
+                          position: position,
+                          word: word
+                        });
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+                    indexOfTitle = indexOfTitle.concat(
+                      getIndexByWord(keyword,
+                        titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(
+                      getIndexByWord(keyword,
+                        contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length >
+                    0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length +
+                      indexOfContent.length;
+                  }
+                }
+                // show search results
+                if (isMatch) {
+                  // sort index by position of keyword
+                  [indexOfTitle, indexOfContent].forEach(function(
+                    index) {
+                    index.sort(function(itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft
+                        .position) {
+                        return itemRight.position -
+                          itemLeft.position;
+                      } else {
+                        return itemLeft.word.length -
+                          itemRight.word.length;
+                      }
+                    });
+                  });
+                  // merge hits into slices
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index
+                      .length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({
+                        position: position,
+                        length: word.length
+                      });
+                      var wordEnd = position + word.length;
+                      // move to next position of hit
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0,
+                      title.length, indexOfTitle));
+                  }
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length -
+                      1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content,
+                      start, end, indexOfContent));
+                  }
+                  // sort slices in content by search text's count and hits' count
+                  slicesOfContent.sort(function(sliceLeft,
+                    sliceRight) {
+                    if (sliceLeft.searchTextCount !==
+                      sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount -
+                        sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !==
+                      sliceRight.hits.length) {
+                      return sliceRight.hits.length -
+                        sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+                  // select top N slices in content
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0,
+                      upperBound);
+                  }
+                  // highlight title and content
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function(hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' +
+                        text.substring(hit.position, end) +
+                        '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+                  var resultItem = '';
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" +
+                      highlightKeyword(title, slicesOfTitle[0]) +
+                      "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" + title +
+                      "</a>";
+                  }
+                  slicesOfContent.forEach(function(slice) {
+                    resultItem += "<a href='" + articleUrl +
+                      "'>" +
+                      "<p class=\"search-result\">" +
+                      highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function(resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft
+                    .searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList =
+                '<ul class=\"search-result-list\">';
+              resultItems.forEach(function(result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function(event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+          proceedsearch();
+        }
+      });
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function(event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+  </script>
+
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    pbOptions = {};
+    pbOptions.iconStyle = "default";
+    pbOptions.boxForm = "horizontal";
+    pbOptions.position = "bottomCenter";
+    pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+
+  </script>
+
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+  <!-- calendar widget -->
+
+  <script src="/lib/CloudCalendar/CloudCalendar.js"></script>
+  <script src="/lib/CloudCalendar/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('#CloudCalendar').aCalendar('zh-CN',
+        $.extend(
+          '', {
+            single: true,
+            root: '/calendar/'
+          }
+        )
+      );
+    });
+
+  </script>
+
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+</body>
+
+</html>
