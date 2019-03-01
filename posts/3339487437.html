@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+
+<head>
+  <meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="baidu-site-verification" content="8zMDGR7I0p">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#222">
+
+  <script>
+    (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet"
+                                                                                  type="text/css">
+
+  <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"
+                                                                                  type="text/css">
+
+  <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+  <meta name="keywords" content="go">
+
+  <link rel="alternate" href="/atom.xml" title="运维之窗" type="application/atom+xml">
+
+  <meta name="description" content="Go语言反射 反射获取 反射介绍 反射可以在运行时动态获取变量的相关信息。Go语言中的reflect包实现了运行时反射，允许程序操作任意类型的对象。经典用法是静态类型interface{}保存一个值，通过调用TypeOF获取其动态类型信息，该函数返回一个Type类型值。调用ValueOf函数返回一个Value类型值，该值代表运行时的数据。Zero接受一个Type类型参数并返回一个代表该类型零值的V">
+  <meta name="keywords" content="go">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Go语言学习笔记（七）">
+  <meta property="og:url" content="https://www.kapyan.top/posts/3339487437.html">
+  <meta property="og:site_name" content="运维之窗">
+  <meta property="og:description" content="Go语言反射 反射获取 反射介绍 反射可以在运行时动态获取变量的相关信息。Go语言中的reflect包实现了运行时反射，允许程序操作任意类型的对象。经典用法是静态类型interface{}保存一个值，通过调用TypeOF获取其动态类型信息，该函数返回一个Type类型值。调用ValueOf函数返回一个Value类型值，该值代表运行时的数据。Zero接受一个Type类型参数并返回一个代表该类型零值的V">
+  <meta property="og:locale" content="zh-Hans">
+  <meta property="og:updated_time" content="2019-02-28T09:36:38.440Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Go语言学习笔记（七）">
+  <meta name="twitter:description" content="Go语言反射 反射获取 反射介绍 反射可以在运行时动态获取变量的相关信息。Go语言中的reflect包实现了运行时反射，允许程序操作任意类型的对象。经典用法是静态类型interface{}保存一个值，通过调用TypeOF获取其动态类型信息，该函数返回一个Type类型值。调用ValueOf函数返回一个Value类型值，该值代表运行时的数据。Zero接受一个Type类型参数并返回一个代表该类型零值的V">
+
+  <script type="text/javascript" id="hexo.configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      root: '/',
+      scheme: 'Pisces',
+      version: '5.1.4',
+      sidebar: {
+        "position": "left",
+        "display": "post",
+        "offset": 12,
+        "b2t": false,
+        "scrollpercent": true,
+        "onmobile": true
+      },
+      fancybox: true,
+      tabs: true,
+      motion: {
+        "enable": true,
+        "async": false,
+        "transition": {
+          "post_block": "fadeIn",
+          "post_header": "slideDownIn",
+          "post_body": "slideDownIn",
+          "coll_header": "slideLeftIn",
+          "sidebar": "slideUpIn"
+        }
+      },
+      duoshuo: {
+        userId: '0',
+        author: '没有风的晴天'
+      },
+      algolia: {
+        applicationID: '',
+        apiKey: '',
+        indexName: '',
+        hits: {
+          "per_page": 10
+        },
+        labels: {
+          "input_placeholder": "Search for Posts",
+          "hits_empty": "We didn't find any results for the search: ${query}",
+          "hits_stats": "${hits} results found in ${time} ms"
+        }
+      }
+    };
+
+  </script>
+
+  <link rel="canonical" href="https://www.kapyan.top/posts/3339487437.html">
+
+  <title>Go语言学习笔记（七） | 运维之窗</title>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        <div class="site-brand-wrapper">
+          <div class="site-meta ">
+
+            <div class="custom-logo-site-title">
+              <a href="/" class="brand" rel="start">
+                <span class="logo-line-before"><i></i></span>
+                <span class="site-title">运维之窗</span>
+                <span class="logo-line-after"><i></i></span>
+              </a>
+            </div>
+
+            <h1 class="site-subtitle" itemprop="description"></h1>
+
+          </div>
+
+          <div class="site-nav-toggle">
+            <button>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+            </button>
+          </div>
+        </div>
+
+        <nav class="site-nav">
+
+          <ul id="menu" class="menu">
+
+            <li class="menu-item menu-item-home">
+              <a href="/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+
+                首页
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-tags">
+              <a href="/tags/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+
+                标签
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-categories">
+              <a href="/categories/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+
+                分类
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-archives">
+              <a href="/archives/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+
+                归档
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-about">
+              <a href="/about/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+
+                关于
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-search">
+
+              <a href="javascript:;" class="popup-trigger">
+
+                <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+
+                搜索
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="site-search">
+
+            <div class="popup search-popup local-search-popup">
+              <div class="local-search-header clearfix">
+                <span class="search-icon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <span class="popup-btn-close">
+                  <i class="fa fa-times-circle"></i>
+                </span>
+                <div class="local-search-input-wrapper">
+                  <input autocomplete="off" placeholder="搜索..." spellcheck="false"
+                                                                                                  type="text"
+                                                                                                  id="local-search-input">
+                </div>
+              </div>
+              <div id="local-search-result"></div>
+            </div>
+
+          </div>
+
+        </nav>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+
+            <div id="posts" class="posts-expand">
+
+              <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="https://www.kapyan.top/posts/3339487437.html">
+
+                  <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="没有风的晴天">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.png">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="运维之窗">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h2 class="post-title" itemprop="name headline">Go语言学习笔记（七）</h2>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">发表于</span>
+
+                        <time title="创建于" itemprop="dateCreated datePublished"
+                                                                                                        datetime="2019-02-28T15:33:35+08:00">
+                          2019-02-28
+                        </time>
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-check-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">更新于&#58;</span>
+
+                        <time title="更新于" itemprop="dateModified" datetime="2019-02-28T17:36:38+08:00">
+                          2019-02-28
+                        </time>
+
+                      </span>
+
+                      <span class="post-category">
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-folder-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">分类于</span>
+
+                        <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                          <a href="/categories/Go语言/" itemprop="url" rel="index">
+                            <span itemprop="name">Go语言</span>
+                          </a>
+                        </span>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+
+                        <a href="/posts/3339487437.html#SOHUCS" itemprop="discussionUrl">
+                          <span id="changyan_count_unit" class="post-comments-count hc-comment-count"
+                                                                                                          data-xid="posts/3339487437.html"
+                                                                                                          itemprop="commentsCount"></span>
+                        </a>
+
+                        <span class="post-meta-divider">|</span>
+                        <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+                          <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+                        </span>
+
+                        <div class="post-wordcount">
+
+                          <span class="post-meta-item-icon">
+                            <i class="fa fa-file-word-o"></i>
+                          </span>
+
+                          <span class="post-meta-item-text">字数统计&#58;</span>
+
+                          <span title="字数统计">
+                            5.6k
+                          </span>
+
+                          <span class="post-meta-divider">|</span>
+
+                          <span class="post-meta-item-icon">
+                            <i class="fa fa-clock-o"></i>
+                          </span>
+
+                          <span class="post-meta-item-text">阅读时长 &asymp;</span>
+
+                          <span title="阅读时长">
+                            22
+                          </span>
+
+                        </div>
+
+                      </span></div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <h2 id="Go语言反射"><a href="#Go语言反射" class="headerlink" title="Go语言反射"></a>Go语言反射</h2>
+                    <h3 id="反射获取"><a href="#反射获取" class="headerlink" title="反射获取"></a>反射获取</h3>
+                    <h4 id="反射介绍"><a href="#反射介绍" class="headerlink" title="反射介绍"></a>反射介绍</h4>
+                    <p>反射可以在运行时动态获取变量的相关信息。Go语言中的reflect包实现了运行时反射，允许程序操作任意类型的对象。经典用法是静态类型interface{}保存一个值，通过调用TypeOF获取其动态类型信息，该函数返回一个Type类型值。调用ValueOf函数返回一个Value类型值，该值代表运行时的数据。Zero接受一个Type类型参数并返回一个代表该类型零值的Value类型值。<br>反射获取常用函数和方法：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TypeOf</span><span class="params">(i <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">Type</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>TypeOf返回接口中保存的值的类型，TypeOf(nil)会返回nil。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ValueOf</span><span class="params">(i <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">Value</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>ValueOf返回一个初始化为i接口保管的具体值Value，ValueOf(nil)返回Value零值。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t Type)</span> <span class="title">ELem</span><span class="params">()</span> <span class="title">Type</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>返回map类型的键的类型。如非映射类型将panic<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t Type)</span> <span class="title">Field</span><span class="params">(i <span class="keyword">int</span>)</span> <span class="title">StructField</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>返回索引序列指定的嵌套字段的类型，等价于用索引中的每个值链式调用本方法，如非结构体将会panic<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(tag StructTag)</span> <span class="title">Get</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">string</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>Get方法返回标签字符串中键key对应的值。如果标签中没有该键，会返回””。如果标签不符合标准格式。Get的返回值是不确定的。</p>
+                    <h4 id="反射获取应用"><a href="#反射获取应用" class="headerlink" title="反射获取应用"></a>反射获取应用</h4>
+                    <ol>
+                      <li>
+                        <p>反射获取基本类型</p>
+                        <figure class="highlight go">
+                          <table>
+                            <tr>
+                              <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre>
+                              </td>
+                              <td class="code">
+                                <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> o <span class="keyword">string</span> = <span class="string">"haha"</span></span><br><span class="line">	<span class="comment">//返回值的类型</span></span><br><span class="line">	t := reflect.TypeOf(o)</span><br><span class="line">	fmt.Println(<span class="string">"o type:"</span>, t)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//返回具体值的Value</span></span><br><span class="line">	v := reflect.ValueOf(o)</span><br><span class="line">	fmt.Println(<span class="string">"o value:"</span>, v)</span><br><span class="line">&#125;</span><br></pre>
+                              </td>
+                            </tr>
+                          </table>
+                        </figure>
+                      </li>
+                      <li>
+                        <p>反射获取结构体</p>
+                        <figure class="highlight go">
+                          <table>
+                            <tr>
+                              <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
+                              </td>
+                              <td class="code">
+                                <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name <span class="keyword">string</span></span><br><span class="line">	age  <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	o := Person&#123;<span class="string">"haha"</span>, <span class="number">18</span>&#125;</span><br><span class="line">	t := reflect.TypeOf(o)</span><br><span class="line">	fmt.Println(<span class="string">"o type:"</span>, t)</span><br><span class="line">	v := reflect.ValueOf(o)</span><br><span class="line">	fmt.Println(<span class="string">"o value:"</span>, v)</span><br><span class="line">&#125;</span><br></pre>
+                              </td>
+                            </tr>
+                          </table>
+                        </figure>
+                      </li>
+                      <li>
+                        <p>获取结构体 Tag</p>
+                      </li>
+                    </ol>
+                    <p>获取结构体元素单一Tag<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name <span class="keyword">string</span> <span class="string">`json:"u_name"`</span></span><br><span class="line">	age  <span class="keyword">int</span>    <span class="string">`json:"u_age"`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getStructTag</span><span class="params">(i <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">	t := reflect.TypeOf(i)</span><br><span class="line"></span><br><span class="line">	tag := t.Elem().Field(<span class="number">0</span>).Tag.Get(<span class="string">"json"</span>)</span><br><span class="line">	fmt.Printf(<span class="string">"Name Tag:%s\n"</span>, tag)</span><br><span class="line">	tag = t.Elem().Field(<span class="number">1</span>).Tag.Get(<span class="string">"json"</span>)</span><br><span class="line">	fmt.Printf(<span class="string">"Age Tag:%s\n"</span>, tag)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := User &#123;<span class="string">"haha"</span>, <span class="number">18</span>&#125;</span><br><span class="line">	getStructTag(&amp;a)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>获取结构体元素多个Tag<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">        Name <span class="keyword">string</span> <span class="string">`json:"user_name" xml:"UserName"`</span></span><br><span class="line">    &#125;</span><br><span class="line">    u := User&#123;</span><br><span class="line">        Name: <span class="string">"haha"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    f := reflect.TypeOf(u).Field(<span class="number">0</span>)</span><br><span class="line">    fmt.Println(f.Tag.Get(<span class="string">"json"</span>))</span><br><span class="line">    fmt.Println(f.Tag.Get(<span class="string">"xml"</span>))</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>循环获取 结构体Tag<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">		Name   <span class="keyword">string</span> <span class="string">`user name`</span></span><br><span class="line">		Passwd <span class="keyword">string</span> <span class="string">`user password`</span></span><br><span class="line">	&#125;</span><br><span class="line">	u := &amp;User&#123;<span class="string">"haha"</span>, <span class="string">"haha123"</span>&#125;</span><br><span class="line">	s := reflect.TypeOf(u).Elem()</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; s.NumField(); i++ &#123;</span><br><span class="line">		fmt.Println(s.Field(i).Tag)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h3 id="反射操作"><a href="#反射操作" class="headerlink" title="反射操作"></a>反射操作</h3>
+                    <h4 id="反射操作常用函数和方法"><a href="#反射操作常用函数和方法" class="headerlink"
+                                                                                                      title="反射操作常用函数和方法"></a>反射操作常用函数和方法</h4>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">Elem</span><span class="params">()</span> <span class="title">Value</span></span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>Elem返回v持有的接口保管的值的Value封装，或者v持有的指针指向的值的Value封装。如果v的Kind不是Interface会Ptr或panic；如果v持有的值为nil，会返回Value零值。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">SetInt</span><span class="params">(x <span class="keyword">int64</span>)</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>设置v的持有值。如果v的kind不是Int、Int8、Int16、Int32、Int64之一或者v.CanSet()返回假，会panic。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">Int</span><span class="params">()</span> <span class="title">int64</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>返回v持有的有符号整数（表示为int64），如果v的Kind不是Int、Int8、Int16、Int32、Int64会panic。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">Kind</span><span class="params">()</span> <span class="title">Kind</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>Kind返回v持有的值的分类，如果v是Value零值，返回值为Invalid。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">NumField</span><span class="params">()</span> <span class="title">int</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>返回v持有的结构体类型值的字段数，如果v的Kind不是Struct会panic。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">Field</span><span class="params">(i <span class="keyword">int</span>)</span> <span class="title">Value</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>返回结构体的第i个字段（的Value封装）。如果v的Kind不是Struct或i出界会panic。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">SetString</span><span class="params">(x <span class="keyword">string</span>)</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>设置v的持有值。如果v的Kind不是String或者v.CanSet()返回假，会panic。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">NumMethod</span><span class="params">()</span> <span class="title">int</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>返回v持有值的方法集的方法数目。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">MethodByName</span><span class="params">(name <span class="keyword">string</span>)</span> <span class="title">Value</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>返回v的名为name的方法的已绑定（到v的持有值的）状态的函数形式的Value封装。返回值调用Call方法时不应包含接收者；返回值持有的函数总是使用v的持有者作为接收者（即第一个参数）。如果未找到该方法，会返回一个Value零值。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">Call</span><span class="params">(in []Value)</span> []<span class="title">Value</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>Call方法使用输入的参数in调用v持有的函数。例如，如果len(in) ==
+                      3，v.Call(in)代表调用v(in[0], in[1],
+                      in[2])（其中Value值表示其持有值）。如果v的Kind不是Func会panic。它返回函数所有输出结果的Value封装的切片。和go代码一样，每一个输入实参的持有值都必须可以直接赋值给函数对应输入参数的类型。如果v持有值是可变参数函数，Call方法会自行创建一个代表可变参数的切片，将对应可变参数的值都拷贝到里面。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">Type</span><span class="params">()</span> <span class="title">Type</span></span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>返回v持有的值的类型的Type表示。</p>
+                    <h4 id="反射操作应用"><a href="#反射操作应用" class="headerlink" title="反射操作应用"></a>反射操作应用</h4>
+                    <ol>
+                      <li>
+                        <p>通过反射操作基本类型，来改变基本类型的值。</p>
+                        <figure class="highlight go">
+                          <table>
+                            <tr>
+                              <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+                              </td>
+                              <td class="code">
+                                <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> a <span class="keyword">int</span> = <span class="number">1</span></span><br><span class="line">    a = <span class="number">100</span></span><br><span class="line">    val := reflect.ValueOf(&amp;a)</span><br><span class="line">    val.Elem().SetInt(<span class="number">200</span>)</span><br><span class="line">    b := val.Elem().Int()</span><br><span class="line">    fmt.Printf(<span class="string">"a =&gt; %d , b =&gt; %d\n"</span>, a, b)</span><br><span class="line">&#125;</span><br></pre>
+                              </td>
+                            </tr>
+                          </table>
+                        </figure>
+                      </li>
+                      <li>
+                        <p>反射操作结构体及调用结构体方法。</p>
+                        <figure class="highlight go">
+                          <table>
+                            <tr>
+                              <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre>
+                              </td>
+                              <td class="code">
+                                <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> School <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name   <span class="keyword">string</span></span><br><span class="line">	Course <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s School)</span> <span class="title">Echo</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"name : %s , Course : %s \n"</span>, s.Name, s.Course)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	o := School&#123;</span><br><span class="line">		Name:   <span class="string">"haha"</span>,</span><br><span class="line">		Course: <span class="string">"Linux"</span>,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	val := reflect.ValueOf(&amp;o)</span><br><span class="line">	kd := val.Kind()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> kd != reflect.Ptr &amp;&amp; val.Elem().Kind() == reflect.Struct &#123;</span><br><span class="line">		fmt.Println(<span class="string">"expect struct"</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//获取字段数量</span></span><br><span class="line">	fields := val.Elem().NumField()</span><br><span class="line">	fmt.Printf(<span class="string">"struct has %d field\n"</span>, fields)</span><br><span class="line">	<span class="comment">//获取字段的类型</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; fields; i++ &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"%d %v\n"</span>, i, val.Elem().Field(i).Kind())</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 操作结构体</span></span><br><span class="line">	val.Elem().Field(<span class="number">1</span>).SetString(<span class="string">"Golang"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//获取方法数量</span></span><br><span class="line">	methods := val.NumMethod()</span><br><span class="line">	fmt.Printf(<span class="string">"struct has %d methods\n"</span>, methods)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//反射调用的Echo方法</span></span><br><span class="line">	<span class="keyword">var</span> params []reflect.Value</span><br><span class="line">	val.Elem().Method(<span class="number">0</span>).Call(params)</span><br><span class="line">&#125;</span><br></pre>
+                              </td>
+                            </tr>
+                          </table>
+                        </figure>
+                      </li>
+                    </ol>
+                    <h4 id="反射综合应用"><a href="#反射综合应用" class="headerlink" title="反射综合应用"></a>反射综合应用</h4>
+                    <ol>
+                      <li>定义一个结构体</li>
+                      <li>给结构体赋值</li>
+                      <li>用反射获取结构体的下标、结构体名称、类型、值</li>
+                      <li>改变结构体值
+                        <figure class="highlight go">
+                          <table>
+                            <tr>
+                              <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre>
+                              </td>
+                              <td class="code">
+                                <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"reflect"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name <span class="keyword">string</span></span><br><span class="line">	Age  <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	u := Student&#123;<span class="string">"haha"</span>, <span class="number">18</span>&#125;</span><br><span class="line">	v := reflect.ValueOf(&amp;u).Elem()</span><br><span class="line">	t := v.Type()</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; v.NumField(); i++ &#123;</span><br><span class="line">		f := v.Field(i)</span><br><span class="line">		fmt.Printf(<span class="string">"构体的下标: %d: 名称: %s 类型: %s 值: %v\n"</span>, i,</span><br><span class="line">			t.Field(i).Name, f.Type(), f.Interface())</span><br><span class="line">	&#125;</span><br><span class="line">	v.Field(<span class="number">0</span>).SetString(<span class="string">"哈哈"</span>)</span><br><span class="line">	v.Field(<span class="number">1</span>).SetInt(<span class="number">100</span>)</span><br><span class="line">	fmt.Println(<span class="string">"u is now"</span>, u)</span><br><span class="line">&#125;</span><br></pre>
+                              </td>
+                            </tr>
+                          </table>
+                        </figure>
+                      </li>
+                    </ol>
+                    <h2 id="Go语言数据格式"><a href="#Go语言数据格式" class="headerlink"
+                                                                                                      title="Go语言数据格式"></a>Go语言数据格式</h2>
+                    <h3 id="json格式"><a href="#json格式" class="headerlink" title="json格式"></a>json格式</h3>
+                    <p>JSON(JavaScript Object Notation, JS 对象简谱)
+                      是一种轻量级的数据交换格式。它基于 ECMAScript
+                      (欧洲计算机协会制定的js规范)的一个子集，采用完全独立于编程语言的文本格式来存储和表示数据。简洁和清晰的层次结构使得
+                      JSON
+                      成为理想的数据交换语言。易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率。<br>Go语言对json的解析函数在encoding/json包里面，主要是编码和解码两个函数。</p>
+                    <h4 id="Marshal函数"><a href="#Marshal函数" class="headerlink"
+                                                                                                      title="Marshal函数"></a>Marshal函数</h4>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Marshal</span><span class="params">(v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">([]<span class="keyword">byte</span>,error)</span></span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>Marshal函数返回v的json编码。<br>Marshal函数会递归的处理值。如果一个值实现了Marshaler接口切非nil指针，会调用其MarshalJSON方法来生成json编码。nil指针异常并不是严格必需的，但会模拟与UnmarshalJSON的行为类似的必需的异常。<br>否则，Marshal函数使用下面的基于类型的默认编码格式：</p>
+                    <ul>
+                      <li>布尔类型编码为json布尔类型。</li>
+                      <li>浮点数、整数和Number类型的值编码为json数字类型。</li>
+                      <li>字符串编码为json字符串。角括号”&lt;”和”&gt;”会转义为”\u003c”和”\u003e”以避免某些浏览器吧json输出错误理解为HTML。基于同样的原因，”&amp;”转义为”\u0026”。</li>
+                      <li>数组和切片类型的值编码为json数组，但[]byte编码为base64编码字符串，nil切片编码为null。</li>
+                      <li>结构体的值编码为json对象。每一个导出字段变成该对象的一个成员。除非字段的标签是“-”
+                        ，或字段是空值而其标签指定了omitempty选项。</li>
+                      <li>空值是false、0、””、nil指针、nil接口、长度为0的数组、切片、映射。</li>
+                    </ul>
+                    <p>对象默认键字符串是结构体的字段名，但可以在结构体字段的标签里指定。结构体标签值里的”json”键为键名，后跟可选的逗号和选项。<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"><span class="comment">// 字段被本包忽略</span></span><br><span class="line">Field <span class="keyword">int</span> <span class="string">`json:"-"`</span></span><br><span class="line"><span class="comment">// 字段在json里的键为"myName"</span></span><br><span class="line">Field <span class="keyword">int</span> <span class="string">`json:"myName"`</span></span><br><span class="line"><span class="comment">// 字段在json里的键为"myName"且如果字段为空值将在对象中省略掉</span></span><br><span class="line">Field <span class="keyword">int</span> <span class="string">`json:"myName,omitempty"`</span></span><br><span class="line"><span class="comment">// 字段在json里的键为"Field"（默认值），但如果字段为空值会跳过；注意前导的逗号</span></span><br><span class="line">Field <span class="keyword">int</span> <span class="string">`json:",omitempty"`</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>“string”选项标记一个字段在编码json时应编码为字符串。它只适用于字符串、浮点数、整数类型的字段。这个额外水平的编码选项有时候会用于和javascript程序交互：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">Int64String <span class="keyword">int64</span> <span class="string">`json:",string"`</span></span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>如果键名是只含有unicode字符、数字、美元符号、百分号、连字符、下划线和斜杠的非空字符串，将使用它代替字段名。</p>
+                    <p>匿名的结构体字段一般序列化为他们内部的导出字段就好像位于外层结构体中一样。如果一个匿名结构体字段的标签给其提供了键名，则会使用键名代替字段名，而不视为匿名。</p>
+                    <p>Go结构体字段的可视性规则用于供json决定那个字段应该序列化或反序列化时是经过修正了的。如果同一层次有多个（匿名）字段且该层次是最小嵌套的（嵌套层次则使用默认go规则），会应用如下额外规则：</p>
+                    <ol>
+                      <li>json标签为”-“的匿名字段强行忽略，不作考虑；</li>
+                      <li>json标签提供了键名的匿名字段，视为非匿名字段；</li>
+                      <li>其余字段中如果只有一个匿名字段，则使用该字段；</li>
+                      <li>其余字段中如果有多个匿名字段，但压平后不会出现冲突，所有匿名字段压平；</li>
+                      <li>其余字段中如果有多个匿名字段，但压平后出现冲突，全部忽略，不产生错误。</li>
+                    </ol>
+                    <p>对匿名结构体字段的管理是从go1.1开始的，在之前的版本，匿名字段会直接忽略掉。<br>映射类型的值编码为json对象。映射的键必须是字符串，对象的键直接使用映射的键。<br>指针类型的值编码为其指向的值（的json编码）。nil指针编码为null。<br>接口类型的值编码为接口内保持的具体类型的值（的json编码）。nil接口编码为null。<br>通道、复数、函数类型的值不能编码进json。尝试编码它们会导致Marshal函数返回UnsupportedTypeError。</p>
+                    <p>Json不能表示循环的数据结构，将一个循环的结构提供给Marshal函数会导致无休止的循环。</p>
+                    <h4 id="Unmarshal函数"><a href="#Unmarshal函数" class="headerlink"
+                                                                                                      title="Unmarshal函数"></a>Unmarshal函数</h4>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Unamrshal</span><span class="params">(data []<span class="keyword">byte</span>,v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">error</span></span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>Unmarshal函数解析json编码的数据并将结果存入v指向的值。<br>Unmarshal和Marshal做相反的操作，必要时申请映射、切片或指针，有如下的附加规则：<br>要将json数据解码写入一个指针，Unmarshal函数首先处理json数据是json字面值null的情况。此时，函数将指针设为nil；否则，函数将json数据解码写入指针指向的值；如果指针本身是nil，函数会先申请一个值并使指针指向它。<br>要将json数据解码写入一个结构体，函数会匹配输入对象的键和Marshal使用的键（结构体字段名或者它的标签指定的键名），优先选择精确的匹配，但也接受大小写不敏感的匹配。<br>要将json数据解码写入一个接口类型值，函数会将数据解码为如下类型写入接口：<br>
+                      <figure class="highlight go">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">Bool                   对应JSON布尔类型</span><br><span class="line"><span class="keyword">float64</span>                对应JSON数字类型</span><br><span class="line"><span class="keyword">string</span>                 对应JSON字符串类型</span><br><span class="line">[]<span class="keyword">interface</span>&#123;&#125;          对应JSON数组</span><br><span class="line"><span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125; 对应JSON对象</span><br><span class="line"><span class="literal">nil</span>                    对应JSON的null</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>如果一个JSON值不匹配给出的目标类型，或者如果一个json数字写入目标类型时溢出，Unmarshal函数会跳过该字段并尽量完成其余的解码操作。如果没有出现更加严重的错误，本函数会返回一个描述第一个此类错误的详细信息的UnmarshalTypeError。<br>JSON的null值解码为go的接口、指针、切片时会将它们设为nil，因为null在json里一般表示“不存在”。解码json的null值到其他go类型时，不会造成任何改变，也不会产生错误。<br>当解码字符串时，不合法的utf-8或utf-16代理（字符）对不视为错误，而是将非法字符替换为unicode字符U+FFFD。</p>
+                    <h4 id="值类型json转换"><a href="#值类型json转换" class="headerlink"
+                                                                                                      title="值类型json转换"></a>值类型json转换</h4>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"encoding/json"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// int 类型 json转换</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">JsonInt</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arg = <span class="number">100</span></span><br><span class="line">	data, err := json.Marshal(arg)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"json.marshal failed, err : %v\n"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> reply <span class="keyword">int</span></span><br><span class="line">	err = json.Unmarshal(data, &amp;reply)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"int 类型\nJSON序列化 string(data) =&gt; %s\nJSON反序列化 reply =&gt; %v\n"</span>, <span class="keyword">string</span>(data), reply)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// string 类型 json转换</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">JsonString</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arg = <span class="string">"haha"</span></span><br><span class="line">	data, err := json.Marshal(arg)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"json.marshal failed, err : %v\n"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> reply <span class="keyword">string</span></span><br><span class="line">	err = json.Unmarshal(data, &amp;reply)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"string 类型\nJSON序列化 string(data) =&gt; %s\nJSON反序列化 reply =&gt; %v\n"</span>, <span class="keyword">string</span>(data), reply)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// array 类型 json转换</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">JsonArray</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arg = [<span class="number">2</span>]<span class="keyword">string</span>&#123;<span class="string">"haha"</span>, <span class="string">"Golang"</span>&#125;</span><br><span class="line">	data, err := json.Marshal(arg)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"json.marshal failed, err : %v\n"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> reply [<span class="number">2</span>]<span class="keyword">string</span></span><br><span class="line">	err = json.Unmarshal(data, &amp;reply)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"array 类型\nJSON序列化 string(data) =&gt; %s\nJSON反序列化 reply =&gt; %v\n"</span>, <span class="keyword">string</span>(data), reply)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	JsonInt()</span><br><span class="line">	JsonString()</span><br><span class="line">	JsonArray()</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h4 id="指针类型json转换"><a href="#指针类型json转换" class="headerlink"
+                                                                                                      title="指针类型json转换"></a>指针类型json转换</h4>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"encoding/json"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// slice 类型 json转换</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">JsonSlice</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arg = []<span class="keyword">string</span>&#123;<span class="string">"haha"</span>, <span class="string">"Linux"</span>, <span class="string">"Python"</span>, <span class="string">"Golang"</span>, <span class="string">"Java"</span>, <span class="string">"DBA"</span>&#125;</span><br><span class="line">	data, err := json.Marshal(arg)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"json.marshal failed, err : %v\n"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> reply []<span class="keyword">string</span></span><br><span class="line">	err = json.Unmarshal(data, &amp;reply)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"slice 类型\nJSON序列化 string(data) =&gt; %s\nJSON反序列化 reply =&gt; %v\n"</span>, <span class="keyword">string</span>(data), reply)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// map 类型 json转换</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">JsonMap</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arg = <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">string</span>&#123;<span class="number">1</span>: <span class="string">"haha"</span>, <span class="number">2</span>: <span class="string">"Linux"</span>, <span class="number">3</span>: <span class="string">"Python"</span>, <span class="number">4</span>: <span class="string">"Golang"</span>, <span class="number">5</span>: <span class="string">"Java"</span>, <span class="number">6</span>: <span class="string">"DBA"</span>&#125;</span><br><span class="line">	data, err := json.Marshal(arg)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"json.marshal failed, err : %v\n"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> reply <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">string</span> = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">string</span>, <span class="number">6</span>)</span><br><span class="line">	err = json.Unmarshal(data, &amp;reply)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"map 类型\nJSON序列化 string(data) =&gt; %s\nJSON反序列化 reply =&gt; %v\n"</span>, <span class="keyword">string</span>(data), reply)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	JsonSlice()</span><br><span class="line">	JsonMap()</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h4 id="结构体json转换"><a href="#结构体json转换" class="headerlink"
+                                                                                                      title="结构体json转换"></a>结构体json转换</h4>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"encoding/json"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> School <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name    <span class="keyword">string</span> <span class="string">`json:"name"`</span></span><br><span class="line">	Age     <span class="keyword">int</span>    <span class="string">`json:"-"`</span></span><br><span class="line">	Courses []<span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// struct 类型 json转换</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">JsonStruct</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arg = School&#123;</span><br><span class="line">		Name:    <span class="string">"haha"</span>,</span><br><span class="line">		Age:     <span class="number">100</span>,</span><br><span class="line">		Courses: []<span class="keyword">string</span>&#123;<span class="string">"haha"</span>, <span class="string">"Linux"</span>, <span class="string">"Python"</span>, <span class="string">"Golang"</span>, <span class="string">"Java"</span>, <span class="string">"DBA"</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	data, err := json.Marshal(arg)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"json.marshal failed, err : %v\n"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> reply School</span><br><span class="line">	err = json.Unmarshal(data, &amp;reply)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"struct 类型\nJSON序列化 string(data) =&gt; %s\nJSON反序列化 reply =&gt; %v\n"</span>, <span class="keyword">string</span>(data), reply)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	JsonStruct()</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <blockquote>
+                      <p>School 类型<br>Name字段：JSON序列化、反序列化的时候，使用 name，而不是 Name。<br>Age字段：json:”-“
+                        JSON序列化、反序列化的时候忽略该字段。默认情况下会解析这个字段，因为它是大写字母开头的。<br>Courses字段：因为它是大写字母开头的，JSON序列化、反序列化的时候默认解析这个字段。</p>
+                    </blockquote>
+                    <h3 id="xml格式"><a href="#xml格式" class="headerlink" title="xml格式"></a>xml格式</h3>
+                    <p>XML是可扩展标记语言（标准通用标记语言的子集）是一种简单的数据存储语言。<br>使用一系列简单的标记描述数据，而这些标记可以用方便的方式建立，虽然可扩展标记语言占用的空间比二进制数据要占用更多的空间，但可扩展标记语言极其简单易于掌握和使用。<br>Go语言中提供了处理XML的标准库
+                      encoding/xml 包，该包实现了一个简单的XML 1.0 解析器（支持XML命名空间）。</p>
+                    <h4 id="Marshal函数-1"><a href="#Marshal函数-1" class="headerlink"
+                                                                                                      title="Marshal函数"></a>Marshal函数</h4>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Marshal</span><span class="params">(v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">([]<span class="keyword">byte</span>, error)</span></span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>Marshal函数返回v的XML编码。<br>Marshal处理数组或者切片时会序列化每一个元素。Marshal处理指针时，会序列化其指向的值；如果指针为nil，则啥也不输出。Marshal处理接口时，会序列化其内包含的具体类型值，如果接口值为nil，也是不输出。Marshal处理其余类型数据时，会输出一或多个包含数据的XML元素。<br>XML元素的名字按如下优先顺序获取：</p>
+                    <ol>
+                      <li>如果数据是结构体，其XMLName字段的标签</li>
+                      <li>类型为xml.Name的XMLName字段的值</li>
+                      <li>数据是某结构体的字段，其标签</li>
+                      <li>数据是某结构体的字段，其字段名</li>
+                      <li>被序列化的类型的名字</li>
+                    </ol>
+                    <p>一个结构体的XML元素包含该结构体所有导出字段序列化后的元素，有如下例外：</p>
+                    <ol>
+                      <li>XMLName字段，如上所述，会省略</li>
+                      <li>具有标签”-“的字段会省略</li>
+                      <li>具有标签”name,attr”的字段会成为该XML元素的名为name的属性</li>
+                      <li>具有标签”,attr”的字段会成为该XML元素的名为字段名的属性</li>
+                      <li>具有标签”,chardata”的字段会作为字符数据写入，而非XML元素</li>
+                      <li>具有标签”,innerxml”的字段会原样写入，而不会经过正常的序列化过程</li>
+                      <li>具有标签”,comment”的字段作为XML注释写入，而不经过正常的序列化过程，该字段内不能有”–”字符串</li>
+                      <li>标签中包含”omitempty”选项的字段如果为空值会省略<br>空值为false、0、nil指针、nil接口、长度为0的数组、切片、映射</li>
+                      <li>匿名字段（其标签无效）会被处理为其字段是外层结构体的字段</li>
+                    </ol>
+                    <p>如果一个字段的标签为”a&gt;b&gt;c”，则元素c将会嵌套进其上层元素a和b中。如果该字段相邻的字段标签指定了同样的上层元素，则会放在同一个XML元素里。</p>
+                    <h4 id="Unmarshal函数-1"><a href="#Unmarshal函数-1" class="headerlink"
+                                                                                                      title="Unmarshal函数"></a>Unmarshal函数</h4>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Unmarshal</span><span class="params">(data []<span class="keyword">byte</span>, v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">error</span></span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>Unmarshal解析XML编码的数据并将结果存入v指向的值。v只能指向结构体、切片或者和字符串。良好格式化的数据如果不能存入v，会被丢弃。<br>因为Unmarshal使用reflect包，它只能填写导出字段。本函数好似用大小写敏感的比较来匹配XML元素名和结构体的字段名/标签键名。<br>Unmarshal函数使用如下规则将XML元素映射到结构体字段上。这些规则中，字段标签指的是结构体字段的标签键’xml’对应的值：</p>
+                    <ol>
+                      <li>如果结构体字段的类型为字符串或者[]byte，且标签为”,innerxml”，Unmarshal函数直接将对应原始XML文本写入该字段，其余规则仍适用。</li>
+                      <li>如果结构体字段类型为xml.Name且名为XMLName，Unmarshal会将元素名写入该字段</li>
+                      <li>如果字段XMLName的标签的格式为”name”或”namespace-URL
+                        name”，XML元素必须有给定的名字（以及可选的名字空间），否则Unmarshal会返回错误。</li>
+                      <li>如果XML元素的属性的名字匹配某个标签”,attr”为字段的字段名，或者匹配某个标签为”name,attr”的字段的标签名，Unmarshal会将该属性的值写入该字段。</li>
+                      <li>如果XML元素包含字符数据，该数据会存入结构体中第一个具有标签”,chardata”的字段中，该字段可以是字符串类型或者[]byte类型。如果没有这样的字段，字符数据会丢弃。</li>
+                      <li>如果XML元素包含注释，该数据会存入结构体中第一个具有标签”,comment”的字段中，该字段可以是字符串类型或者[]byte类型。如果没有这样的字段，字符数据会丢弃。</li>
+                      <li>如果XML元素包含一个子元素，其名称匹配格式为”a”或”a&gt;b&gt;c”的标签的前缀，反序列化会深入XML结构中寻找具有指定名称的元素，并将最后端的元素映射到该标签所在的结构体字段。以”&gt;”开始的标签等价于以字段名开始并紧跟着”&gt;”
+                        的标签。</li>
+                      <li>如果XML元素包含一个子元素，其名称匹配某个结构体类型字段的XMLName字段的标签名，且该结构体字段本身没有显式指定标签名，Unmarshal会将该元素映射到该字段。</li>
+                      <li>如果XML元素的包含一个子元素，其名称匹配够格结构体字段的字段名，且该字段没有任何模式选项（”,attr”、”,chardata”等），Unmarshal会将该元素映射到该字段。</li>
+                      <li>如果XML元素包含的某个子元素不匹配以上任一条，而存在某个字段其标签为”,any”，Unmarshal会将该元素映射到该字段。</li>
+                      <li>匿名字段被处理为其字段好像位于外层结构体中一样。</li>
+                      <li>标签为”-“的结构体字段永不会被反序列化填写。</li>
+                    </ol>
+                    <p>Unmarshal函数将XML元素写入string或[]byte时，会将该元素的字符数据串联起来作为值，目标[]byte不能是nil。<br>Unmarshal函数将属性写入string或[]byte时，会将属性的值以字符串/切片形式写入。<br>Unmarshal函数将XML元素写入切片时，会将切片扩展并将XML元素的子元素映射入新建的值里。<br>Unmarshal函数将XML元素/属性写入bool值时，会将对应的字符串转化为布尔值。<br>Unmarshal函数将XML元素/属性写入整数或浮点数类型时，会将对应的字符串解释为十进制数字。不会检查溢出。<br>Unmarshal函数将XML元素写入xml.Name类型时，会记录元素的名称。<br>Unmarshal函数将XML元素写入指针时，会申请一个新值并将XML元素映射入该值。</p>
+                    <h4 id="xml转换应用"><a href="#xml转换应用" class="headerlink"
+                                                                                                      title="xml转换应用"></a>xml转换应用</h4>
+                    <figure class="highlight go">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"encoding/xml"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> School <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name    <span class="keyword">string</span> <span class="string">`xml:"name"`</span></span><br><span class="line">	Age     <span class="keyword">int</span>    <span class="string">`xml:"-"`</span></span><br><span class="line">	Courses []<span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">XmlStruct</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> arg = School&#123;</span><br><span class="line">		Name:    <span class="string">"haha"</span>,</span><br><span class="line">		Age:     <span class="number">100</span>,</span><br><span class="line">		Courses: []<span class="keyword">string</span>&#123;<span class="string">"haha"</span>, <span class="string">"Linux"</span>, <span class="string">"Python"</span>, <span class="string">"Golang"</span>, <span class="string">"Java"</span>, <span class="string">"DBA"</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	data, err := xml.Marshal(arg)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"xml.marshal failed, err : %v\n"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> reply School</span><br><span class="line">	err = xml.Unmarshal(data, &amp;reply)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"struct 类型\nXML序列化 string(data) =&gt; %s\nXML反序列化 reply =&gt; %v\n"</span>, <span class="keyword">string</span>(data), reply)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	XmlStruct()</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+
+                  </div>
+
+                  <div style="text-align:center;color: #ccc;font-size:14px;">----------------
+                    (*￣︶￣)我是结束线(*￣︶￣) ----------------</div>
+
+                  <div>
+                    <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+                      <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg"
+                                                                                                      alt="没有风的晴天 wechat"
+                                                                                                      style="width: 200px; max-width: 100%;">
+                      <div>扫一扫，加我微信</div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>打赏</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wechatpay.jpg" alt="没有风的晴天 微信支付">
+                          <p>微信支付</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/alipay.jpg" alt="没有风的晴天 支付宝">
+                          <p>支付宝</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <ul class="post-copyright">
+                      <li class="post-copyright-author">
+                        <strong>本文作者：</strong>
+                        没有风的晴天
+                      </li>
+                      <li class="post-copyright-link">
+                        <strong>本文链接：</strong>
+                        <a href="https://www.kapyan.top/posts/3339487437.html"
+                                                                                                        title="Go语言学习笔记（七）">https://www.kapyan.top/posts/3339487437.html</a>
+                      </li>
+                      <li class="post-copyright-license">
+                        <strong>版权声明： </strong>
+                        本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
+                                                                                                        rel="external nofollow"
+                                                                                                        target="_blank">CC
+                          BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+                      </li>
+                    </ul>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-tags">
+
+                      <a href="/tags/go/" rel="tag"><i class="fa fa-tag"></i>
+                        go</a>
+
+                    </div>
+
+                    <div class="post-series">
+                      <h4>Go语言-相关文章：</h4>
+
+                      <li><a href="/posts/3585681187.html"> Go语言学习笔记（一） </a></li>
+
+                      <li><a href="/posts/3853503483.html"> Go语言学习笔记（二） </a></li>
+
+                      <li><a href="/posts/2830198955.html"> Go语言学习笔记（三） </a></li>
+
+                      <li><a href="/posts/530346444.html"> Go语言学习笔记（四） </a></li>
+
+                      <li><a href="/posts/1879225483.html"> Go语言学习笔记（五） </a></li>
+
+                      <li><a href="/posts/353173330.html"> Go语言学习笔记（六） </a></li>
+
+                    </div>
+
+                    <div class="post-widgets">
+
+                      <div id="needsharebutton-postbottom">
+                        <span class="btn">
+                          <i class="fa fa-share-alt" aria-hidden="true"></i>
+                        </span>
+                      </div>
+
+                    </div>
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/posts/353173330.html" rel="next" title="Go语言学习笔记（六）">
+                          <i class="fa fa-chevron-left"></i> Go语言学习笔记（六）
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                      </div>
+                    </div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <div class="post-spread">
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="comments" id="comments">
+            <div id="SOHUCS"></div>
+          </div>
+
+        </div>
+
+        <div class="sidebar-toggle">
+          <div class="sidebar-toggle-line-wrap">
+            <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+          </div>
+        </div>
+
+        <aside id="sidebar" class="sidebar">
+
+          <div id="sidebar-dimmer"></div>
+
+          <div class="sidebar-inner">
+
+            <ul class="sidebar-nav motion-element">
+              <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                文章目录
+              </li>
+              <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+                站点概览
+              </li>
+            </ul>
+
+            <section class="site-overview-wrap sidebar-panel">
+              <div class="site-overview">
+                <div class="site-author motion-element" itemprop="author"
+                                                                                                itemscope=""
+                                                                                                itemtype="http://schema.org/Person">
+
+                  <img class="site-author-image" itemprop="image" src="/images/avatar.png"
+                                                                                                  alt="没有风的晴天">
+
+                  <p class="site-author-name" itemprop="name">没有风的晴天</p>
+                  <p class="site-description motion-element" itemprop="description"></p>
+                </div>
+
+                <nav class="site-state motion-element">
+
+                  <div class="site-state-item site-state-posts">
+
+                    <a href="/archives/">
+
+                      <span class="site-state-item-count">20</span>
+                      <span class="site-state-item-name">日志</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-categories">
+                    <a href="/categories/index.html">
+                      <span class="site-state-item-count">8</span>
+                      <span class="site-state-item-name">分类</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-tags">
+                    <a href="/tags/index.html">
+                      <span class="site-state-item-count">13</span>
+                      <span class="site-state-item-name">标签</span>
+                    </a>
+                  </div>
+
+                </nav>
+
+                <div class="feed-link motion-element">
+                  <a href="/atom.xml" rel="alternate">
+                    <i class="fa fa-rss"></i>
+                    RSS
+                  </a>
+                </div>
+
+                <div class="links-of-author motion-element">
+
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kapyan" target="_blank" title="GitHub">
+
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+
+                  <span class="links-of-author-item">
+                    <a href="mailto:15929461370@163.com" target="_blank" title="E-Mail">
+
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+
+                </div>
+
+                <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+                  <div class="links-of-blogroll-title">
+                    <i class="fa  fa-fw fa-link"></i>
+                    友情链接
+                  </div>
+                  <ul class="links-of-blogroll-list">
+
+                    <li class="links-of-blogroll-item">
+                      <a href="http://music.kapyan.top" title="在线音乐" target="_blank"
+                                                                                                      rel="external nofollow">在线音乐</a>
+                    </li>
+
+                    <li class="links-of-blogroll-item">
+                      <a href="http://video.kapyan.top" title="小熊影院" target="_blank"
+                                                                                                      rel="external nofollow">小熊影院</a>
+                    </li>
+
+                  </ul>
+                </div>
+
+                <!-- CloudCalendar -->
+                <div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+                  <div class="widget" id="CloudCalendar"></div>
+                </div>
+
+              </div>
+            </section>
+
+            <!--noindex-->
+            <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+              <div class="post-toc">
+
+                <div class="post-toc-content">
+                  <ol class="nav">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Go语言反射"><span
+                                                                                                        class="nav-number">1.</span>
+                        <span class="nav-text">Go语言反射</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#反射获取"><span
+                                                                                                            class="nav-number">1.1.</span>
+                            <span class="nav-text">反射获取</span></a>
+                          <ol class="nav-child">
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#反射介绍"><span
+                                                                                                                class="nav-number">1.1.1.</span>
+                                <span class="nav-text">反射介绍</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#反射获取应用"><span
+                                                                                                                class="nav-number">1.1.2.</span>
+                                <span class="nav-text">反射获取应用</span></a></li>
+                          </ol>
+                        </li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#反射操作"><span
+                                                                                                            class="nav-number">1.2.</span>
+                            <span class="nav-text">反射操作</span></a>
+                          <ol class="nav-child">
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#反射操作常用函数和方法"><span
+                                                                                                                class="nav-number">1.2.1.</span>
+                                <span class="nav-text">反射操作常用函数和方法</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#反射操作应用"><span
+                                                                                                                class="nav-number">1.2.2.</span>
+                                <span class="nav-text">反射操作应用</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#反射综合应用"><span
+                                                                                                                class="nav-number">1.2.3.</span>
+                                <span class="nav-text">反射综合应用</span></a></li>
+                          </ol>
+                        </li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Go语言数据格式"><span
+                                                                                                        class="nav-number">2.</span>
+                        <span class="nav-text">Go语言数据格式</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#json格式"><span
+                                                                                                            class="nav-number">2.1.</span>
+                            <span class="nav-text">json格式</span></a>
+                          <ol class="nav-child">
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#Marshal函数"><span
+                                                                                                                class="nav-number">2.1.1.</span>
+                                <span class="nav-text">Marshal函数</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#Unmarshal函数"><span
+                                                                                                                class="nav-number">2.1.2.</span>
+                                <span class="nav-text">Unmarshal函数</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#值类型json转换"><span
+                                                                                                                class="nav-number">2.1.3.</span>
+                                <span class="nav-text">值类型json转换</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#指针类型json转换"><span
+                                                                                                                class="nav-number">2.1.4.</span>
+                                <span class="nav-text">指针类型json转换</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#结构体json转换"><span
+                                                                                                                class="nav-number">2.1.5.</span>
+                                <span class="nav-text">结构体json转换</span></a></li>
+                          </ol>
+                        </li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#xml格式"><span
+                                                                                                            class="nav-number">2.2.</span>
+                            <span class="nav-text">xml格式</span></a>
+                          <ol class="nav-child">
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#Marshal函数-1"><span
+                                                                                                                class="nav-number">2.2.1.</span>
+                                <span class="nav-text">Marshal函数</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#Unmarshal函数-1"><span
+                                                                                                                class="nav-number">2.2.2.</span>
+                                <span class="nav-text">Unmarshal函数</span></a></li>
+                            <li class="nav-item nav-level-4"><a class="nav-link"
+                                                                                                              href="#xml转换应用"><span
+                                                                                                                class="nav-number">2.2.3.</span>
+                                <span class="nav-text">xml转换应用</span></a></li>
+                          </ol>
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </div>
+
+              </div>
+            </section>
+            <!--/noindex-->
+
+          </div>
+        </aside>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+          <span class="with-love">
+            <i class="fa fa-user"></i>
+          </span>
+          <span class="author" itemprop="copyrightHolder">没有风的晴天</span>
+
+          <span class="post-meta-divider">|</span>
+          <span class="post-meta-item-icon">
+            <i class="fa fa-area-chart"></i>
+          </span>
+
+          <span class="post-meta-item-text">Site words total count&#58;</span>
+
+          <span title="Site words total count">56.7k</span>
+
+        </div>
+
+        <div class="footer-custom">
+          <div class="BbeiAn-info">陕ICP备-<a target="_blank" href="http://www.miitbeian.gov.cn/">17003351号-1</a></div>
+        </div>
+
+        <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+        <script>
+          if (window.mermaid) {
+            mermaid.initialize("");
+          }
+
+        </script>
+
+        <div class="busuanzi-count">
+          <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+          <span class="site-uv">
+            <i class="fa fa-user"></i> 访问人数
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+
+          </span>
+
+          <span class="site-pv">
+            <i class="fa fa-eye"></i> 总访问量
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+
+          </span>
+
+        </div>
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+
+      <span id="scrollpercent"><span>0</span>%</span>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+      window.Promise = null;
+    }
+
+  </script>
+
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+  <script type="text/javascript">
+    (function() {
+      var appid = 'cyu5jPBKt';
+      var conf = 'c5ce34b4cfb52fb37a87120bf5d492e1';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+        window.document.write(
+          '<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' +
+          appid + '&conf=' + conf + '"><\/script>');
+      } else {
+        var loadJs = function(d, a) {
+          var c = document.getElementsByTagName("head")[0] || document.head ||
+            document.documentElement;
+          var b = document.createElement("script");
+          b.setAttribute("type", "text/javascript");
+          b.setAttribute("charset", "UTF-8");
+          b.setAttribute("src", d);
+          if (typeof a === "function") {
+            if (window.attachEvent) {
+              b.onreadystatechange = function() {
+                var e = b.readyState;
+                if (e === "loaded" || e === "complete") {
+                  b.onreadystatechange = null;
+                  a()
+                }
+              }
+            } else {
+              b.onload = a
+            }
+          }
+          c.appendChild(b)
+        };
+        loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
+          window.changyan.api.config({
+            appid: appid,
+            conf: conf
+          })
+        });
+      }
+    })();
+
+  </script>
+  <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+    var onPopupClose = function(e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append(
+          '<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css(
+        'text-align', 'center');
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(
+                  /<[^>]+>/g, "");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if (title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text,
+                      caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0,
+                        position = [],
+                        index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word,
+                          startPosition)) > -1) {
+                        index.push({
+                          position: position,
+                          word: word
+                        });
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+                    indexOfTitle = indexOfTitle.concat(
+                      getIndexByWord(keyword,
+                        titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(
+                      getIndexByWord(keyword,
+                        contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length >
+                    0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length +
+                      indexOfContent.length;
+                  }
+                }
+                // show search results
+                if (isMatch) {
+                  // sort index by position of keyword
+                  [indexOfTitle, indexOfContent].forEach(function(
+                    index) {
+                    index.sort(function(itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft
+                        .position) {
+                        return itemRight.position -
+                          itemLeft.position;
+                      } else {
+                        return itemLeft.word.length -
+                          itemRight.word.length;
+                      }
+                    });
+                  });
+                  // merge hits into slices
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index
+                      .length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({
+                        position: position,
+                        length: word.length
+                      });
+                      var wordEnd = position + word.length;
+                      // move to next position of hit
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0,
+                      title.length, indexOfTitle));
+                  }
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length -
+                      1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content,
+                      start, end, indexOfContent));
+                  }
+                  // sort slices in content by search text's count and hits' count
+                  slicesOfContent.sort(function(sliceLeft,
+                    sliceRight) {
+                    if (sliceLeft.searchTextCount !==
+                      sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount -
+                        sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !==
+                      sliceRight.hits.length) {
+                      return sliceRight.hits.length -
+                        sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+                  // select top N slices in content
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0,
+                      upperBound);
+                  }
+                  // highlight title and content
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function(hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' +
+                        text.substring(hit.position, end) +
+                        '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+                  var resultItem = '';
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" +
+                      highlightKeyword(title, slicesOfTitle[0]) +
+                      "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" + title +
+                      "</a>";
+                  }
+                  slicesOfContent.forEach(function(slice) {
+                    resultItem += "<a href='" + articleUrl +
+                      "'>" +
+                      "<p class=\"search-result\">" +
+                      highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function(resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft
+                    .searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList =
+                '<ul class=\"search-result-list\">';
+              resultItems.forEach(function(result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function(event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+          proceedsearch();
+        }
+      });
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function(event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+  </script>
+
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    pbOptions = {};
+    pbOptions.iconStyle = "default";
+    pbOptions.boxForm = "horizontal";
+    pbOptions.position = "bottomCenter";
+    pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+
+  </script>
+
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+  <!-- calendar widget -->
+
+  <script src="/lib/CloudCalendar/CloudCalendar.js"></script>
+  <script src="/lib/CloudCalendar/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('#CloudCalendar').aCalendar('zh-CN',
+        $.extend(
+          '', {
+            single: true,
+            root: '/calendar/'
+          }
+        )
+      );
+    });
+
+  </script>
+
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+</body>
+
+</html>
