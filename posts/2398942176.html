@@ -59,7 +59,7 @@
   <meta property="og:site_name" content="运维之窗">
   <meta property="og:description" content="minio集群搭建 配置key 12export MINIO_ACCESS_KEY=&amp;lt;ACCESS_KEY&amp;gt;export MINIO_SECRET_KEY=&amp;lt;SECRET_KEY&amp;gt; 启动 12345678/usr/local/bin/minio server http://192.168.31.2/data1 http://192.168.31.2/data2 \">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2019-03-01T08:51:01.846Z">
+  <meta property="og:updated_time" content="2019-03-13T05:38:19.119Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="minio常用操作">
   <meta name="twitter:description" content="minio集群搭建 配置key 12export MINIO_ACCESS_KEY=&amp;lt;ACCESS_KEY&amp;gt;export MINIO_SECRET_KEY=&amp;lt;SECRET_KEY&amp;gt; 启动 12345678/usr/local/bin/minio server http://192.168.31.2/data1 http://192.168.31.2/data2 \">
@@ -284,8 +284,8 @@
 
                         <span class="post-meta-item-text">更新于&#58;</span>
 
-                        <time title="更新于" itemprop="dateModified" datetime="2019-03-01T16:51:01+08:00">
-                          2019-03-01
+                        <time title="更新于" itemprop="dateModified" datetime="2019-03-13T13:38:19+08:00">
+                          2019-03-13
                         </time>
 
                       </span>
@@ -334,7 +334,7 @@
                           <span class="post-meta-item-text">字数统计&#58;</span>
 
                           <span title="字数统计">
-                            413
+                            422
                           </span>
 
                           <span class="post-meta-divider">|</span>
@@ -424,7 +424,7 @@
                             <pre><span class="line">1</span><br></pre>
                           </td>
                           <td class="code">
-                            <pre><span class="line">mc config host add minio 192.168.1.10：9000 minio password S3v4</span><br></pre>
+                            <pre><span class="line">mc config host add minio http://192.168.1.10:9000 &lt;access Key&gt; &lt;secret Key&gt; S3v4</span><br></pre>
                           </td>
                         </tr>
                       </table>
@@ -437,7 +437,7 @@
                             <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                           </td>
                           <td class="code">
-                            <pre><span class="line"><span class="comment">#将server端的base文件设置为开放管理，可以直接通url进行下载</span></span><br><span class="line">mc policy public minio/base</span><br></pre>
+                            <pre><span class="line"><span class="comment">#将server端的base文件设置为开放管理，可以直接通url进行下载</span></span><br><span class="line">mc policy public minio/&lt;bucket&gt;</span><br></pre>
                           </td>
                         </tr>
                       </table>
