@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Oracle数据库常用操作]]></title>
     <url>%2Fposts%2F1523118387.html</url>
-    <content type="text"><![CDATA[数据库登录 进入sqlplus命令提示符 1sqlplus /nolog #在cmd直接运行 以DBA身份连接 12sqlplus / as sysdba #在cmd直接运行connect / as sysdba #在sqlplus命令提示符下运行 普通用户登录 123sqlplus username/password #在cmd直接运行connect username/password #在sqlplus命令提示符下运行connect username/password@servername #在sqlplus命令提示符下运行 创建新用户 1create user username identified by password; #Oracle12中username前要加c## 创建表空间 1create tablespace tablespacename datafile 'D:\app\orcdata\data.dbf' szie 1024m; 将空间分配给用户 1alert user username defalut tablespace tablespacename; 为用户授权 1grant create session,create table,unlimited tablespace to username;]]></content>
+    <content type="text"><![CDATA[数据库登录 进入sqlplus命令提示符 1sqlplus /nolog #在cmd直接运行 以DBA身份连接 12sqlplus / as sysdba #在cmd直接运行connect / as sysdba #在sqlplus命令提示符下运行 普通用户登录 123sqlplus username/password #在cmd直接运行connect username/password #在sqlplus命令提示符下运行connect username/password@servername #在sqlplus命令提示符下运行 创建新用户 1create user username identified by password; #Oracle12中username前要加c## 创建表空间 1create tablespace tablespacename datafile 'D:\app\orcdata\data.dbf' szie 1024m; 将空间分配给用户 1alert user username defalut tablespace tablespacename; 为用户授权 1grant create session,create table,unlimited tablespace to username; Oralce监听状态 123lsnrctl status #监听状态查看lsnrctl start #监听状态启动lsnrctl stop #监听状态停止]]></content>
       <categories>
         <category>Oracle</category>
       </categories>

@@ -59,7 +59,7 @@
   <meta property="og:site_name" content="运维之窗">
   <meta property="og:description" content="数据库登录 进入sqlplus命令提示符 1sqlplus /nolog			#在cmd直接运行 以DBA身份连接 12sqlplus / as sysdba		#在cmd直接运行connect / as sysdba		#在sqlplus命令提示符下运行 普通用户登录 123sqlplus username/password	#在cmd直接运行connect username/password">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2019-03-18T03:21:21.568Z">
+  <meta property="og:updated_time" content="2019-03-18T06:26:39.626Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Oracle数据库常用操作">
   <meta name="twitter:description" content="数据库登录 进入sqlplus命令提示符 1sqlplus /nolog			#在cmd直接运行 以DBA身份连接 12sqlplus / as sysdba		#在cmd直接运行connect / as sysdba		#在sqlplus命令提示符下运行 普通用户登录 123sqlplus username/password	#在cmd直接运行connect username/password">
@@ -284,7 +284,7 @@
 
                         <span class="post-meta-item-text">更新于&#58;</span>
 
-                        <time title="更新于" itemprop="dateModified" datetime="2019-03-18T11:21:21+08:00">
+                        <time title="更新于" itemprop="dateModified" datetime="2019-03-18T14:26:39+08:00">
                           2019-03-18
                         </time>
 
@@ -334,7 +334,7 @@
                           <span class="post-meta-item-text">字数统计&#58;</span>
 
                           <span title="字数统计">
-                            148
+                            177
                           </span>
 
                           <span class="post-meta-divider">|</span>
@@ -447,6 +447,20 @@
                           </td>
                           <td class="code">
                             <pre><span class="line">grant create session,create table,unlimited tablespace to username;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h2 id="Oralce监听状态"><a href="#Oralce监听状态" class="headerlink"
+                                                                                                      title="Oralce监听状态"></a>Oralce监听状态</h2>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">lsnrctl status	<span class="comment">#监听状态查看</span></span><br><span class="line">lsnrctl start	<span class="comment">#监听状态启动</span></span><br><span class="line">lsnrctl stop	<span class="comment">#监听状态停止</span></span><br></pre>
                           </td>
                         </tr>
                       </table>
@@ -715,6 +729,9 @@
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#为用户授权"><span
                                                                                                         class="nav-number">5.</span>
                         <span class="nav-text">为用户授权</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Oralce监听状态"><span
+                                                                                                        class="nav-number">6.</span>
+                        <span class="nav-text">Oralce监听状态</span></a></li>
                   </ol>
                 </div>
 
