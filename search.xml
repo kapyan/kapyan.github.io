@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Centos7下安装kettle]]></title>
+    <url>%2Fposts%2F2220227672.html</url>
+    <content type="text"><![CDATA[kettle简单介绍 Kettle是一种开源的 ETL 解决方案，书中介绍了如何使用PDI来实现数据的剖析、清洗、校验、抽取、转换、加载等各类常见的ETL类工作。除了ODS/DW类比较大型的应用外，Kettle实际还可以为中小企业提供灵活的数据抽取和数据处理的功能。Kettle除了支持各种关系型数据库、HBase、MongoDB这样的NoSQL数据源外，它还支持Excel、Access这类小型的数据源。并且通过插件扩展，Kettle 可以支持各类数据源。本书详细介绍了Kettle可以处理的数据源，而且详细介绍了如何使用Kettle抽取增量数据。Kettle的数据处理功能也很强大，除了选择、过滤、分组、连接、排序这些常用的功能外，Kettle 里的Java表达式、正则表达式、Java脚本、Java类等功能都非常灵活而强大，都非常适合于各种数据处理功能 在centos7下安装kettle kettle依赖java，在linux环境下需要安装webkitgtk。 1yum install java-1.8.0-openjdk -y 安装webkitgtk时提示包找不到，很多文章中说yum install epel-release后可以安装webkitgtk，但尝试并无效。根据以下方法亲测有效。 123wget http://mirrors.coreix.net/li.nux.ro/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpmrpm -ivh nux-dextop-release-0-5.el7.nux.noarch.rpmyum install -y webkitgtk nux-dextop-release-0-5.el7.nux.noarch.rpm下载运行spoon.sh是提示java包存在异常无法启动kettle，将spoon.sh中的 12345if [ $OS = "linux" ]; then (((("$_PENTAHO_JAVA" $OPT -jar "$STARTUP" -lib $LIBPATH "$&#123;1+$@&#125;" 2&gt;&amp;1; echo $? &gt;&amp;3 ) | grep -viE "Gtk-WARNING|GLib-GObject|GLib-CRITICAL|^$" &gt;&amp;4 ) 3&gt;&amp;1)| inputtoexitstatus ) 4&gt;&amp;1else "$_PENTAHO_JAVA" $OPT -jar "$STARTUP" -lib $LIBPATH "$&#123;1+$@&#125;"fi 修改为 12345if [ $OS = "linux" ]; then (((("$_PENTAHO_JAVA" $OPT -Dorg.eclipse.swt.internal.gtk.cairoGraphics=false -Dorg.eclipse.swt.browser.DefaultType=mozilla -jar "$STARTUP" -lib $LIBPATH "$&#123;1+$@&#125;" 2&gt;&amp;1; echo $? &gt;&amp;3 ) | grep -viE "Gtk-WARNING|GLib-GObject|GLib-CRITICAL|^$" &gt;&amp;4 ) 3&gt;&amp;1)| inputtoexitstatus ) 4&gt;&amp;1else "$_PENTAHO_JAVA" $OPT -jar "$STARTUP" -lib $LIBPATH "$&#123;1+$@&#125;"fi 再次运行spoon.sh正常启动。 数据库驱动下载 oracle驱动下载mysql驱动下载]]></content>
+      <categories>
+        <category>数据同步</category>
+      </categories>
+      <tags>
+        <tag>kettle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Oracle数据库常用操作]]></title>
     <url>%2Fposts%2F1523118387.html</url>
-    <content type="text"><![CDATA[数据库登录 进入sqlplus命令提示符 1sqlplus /nolog #在cmd直接运行 以DBA身份连接 12sqlplus / as sysdba #在cmd直接运行connect / as sysdba #在sqlplus命令提示符下运行 普通用户登录 123sqlplus username/password #在cmd直接运行connect username/password #在sqlplus命令提示符下运行connect username/password@servername #在sqlplus命令提示符下运行 创建新用户 1create user username identified by password; #Oracle12中username前要加c## 创建表空间 1create tablespace tablespacename datafile 'D:\app\orcdata\data.dbf' szie 1024m; 将空间分配给用户 1alert user username defalut tablespace tablespacename; 为用户授权 1grant create session,create table,unlimited tablespace to username; Oralce监听状态 123lsnrctl status #监听状态查看lsnrctl start #监听状态启动lsnrctl stop #监听状态停止]]></content>
+    <content type="text"><![CDATA[数据库登录 进入sqlplus命令提示符 1sqlplus /nolog #在cmd直接运行 以DBA身份连接 12sqlplus / as sysdba #在cmd直接运行connect / as sysdba #在sqlplus命令提示符下运行 普通用户登录 123sqlplus username/password #在cmd直接运行connect username/password #在sqlplus命令提示符下运行connect username/password@servername #在sqlplus命令提示符下运行 创建新用户 1create user username identified by password; #Oracle12中username前要加c## 创建表空间 1create tablespace tablespacename datafile 'D:\app\orcdata\data.dbf' szie 1024m; 将空间分配给用户 1alert user username defalut tablespace tablespacename; 为用户授权 1grant create session,create table,unlimited tablespace to username; Oralce监听状态 123lsnrctl status #监听状态查看lsnrctl start #监听状态启动lsnrctl stop #监听状态停止 启动Oracle实例 12sqlplus / as sysdba start up]]></content>
       <categories>
         <category>Oracle</category>
       </categories>
