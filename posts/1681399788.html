@@ -47,17 +47,25 @@
 
   <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
 
-  <meta name="keywords" content="运维,分享">
+  <meta name="keywords" content="OpenStack">
 
   <link rel="alternate" href="/atom.xml" title="运维之窗" type="application/atom+xml">
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="运维之窗">
-  <meta property="og:url" content="https://www.kapyan.top/archives/2019/01/index.html">
+  <meta name="description" content="通过packstack安装OpenStack 操作系统：Centos7+配置:    2+ vCPU   4G+ 内存   50G+ 磁盘   双网卡（单网卡也可）  关闭防火墙、网络管理服务、selinux 12345systemctl stop firewalldsystemctl disable firewalldsystemctl stop NetworkManager.servicesy">
+  <meta name="keywords" content="OpenStack">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="OpenStack部署">
+  <meta property="og:url" content="https://www.kapyan.top/posts/1681399788.html">
   <meta property="og:site_name" content="运维之窗">
+  <meta property="og:description" content="通过packstack安装OpenStack 操作系统：Centos7+配置:    2+ vCPU   4G+ 内存   50G+ 磁盘   双网卡（单网卡也可）  关闭防火墙、网络管理服务、selinux 12345systemctl stop firewalldsystemctl disable firewalldsystemctl stop NetworkManager.servicesy">
   <meta property="og:locale" content="zh-Hans">
+  <meta property="og:image" content="https://www.kapyan.top/posts/1681399788/namepasswd.png">
+  <meta property="og:image" content="https://www.kapyan.top/posts/1681399788/dashboard.png">
+  <meta property="og:updated_time" content="2019-03-29T09:13:14.298Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="运维之窗">
+  <meta name="twitter:title" content="OpenStack部署">
+  <meta name="twitter:description" content="通过packstack安装OpenStack 操作系统：Centos7+配置:    2+ vCPU   4G+ 内存   50G+ 磁盘   双网卡（单网卡也可）  关闭防火墙、网络管理服务、selinux 12345systemctl stop firewalldsystemctl disable firewalldsystemctl stop NetworkManager.servicesy">
+  <meta name="twitter:image" content="https://www.kapyan.top/posts/1681399788/namepasswd.png">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -107,15 +115,15 @@
 
   </script>
 
-  <link rel="canonical" href="https://www.kapyan.top/archives/2019/01/">
+  <link rel="canonical" href="https://www.kapyan.top/posts/1681399788.html">
 
-  <title>归档 | 运维之窗</title>
+  <title>OpenStack部署 | 运维之窗</title>
 
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -236,151 +244,345 @@
         <div class="content-wrap">
           <div id="content" class="content">
 
-            <div class="post-block archive">
-              <div id="posts" class="posts-collapse">
-                <span class="archive-move-on"></span>
+            <div id="posts" class="posts-expand">
 
-                <span class="archive-page-counter">
+              <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
 
-                  嗯..! 目前共计 25 篇日志。 继续努力。
-                </span>
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="https://www.kapyan.top/posts/1681399788.html">
 
-                <div class="collection-title">
-                  <h2 class="archive-year" id="archive-year-2019">2019</h2>
+                  <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="没有风的晴天">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.png">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="运维之窗">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h2 class="post-title" itemprop="name headline">OpenStack部署</h2>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">发表于</span>
+
+                        <time title="创建于" itemprop="dateCreated datePublished"
+                                                                                                        datetime="2019-03-29T13:42:07+08:00">
+                          2019-03-29
+                        </time>
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-check-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">更新于&#58;</span>
+
+                        <time title="更新于" itemprop="dateModified" datetime="2019-03-29T17:13:14+08:00">
+                          2019-03-29
+                        </time>
+
+                      </span>
+
+                      <span class="post-category">
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-folder-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">分类于</span>
+
+                        <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                          <a href="/categories/虚拟化/" itemprop="url" rel="index">
+                            <span itemprop="name">虚拟化</span>
+                          </a>
+                        </span>
+
+                        ，
+
+                        <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                          <a href="/categories/虚拟化/OpenStack/" itemprop="url"
+                                                                                                          rel="index">
+                            <span itemprop="name">OpenStack</span>
+                          </a>
+                        </span>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+
+                        <a href="/posts/1681399788.html#SOHUCS" itemprop="discussionUrl">
+                          <span id="changyan_count_unit" class="post-comments-count hc-comment-count"
+                                                                                                          data-xid="posts/1681399788.html"
+                                                                                                          itemprop="commentsCount"></span>
+                        </a>
+
+                        <span class="post-meta-divider">|</span>
+                        <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+                          <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+                        </span>
+
+                        <div class="post-wordcount">
+
+                          <span class="post-meta-item-icon">
+                            <i class="fa fa-file-word-o"></i>
+                          </span>
+
+                          <span class="post-meta-item-text">字数统计&#58;</span>
+
+                          <span title="字数统计">
+                            196
+                          </span>
+
+                          <span class="post-meta-divider">|</span>
+
+                          <span class="post-meta-item-icon">
+                            <i class="fa fa-clock-o"></i>
+                          </span>
+
+                          <span class="post-meta-item-text">阅读时长 &asymp;</span>
+
+                          <span title="阅读时长">
+                            1
+                          </span>
+
+                        </div>
+
+                      </span></div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <h2 id="通过packstack安装OpenStack"><a href="#通过packstack安装OpenStack"
+                                                                                                      class="headerlink"
+                                                                                                      title="通过packstack安装OpenStack"></a>通过packstack安装OpenStack</h2>
+                    <p>操作系统：Centos7+<br>配置:</p>
+                    <ul>
+                      <li>2+ vCPU</li>
+                      <li>4G+ 内存</li>
+                      <li>50G+ 磁盘</li>
+                      <li>双网卡（单网卡也可）</li>
+                    </ul>
+                    <h3 id="关闭防火墙、网络管理服务、selinux"><a href="#关闭防火墙、网络管理服务、selinux"
+                                                                                                      class="headerlink"
+                                                                                                      title="关闭防火墙、网络管理服务、selinux"></a>关闭防火墙、网络管理服务、selinux</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br><span class="line">systemctl stop NetworkManager.service</span><br><span class="line">systemctl <span class="built_in">disable</span> NetworkManager.service</span><br><span class="line">setenforce 0</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="添加安装源为阿里云的OpenStack-YUM源"><a href="#添加安装源为阿里云的OpenStack-YUM源"
+                                                                                                      class="headerlink"
+                                                                                                      title="添加安装源为阿里云的OpenStack YUM源"></a>添加安装源为阿里云的OpenStack
+                      YUM源</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">cat &gt;/etc/yum.repos.d/openstack-ocata.repo&lt;&lt;EOF</span><br><span class="line">[OpenStack-ocata]</span><br><span class="line">name=openstack-ocata</span><br><span class="line">baseurl=http://mirrors.aliyun.com/centos/7.6.1810/cloud/x86_64/openstack-ocata/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">EOF</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>添加kvm源<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">cat &gt;/etc/yum.repos.d/kvm.repo&lt;&lt;EOF</span><br><span class="line">[KVM]</span><br><span class="line">name=KVM</span><br><span class="line">baseurl=http://mirrors.aliyun.com/centos/7.6.1810/virt/x86_64/kvm-common/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">EOF</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <h3 id="安装epel源"><a href="#安装epel源" class="headerlink"
+                                                                                                      title="安装epel源"></a>安装epel源</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">yum install epel-release -y</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="安装packstack工具"><a href="#安装packstack工具" class="headerlink"
+                                                                                                      title="安装packstack工具"></a>安装packstack工具</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">yum -y install openstack-packstack</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="单机部署OpenStack"><a href="#单机部署OpenStack" class="headerlink"
+                                                                                                      title="单机部署OpenStack"></a>单机部署OpenStack</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">packstack --allinone</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>安装过程大概一个小时左右，用户名、密码在执行安装命令的当前目录的keystonerc_admin中<br><img
+                                                                                                      src="/posts/1681399788/namepasswd.png"
+                                                                                                      alt="password"></p>
+                    <h3 id="登录dashboard"><a href="#登录dashboard" class="headerlink"
+                                                                                                      title="登录dashboard"></a>登录dashboard</h3>
+                    <p>访问<a href="http://host_ip/dashboard">http://host_ip/dashboard</a><br><img
+                                                                                                      src="/posts/1681399788/dashboard.png"
+                                                                                                      alt="dashboard"></p>
+
+                  </div>
+
+                  <div style="text-align:center;color: #ccc;font-size:14px;">----------------
+                    (*￣︶￣)我是结束线(*￣︶￣) ----------------</div>
+
+                  <div>
+                    <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+                      <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg"
+                                                                                                      alt="没有风的晴天 wechat"
+                                                                                                      style="width: 200px; max-width: 100%;">
+                      <div>扫一扫，加我微信</div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>打赏</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wechatpay.jpg" alt="没有风的晴天 微信支付">
+                          <p>微信支付</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/alipay.jpg" alt="没有风的晴天 支付宝">
+                          <p>支付宝</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <ul class="post-copyright">
+                      <li class="post-copyright-author">
+                        <strong>本文作者：</strong>
+                        没有风的晴天
+                      </li>
+                      <li class="post-copyright-link">
+                        <strong>本文链接：</strong>
+                        <a href="https://www.kapyan.top/posts/1681399788.html"
+                                                                                                        title="OpenStack部署">https://www.kapyan.top/posts/1681399788.html</a>
+                      </li>
+                      <li class="post-copyright-license">
+                        <strong>版权声明： </strong>
+                        本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
+                                                                                                        rel="external nofollow"
+                                                                                                        target="_blank">CC
+                          BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+                      </li>
+                    </ul>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-tags">
+
+                      <a href="/tags/openstack/" rel="tag"><i class="fa fa-tag"></i>
+                        openstack</a>
+
+                    </div>
+
+                    <div class="post-widgets">
+
+                      <div id="needsharebutton-postbottom">
+                        <span class="btn">
+                          <i class="fa fa-share-alt" aria-hidden="true"></i>
+                        </span>
+                      </div>
+
+                    </div>
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/posts/2220227672.html" rel="next" title="Centos7下安装kettle">
+                          <i class="fa fa-chevron-left"></i> Centos7下安装kettle
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                      </div>
+                    </div>
+
+                  </footer>
                 </div>
 
-                <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-                  <header class="post-header">
+              </article>
 
-                    <h3 class="post-title">
-
-                      <a class="post-title-link" href="/posts/4255676476.html"
-                                                                                                      itemprop="url">
-
-                        <span itemprop="name">zabbix添加nginx监控</span>
-
-                      </a>
-
-                    </h3>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-01-21T16:17:35+08:00"
-                                                                                                      content="2019-01-21">
-                        01-21
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h3 class="post-title">
-
-                      <a class="post-title-link" href="/posts/1388969176.html"
-                                                                                                      itemprop="url">
-
-                        <span itemprop="name">zabbix添加mysql监控</span>
-
-                      </a>
-
-                    </h3>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-01-19T15:31:34+08:00"
-                                                                                                      content="2019-01-19">
-                        01-19
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h3 class="post-title">
-
-                      <a class="post-title-link" href="/posts/1683246444.html"
-                                                                                                      itemprop="url">
-
-                        <span itemprop="name">mysql主主互备模式架构</span>
-
-                      </a>
-
-                    </h3>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-01-18T15:14:43+08:00"
-                                                                                                      content="2019-01-18">
-                        01-18
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h3 class="post-title">
-
-                      <a class="post-title-link" href="/posts/1314989757.html"
-                                                                                                      itemprop="url">
-
-                        <span itemprop="name">centos7通过阿里源安装zabbix</span>
-
-                      </a>
-
-                    </h3>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-01-17T14:53:08+08:00"
-                                                                                                      content="2019-01-17">
-                        01-17
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h3 class="post-title">
-
-                      <a class="post-title-link" href="/posts/1095624551.html"
-                                                                                                      itemprop="url">
-
-                        <span itemprop="name">gitlab数据备份、还原、迁移</span>
-
-                      </a>
-
-                    </h3>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-01-14T11:23:20+08:00"
-                                                                                                      content="2019-01-14">
-                        01-14
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
+              <div class="post-spread">
 
               </div>
             </div>
 
-            <nav class="pagination">
-              <span class="page-number current">1</span><a class="page-number"
-                                                                                              href="/archives/2019/01/page/2/">2</a><a
-                                                                                              class="extend next"
-                                                                                              rel="next"
-                                                                                              href="/archives/2019/01/page/2/"><i
-                                                                                                class="fa fa-angle-right"></i></a>
-            </nav>
+          </div>
 
+          <div class="comments" id="comments">
+            <div id="SOHUCS"></div>
           </div>
 
         </div>
@@ -399,7 +601,16 @@
 
           <div class="sidebar-inner">
 
-            <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+            <ul class="sidebar-nav motion-element">
+              <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                文章目录
+              </li>
+              <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+                站点概览
+              </li>
+            </ul>
+
+            <section class="site-overview-wrap sidebar-panel">
               <div class="site-overview">
                 <div class="site-author motion-element" itemprop="author"
                                                                                                 itemscope=""
@@ -489,6 +700,50 @@
 
               </div>
             </section>
+
+            <!--noindex-->
+            <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+              <div class="post-toc">
+
+                <div class="post-toc-content">
+                  <ol class="nav">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#通过packstack安装OpenStack"><span
+                                                                                                        class="nav-number">1.</span>
+                        <span class="nav-text">通过packstack安装OpenStack</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#关闭防火墙、网络管理服务、selinux"><span
+                                                                                                            class="nav-number">1.1.</span>
+                            <span class="nav-text">关闭防火墙、网络管理服务、selinux</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#添加安装源为阿里云的OpenStack-YUM源"><span
+                                                                                                            class="nav-number">1.2.</span>
+                            <span class="nav-text">添加安装源为阿里云的OpenStack
+                              YUM源</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#安装epel源"><span
+                                                                                                            class="nav-number">1.3.</span>
+                            <span class="nav-text">安装epel源</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#安装packstack工具"><span
+                                                                                                            class="nav-number">1.4.</span>
+                            <span class="nav-text">安装packstack工具</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#单机部署OpenStack"><span
+                                                                                                            class="nav-number">1.5.</span>
+                            <span class="nav-text">单机部署OpenStack</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#登录dashboard"><span
+                                                                                                            class="nav-number">1.6.</span>
+                            <span class="nav-text">登录dashboard</span></a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </div>
+
+              </div>
+            </section>
+            <!--/noindex-->
 
           </div>
         </aside>
@@ -584,6 +839,9 @@
   <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
 
   <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
   <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
