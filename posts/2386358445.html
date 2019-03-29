@@ -59,7 +59,7 @@
   <meta property="og:site_name" content="运维之窗">
   <meta property="og:description" content="geoserver简介: &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Geoserver是一个功能齐全,遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现),同时也提供了修改,删除和新增的功能(利用WFS-T)。它是开源的   ,允许用户查看和编辑地理数据。GeoSer">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2019-02-14T02:59:01.221Z">
+  <meta property="og:updated_time" content="2019-03-29T05:24:22.185Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="geoserver+postgresql搭建">
   <meta name="twitter:description" content="geoserver简介: &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Geoserver是一个功能齐全,遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现),同时也提供了修改,删除和新增的功能(利用WFS-T)。它是开源的   ,允许用户查看和编辑地理数据。GeoSer">
@@ -284,8 +284,8 @@
 
                         <span class="post-meta-item-text">更新于&#58;</span>
 
-                        <time title="更新于" itemprop="dateModified" datetime="2019-02-14T10:59:01+08:00">
-                          2019-02-14
+                        <time title="更新于" itemprop="dateModified" datetime="2019-03-29T13:24:22+08:00">
+                          2019-03-29
                         </time>
 
                       </span>
@@ -334,7 +334,7 @@
                           <span class="post-meta-item-text">字数统计&#58;</span>
 
                           <span title="字数统计">
-                            1.6k
+                            1.9k
                           </span>
 
                           <span class="post-meta-divider">|</span>
@@ -346,7 +346,7 @@
                           <span class="post-meta-item-text">阅读时长 &asymp;</span>
 
                           <span title="阅读时长">
-                            7
+                            9
                           </span>
 
                         </div>
@@ -673,6 +673,22 @@ host all all 0.0.0.0/0 md5
                         </figure>
                       </li>
                     </ol>
+                    <h3 id="请求跨域问题"><a href="#请求跨域问题" class="headerlink" title="请求跨域问题"></a>请求跨域问题</h3>
+                    <p><a href="2386358445/cors-filter-2.6.jar">cors-filter-2.6.jar下载</a><br><a
+                                                                                                      href="2386358445/java-property-utils-1.13.jar">java-property-utils-1.13.jar下载</a><br>将cors-filter-2.6.jar和java-property-utils-1.13.jar放入geoserver的WEB-INF/lib目录<br>在geoserver的WEB-INF/web.xml文件的filter级标签末尾添加以下代码：<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">&lt;filter&gt;  </span><br><span class="line">    &lt;filter-name&gt;CORS&lt;/filter-name&gt;  </span><br><span class="line">    &lt;filter-class&gt;com.thetransactioncompany.cors.CORSFilter&lt;/filter-class&gt;  </span><br><span class="line">    &lt;init-param&gt;  </span><br><span class="line">     &lt;param-name&gt;cors.allowOrigin&lt;/param-name&gt;  </span><br><span class="line">        &lt;param-value&gt;*&lt;/param-value&gt;  </span><br><span class="line">    &lt;/init-param&gt;  </span><br><span class="line">    &lt;init-param&gt;  </span><br><span class="line">     &lt;param-name&gt;cors.supportedMethods&lt;/param-name&gt;  </span><br><span class="line">        &lt;param-value&gt;GET, POST, HEAD, PUT, DELETE&lt;/param-value&gt;  </span><br><span class="line">    &lt;/init-param&gt;  </span><br><span class="line">    &lt;init-param&gt;  </span><br><span class="line">     &lt;param-name&gt;cors.supportedHeaders&lt;/param-name&gt;  </span><br><span class="line">        &lt;param-value&gt;Accept, Origin, X-Requested-With, Content-Type, Last-Modified&lt;/param-value&gt;  </span><br><span class="line">    &lt;/init-param&gt;  </span><br><span class="line">    &lt;init-param&gt;  </span><br><span class="line">        &lt;param-name&gt;cors.exposedHeaders&lt;/param-name&gt;  </span><br><span class="line">        &lt;param-value&gt;Set-Cookie&lt;/param-value&gt;  </span><br><span class="line">    &lt;/init-param&gt;  </span><br><span class="line">    &lt;init-param&gt;  </span><br><span class="line">        &lt;param-name&gt;cors.supportsCredentials&lt;/param-name&gt;  </span><br><span class="line">        &lt;param-value&gt;<span class="literal">true</span>&lt;/param-value&gt;  </span><br><span class="line">    &lt;/init-param&gt;  </span><br><span class="line">&lt;/filter&gt;  </span><br><span class="line">&lt;filter-mapping&gt;  </span><br><span class="line">    &lt;filter-name&gt;CORS&lt;/filter-name&gt;  </span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;  </span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
 
                   </div>
 
@@ -1002,6 +1018,10 @@ host all all 0.0.0.0/0 md5
                                                                                                           href="#中文字段乱码问题"><span
                                                                                                             class="nav-number">3.9.</span>
                             <span class="nav-text">中文字段乱码问题</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#请求跨域问题"><span
+                                                                                                            class="nav-number">3.10.</span>
+                            <span class="nav-text">请求跨域问题</span></a></li>
                       </ol>
                     </li>
                   </ol>
@@ -1032,7 +1052,7 @@ host all all 0.0.0.0/0 md5
 
           <span class="post-meta-item-text">Site words total count&#58;</span>
 
-          <span title="Site words total count">58.8k</span>
+          <span title="Site words total count">59.1k</span>
 
         </div>
 
