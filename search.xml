@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[在CentOS7 安装selenium+chrome+chromedriver]]></title>
+    <url>%2Fposts%2F2537485430.html</url>
+    <content type="text"><![CDATA[安装Chrome浏览器 配置yum源 1234567cat &gt;/etc/yum.repos.d/google-chrome.repo&lt;&lt;EOF[google-chrome]name=google-chromebaseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64enabled=1gpgcheck=0EOF 安装google-chrome 12yum -y install google-chrome-stable --nogpgcheck google-chrome --version #查看版本 chromedriver下载地址根据google-chrome版本下载对应的chromedriver，解压至/usr/bin/目录下 1234567891011121314151617181920212223vim /usr/bin/xvfb-chrome #添加以下内容_kill_procs() &#123; kill -TERM $chrome wait $chrome kill -TERM $xvfb &#125; # Setup a trap to catch SIGTERM and relay it to child processes trap _kill_procs SIGTERM XVFB_WHD=$&#123;XVFB_WHD:-1280x720x16&#125; # Start Xvfb Xvfb :99 -ac -screen 0 $XVFB_WHD -nolisten tcp &amp; xvfb=$! export DISPLAY=:99 chrome --no-sandbox --disable-gpu$@ &amp; chrome=$! wait $chrome wait $xvfb 更改Chrome启动软连接 1234chmod +x /usr/bin/xvfb-chrome #添加执行权限ln -s /etc/alternatives/google-chrome /usr/bin/chrome rm -rf /usr/bin/google-chrome ln -s /usr/bin/xvfb-chrome /usr/bin/google-chrome 安装selenium 1pip3 install selenium 测试 新建Python脚本test.py,添加以下内容 12345678910from selenium import webdriveroptions = webdriver.ChromeOptions()options.add_argument('--headless')options.add_argument('--disable-gpu')options.add_argument('--no-sandbox')driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", chrome_options=options)driver.get("https://www.baidu.com")print(driver.page_source)driver.quit() 运行 1python3 test.py #无报错则正常]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>Selenium</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[OpenStack各服务组件及架构]]></title>
+    <url>%2Fposts%2F2462062835.html</url>
+    <content type="text"><![CDATA[openstack各组件说明 项目名称 描述 服务 Dashboard Horizon 提供了一个基于web的自服务门户，与openstack底层服务交互，如：启动实例、分配IP及配置访问控制 Compute Nova 在openstack环境中计算实例的生命周期管理。按需响应包括生成、调度、回收虚拟机等操作 Networking Neutron 确保为其他openstack服务提供网络连接即服务，如openstack计算。为用户提供api定义网络和使用。基于插件的架构支持众多的网络提供商和技术 存储 Object Storage Swift 通过一个restful,基于http的应用程序接口存储和任意检索的非结构化数据对象。它拥有高容错机制，基于数据复制和可扩展架构。它的实现像是一个文件服务器需要挂载目录。在此种方式下，它写入对象和文件到多个硬盘中，以确保数据是在集群内跨服务器的多份复制 Block storage Cinder 为运行实例而提供的持久性块存储。它的可插拔驱动架构功能有助于创建和管理块存储设备 共享服务 Identity service Keystone 为其他openstack服务提供认证和授权服务，为所有openstack服务提供一个端点目录 Image service Glance 存储和检索虚拟机磁盘镜像，openstack计算会实例部署时使用此服务 Telemetry Ceilometer 为openstack云的计费、基准、扩展性及统计等目的提供检测和计量 高层次服务 Orchestration Heat orchestration服务支持多样化的综合的云应用，通过调用openstack-native rest api和cloudformation-compatible query api，支持：term:`HOT &lt;Heat Orchestration Template (HOT)&gt;`格式模板或者AWS CloudFormation格式模板 table th:nth-of-type(1) { width: 15%; } table th:nth-of-type(2) { width: 15%; } table th:nth-of-type(3) { width: 70%; }]]></content>
+      <categories>
+        <category>虚拟化</category>
+        <category>OpenStack</category>
+      </categories>
+      <tags>
+        <tag>OpenStack</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[OpenStack部署]]></title>
     <url>%2Fposts%2F1681399788.html</url>
     <content type="text"><![CDATA[通过packstack安装OpenStack 操作系统：Centos7+配置: 2+ vCPU 4G+ 内存 50G+ 磁盘 双网卡（单网卡也可） 非英文环境下设置 1234cat &gt;/etc/environment&lt;&lt;EOFLANG=en_US.utf-8LC_ALL=en_US.utf-8EOF 关闭防火墙、网络管理服务、selinux 12345systemctl stop firewalldsystemctl disable firewalldsystemctl stop NetworkManager.servicesystemctl disable NetworkManager.servicesetenforce 0 添加安装源为阿里云的OpenStack YUM源 1234567cat &gt;/etc/yum.repos.d/openstack-ocata.repo&lt;&lt;EOF[OpenStack-ocata]name=openstack-ocatabaseurl=http://mirrors.aliyun.com/centos/7.6.1810/cloud/x86_64/openstack-ocata/enabled=1gpgcheck=0EOF 添加kvm源 1234567cat &gt;/etc/yum.repos.d/kvm.repo&lt;&lt;EOF[KVM]name=KVMbaseurl=http://mirrors.aliyun.com/centos/7.6.1810/virt/x86_64/kvm-common/enabled=1gpgcheck=0EOF 安装epel源 1yum install epel-release -y 安装packstack工具 1yum -y install openstack-packstack 单机部署OpenStack 1packstack --allinone 安装过程大概一个小时左右，用户名、密码在执行安装命令的当前目录的keystonerc_admin中 登录dashboard 访问http://host_ip/dashboard]]></content>
