@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CentOS7安装配置Shadowsocks客户端]]></title>
+    <url>%2Fposts%2F946277536.html</url>
+    <content type="text"><![CDATA[安装Shadowsocks客户端 123yum -y install epel-releaseyum -y install python-pippip install shadowsocks 配置Shadowsocks客户端 12mkdir /etc/shadowsocksvi /etc/shadowsocks/shadowsocks.json 添加以下配置： 1234567891011&#123; "server":"server ip/server name", "server_port":11211, "local_address": "127.0.0.1", "local_port":1080, "password":"password", "timeout":300, "method":"aes-256-cfb", "fast_open": false, "workers": 1&#125; 注：将server、server_port、password、method替换为自己的账号信息参数说明： server：Shadowsocks服务器地址 server_port：Shadowsocks服务器端口 local_address：本地IP local_port：本地端口 password：Shadowsocks连接密码 timeout：等待超时时间 method：加密方式 workers:工作线程数 fast_open：true或false。开启fast_open以降低延迟，但要求Linux内核在3.7+,开启方法：echo 3 &gt; /proc/sys/net/ipv4/tcp_fastopen 配置自启动脚本 新建启动脚本文件/etc/systemd/system/shadowsocks.service 1234567[Unit]Description=Shadowsocks[Service]TimeoutStartSec=0ExecStart=/usr/bin/sslocal -c /etc/shadowsocks/shadowsocks.json[Install]WantedBy=multi-user.target 启动Shadowsocks客户端 123systemctl enable shadowsocks.servicesystemctl start shadowsocks.servicesystemctl status shadowsocks.services 验证Shadowsocks客户端是否正常运行： 1curl --socks5 127.0.0.1:1080 http://httpbin.org/ip 安装配置Privoxy Shadowsocks是一个socket5服务，需要使用 Privoxy 把流量转到 http/https 上。 1234yum -y install privoxysystemctl enable privoxysystemctl start privoxysystemctl status privoxy 配置Privoxy 修改配置文件/etc/privoxy/config,取消下面两行注释 12listen-address 127.0.0.1:8118 forward-socks5t / 127.0.0.1:1080 . 设置http/https代理 修改配置文件/etc/profile添加如下信息： 12export http_proxy=http://127.0.0.1:8118export https_proxy=http://127.0.0.1:8118 1source /etc/profile 验证 1curl www.google.com]]></content>
+      <categories>
+        <category>代理</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[在CentOS7 安装selenium+chrome+chromedriver]]></title>
     <url>%2Fposts%2F2537485430.html</url>
     <content type="text"><![CDATA[安装Chrome浏览器 配置yum源 1234567cat &gt;/etc/yum.repos.d/google-chrome.repo&lt;&lt;EOF[google-chrome]name=google-chromebaseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64enabled=1gpgcheck=0EOF 安装google-chrome 12yum -y install google-chrome-stable --nogpgcheck google-chrome --version #查看版本 chromedriver下载地址根据google-chrome版本下载对应的chromedriver，解压至/usr/bin/目录下 1234567891011121314151617181920212223vim /usr/bin/xvfb-chrome #添加以下内容_kill_procs() &#123; kill -TERM $chrome wait $chrome kill -TERM $xvfb &#125; # Setup a trap to catch SIGTERM and relay it to child processes trap _kill_procs SIGTERM XVFB_WHD=$&#123;XVFB_WHD:-1280x720x16&#125; # Start Xvfb Xvfb :99 -ac -screen 0 $XVFB_WHD -nolisten tcp &amp; xvfb=$! export DISPLAY=:99 chrome --no-sandbox --disable-gpu$@ &amp; chrome=$! wait $chrome wait $xvfb 更改Chrome启动软连接 1234chmod +x /usr/bin/xvfb-chrome #添加执行权限ln -s /etc/alternatives/google-chrome /usr/bin/chrome rm -rf /usr/bin/google-chrome ln -s /usr/bin/xvfb-chrome /usr/bin/google-chrome 安装selenium 1pip3 install selenium 测试 新建Python脚本test.py,添加以下内容 12345678910from selenium import webdriveroptions = webdriver.ChromeOptions()options.add_argument('--headless')options.add_argument('--disable-gpu')options.add_argument('--no-sandbox')driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", chrome_options=options)driver.get("https://www.baidu.com")print(driver.page_source)driver.quit() 运行 1python3 test.py #无报错则正常]]></content>
@@ -21,18 +29,6 @@
       </categories>
       <tags>
         <tag>OpenStack</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[OpenStack部署]]></title>
-    <url>%2Fposts%2F1681399788.html</url>
-    <content type="text"><![CDATA[通过packstack安装OpenStack 操作系统：Centos7+配置: 2+ vCPU 4G+ 内存 50G+ 磁盘 双网卡（单网卡也可） 非英文环境下设置 1234cat &gt;/etc/environment&lt;&lt;EOFLANG=en_US.utf-8LC_ALL=en_US.utf-8EOF 关闭防火墙、网络管理服务、selinux 12345systemctl stop firewalldsystemctl disable firewalldsystemctl stop NetworkManager.servicesystemctl disable NetworkManager.servicesetenforce 0 添加安装源为阿里云的OpenStack YUM源 1234567cat &gt;/etc/yum.repos.d/openstack-ocata.repo&lt;&lt;EOF[OpenStack-ocata]name=openstack-ocatabaseurl=http://mirrors.aliyun.com/centos/7.6.1810/cloud/x86_64/openstack-ocata/enabled=1gpgcheck=0EOF 添加kvm源 1234567cat &gt;/etc/yum.repos.d/kvm.repo&lt;&lt;EOF[KVM]name=KVMbaseurl=http://mirrors.aliyun.com/centos/7.6.1810/virt/x86_64/kvm-common/enabled=1gpgcheck=0EOF 安装epel源 1yum install epel-release -y 安装packstack工具 1yum -y install openstack-packstack 单机部署OpenStack 1packstack --allinone 安装过程大概一个小时左右，用户名、密码在执行安装命令的当前目录的keystonerc_admin中 登录dashboard 访问http://host_ip/dashboard]]></content>
-      <categories>
-        <category>虚拟化</category>
-        <category>OpenStack</category>
-      </categories>
-      <tags>
-        <tag>openstack</tag>
       </tags>
   </entry>
   <entry>
