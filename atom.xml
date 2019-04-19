@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.kapyan.top/"/>
-  <updated>2019-04-18T09:35:28.736Z</updated>
+  <updated>2019-04-19T10:06:07.583Z</updated>
   <id>https://www.kapyan.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux上挂载windows目录</title>
+    <link href="https://www.kapyan.top/posts/2483896817.html"/>
+    <id>https://www.kapyan.top/posts/2483896817.html</id>
+    <published>2019-04-19T09:36:43.000Z</published>
+    <updated>2019-04-19T10:06:07.583Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="共享需要挂载的windows目录"><a href="#共享需要挂载的windows目录" class="headerlink" title="共享需要挂载的windows目录"></a>共享需要挂载的windows目录</h2><p>在需要挂载的目录上右击鼠标，一次点击“属性”-&gt;“共享”-&gt;“共享(S…)”<br><img src="/posts/2483896817/fileshare.png" alt="share"></p><h2 id="挂载在linux系统上"><a href="#挂载在linux系统上" class="headerlink" title="挂载在linux系统上"></a>挂载在linux系统上</h2><p>格式为:mount -t cifs //ip/共享目录 /linux挂载目录 -o  username=用户名,password=密码,vers=2.0,uid=linux用户,gid=linux用户组<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /sharedata<span class="comment">#创建挂载目录</span></span><br><span class="line">mount -t cifs //192.168.1.10/go /sharedata -o username=administrator,password=123456.vers=2.0,uid=<span class="built_in">test</span>,gid=<span class="built_in">test</span></span><br></pre></td></tr></table></figure></p><p>注：此方式为临时挂载，重启系统后失效</p><h3 id="永久挂载"><a href="#永久挂载" class="headerlink" title="永久挂载"></a>永久挂载</h3><p>编辑/etc/fstab文件<br>在末行加入以下内容<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//192.168.1.10/go/sharedata cifsusername=administrator,password=123456.vers=2.0,uid=<span class="built_in">test</span>,gid=<span class="built_in">test</span>00</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;共享需要挂载的windows目录&quot;&gt;&lt;a href=&quot;#共享需要挂载的windows目录&quot; class=&quot;headerlink&quot; title=&quot;共享需要挂载的windows目录&quot;&gt;&lt;/a&gt;共享需要挂载的windows目录&lt;/h2&gt;
+&lt;p&gt;在需要挂载的目录上右击鼠标
+      
+    
+    </summary>
+    
+      <category term="文件共享" scheme="https://www.kapyan.top/categories/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/"/>
+    
+    
+      <category term="文件共享" scheme="https://www.kapyan.top/tags/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>CentOS7安装配置Shadowsocks客户端</title>
@@ -514,32 +540,6 @@
     
     
       <category term="redis" scheme="https://www.kapyan.top/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>zabbix添加nginx监控</title>
-    <link href="https://www.kapyan.top/posts/4255676476.html"/>
-    <id>https://www.kapyan.top/posts/4255676476.html</id>
-    <published>2019-01-21T08:17:35.000Z</published>
-    <updated>2019-02-14T02:59:23.093Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="nginx开启监控模块"><a href="#nginx开启监控模块" class="headerlink" title="nginx开启监控模块"></a>nginx开启监控模块</h2><p>修改nginx的配置，在nginx配置的server域加入以下配置，然后重启nginx<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location /nginx_status &#123;</span><br><span class="line">             stub_status on;</span><br><span class="line">             access_log off;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p><p>执行命令:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://127.0.0.1/nginx_status</span><br></pre></td></tr></table></figure></p><p>可看到输出：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Active connections: 1 </span><br><span class="line">server accepts handled requests</span><br><span class="line"> 3144 3144 3144 </span><br><span class="line">Reading: 0 Writing: 1 Waiting: 0</span><br></pre></td></tr></table></figure></p><h2 id="编辑nginx监控脚本"><a href="#编辑nginx监控脚本" class="headerlink" title="编辑nginx监控脚本"></a>编辑nginx监控脚本</h2><p>在需要监控的nginx服务器上新建文件”/etc/zabbix/scripts/nginx_monitor.sh”(scripts目录需创建)，加入以下內容：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">status_url=<span class="string">"http://127.0.0.1/nginx_status"</span></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">status)</span><br><span class="line">countor=$(ps -C nginx --no-heading|wc -l)</span><br><span class="line">      <span class="keyword">if</span> [ <span class="variable">$&#123;countor&#125;</span> -eq <span class="string">"0"</span> ];<span class="keyword">then</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"stop"</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="built_in">echo</span> <span class="string">"running"</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                ;;</span><br><span class="line"></span><br><span class="line">active_conn)</span><br><span class="line">curl <span class="variable">$status_url</span> 2&gt;/dev/null|awk -F <span class="string">":"</span> <span class="string">'NR==1&#123;print $2&#125;'</span></span><br><span class="line">;;</span><br><span class="line">accepts)</span><br><span class="line">curl <span class="variable">$status_url</span> 2&gt;/dev/null|awk <span class="string">'NR==3&#123;print $1&#125;'</span></span><br><span class="line">;;</span><br><span class="line">handled)</span><br><span class="line">curl <span class="variable">$status_url</span> 2&gt;/dev/null|awk <span class="string">'NR==3&#123;print $2&#125;'</span></span><br><span class="line">;;</span><br><span class="line">requests)</span><br><span class="line">curl <span class="variable">$status_url</span> 2&gt;/dev/null|awk <span class="string">'NR==3&#123;print $3&#125;'</span></span><br><span class="line">;;</span><br><span class="line">reading)</span><br><span class="line">curl <span class="variable">$status_url</span> 2&gt;/dev/null|awk <span class="string">'NR==4&#123;print $2&#125;'</span></span><br><span class="line">;;</span><br><span class="line">writing)</span><br><span class="line">curl <span class="variable">$status_url</span> 2&gt;/dev/null|awk <span class="string">'NR==4&#123;print $4&#125;'</span></span><br><span class="line">;;</span><br><span class="line">waiting)</span><br><span class="line">curl <span class="variable">$status_url</span> 2&gt;/dev/null|awk <span class="string">'NR==4&#123;print $6&#125;'</span></span><br><span class="line">;;</span><br><span class="line"></span><br><span class="line">*)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(basename $0)</span> (status|active_conn|accepts|handled|requests|reading|writing|waiting)"</span></span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure></p><p>给予脚本执行权限：<code>chmod +x /etc/zabbix/scripts/nginx_monitor.sh</code></p><h2 id="修改zabbix-agent配置"><a href="#修改zabbix-agent配置" class="headerlink" title="修改zabbix-agent配置"></a>修改zabbix-agent配置</h2><p>在需要监控的nginx服务器上新建”/etc/zabbix/zabbix_agentd.d/userparameter_nginx.conf”文件，添加如下配置：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserParameter=nginx.status[*],/etc/zabbix/scripts/nginx_monitor.sh <span class="variable">$1</span></span><br></pre></td></tr></table></figure></p><p>重启zabbix-agent：<code>systemctl restart zabbix-agent</code></p><h2 id="导入nginx监控模板"><a href="#导入nginx监控模板" class="headerlink" title="导入nginx监控模板"></a>导入nginx监控模板</h2><p><img src="/posts/4255676476/import1.png" alt="导入模板1"><br><a href="4255676476/zabbix_nginx.zip">nginx监控模板及脚本下载</a><br>下载模板文件并解压<br><img src="/posts/4255676476/import2.png" alt="导入模板2"><br>导入成功会在模板中显示“Template  Nginx”模板，绑定到相应主机，nginx监控完成！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;nginx开启监控模块&quot;&gt;&lt;a href=&quot;#nginx开启监控模块&quot; class=&quot;headerlink&quot; title=&quot;nginx开启监控模块&quot;&gt;&lt;/a&gt;nginx开启监控模块&lt;/h2&gt;
-&lt;p&gt;修改nginx的配置，在nginx配置的server域加入以下配置
-      
-    
-    </summary>
-    
-      <category term="zabbix" scheme="https://www.kapyan.top/categories/zabbix/"/>
-    
-    
-      <category term="nginx监控" scheme="https://www.kapyan.top/tags/nginx%E7%9B%91%E6%8E%A7/"/>
     
   </entry>
   
