@@ -51,13 +51,17 @@
 
   <link rel="alternate" href="/atom.xml" title="运维之窗" type="application/atom+xml">
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="运维之窗">
-  <meta property="og:url" content="https://www.kapyan.top/archives/2019/page/5/index.html">
+  <meta name="description" content="error   creating overlay mount to …/merged: invalid argument 在使用阿里云的Centos镜像重启docker容器时遇到该问题，这个问题是由于selinux造成的。系统中关闭了selinux，而docker上的selinux却是开启的，因此会产生该错误。解决方法：将/etc/selinux/config中的SELINUX=disabled改">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="docker中遇到的坑">
+  <meta property="og:url" content="https://www.kapyan.top/posts/243756207.html">
   <meta property="og:site_name" content="运维之窗">
+  <meta property="og:description" content="error   creating overlay mount to …/merged: invalid argument 在使用阿里云的Centos镜像重启docker容器时遇到该问题，这个问题是由于selinux造成的。系统中关闭了selinux，而docker上的selinux却是开启的，因此会产生该错误。解决方法：将/etc/selinux/config中的SELINUX=disabled改">
   <meta property="og:locale" content="zh-Hans">
+  <meta property="og:updated_time" content="2019-05-05T08:50:38.516Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="运维之窗">
+  <meta name="twitter:title" content="docker中遇到的坑">
+  <meta name="twitter:description" content="error   creating overlay mount to …/merged: invalid argument 在使用阿里云的Centos镜像重启docker容器时遇到该问题，这个问题是由于selinux造成的。系统中关闭了selinux，而docker上的selinux却是开启的，因此会产生该错误。解决方法：将/etc/selinux/config中的SELINUX=disabled改">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -107,15 +111,15 @@
 
   </script>
 
-  <link rel="canonical" href="https://www.kapyan.top/archives/2019/page/5/">
+  <link rel="canonical" href="https://www.kapyan.top/posts/243756207.html">
 
-  <title>归档 | 运维之窗</title>
+  <title>docker中遇到的坑 | 运维之窗</title>
 
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -236,159 +240,239 @@
         <div class="content-wrap">
           <div id="content" class="content">
 
-            <div class="post-block archive">
-              <div id="posts" class="posts-collapse">
-                <span class="archive-move-on"></span>
+            <div id="posts" class="posts-expand">
 
-                <span class="archive-page-counter">
+              <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
 
-                  嗯..! 目前共计 30 篇日志。 继续努力。
-                </span>
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="https://www.kapyan.top/posts/243756207.html">
 
-                <div class="collection-title">
-                  <h2 class="archive-year" id="archive-year-2019">2019</h2>
+                  <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="没有风的晴天">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.png">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="运维之窗">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h2 class="post-title" itemprop="name headline">docker中遇到的坑</h2>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">发表于</span>
+
+                        <time title="创建于" itemprop="dateCreated datePublished"
+                                                                                                        datetime="2019-05-05T16:32:22+08:00">
+                          2019-05-05
+                        </time>
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-check-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">更新于&#58;</span>
+
+                        <time title="更新于" itemprop="dateModified" datetime="2019-05-05T16:50:38+08:00">
+                          2019-05-05
+                        </time>
+
+                      </span>
+
+                      <span class="post-category">
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-folder-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">分类于</span>
+
+                        <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                          <a href="/categories/虚拟化/" itemprop="url" rel="index">
+                            <span itemprop="name">虚拟化</span>
+                          </a>
+                        </span>
+
+                        ，
+
+                        <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                          <a href="/categories/虚拟化/docker/" itemprop="url" rel="index">
+                            <span itemprop="name">docker</span>
+                          </a>
+                        </span>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+
+                        <a href="/posts/243756207.html#SOHUCS" itemprop="discussionUrl">
+                          <span id="changyan_count_unit" class="post-comments-count hc-comment-count"
+                                                                                                          data-xid="posts/243756207.html"
+                                                                                                          itemprop="commentsCount"></span>
+                        </a>
+
+                        <span class="post-meta-divider">|</span>
+                        <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+                          <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+                        </span>
+
+                        <div class="post-wordcount">
+
+                          <span class="post-meta-item-icon">
+                            <i class="fa fa-file-word-o"></i>
+                          </span>
+
+                          <span class="post-meta-item-text">字数统计&#58;</span>
+
+                          <span title="字数统计">
+                            88
+                          </span>
+
+                          <span class="post-meta-divider">|</span>
+
+                          <span class="post-meta-item-icon">
+                            <i class="fa fa-clock-o"></i>
+                          </span>
+
+                          <span class="post-meta-item-text">阅读时长 &asymp;</span>
+
+                          <span title="阅读时长">
+                            1
+                          </span>
+
+                        </div>
+
+                      </span></div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <h2 id="error-creating-overlay-mount-to-…-merged-invalid-argument"><a
+                                                                                                      href="#error-creating-overlay-mount-to-…-merged-invalid-argument"
+                                                                                                      class="headerlink"
+                                                                                                      title="error creating overlay mount to …/merged: invalid argument"></a>error
+                      creating overlay mount to …/merged: invalid argument</h2>
+                    <p>在使用阿里云的Centos镜像重启docker容器时遇到该问题，这个问题是由于selinux造成的。系统中关闭了selinux，而docker上的selinux却是开启的，因此会产生该错误。<br>解决方法：将/etc/selinux/config中的SELINUX=disabled改成SELINUX=permissive。<br>参考链接：<a
+                                                                                                      href="https://github.com/coreos/bugs/issues/2340">https://github.com/coreos/bugs/issues/2340</a></p>
+
+                  </div>
+
+                  <div style="text-align:center;color: #ccc;font-size:14px;">----------------
+                    (*￣︶￣)我是结束线(*￣︶￣) ----------------</div>
+
+                  <div>
+                    <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+                      <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg"
+                                                                                                      alt="没有风的晴天 wechat"
+                                                                                                      style="width: 200px; max-width: 100%;">
+                      <div>扫一扫，加我微信</div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>打赏</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wechatpay.jpg" alt="没有风的晴天 微信支付">
+                          <p>微信支付</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/alipay.jpg" alt="没有风的晴天 支付宝">
+                          <p>支付宝</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <ul class="post-copyright">
+                      <li class="post-copyright-author">
+                        <strong>本文作者：</strong>
+                        没有风的晴天
+                      </li>
+                      <li class="post-copyright-link">
+                        <strong>本文链接：</strong>
+                        <a href="https://www.kapyan.top/posts/243756207.html"
+                                                                                                        title="docker中遇到的坑">https://www.kapyan.top/posts/243756207.html</a>
+                      </li>
+                      <li class="post-copyright-license">
+                        <strong>版权声明： </strong>
+                        本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
+                                                                                                        rel="external nofollow"
+                                                                                                        target="_blank">CC
+                          BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+                      </li>
+                    </ul>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-widgets">
+
+                      <div id="needsharebutton-postbottom">
+                        <span class="btn">
+                          <i class="fa fa-share-alt" aria-hidden="true"></i>
+                        </span>
+                      </div>
+
+                    </div>
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/posts/2483896817.html" rel="next" title="linux上挂载windows目录">
+                          <i class="fa fa-chevron-left"></i> linux上挂载windows目录
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                      </div>
+                    </div>
+
+                  </footer>
                 </div>
 
-                <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-                  <header class="post-header">
+              </article>
 
-                    <h3 class="post-title">
-
-                      <a class="post-title-link" href="/posts/424997909.html"
-                                                                                                      itemprop="url">
-
-                        <span itemprop="name">关于Redis的一些了解</span>
-
-                      </a>
-
-                    </h3>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-02-11T10:06:50+08:00"
-                                                                                                      content="2019-02-11">
-                        02-11
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h3 class="post-title">
-
-                      <a class="post-title-link" href="/posts/4255676476.html"
-                                                                                                      itemprop="url">
-
-                        <span itemprop="name">zabbix添加nginx监控</span>
-
-                      </a>
-
-                    </h3>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-01-21T16:17:35+08:00"
-                                                                                                      content="2019-01-21">
-                        01-21
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h3 class="post-title">
-
-                      <a class="post-title-link" href="/posts/1388969176.html"
-                                                                                                      itemprop="url">
-
-                        <span itemprop="name">zabbix添加mysql监控</span>
-
-                      </a>
-
-                    </h3>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-01-19T15:31:34+08:00"
-                                                                                                      content="2019-01-19">
-                        01-19
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h3 class="post-title">
-
-                      <a class="post-title-link" href="/posts/1683246444.html"
-                                                                                                      itemprop="url">
-
-                        <span itemprop="name">mysql主主互备模式架构</span>
-
-                      </a>
-
-                    </h3>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-01-18T15:14:43+08:00"
-                                                                                                      content="2019-01-18">
-                        01-18
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h3 class="post-title">
-
-                      <a class="post-title-link" href="/posts/1314989757.html"
-                                                                                                      itemprop="url">
-
-                        <span itemprop="name">centos7通过阿里源安装zabbix</span>
-
-                      </a>
-
-                    </h3>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-01-17T14:53:08+08:00"
-                                                                                                      content="2019-01-17">
-                        01-17
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
+              <div class="post-spread">
 
               </div>
             </div>
 
-            <nav class="pagination">
-              <a class="extend prev" rel="prev" href="/archives/2019/page/4/"><i
-                                                                                                class="fa fa-angle-left"></i></a><a
-                                                                                              class="page-number"
-                                                                                              href="/archives/2019/">1</a><span
-                                                                                              class="space">&hellip;</span><a
-                                                                                              class="page-number"
-                                                                                              href="/archives/2019/page/4/">4</a><span
-                                                                                              class="page-number current">5</span><a
-                                                                                              class="page-number"
-                                                                                              href="/archives/2019/page/6/">6</a><a
-                                                                                              class="extend next"
-                                                                                              rel="next"
-                                                                                              href="/archives/2019/page/6/"><i
-                                                                                                class="fa fa-angle-right"></i></a>
-            </nav>
+          </div>
 
+          <div class="comments" id="comments">
+            <div id="SOHUCS"></div>
           </div>
 
         </div>
@@ -407,7 +491,16 @@
 
           <div class="sidebar-inner">
 
-            <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+            <ul class="sidebar-nav motion-element">
+              <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                文章目录
+              </li>
+              <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+                站点概览
+              </li>
+            </ul>
+
+            <section class="site-overview-wrap sidebar-panel">
               <div class="site-overview">
                 <div class="site-author motion-element" itemprop="author"
                                                                                                 itemscope=""
@@ -497,6 +590,23 @@
 
               </div>
             </section>
+
+            <!--noindex-->
+            <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+              <div class="post-toc">
+
+                <div class="post-toc-content">
+                  <ol class="nav">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#error-creating-overlay-mount-to-…-merged-invalid-argument"><span
+                                                                                                        class="nav-number">1.</span>
+                        <span class="nav-text">error
+                          creating overlay mount to …/merged: invalid argument</span></a></li>
+                  </ol>
+                </div>
+
+              </div>
+            </section>
+            <!--/noindex-->
 
           </div>
         </aside>
@@ -592,6 +702,9 @@
   <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
 
   <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
   <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 

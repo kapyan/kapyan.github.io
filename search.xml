@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[docker中遇到的坑]]></title>
+    <url>%2Fposts%2F243756207.html</url>
+    <content type="text"><![CDATA[error creating overlay mount to …/merged: invalid argument 在使用阿里云的Centos镜像重启docker容器时遇到该问题，这个问题是由于selinux造成的。系统中关闭了selinux，而docker上的selinux却是开启的，因此会产生该错误。解决方法：将/etc/selinux/config中的SELINUX=disabled改成SELINUX=permissive。参考链接：https://github.com/coreos/bugs/issues/2340]]></content>
+      <categories>
+        <category>虚拟化</category>
+        <category>docker</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[linux上挂载windows目录]]></title>
     <url>%2Fposts%2F2483896817.html</url>
     <content type="text"><![CDATA[共享需要挂载的windows目录 在需要挂载的目录上右击鼠标，一次点击“属性”-&gt;“共享”-&gt;“共享(S…)” 挂载在linux系统上 格式为:mount -t cifs //ip/共享目录 /linux挂载目录 -o username=用户名,password=密码,vers=2.0,uid=linux用户,gid=linux用户组 12mkdir /sharedata #创建挂载目录mount -t cifs //192.168.1.10/go /sharedata -o username=administrator,password=123456.vers=2.0,uid=test,gid=test 注：此方式为临时挂载，重启系统后失效 永久挂载 编辑/etc/fstab文件在末行加入以下内容 1//192.168.1.10/go /sharedata cifs username=administrator,password=123456.vers=2.0,uid=test,gid=test 0 0]]></content>
