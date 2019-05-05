@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.kapyan.top/"/>
-  <updated>2019-05-05T08:50:38.516Z</updated>
+  <updated>2019-05-05T09:09:15.421Z</updated>
   <id>https://www.kapyan.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.kapyan.top/posts/243756207.html"/>
     <id>https://www.kapyan.top/posts/243756207.html</id>
     <published>2019-05-05T08:32:22.000Z</published>
-    <updated>2019-05-05T08:50:38.516Z</updated>
+    <updated>2019-05-05T09:09:15.421Z</updated>
     
     <content type="html"><![CDATA[<h2 id="error-creating-overlay-mount-to-…-merged-invalid-argument"><a href="#error-creating-overlay-mount-to-…-merged-invalid-argument" class="headerlink" title="error creating overlay mount to …/merged: invalid argument"></a>error  creating overlay mount to …/merged: invalid argument</h2><p>在使用阿里云的Centos镜像重启docker容器时遇到该问题，这个问题是由于selinux造成的。系统中关闭了selinux，而docker上的selinux却是开启的，因此会产生该错误。<br>解决方法：将/etc/selinux/config中的SELINUX=disabled改成SELINUX=permissive。<br>参考链接：<a href="https://github.com/coreos/bugs/issues/2340">https://github.com/coreos/bugs/issues/2340</a></p>]]></content>
     
@@ -38,6 +38,8 @@
     
       <category term="docker" scheme="https://www.kapyan.top/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/docker/"/>
     
+    
+      <category term="docker" scheme="https://www.kapyan.top/tags/docker/"/>
     
   </entry>
   

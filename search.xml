@@ -8,6 +8,9 @@
         <category>虚拟化</category>
         <category>docker</category>
       </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[linux上挂载windows目录]]></title>
