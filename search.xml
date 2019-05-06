@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[gitlab配置发送邮箱]]></title>
+    <url>%2Fposts%2F2918495377.html</url>
+    <content type="text"><![CDATA[修改配置文件 编辑/etc/gitlab/gitlab.rb文件，在文件结尾添加以下内容： 123456789gitlab_rails['smtp_enable'] = truegitlab_rails['smtp_address'] = "smtp.exmail.qq.com"gitlab_rails['smtp_port'] = 465gitlab_rails['smtp_user_name'] = "1066818026@qq.com"gitlab_rails['smtp_password'] = "mail_password"gitlab_rails['smtp_authentication'] = "login"gitlab_rails['smtp_enable_starttls_auto'] = truegitlab_rails['smtp_tls'] = truegitlab_rails['gitlab_email_from'] = '1066818026@qq.com' 重新加载配置 1gitlab-ctl reconfigure #重新加载配置 验证邮件发送 123gitlab-rails console #进入gitlab控制台#发送测试邮件Notify.test_email('1066818026@qq.com', 'gitlab', 'gitlab test').deliver_now 重启gitlab 1gitlab-ctl restart]]></content>
+      <categories>
+        <category>gitlab</category>
+      </categories>
+      <tags>
+        <tag>gitlab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[docker中遇到的坑]]></title>
     <url>%2Fposts%2F243756207.html</url>
     <content type="text"><![CDATA[error creating overlay mount to …/merged: invalid argument 在使用阿里云的Centos镜像重启docker容器时遇到该问题，这个问题是由于selinux造成的。系统中关闭了selinux，而docker上的selinux却是开启的，因此会产生该错误。解决方法：将/etc/selinux/config中的SELINUX=disabled改成SELINUX=permissive。参考链接：https://github.com/coreos/bugs/issues/2340]]></content>
