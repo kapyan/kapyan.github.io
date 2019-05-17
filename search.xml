@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[安装jenkins遇到的错误]]></title>
+    <url>%2Fposts%2F4149858732.html</url>
+    <content type="text"><![CDATA[No such plugin:cloudbees-folder 用Jenkins的war包部署时,报错如下图:是因为war包中缺少cloudbees-folder.hpi插件，下载该插件放在jenkins程序的WEB-INF/detached-plugins/目录下，重启Jenkins即可cloudbees-folder.hpi下载地址：http://ftp.icm.edu.pl/packages/jenkins/plugins/cloudbees-folder/ Jenkins实例离线 在安装插件时出现该错误，报错如下图:Jenkins在下载插件之前会先检查网络连接，读取.jenkins/updates/default.json(默认在用户家目录下)中的connectionCheckUrl地址，默认是http://www.google.com/,所以会导致网络检测不通过，出现这个错误。将http://www.google.com/替换为http://www.baidu.com/,重启jenkins即可。 修改Jenkins插件下载地址为国内地址 修改文件.jenkins/hudson.model.UpdateCenter.xml，将地址替换为以下两个中的一个：https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.jsonhttp://mirror.esuni.jp/jenkins/updates/update-center.json]]></content>
+      <categories>
+        <category>持续集成</category>
+      </categories>
+      <tags>
+        <tag>jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Centos7防火墙firewalld]]></title>
+    <url>%2Fposts%2F450409287.html</url>
+    <content type="text"><![CDATA[firewalld服务命令 1234567systemctl start firewalld #启动systemctl status firewalld #查看状态systemctl stop firewalld #停止systemctl disable firewalld #开机禁止启动systemctl enable firewalld #开机自启firewall-cmd --version #查看版本firewall-cmd --help #查看帮助 firewalld操作 查看操作 查看已开放的服务 1firewall-cmd --list-services #查看已开放的服务 查看可开放的服务 1firewall-cmd --get-services #查看可开放的服务 查看开放的所有端口 1firewall-cmd --zone=public --list-ports #查看开放的所有端口 查看一个端口是否开放 1firewall-cmd --zone=public --query-port=80/tcp 查看区域信息 1firewall-cmd --get-active-zones #查看区域信息 查看指定接口所属区域 1firewall-cmd --get-zone-of-interface=eth0 #查看指定接口所属区域 添加操作 添加开放服务 1firewall-cmd --add-service=http --permanent #http改为要开放的服务，--permanent参数表示永久生效，不加重启后失效 注意：如果要添加的端口没有对应的服务，需新建一个服务，在/usr/lib/firewalld/services目录下新建一个xml文件，如：my.xml,添加以下内容（重启firewalld）： 1234567&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;service&gt;&lt;short&gt;服务名&lt;/short&gt;&lt;description&gt;描述&lt;/description&gt;&lt;port protocol="协议" port="端口号"/&gt;&lt;/service&gt; 开放一个端口 1firewall-cmd --zone=public --add-port=80/tcp --permanent 拒绝操作 拒绝所有数据包 1firewall-cmd --panic-on #拒绝所有数据包 取消拒绝状态 1firewall-cmd --panic-off #取消拒绝状态 查看是否拒绝 1firewall-cmd --query-panic #查看是否拒绝 删除一个已开放的操作 1firewall-cmd --zone=public --remove-port=80/tcp --permanent 更新防火墙规则 1firewall-cmd --reload #重新加载防火墙]]></content>
+      <categories>
+        <category>防火墙</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Centos7系统安装maven环境]]></title>
+    <url>%2Fposts%2F3483075867.html</url>
+    <content type="text"><![CDATA[yum源安装maven 1234wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.reposed -i s/\$releasever/7/g /etc/yum.repos.d/epel-apache-maven.repoyum install -y mavenmvn -version #查看maven版本 修改maven默认仓库为阿里云仓库 编辑/etc/maven/settings.xml，在mirros节点添加以下内容 123456&lt;mirror&gt; &lt;id&gt;alimaven&lt;/id&gt; &lt;name&gt;aliyun maven&lt;/name&gt; &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt; &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;/mirror&gt; mvn命令打包 1mvn clen install -Dmaven.test.skip=true #-Dmaven.test.skip跳过测试， 注：mvn clean package依次执行clean、resources、compile、testResources、testCompile、test、jar(打包)等７个阶段。mvn clean install依次执行clean、resources、compile、testResources、testCompile、test、jar(打包)、install等8个阶段。mvn clean deploy依次执行clean、resources、compile、testResources、testCompile、test、jar(打包)、install、deploy等９个阶段。]]></content>
+      <categories>
+        <category>持续集成</category>
+        <category>jenkins</category>
+      </categories>
+      <tags>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[gitlab配置发送邮箱]]></title>
     <url>%2Fposts%2F2918495377.html</url>
     <content type="text"><![CDATA[修改配置文件 编辑/etc/gitlab/gitlab.rb文件，在文件结尾添加以下内容： 123456789gitlab_rails['smtp_enable'] = truegitlab_rails['smtp_address'] = "smtp.exmail.qq.com"gitlab_rails['smtp_port'] = 465gitlab_rails['smtp_user_name'] = "1066818026@qq.com"gitlab_rails['smtp_password'] = "mail_password"gitlab_rails['smtp_authentication'] = "login"gitlab_rails['smtp_enable_starttls_auto'] = truegitlab_rails['smtp_tls'] = truegitlab_rails['gitlab_email_from'] = '1066818026@qq.com' 重新加载配置 1gitlab-ctl reconfigure #重新加载配置 验证邮件发送 123gitlab-rails console #进入gitlab控制台#发送测试邮件Notify.test_email('1066818026@qq.com', 'gitlab', 'gitlab test').deliver_now 重启gitlab 1gitlab-ctl restart]]></content>
