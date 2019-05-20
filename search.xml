@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Centos7安装python3.6环境]]></title>
+    <url>%2Fposts%2F1247738503.html</url>
+    <content type="text"><![CDATA[yum源安装python3.6 1234567yum install epel-release -yyum install https://centos7.iuscommunity.org/ius-release.rpm -yyum install python36u -yyum install python36u-devel -yln -s /bin/python3.6 /bin/python3 #创建python3软连接yum install python36u-pip -yln -s /bin/pip3.6 /bin/pip3 #创建pip3软连接]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[安装jenkins遇到的错误]]></title>
     <url>%2Fposts%2F4149858732.html</url>
     <content type="text"><![CDATA[No such plugin:cloudbees-folder 用Jenkins的war包部署时,报错如下图:是因为war包中缺少cloudbees-folder.hpi插件，下载该插件放在jenkins程序的WEB-INF/detached-plugins/目录下，重启Jenkins即可cloudbees-folder.hpi下载地址：http://ftp.icm.edu.pl/packages/jenkins/plugins/cloudbees-folder/ Jenkins实例离线 在安装插件时出现该错误，报错如下图:Jenkins在下载插件之前会先检查网络连接，读取.jenkins/updates/default.json(默认在用户家目录下)中的connectionCheckUrl地址，默认是http://www.google.com/,所以会导致网络检测不通过，出现这个错误。将http://www.google.com/替换为http://www.baidu.com/,重启jenkins即可。 修改Jenkins插件下载地址为国内地址 修改文件.jenkins/hudson.model.UpdateCenter.xml，将地址替换为以下两个中的一个：https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.jsonhttp://mirror.esuni.jp/jenkins/updates/update-center.json]]></content>
