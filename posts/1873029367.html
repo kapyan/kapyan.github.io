@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+
+<head>
+  <meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="baidu-site-verification" content="8zMDGR7I0p">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#222">
+
+  <script>
+    (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet"
+                                                                                  type="text/css">
+
+  <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"
+                                                                                  type="text/css">
+
+  <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+  <meta name="keywords" content="tigase">
+
+  <link rel="alternate" href="/atom.xml" title="运维之窗" type="application/atom+xml">
+
+  <meta name="description" content="strophe.muc.js创建房间时的可用配置 Strophe.js的createConfiguredRoom()方法创建群聊房间时需要传递room（房间名）、config（房间配置）必填参数，返回房间的room_id，其中config为json形式，房间可选配置如下：   123456789101112131415161718192021222324//value的0代表false，1代表tr">
+  <meta name="keywords" content="tigase">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="tigase8配置">
+  <meta property="og:url" content="https://www.kapyan.top/posts/1873029367.html">
+  <meta property="og:site_name" content="运维之窗">
+  <meta property="og:description" content="strophe.muc.js创建房间时的可用配置 Strophe.js的createConfiguredRoom()方法创建群聊房间时需要传递room（房间名）、config（房间配置）必填参数，返回房间的room_id，其中config为json形式，房间可选配置如下：   123456789101112131415161718192021222324//value的0代表false，1代表tr">
+  <meta property="og:locale" content="zh-Hans">
+  <meta property="og:updated_time" content="2019-08-02T08:27:50.789Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="tigase8配置">
+  <meta name="twitter:description" content="strophe.muc.js创建房间时的可用配置 Strophe.js的createConfiguredRoom()方法创建群聊房间时需要传递room（房间名）、config（房间配置）必填参数，返回房间的room_id，其中config为json形式，房间可选配置如下：   123456789101112131415161718192021222324//value的0代表false，1代表tr">
+
+  <script type="text/javascript" id="hexo.configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      root: '/',
+      scheme: 'Pisces',
+      version: '5.1.4',
+      sidebar: {
+        "position": "left",
+        "display": "post",
+        "offset": 12,
+        "b2t": false,
+        "scrollpercent": true,
+        "onmobile": true
+      },
+      fancybox: true,
+      tabs: true,
+      motion: {
+        "enable": true,
+        "async": false,
+        "transition": {
+          "post_block": "fadeIn",
+          "post_header": "slideDownIn",
+          "post_body": "slideDownIn",
+          "coll_header": "slideLeftIn",
+          "sidebar": "slideUpIn"
+        }
+      },
+      duoshuo: {
+        userId: '0',
+        author: '没有风的晴天'
+      },
+      algolia: {
+        applicationID: '',
+        apiKey: '',
+        indexName: '',
+        hits: {
+          "per_page": 10
+        },
+        labels: {
+          "input_placeholder": "Search for Posts",
+          "hits_empty": "We didn't find any results for the search: ${query}",
+          "hits_stats": "${hits} results found in ${time} ms"
+        }
+      }
+    };
+
+  </script>
+
+  <link rel="canonical" href="https://www.kapyan.top/posts/1873029367.html">
+
+  <title>tigase8配置 | 运维之窗</title>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        <div class="site-brand-wrapper">
+          <div class="site-meta ">
+
+            <div class="custom-logo-site-title">
+              <a href="/" class="brand" rel="start">
+                <span class="logo-line-before"><i></i></span>
+                <span class="site-title">运维之窗</span>
+                <span class="logo-line-after"><i></i></span>
+              </a>
+            </div>
+
+            <h1 class="site-subtitle" itemprop="description"></h1>
+
+          </div>
+
+          <div class="site-nav-toggle">
+            <button>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+            </button>
+          </div>
+        </div>
+
+        <nav class="site-nav">
+
+          <ul id="menu" class="menu">
+
+            <li class="menu-item menu-item-home">
+              <a href="/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+
+                首页
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-tags">
+              <a href="/tags/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+
+                标签
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-categories">
+              <a href="/categories/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+
+                分类
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-archives">
+              <a href="/archives/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+
+                归档
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-about">
+              <a href="/about/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+
+                关于
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-search">
+
+              <a href="javascript:;" class="popup-trigger">
+
+                <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+
+                搜索
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="site-search">
+
+            <div class="popup search-popup local-search-popup">
+              <div class="local-search-header clearfix">
+                <span class="search-icon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <span class="popup-btn-close">
+                  <i class="fa fa-times-circle"></i>
+                </span>
+                <div class="local-search-input-wrapper">
+                  <input autocomplete="off" placeholder="搜索..." spellcheck="false"
+                                                                                                  type="text"
+                                                                                                  id="local-search-input">
+                </div>
+              </div>
+              <div id="local-search-result"></div>
+            </div>
+
+          </div>
+
+        </nav>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+
+            <div id="posts" class="posts-expand">
+
+              <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="https://www.kapyan.top/posts/1873029367.html">
+
+                  <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="没有风的晴天">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.png">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="运维之窗">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h2 class="post-title" itemprop="name headline">tigase8配置</h2>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">发表于</span>
+
+                        <time title="创建于" itemprop="dateCreated datePublished"
+                                                                                                        datetime="2019-08-02T09:49:05+08:00">
+                          2019-08-02
+                        </time>
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-check-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">更新于&#58;</span>
+
+                        <time title="更新于" itemprop="dateModified" datetime="2019-08-02T16:27:50+08:00">
+                          2019-08-02
+                        </time>
+
+                      </span>
+
+                      <span class="post-category">
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-folder-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">分类于</span>
+
+                        <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                          <a href="/categories/即时通讯/" itemprop="url" rel="index">
+                            <span itemprop="name">即时通讯</span>
+                          </a>
+                        </span>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/posts/1873029367.html#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count valine-comment-count"
+                                                                                                          data-xid="/posts/1873029367.html"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                      <span class="post-meta-divider">|</span>
+                      <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+                        <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+                      </span>
+
+                      <div class="post-wordcount">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-file-word-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">字数统计&#58;</span>
+
+                        <span title="字数统计">
+                          1.7k
+                        </span>
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-clock-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">阅读时长 &asymp;</span>
+
+                        <span title="阅读时长">
+                          8
+                        </span>
+
+                      </div>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <h2 id="strophe-muc-js创建房间时的可用配置"><a href="#strophe-muc-js创建房间时的可用配置"
+                                                                                                      class="headerlink"
+                                                                                                      title="strophe.muc.js创建房间时的可用配置"></a>strophe.muc.js创建房间时的可用配置</h2>
+                    <p>Strophe.js的createConfiguredRoom()方法创建群聊房间时需要传递room（房间名）、config（房间配置）必填参数，返回房间的room_id，其中config为json形式，房间可选配置如下：<br>
+                      <figure class="highlight javascript">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line"></span><br><span class="line"><span class="comment">//value的0代表false，1代表true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> config = &#123;</span><br><span class="line">	<span class="string">"muc#roomconfig_roomname"</span>:<span class="string">"房间名"</span>,	<span class="comment">//房间名</span></span><br><span class="line">	<span class="string">"muc#roomconfig_roomdesc"</span>:<span class="string">"房间描述"</span>, <span class="comment">//房间描述 </span></span><br><span class="line">	<span class="string">"muc#roomconfig_enablelogging"</span>:<span class="string">"0"</span>,  <span class="comment">//启用公共日志记录</span></span><br><span class="line">	<span class="string">"muc#roomconfig_changesubject"</span>:<span class="string">"1"</span>,	<span class="comment">//允许占有者更改主题</span></span><br><span class="line">	<span class="string">"muc#roomconfig_allowinvites"</span>:<span class="string">"1"</span>,	<span class="comment">//允许占有者要请其他人</span></span><br><span class="line">	<span class="string">"muc#roomconfig_allowpm"</span>:<span class="string">"anyone"</span>,		<span class="comment">//允许谁可以发送私有消息，可选值：anyone（任何人）、participants（参与者）、moderators（主持人）、none（没有人）</span></span><br><span class="line">	<span class="string">"muc#roomconfig_maxusers"</span>:<span class="string">"500"</span>,	<span class="comment">//房间最大占用人数，none表示不限</span></span><br><span class="line">	<span class="string">"muc#roomconfig_presencebroadcast"</span>:<span class="string">"moderator"</span>,  <span class="comment">//存在的广播角色，可选值：moderator（主持者），participant（参与者），visitor（访问者）</span></span><br><span class="line">	<span class="string">"muc#roomconfig_getmemberlist"</span>:<span class="string">"moderator"</span>,	<span class="comment">//可以检索成员列表的角色和附属关系,可选值：moderator（主持者），participant（参与者），visitor（访问者）</span></span><br><span class="line">	<span class="string">"muc#roomconfig_publicroom"</span>:<span class="string">"1"</span>,	<span class="comment">//房间是否可以公开搜索</span></span><br><span class="line">	<span class="string">"muc#roomconfig_persistentroom"</span>:<span class="string">"1"</span>,	<span class="comment">//房间是否持久</span></span><br><span class="line">	<span class="string">"muc#roomconfig_moderatedroom"</span>:<span class="string">"0"</span>,		<span class="comment">//房间适中</span></span><br><span class="line">	<span class="string">"muc#roomconfig_membersonly"</span>:<span class="string">"0"</span>,		<span class="comment">//房间仅限会议成员</span></span><br><span class="line">	<span class="string">"muc#roomconfig_passwordprotectedroom"</span>:<span class="string">"0"</span>,  <span class="comment">//进入房间是否需要密码</span></span><br><span class="line">	<span class="string">"muc#roomconfig_roomsecret"</span>:<span class="string">"roompassword"</span>,		<span class="comment">//房间密码</span></span><br><span class="line">	<span class="string">"muc#roomconfig_whois"</span>:<span class="string">"moderators"</span>,	<span class="comment">//谁可以发现真实的jid，可选值：moderators（主持者）、anyone（任何人）</span></span><br><span class="line">	<span class="string">"muc#maxhistoryfetch"</span>:<span class="string">"50"</span>,			<span class="comment">//房间返回的最大历史记录条数</span></span><br><span class="line">	<span class="string">"muc#roomconfig_roomadmins"</span>:<span class="string">"wiccarocks@shakespeare.lit"</span>,		<span class="comment">//指定房间为其他管理员的jid，多个以数组形式表现</span></span><br><span class="line">	<span class="string">"muc#roomconfig_roomowners"</span>:<span class="string">"wiccarocks@shakespeare.lit"</span>,  <span class="comment">//指定房间为其他所属者的jid，多个以数组形式表现</span></span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <p>附：strophe插件GitHub地址：<a href="https://github.com/strophe">https://github.com/strophe</a></p>
+                    <h2 id="配置文件-config-tdsl"><a href="#配置文件-config-tdsl" class="headerlink"
+                                                                                                      title="配置文件(config.tdsl)"></a>配置文件(config.tdsl)</h2>
+                    <h3 id="集群配置（ACS）"><a href="#集群配置（ACS）" class="headerlink"
+                                                                                                      title="集群配置（ACS）"></a>集群配置（ACS）</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="comment">#启用集群模式</span></span><br><span class="line"><span class="string">'cluster-mode'</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#群聊集群</span></span><br><span class="line"><span class="function"><span class="title">muc</span></span> () &#123;</span><br><span class="line">	<span class="comment">#默认使用ShardingStrategy策略，适用房间数量不多、用户数量较多的场景</span></span><br><span class="line">	strategy (class: tigase.muc.cluster.ShardingStrategy) &#123;&#125;</span><br><span class="line">	<span class="comment">#ClusteredRoomStrategy适用于房间数量较少、但是占用者较多的场景</span></span><br><span class="line">	strategy (class: tigase.muc.cluster.ClusteredRoomStrategy) &#123;&#125;</span><br><span class="line">	<span class="comment">#ClusteredRoomStrategyV2是对ClusteredRoomStrategy的改进</span></span><br><span class="line">	strategy (class: tigase.muc.cluster.ClusteredRoomStrategyV2) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#发布订阅集群</span></span><br><span class="line"><span class="function"><span class="title">pubsub</span></span> () &#123;</span><br><span class="line">    strategy (class: tigase.pubsub.cluster.PartitionedStrategy) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">'sess-man'</span> &#123;</span><br><span class="line">	<span class="comment">#启用ACS策略</span></span><br><span class="line">    strategy (class: tigase.server.cluster.strategy.OnlineUsersCachingStrategy) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#集群工作组</span></span><br><span class="line"><span class="function"><span class="title">wg</span></span> () &#123;&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="日志审计（AuditLog）"><a href="#日志审计（AuditLog）" class="headerlink"
+                                                                                                      title="日志审计（AuditLog）"></a>日志审计（AuditLog）</h3>
+                    <p>更改日志文件位置需修改etc/logback.xml<br>
+                      <figure class="highlight bash">
+                        <table>
+                          <tr>
+                            <td class="gutter">
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre>
+                            </td>
+                            <td class="code">
+                              <pre><span class="line">&lt;configuration scan=<span class="string">"true"</span>&gt;</span><br><span class="line">        &lt;appender name=<span class="string">"FILE"</span> class=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span><br><span class="line">                &lt;file&gt;logs/auditlogs/auditlog.log&lt;/file&gt;</span><br><span class="line">                &lt;rollingPolicy class=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span><br><span class="line">                &lt;!-- rollover hourly --&gt;</span><br><span class="line">                        &lt;fileNamePattern&gt;logs/auditlogs/auditlog-%d&#123;yyyy-MM-dd_HH&#125;.%i.log.gz&lt;/fileNamePattern&gt;</span><br><span class="line">                        &lt;timeBasedFileNamingAndTriggeringPolicy</span><br><span class="line">                        class=<span class="string">"ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"</span>&gt;</span><br><span class="line">                        &lt;!-- or whenever the file size reaches 50MB --&gt;</span><br><span class="line">                                &lt;maxFileSize&gt;50MB&lt;/maxFileSize&gt;</span><br><span class="line">                        &lt;/timeBasedFileNamingAndTriggeringPolicy&gt;</span><br><span class="line">                        &lt;!-- No Limit --&gt;</span><br><span class="line">                        &lt;maxHistory&gt;0&lt;/maxHistory&gt;</span><br><span class="line">                &lt;/rollingPolicy&gt;</span><br><span class="line">                &lt;encoder&gt;</span><br><span class="line">                        &lt;charset&gt;UTF-8&lt;/charset&gt;</span><br><span class="line">                        &lt;pattern&gt;%msg%n&lt;/pattern&gt;</span><br><span class="line">                &lt;/encoder&gt;</span><br><span class="line">        &lt;/appender&gt;</span><br><span class="line"></span><br><span class="line">        &lt;logger name=<span class="string">"tigase.auditlog"</span> level=<span class="string">"trace"</span>/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;root level=<span class="string">"warn"</span>&gt;</span><br><span class="line">                &lt;appender-ref ref=<span class="string">"FILE"</span>/&gt;</span><br><span class="line">        &lt;/root&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre>
+                            </td>
+                          </tr>
+                        </table>
+                      </figure>
+                    </p>
+                    <blockquote>
+                      <ul>
+                        <li>审计日志文件名为logs/auditlogs/auditlog-%d{yyyy-MM-dd_HH}.%i.log.gz</li>
+                        <li>每50MB和每天将日志滚动到新文件</li>
+                      </ul>
+                    </blockquote>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="comment">#启用日志审计</span></span><br><span class="line"><span class="string">'audit-log'</span> () &#123;</span><br><span class="line">    <span class="function"><span class="title">memoryRepository</span></span> () &#123;&#125;</span><br><span class="line">    <span class="function"><span class="title">slf4jRepository</span></span> () &#123;&#125;</span><br><span class="line">    <span class="comment">#可搜索存储库配置，存储在数据库中</span></span><br><span class="line">    <span class="function"><span class="title">searchableRepository</span></span> () &#123;</span><br><span class="line">    	<span class="string">'data-source'</span> = <span class="string">'auditlogDataSource'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">dataSource &#123;</span><br><span class="line">    <span class="comment">#日志审计数据库连接</span></span><br><span class="line">    <span class="function"><span class="title">auditlogDataSource</span></span> () &#123;</span><br><span class="line">        uri = <span class="string">'jdbc:mysql://..'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">'sess-man'</span> () &#123;</span><br><span class="line">    <span class="string">'audit-log'</span> () &#123;</span><br><span class="line">    	<span class="comment">#禁用记录客户端和服务器之间未交换的数据包，默认启用</span></span><br><span class="line">    	<span class="string">'only-user-packets'</span> = <span class="literal">false</span></span><br><span class="line">    	<span class="comment">#仅记录用户收到的数据包</span></span><br><span class="line">    	<span class="string">'only-from-user-connection'</span> = <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="HTTP配置"><a href="#HTTP配置" class="headerlink" title="HTTP配置"></a>HTTP配置</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">httpServer &#123;</span><br><span class="line">    connections &#123;</span><br><span class="line">    	8080 (active:<span class="literal">false</span>) &#123;&#125;</span><br><span class="line">        <span class="function"><span class="title">8443</span></span> () &#123;</span><br><span class="line">            socket = ssl  <span class="comment">#plain使用http协议，ssl使用https协议</span></span><br><span class="line">            domain = <span class="string">'example.com'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    executor &#123;</span><br><span class="line">    	threads = <span class="string">'10'</span>	<span class="comment">#处理http请求的线程数</span></span><br><span class="line">    	request-timeout = <span class="string">'30000'</span>	<span class="comment">#单位毫秒</span></span><br><span class="line">    	accept-timeout = <span class="string">'2000'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">'certificate-container'</span> &#123;</span><br><span class="line">    <span class="string">'custom-certificates'</span> &#123;</span><br><span class="line">        <span class="string">'tim.wanxuntong.net'</span> = <span class="string">'/var/opt/tigase-server-8.0/certs/tim.wanxuntong.net.pem'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">http &#123;</span><br><span class="line">	<span class="comment">#禁用http相关模块，可选模块admin、index、rest、dns-webservice、ui、setup</span></span><br><span class="line">    %module_id% (active: <span class="literal">false</span>) &#123;&#125;</span><br><span class="line">    rest &#123;</span><br><span class="line">    	<span class="comment">#指定请求路径</span></span><br><span class="line">    	context-path = <span class="string">'/api'</span></span><br><span class="line">    	<span class="comment">#绑定域名</span></span><br><span class="line">    	vhosts = [<span class="string">'api.example.com'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#文件上传</span></span><br><span class="line"><span class="function"><span class="title">upload</span></span>() &#123;</span><br><span class="line">	logic &#123;</span><br><span class="line">        <span class="built_in">local</span>-only = <span class="literal">false</span></span><br><span class="line">        <span class="comment">#文件大小限制</span></span><br><span class="line">        max-file-size = 10485760</span><br><span class="line">        <span class="comment">#上传格式</span></span><br><span class="line">        upload-uri-format = <span class="string">'&#123;proto&#125;://&#123;serverName&#125;:&#123;port&#125;/upload/&#123;userJid&#125;/&#123;slotId&#125;/&#123;filename&#125;'</span></span><br><span class="line">        <span class="comment">#下载格式</span></span><br><span class="line">        download-uri-format = <span class="string">'&#123;proto&#125;://&#123;serverName&#125;:&#123;port&#125;/upload/&#123;domain&#125;/&#123;slotId&#125;/&#123;filename&#125;'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    expiration &#123;</span><br><span class="line">    	<span class="comment">#过期时间</span></span><br><span class="line">        period = P6H</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    repositoryPool &#123;</span><br><span class="line">    	<span class="comment">#域名</span></span><br><span class="line">        <span class="string">'example.com'</span> () &#123;</span><br><span class="line">            data-source = <span class="string">"file_upload"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    store &#123;</span><br><span class="line">        group-by-user = <span class="literal">true</span></span><br><span class="line">        <span class="comment">#存储路径</span></span><br><span class="line">        path = <span class="string">'/mnt/shared/upload'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="消息存档（message-archive）"><a href="#消息存档（message-archive）"
+                                                                                                      class="headerlink"
+                                                                                                      title="消息存档（message-archive）"></a>消息存档（message-archive）</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="string">'message-archive'</span> () &#123;</span><br><span class="line">    <span class="string">'archive-repo-uri'</span> = <span class="string">'jdbc:mysql://localhost/messagearchivedb?user=test&amp;password=test'</span></span><br><span class="line">    <span class="comment">#归档池大小，消息量大时可减轻服务器负载</span></span><br><span class="line">    <span class="string">'pool-size'</span> = 15	</span><br><span class="line">    <span class="comment">#开启消息清除功能</span></span><br><span class="line">    <span class="string">'remove-expired-messages'</span> = <span class="literal">true</span></span><br><span class="line">    <span class="comment">#设置为服务器启动两小时后开始启动消息清除功能（延时启动）	</span></span><br><span class="line">    <span class="string">'remove-expired-messages-delay'</span> = <span class="string">'PT2H'</span></span><br><span class="line">    <span class="comment">#消息清除的时间间隔，两天一次</span></span><br><span class="line">    <span class="string">'remove-expired-messages-period'</span> = <span class="string">'PT2D'</span></span><br><span class="line">&#125;</span><br><span class="line">sess-man &#123;</span><br><span class="line">	message-archive &#123;</span><br><span class="line">		<span class="comment">#消息归档级别，false（不归档）、body（仅存储正文）、message（消息节）</span></span><br><span class="line">        default-store-method = <span class="string">'message'</span></span><br><span class="line">        required-store-method = <span class="string">'body'</span></span><br><span class="line">        msg-archive-paths = [ <span class="string">'-/message/result[urn:xmpp:mam:1]'</span> <span class="string">'/message/body'</span>, <span class="string">'/message/subject'</span> ]</span><br><span class="line">        tags-support = <span class="literal">true</span></span><br><span class="line">        store-muc-messages = <span class="string">'true'</span></span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">#XEP-0136支持</span></span><br><span class="line">    message-archive-xep-<span class="function"><span class="title">0136</span></span> () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">'urn：xmpp：mam：1'</span> () &#123;&#125;	<span class="comment">#支持MAM,如果要将消息归档组件与XEP-0313：消息归档管理协议一起使用,则启用</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="群聊（muc）"><a href="#群聊（muc）" class="headerlink"
+                                                                                                      title="群聊（muc）"></a>群聊（muc）</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">dataSource &#123;</span><br><span class="line">    muc-<span class="function"><span class="title">store</span></span> () &#123;</span><br><span class="line">        uri = <span class="string">'jdbc:postgresql://server/muc-database'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">muc</span></span> () &#123;</span><br><span class="line">	<span class="string">'message-filter-enabled'</span> = <span class="literal">false</span>		<span class="comment">#消息过滤，禁用只允许将&lt;body/&gt;元素传递给参与者</span></span><br><span class="line">	<span class="string">'presence-filter-enabled'</span> = <span class="literal">false</span>		<span class="comment">#状态过滤，禁用过滤器并允许MUC传输&lt;presence/&gt;中的所有子元素</span></span><br><span class="line">	<span class="string">'search-ghosts-every-minute'</span>= trues 	<span class="comment">#每分钟检查用户是否仍然连接，默认是5分钟</span></span><br><span class="line">	<span class="string">'ghostbuster-enabled'</span>= <span class="literal">false</span>			<span class="comment">#禁用发现连接</span></span><br><span class="line">	<span class="string">'muc-allow-chat-states'</span>= <span class="literal">true</span> 			<span class="comment">#允许传输聊天状态</span></span><br><span class="line">	<span class="string">'muc-lock-new-room'</span> = <span class="literal">false</span>				<span class="comment">#禁止锁定新房间</span></span><br><span class="line">	<span class="string">'muc-multi-item-allowed'</span>= <span class="literal">false</span> 		<span class="comment">#禁用单个昵称下的多个资源加入</span></span><br><span class="line">	<span class="string">'legacy-delayed-delivery-enabled'</span>= <span class="literal">true</span> 	<span class="comment">#启用对XEP-0091的支持</span></span><br><span class="line">    muc-dao &#123;</span><br><span class="line">        <span class="function"><span class="title">default</span></span> () &#123;</span><br><span class="line">            dataSourceName = <span class="string">'muc-store'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">#房间默认配置</span></span><br><span class="line">    defaultRoomConfig &#123;</span><br><span class="line">        maxhistoryfetch = 0					<span class="comment">#最大消息历史记录（不限）</span></span><br><span class="line">        roomconfig_membersonly = <span class="literal">false</span>		<span class="comment">#禁止仅限成员</span></span><br><span class="line">        roomconfig_persistentroom = <span class="literal">true</span> 	<span class="comment">#永久性房间</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">#群聊日志</span></span><br><span class="line">    <span class="string">'muc-logger'</span> () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">#日志目录</span></span><br><span class="line">    <span class="string">'room-log-directory'</span> = <span class="string">'/var/log/muc/'</span></span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="发布订阅（PUBSUB）"><a href="#发布订阅（PUBSUB）" class="headerlink"
+                                                                                                      title="发布订阅（PUBSUB）"></a>发布订阅（PUBSUB）</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="function"><span class="title">pubsub</span></span> () &#123;</span><br><span class="line">	<span class="comment">#启用XEP-0163：个人事件协议支持</span></span><br><span class="line">	persistent-pep = <span class="literal">true</span></span><br><span class="line">    send-last-published-item-on-presence = <span class="literal">true</span></span><br><span class="line">    <span class="comment">#使用REST API</span></span><br><span class="line">    trusted = [<span class="string">'http @ &#123;clusterNode&#125;'</span>]</span><br><span class="line">    <span class="comment">#设置缓存，默认2000</span></span><br><span class="line">    pubsub-repository-cache-size = 4000</span><br><span class="line">    <span class="comment">#允许用户在广播初始状态下发送上次发布的项目</span></span><br><span class="line">    send-last-published-item-on-presence = <span class="literal">true</span></span><br><span class="line">    <span class="comment">#调整低内存处理</span></span><br><span class="line">    pubsub-high-memory-usage-level = 95		<span class="comment">#接近OOM状态的堆内存百分比</span></span><br><span class="line">    pubsub-low-memory-delay = 100			<span class="comment">#等待节流通知的毫秒数</span></span><br><span class="line">    auto-subscribe-node-creator = <span class="literal">false</span> 	<span class="comment">#禁止将创建者订阅到pubsub节点并向创建者传递通知</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="string">'sess-man'</span> () &#123;</span><br><span class="line">    <span class="string">'presence-offline'</span> () &#123;&#125;</span><br><span class="line">    <span class="comment">#向脱机用户广播探测</span></span><br><span class="line">    <span class="string">'skip-offline'</span> = <span class="string">'false'</span></span><br><span class="line">    <span class="string">'skip-offline-sys'</span> = <span class="string">'false'</span></span><br><span class="line">    <span class="string">'delay-stamp'</span> = <span class="string">'false'</span>	<span class="comment">#禁用延迟标志</span></span><br><span class="line">    <span class="string">'probe-full-jid'</span> = <span class="string">'true'</span>	<span class="comment">#仅探测响应限制为新连接的资源</span></span><br><span class="line">     <span class="comment">#启用XEP-0163</span></span><br><span class="line">     <span class="function"><span class="title">pep</span></span> () &#123;</span><br><span class="line">     	<span class="string">'pubsub-jid'</span>=<span class="string">'events@servername.com'</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#启用XEP-0163</span></span><br><span class="line"><span class="function"><span class="title">events</span></span> () &#123;</span><br><span class="line">    persistent-pep = <span class="literal">true</span></span><br><span class="line">    send-last-published-item-on-presence = <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+
+                  </div>
+
+                  <div style="text-align:center;color: #ccc;font-size:14px;">----------------
+                    (*￣︶￣)我是结束线(*￣︶￣) ----------------</div>
+
+                  <div>
+                    <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+                      <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg"
+                                                                                                      alt="没有风的晴天 wechat"
+                                                                                                      style="width: 200px; max-width: 100%;">
+                      <div>扫一扫，加我微信</div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>打赏</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wechatpay.jpg" alt="没有风的晴天 微信支付">
+                          <p>微信支付</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/alipay.jpg" alt="没有风的晴天 支付宝">
+                          <p>支付宝</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <ul class="post-copyright">
+                      <li class="post-copyright-author">
+                        <strong>本文作者：</strong>
+                        没有风的晴天
+                      </li>
+                      <li class="post-copyright-link">
+                        <strong>本文链接：</strong>
+                        <a href="https://www.kapyan.top/posts/1873029367.html"
+                                                                                                        title="tigase8配置">https://www.kapyan.top/posts/1873029367.html</a>
+                      </li>
+                      <li class="post-copyright-license">
+                        <strong>版权声明： </strong>
+                        本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
+                                                                                                        rel="external nofollow"
+                                                                                                        target="_blank">CC
+                          BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+                      </li>
+                    </ul>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-tags">
+
+                      <a href="/tags/即时通讯/" rel="tag"><i class="fa fa-tag"></i>
+                        即时通讯</a>
+
+                    </div>
+
+                    <div class="post-widgets">
+
+                      <div id="needsharebutton-postbottom">
+                        <span class="btn">
+                          <i class="fa fa-share-alt" aria-hidden="true"></i>
+                        </span>
+                      </div>
+
+                    </div>
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/posts/3413315135.html" rel="next" title="tigase8服务搭建">
+                          <i class="fa fa-chevron-left"></i> tigase8服务搭建
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                      </div>
+                    </div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <div class="post-spread">
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="comments" id="comments">
+            <div id="SOHUCS"></div>
+          </div>
+
+        </div>
+
+        <div class="sidebar-toggle">
+          <div class="sidebar-toggle-line-wrap">
+            <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+          </div>
+        </div>
+
+        <aside id="sidebar" class="sidebar">
+
+          <div id="sidebar-dimmer"></div>
+
+          <div class="sidebar-inner">
+
+            <ul class="sidebar-nav motion-element">
+              <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                文章目录
+              </li>
+              <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+                站点概览
+              </li>
+            </ul>
+
+            <section class="site-overview-wrap sidebar-panel">
+              <div class="site-overview">
+                <div class="site-author motion-element" itemprop="author"
+                                                                                                itemscope=""
+                                                                                                itemtype="http://schema.org/Person">
+
+                  <img class="site-author-image" itemprop="image" src="/images/avatar.png"
+                                                                                                  alt="没有风的晴天">
+
+                  <p class="site-author-name" itemprop="name">没有风的晴天</p>
+                  <p class="site-description motion-element" itemprop="description"></p>
+                </div>
+
+                <nav class="site-state motion-element">
+
+                  <div class="site-state-item site-state-posts">
+
+                    <a href="/archives/">
+
+                      <span class="site-state-item-count">43</span>
+                      <span class="site-state-item-name">日志</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-categories">
+                    <a href="/categories/index.html">
+                      <span class="site-state-item-count">24</span>
+                      <span class="site-state-item-name">分类</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-tags">
+                    <a href="/tags/index.html">
+                      <span class="site-state-item-count">27</span>
+                      <span class="site-state-item-name">标签</span>
+                    </a>
+                  </div>
+
+                </nav>
+
+                <div class="feed-link motion-element">
+                  <a href="/atom.xml" rel="alternate">
+                    <i class="fa fa-rss"></i>
+                    RSS
+                  </a>
+                </div>
+
+                <div class="links-of-author motion-element">
+
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kapyan" target="_blank" title="GitHub">
+
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+
+                  <span class="links-of-author-item">
+                    <a href="mailto:15929461370@163.com" target="_blank" title="E-Mail">
+
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+
+                </div>
+
+                <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+                  <div class="links-of-blogroll-title">
+                    <i class="fa  fa-fw fa-link"></i>
+                    友情链接
+                  </div>
+                  <ul class="links-of-blogroll-list">
+
+                    <li class="links-of-blogroll-item">
+                      <a href="http://music.new1.fun" title="在线音乐" target="_blank"
+                                                                                                      rel="external nofollow">在线音乐</a>
+                    </li>
+
+                    <li class="links-of-blogroll-item">
+                      <a href="http://video.kapyan.top" title="小熊影院" target="_blank"
+                                                                                                      rel="external nofollow">小熊影院</a>
+                    </li>
+
+                  </ul>
+                </div>
+
+                <!-- CloudCalendar -->
+                <div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+                  <div class="widget" id="CloudCalendar"></div>
+                </div>
+
+              </div>
+            </section>
+
+            <!--noindex-->
+            <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+              <div class="post-toc">
+
+                <div class="post-toc-content">
+                  <ol class="nav">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#strophe-muc-js创建房间时的可用配置"><span
+                                                                                                        class="nav-number">1.</span>
+                        <span class="nav-text">strophe.muc.js创建房间时的可用配置</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件-config-tdsl"><span
+                                                                                                        class="nav-number">2.</span>
+                        <span class="nav-text">配置文件(config.tdsl)</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#集群配置（ACS）"><span
+                                                                                                            class="nav-number">2.1.</span>
+                            <span class="nav-text">集群配置（ACS）</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#日志审计（AuditLog）"><span
+                                                                                                            class="nav-number">2.2.</span>
+                            <span class="nav-text">日志审计（AuditLog）</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#HTTP配置"><span
+                                                                                                            class="nav-number">2.3.</span>
+                            <span class="nav-text">HTTP配置</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#消息存档（message-archive）"><span
+                                                                                                            class="nav-number">2.4.</span>
+                            <span class="nav-text">消息存档（message-archive）</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#群聊（muc）"><span
+                                                                                                            class="nav-number">2.5.</span>
+                            <span class="nav-text">群聊（muc）</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#发布订阅（PUBSUB）"><span
+                                                                                                            class="nav-number">2.6.</span>
+                            <span class="nav-text">发布订阅（PUBSUB）</span></a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </div>
+
+              </div>
+            </section>
+            <!--/noindex-->
+
+          </div>
+        </aside>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+          <span class="with-love">
+            <i class="fa fa-user"></i>
+          </span>
+          <span class="author" itemprop="copyrightHolder">没有风的晴天</span>
+
+          <span class="post-meta-divider">|</span>
+          <span class="post-meta-item-icon">
+            <i class="fa fa-area-chart"></i>
+          </span>
+
+          <span class="post-meta-item-text">Site words total count&#58;</span>
+
+          <span title="Site words total count">71.9k</span>
+
+        </div>
+
+        <div class="footer-custom">
+          <div class="BbeiAn-info">陕ICP备-<a target="_blank" href="http://www.miitbeian.gov.cn/">17003351号-1</a></div>
+        </div>
+
+        <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+        <script>
+          if (window.mermaid) {
+            mermaid.initialize("");
+          }
+
+        </script>
+
+        <div class="busuanzi-count">
+          <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+          <span class="site-uv">
+            <i class="fa fa-user"></i> 访问人数
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+
+          </span>
+
+          <span class="site-pv">
+            <i class="fa fa-eye"></i> 总访问量
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+
+          </span>
+
+        </div>
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+
+      <span id="scrollpercent"><span>0</span>%</span>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+      window.Promise = null;
+    }
+
+  </script>
+
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments',
+      verify: false,
+      notify: false,
+      appId: '1uJhiP6vGE0RaH5RJqLlYUox-gzGzoHsz',
+      appKey: '4EOLRvSTdvlcznGaj6HrfHKs',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      guest_info: guest,
+      pageSize: '10' || 10,
+    });
+
+  </script>
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+    var onPopupClose = function(e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append(
+          '<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css(
+        'text-align', 'center');
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(
+                  /<[^>]+>/g, "");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if (title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text,
+                      caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0,
+                        position = [],
+                        index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word,
+                          startPosition)) > -1) {
+                        index.push({
+                          position: position,
+                          word: word
+                        });
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+                    indexOfTitle = indexOfTitle.concat(
+                      getIndexByWord(keyword,
+                        titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(
+                      getIndexByWord(keyword,
+                        contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length >
+                    0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length +
+                      indexOfContent.length;
+                  }
+                }
+                // show search results
+                if (isMatch) {
+                  // sort index by position of keyword
+                  [indexOfTitle, indexOfContent].forEach(function(
+                    index) {
+                    index.sort(function(itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft
+                        .position) {
+                        return itemRight.position -
+                          itemLeft.position;
+                      } else {
+                        return itemLeft.word.length -
+                          itemRight.word.length;
+                      }
+                    });
+                  });
+                  // merge hits into slices
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index
+                      .length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({
+                        position: position,
+                        length: word.length
+                      });
+                      var wordEnd = position + word.length;
+                      // move to next position of hit
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0,
+                      title.length, indexOfTitle));
+                  }
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length -
+                      1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content,
+                      start, end, indexOfContent));
+                  }
+                  // sort slices in content by search text's count and hits' count
+                  slicesOfContent.sort(function(sliceLeft,
+                    sliceRight) {
+                    if (sliceLeft.searchTextCount !==
+                      sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount -
+                        sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !==
+                      sliceRight.hits.length) {
+                      return sliceRight.hits.length -
+                        sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+                  // select top N slices in content
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0,
+                      upperBound);
+                  }
+                  // highlight title and content
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function(hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' +
+                        text.substring(hit.position, end) +
+                        '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+                  var resultItem = '';
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" +
+                      highlightKeyword(title, slicesOfTitle[0]) +
+                      "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" + title +
+                      "</a>";
+                  }
+                  slicesOfContent.forEach(function(slice) {
+                    resultItem += "<a href='" + articleUrl +
+                      "'>" +
+                      "<p class=\"search-result\">" +
+                      highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function(resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft
+                    .searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList =
+                '<ul class=\"search-result-list\">';
+              resultItems.forEach(function(result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function(event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+          proceedsearch();
+        }
+      });
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function(event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+  </script>
+
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    pbOptions = {};
+    pbOptions.iconStyle = "default";
+    pbOptions.boxForm = "horizontal";
+    pbOptions.position = "bottomCenter";
+    pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+
+  </script>
+
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+  <!-- calendar widget -->
+
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+</body>
+
+</html>
