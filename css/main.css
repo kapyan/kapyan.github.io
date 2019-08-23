@@ -2379,7 +2379,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #57ff6a;
+  background: #5b7dd5;
 }
 
 .links-of-blogroll {
@@ -4057,4 +4057,14 @@ pre {
 
 .list-wrapper-wap {
   display: none;
+}
+
+@media (max-width: 767px) {
+  .content-wrap {
+    width: 100%;
+    padding: 20px;
+    min-height: auto;
+    margin-bottom: 30px;
+    border-radius: initial;
+  }
 }
