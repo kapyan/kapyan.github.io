@@ -53,7 +53,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="运维之窗">
-  <meta property="og:url" content="https://www.kapyan.top/tags/openstack/index.html">
+  <meta property="og:url" content="https://www.kapyan.top/tags/OpenStack/index.html">
   <meta property="og:site_name" content="运维之窗">
   <meta property="og:locale" content="zh-Hans">
   <meta name="twitter:card" content="summary">
@@ -107,9 +107,9 @@
 
   </script>
 
-  <link rel="canonical" href="https://www.kapyan.top/tags/openstack/">
+  <link rel="canonical" href="https://www.kapyan.top/tags/OpenStack/">
 
-  <title>标签: openstack | 运维之窗</title>
+  <title>标签: OpenStack | 运维之窗</title>
 
 </head>
 
@@ -240,7 +240,7 @@
 
               <div id="posts" class="posts-collapse">
                 <div class="collection-title">
-                  <h2>openstack<small>标签</small>
+                  <h2>OpenStack<small>标签</small>
                   </h2>
                 </div>
 
@@ -249,19 +249,19 @@
 
                     <h3 class="post-title">
 
-                      <a class="post-title-link" href="/posts/1681399788.html"
+                      <a class="post-title-link" href="/posts/2462062835.html"
                                                                                                       itemprop="url">
 
-                        <span itemprop="name">OpenStack部署</span>
+                        <span itemprop="name">OpenStack各服务组件及架构</span>
 
                       </a>
 
                     </h3>
 
                     <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-03-29T13:42:07+08:00"
-                                                                                                      content="2019-03-29">
-                        03-29
+                      <time class="post-time" itemprop="dateCreated" datetime="2019-04-16T08:50:11+08:00"
+                                                                                                      content="2019-04-16">
+                        04-16
                       </time>
                     </div>
 
@@ -502,49 +502,28 @@
 
   <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
   <script type="text/javascript">
-    (function() {
-      var appid = 'cyu5jPBKt';
-      var conf = 'c5ce34b4cfb52fb37a87120bf5d492e1';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-        window.document.write(
-          '<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' +
-          appid + '&conf=' + conf + '"><\/script>');
-      } else {
-        var loadJs = function(d, a) {
-          var c = document.getElementsByTagName("head")[0] || document.head ||
-            document.documentElement;
-          var b = document.createElement("script");
-          b.setAttribute("type", "text/javascript");
-          b.setAttribute("charset", "UTF-8");
-          b.setAttribute("src", d);
-          if (typeof a === "function") {
-            if (window.attachEvent) {
-              b.onreadystatechange = function() {
-                var e = b.readyState;
-                if (e === "loaded" || e === "complete") {
-                  b.onreadystatechange = null;
-                  a()
-                }
-              }
-            } else {
-              b.onload = a
-            }
-          }
-          c.appendChild(b)
-        };
-        loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
-          window.changyan.api.config({
-            appid: appid,
-            conf: conf
-          })
-        });
-      }
-    })();
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments',
+      verify: false,
+      notify: false,
+      appId: '1uJhiP6vGE0RaH5RJqLlYUox-gzGzoHsz',
+      appKey: '4EOLRvSTdvlcznGaj6HrfHKs',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      guest_info: guest,
+      pageSize: '10' || 10,
+    });
 
   </script>
-  <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
 
   <script type="text/javascript">
     // Popup Window;
@@ -902,10 +881,6 @@
 
   <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
   <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
-
-</body>
-
-</html>
 
 </body>
 
