@@ -8,6 +8,7 @@
 }
 
 #QPlayer {
+  z-index: 999;
   position: fixed;
   overflow: hidden;
   bottom: 62px;
