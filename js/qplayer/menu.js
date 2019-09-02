@@ -1,488 +1,488 @@
 	var playlist = [{
 	  title: "听妈妈的话",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/897e267a2c7f2d5a90aa39c25b9d054b.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/897e267a2c7f2d5a90aa39c25b9d054b.mp3"
 	}, {
 	  title: "红模仿",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/8da366a6d888f5b8730cff2142255917.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/8da366a6d888f5b8730cff2142255917.mp3"
 	}, {
 	  title: "退后",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/25a59c2628ea8a6204a401f242b671bf.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/25a59c2628ea8a6204a401f242b671bf.mp3"
 	}, {
 	  title: "千里之外",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/ed0cb2c60118c2d65dbbcc750abcbc15.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/ed0cb2c60118c2d65dbbcc750abcbc15.mp3"
 	}, {
 	  title: "一路向北",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/20531a4711d530188a3b49b46cb079cf.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/20531a4711d530188a3b49b46cb079cf.mp3"
 	}, {
 	  title: "夜曲",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/de683d3e155b317b5ad04b17d3fb2f91.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/de683d3e155b317b5ad04b17d3fb2f91.mp3"
 	}, {
 	  title: "珊瑚海",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/de6598634d49a747b810f15cb2054849.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/de6598634d49a747b810f15cb2054849.mp3"
 	}, {
 	  title: "飘移",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/54aaa8c40fb6438b23579b2e583fe889.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/54aaa8c40fb6438b23579b2e583fe889.mp3"
 	}, {
 	  title: "公公偏头痛",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/070ea62072384ad7d509819b9e0828ac.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/070ea62072384ad7d509819b9e0828ac.mp3"
 	}, {
 	  title: "哪里都是你",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/d1e734e6d136e6f034d94d2d72bad5c6.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/d1e734e6d136e6f034d94d2d72bad5c6.flac"
 	}, {
 	  title: "四季列车",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/e7a0c352c44985e65fd48bc9588572b7.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/e7a0c352c44985e65fd48bc9588572b7.flac"
 	}, {
 	  title: "大笨钟",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/d287fe912dbba62264f38346f49c5f93.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/d287fe912dbba62264f38346f49c5f93.flac"
 	}, {
 	  title: "手语",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/3911294be96621f2dc8724765a48aead.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/3911294be96621f2dc8724765a48aead.flac"
 	}, {
 	  title: "梦想启动",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/c3b78f8c05e7a285d30bde0be3f2d06f.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/c3b78f8c05e7a285d30bde0be3f2d06f.flac"
 	}, {
 	  title: "爱你没差",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/a39a7742020681c2fb8641327062a0a8.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/a39a7742020681c2fb8641327062a0a8.flac"
 	}, {
 	  title: "比较大的大提琴",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/6a59462758303bf2026839e0a17caf9c.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/6a59462758303bf2026839e0a17caf9c.flac"
 	}, {
 	  title: "傻笑",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/bd4143d0eed59f67fcdb9bcaa4e85b92.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/bd4143d0eed59f67fcdb9bcaa4e85b92.flac"
 	}, {
 	  title: "她的睫毛",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/9230fc65e7a8226082a7865b832afea6.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/9230fc65e7a8226082a7865b832afea6.mp3"
 	}, {
 	  title: "你好吗",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/555377e785fa4833b1feb25c42108e6d.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/555377e785fa4833b1feb25c42108e6d.flac"
 	}, {
 	  title: "公主病",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/ef5aca6480921746885d679a2703ba12.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/ef5aca6480921746885d679a2703ba12.flac"
 	}, {
 	  title: "水手怕水",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/4e8561895c4afe5fd0d90fca2a5a76da.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/4e8561895c4afe5fd0d90fca2a5a76da.flac"
 	}, {
 	  title: "琴伤",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/53fc0679a0fe7cd31124bff5a76a8463.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/53fc0679a0fe7cd31124bff5a76a8463.flac"
 	}, {
 	  title: "疗伤烧肉粽",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/091fd7298ffba4d00ada64a688b17d90.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/091fd7298ffba4d00ada64a688b17d90.flac"
 	}, {
 	  title: "皮影戏",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/5d9bd12da600f32bf3020b0d1ccc4f77.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/5d9bd12da600f32bf3020b0d1ccc4f77.mp3"
 	}, {
 	  title: "超跑女神",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/c8be1f9e0822dd686ed2788972c38afa.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/c8be1f9e0822dd686ed2788972c38afa.mp3"
 	}, {
 	  title: "乔克叔叔",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/a325a621642e3536955244dbbac7c8fa.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/a325a621642e3536955244dbbac7c8fa.mp3"
 	}, {
 	  title: "蛇舞",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/377a0bfc7f32910b5900f74ac1dabbbc.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/377a0bfc7f32910b5900f74ac1dabbbc.mp3"
 	}, {
 	  title: "流浪诗人",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/84f4e0eb75b2ad5f392820eee918535a.mp3"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/84f4e0eb75b2ad5f392820eee918535a.mp3"
 	}, {
 	  title: "七里香",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/c224ca52c60b625920f2c3550d710ac8.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/c224ca52c60b625920f2c3550d710ac8.flac"
 	}, {
 	  title: "乱舞春秋",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/78aa036b980cf1e267748c002f7fc71f.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/78aa036b980cf1e267748c002f7fc71f.flac"
 	}, {
 	  title: "借口",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/894fc128f255043e520a995b70e3c77e.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/894fc128f255043e520a995b70e3c77e.flac"
 	}, {
 	  title: "困兽之斗",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/8434e12aa2c1e2e075ec626d714dd974.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/8434e12aa2c1e2e075ec626d714dd974.flac"
 	}, {
 	  title: "外婆",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/59ae3f83f5643ffd87ba2f8138778367.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/59ae3f83f5643ffd87ba2f8138778367.flac"
 	}, {
 	  title: "本草纲目",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/3538e0b28002badecf0d95cfe0d7e209.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/3538e0b28002badecf0d95cfe0d7e209.flac"
 	}, {
 	  title: "将军",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/26f62c1a4366c9b3dbe263c121b9816f.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/26f62c1a4366c9b3dbe263c121b9816f.flac"
 	}, {
 	  title: "我的地盘",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/17e5bc32a37803771ec4b471ed640885.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/17e5bc32a37803771ec4b471ed640885.flac"
 	}, {
 	  title: "搁浅",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/a1aa9de172e9ec2d525657a59da5fbdb.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/a1aa9de172e9ec2d525657a59da5fbdb.flac"
 	}, {
 	  title: "心雨",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/514ef3200c5aad1691ee034eee2b6c2f.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/514ef3200c5aad1691ee034eee2b6c2f.flac"
 	}, {
 	  title: "夜的第七章",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/c63ef908b8d6ddde9f6dbbe26894844a.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/c63ef908b8d6ddde9f6dbbe26894844a.flac"
 	}, {
 	  title: "止战之殇",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/fe0c6de15d8af54f9ed2f43d973129aa.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/fe0c6de15d8af54f9ed2f43d973129aa.flac"
 	}, {
 	  title: "园游会",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/ebe9bd5c426e5b58bdbb4632b50c6c67.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/ebe9bd5c426e5b58bdbb4632b50c6c67.flac"
 	}, {
 	  title: "白色风车",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/f2121385db3472ed71656dc77e429f9c.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/f2121385db3472ed71656dc77e429f9c.flac"
 	}, {
 	  title: "菊花台",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/beeaf32963deb13ed60230ae6a8a6095.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/beeaf32963deb13ed60230ae6a8a6095.flac"
 	}, {
 	  title: "迷迭香",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/428aae3b390630fdf30cb7103e1071b1.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/428aae3b390630fdf30cb7103e1071b1.flac"
 	}, {
 	  title: "分裂（离开）",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/18b0a239663bdaf53960b72cfd35fc1e.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/18b0a239663bdaf53960b72cfd35fc1e.flac"
 	}, {
 	  title: "半兽人",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/0852b467217f0297180369a2cac98fb2.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/0852b467217f0297180369a2cac98fb2.flac"
 	}, {
 	  title: "半岛铁盒",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/2b126c3dc5e3ff422f77857cbc0f3ae4.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/2b126c3dc5e3ff422f77857cbc0f3ae4.flac"
 	}, {
 	  title: "暗号",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/93b3a0276d1bf8d82a4f5858106d3e50.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/93b3a0276d1bf8d82a4f5858106d3e50.flac"
 	}, {
 	  title: "最后的战役",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/1cf24968ca46ccbc6b908a3c77ace13c.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/1cf24968ca46ccbc6b908a3c77ace13c.flac"
 	}, {
 	  title: "火车叨位去",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/f56c6d22dd979c66e0eef2dde0b70ca7.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/f56c6d22dd979c66e0eef2dde0b70ca7.flac"
 	}, {
 	  title: "爷爷泡的茶",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/9b0fd474d6d8c74464e3ca1a86cbe4b8.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/9b0fd474d6d8c74464e3ca1a86cbe4b8.flac"
 	}, {
 	  title: "米兰的小铁匠",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/7611a8b1bf440c65f5b07bc7d39e8389.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/7611a8b1bf440c65f5b07bc7d39e8389.flac"
 	}, {
 	  title: "龙拳",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/4e15ac82b96094b76d19c62a0c6cbaa5.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/4e15ac82b96094b76d19c62a0c6cbaa5.flac"
 	}, {
 	  title: "发如雪",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/8a2698998ebf6d70bfe0aa975e47dbc5.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/8a2698998ebf6d70bfe0aa975e47dbc5.flac"
 	}, {
 	  title: "四面楚歌",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/f49a97d1cf47eb930aeec677db471e55.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/f49a97d1cf47eb930aeec677db471e55.flac"
 	}, {
 	  title: "枫",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/edc76bfb99ccbc36427694bca89a02e8.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/edc76bfb99ccbc36427694bca89a02e8.flac"
 	}, {
 	  title: "浪漫手机",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/f1ba6f6ec2f9670559747b7656f3c1be.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/f1ba6f6ec2f9670559747b7656f3c1be.flac"
 	}, {
 	  title: "蓝色风暴",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/a5f8718570153c68a1961a3c9ade0c55.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/a5f8718570153c68a1961a3c9ade0c55.flac"
 	}, {
 	  title: "逆鳞",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/f5ed94ddcc4b6b7ce746ac94af8f46cf.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/f5ed94ddcc4b6b7ce746ac94af8f46cf.flac"
 	}, {
 	  title: "麦芽糖",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/8d2152ce802fb8c1c8987f5ab3a23596.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/8d2152ce802fb8c1c8987f5ab3a23596.flac"
 	}, {
 	  title: "黑色毛衣",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/d98d1f7eed869fc3d58e643cdad4ec68.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/d98d1f7eed869fc3d58e643cdad4ec68.flac"
 	}, {
 	  title: "乌克丽丽",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/304edef5b4eba87fdb45964c12314736.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/304edef5b4eba87fdb45964c12314736.flac"
 	}, {
 	  title: "明明就",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/5476d6d6815f8ae00d28d41648f9db71.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/5476d6d6815f8ae00d28d41648f9db71.flac"
 	}, {
 	  title: "红尘客栈",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/a17d7ef54c86a7a81c24df999980473b.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/a17d7ef54c86a7a81c24df999980473b.flac"
 	}, {
 	  title: "三年二班",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/ad7bf48c32af640e9c202bef5856e860.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/ad7bf48c32af640e9c202bef5856e860.flac"
 	}, {
 	  title: "东风破",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/b3326c16c3543925ba2b010de9a63197.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/b3326c16c3543925ba2b010de9a63197.flac"
 	}, {
 	  title: "以父之名",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/896d9eb5db55237baea6f2b282d3f469.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/896d9eb5db55237baea6f2b282d3f469.flac"
 	}, {
 	  title: "花海",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/14029c0b48cc7efe797305a8aa2d2dbd.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/14029c0b48cc7efe797305a8aa2d2dbd.flac"
 	}, {
 	  title: "说好的幸福呢",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/0cd8da35af5d7e659aadf6b0642ffe09.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/0cd8da35af5d7e659aadf6b0642ffe09.flac"
 	}, {
 	  title: "龙战骑士",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/9286ce33f19b59f53df5a2d743642f65.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/9286ce33f19b59f53df5a2d743642f65.flac"
 	}, {
 	  title: "你听得到",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/c244a473bc91d4011ae310c2b0cb4d33.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/c244a473bc91d4011ae310c2b0cb4d33.flac"
 	}, {
 	  title: "双刀",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/8aee41d2398f64999bdb2446b5ed3350.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/8aee41d2398f64999bdb2446b5ed3350.flac"
 	}, {
 	  title: "同一种调调",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/8b02dedf8e731f9b50020d2e0d2c4b6d.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/8b02dedf8e731f9b50020d2e0d2c4b6d.flac"
 	}, {
 	  title: "懦夫",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/02db8f779daf9bdb0d4f7b0dcf2cd4a4.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/02db8f779daf9bdb0d4f7b0dcf2cd4a4.flac"
 	}, {
 	  title: "晴天",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/da58ed1a1271161e3a1b2ad5da0364f4.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/da58ed1a1271161e3a1b2ad5da0364f4.flac"
 	}, {
 	  title: "梯田",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/a3f57bc69c5673dcdc1da92c59400b0b.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/a3f57bc69c5673dcdc1da92c59400b0b.flac"
 	}, {
 	  title: "爱情悬崖",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/42eeca68bb9eee198d4c71eb539c310f.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/42eeca68bb9eee198d4c71eb539c310f.flac"
 	}, {
 	  title: "一口气全念对",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/ae301f1bc2311b617a5b7f65513676d8.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/ae301f1bc2311b617a5b7f65513676d8.flac"
 	}, {
 	  title: "听爸爸的话",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/01b52c257436bcccfe694fab67c49733.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/01b52c257436bcccfe694fab67c49733.flac"
 	}, {
 	  title: "听见下雨的声音",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/4b2813c6e4d7aba566c7fab702214f48.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/4b2813c6e4d7aba566c7fab702214f48.flac"
 	}, {
 	  title: "天涯过客",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/86b0553c56405029ff7d1d382a4f1a15.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/86b0553c56405029ff7d1d382a4f1a15.flac"
 	}, {
 	  title: "手写的从前",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/e5d36cced8576ec72297eba40d035da6.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/e5d36cced8576ec72297eba40d035da6.flac"
 	}, {
 	  title: "窃爱",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/69a2b8fce24c6b0a0111108d6d13a79d.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/69a2b8fce24c6b0a0111108d6d13a79d.flac"
 	}, {
 	  title: "算什么男人",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/4ab8286d9127d1206abf64a9fea7e8b5.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/4ab8286d9127d1206abf64a9fea7e8b5.flac"
 	}, {
 	  title: "美人鱼",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/0b205a31b087cd2b54fe294cacc985c8.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/0b205a31b087cd2b54fe294cacc985c8.flac"
 	}, {
 	  title: "阳明山",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/ca00456bd52d29a87cceb93f5b276696.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/ca00456bd52d29a87cceb93f5b276696.flac"
 	}, {
 	  title: "鞋子特大号",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/772743330b5de523be2630c46efb418c.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/772743330b5de523be2630c46efb418c.flac"
 	}, {
 	  title: "我要夏天",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/3011e323f525708152970bededa73a8a.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/3011e323f525708152970bededa73a8a.flac"
 	}, {
 	  title: "怎么了",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/d4298cbcfd758c98713fc5eff744f22c.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/d4298cbcfd758c98713fc5eff744f22c.flac"
 	}, {
 	  title: "Mine Mine",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/15ed6df9606b81ac60aec8e9f0120e0f.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/15ed6df9606b81ac60aec8e9f0120e0f.flac"
 	}, {
 	  title: "世界未末日",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/e8afc285e86c226a9bfc80d933f70891.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/e8afc285e86c226a9bfc80d933f70891.flac"
 	}, {
 	  title: "惊叹号",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/eeb33d6689b6a779f6c0879221482290.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/eeb33d6689b6a779f6c0879221482290.flac"
 	}, {
 	  title: "迷魂曲",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/d629fcbd9103abf0bca8b63a5d54e648.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/d629fcbd9103abf0bca8b63a5d54e648.flac"
 	}, {
 	  title: "兰亭序",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/9b936eff2da536d9d294dff420150d52.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/9b936eff2da536d9d294dff420150d52.flac"
 	}, {
 	  title: "时光机",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/ec623602eb092d86a57c7041810b7499.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/ec623602eb092d86a57c7041810b7499.flac"
 	}, {
 	  title: "稻香",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/4f5be07cad8511e29907325fac78bf8d.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/4f5be07cad8511e29907325fac78bf8d.flac"
 	}, {
 	  title: "给我一首歌的时间",
 	  artist: "周杰伦",
-	  cover: "http://audio.kapyan.top/cover.jpg",
-	  mp3: "http://audio.kapyan.top/01a600b19dbf1c7bb7351b473937b35b.flac"
+	  cover: "https://audio.kapyan.top/cover.jpg",
+	  mp3: "https://audio.kapyan.top/01a600b19dbf1c7bb7351b473937b35b.flac"
 	}]
 	var isRotate = true;
 	var autoplay = false;
