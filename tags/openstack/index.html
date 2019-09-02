@@ -53,7 +53,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="运维之窗">
-  <meta property="og:url" content="https://www.kapyan.top/tags/OpenStack/index.html">
+  <meta property="og:url" content="https://www.kapyan.top/tags/openstack/index.html">
   <meta property="og:site_name" content="运维之窗">
   <meta property="og:locale" content="zh-Hans">
   <meta name="twitter:card" content="summary">
@@ -107,9 +107,9 @@
 
   </script>
 
-  <link rel="canonical" href="https://www.kapyan.top/tags/OpenStack/">
+  <link rel="canonical" href="https://www.kapyan.top/tags/openstack/">
 
-  <title>标签: OpenStack | 运维之窗</title>
+  <title>标签: openstack | 运维之窗</title>
 
 </head>
 
@@ -228,6 +228,52 @@
 
         </nav>
 
+        <link rel="stylesheet" href="/css/mycss/player.css">
+        <div id="QPlayer">
+          <div id="pContent">
+            <div id="player">
+              <span class="cover"></span>
+              <div class="ctrl">
+                <div class="musicTag marquee">
+                  <strong>Title</strong>
+                  <span> - </span>
+                  <span class="artist">Artist</span>
+                </div>
+                <div class="progress">
+                  <div class="timer left">0:00</div>
+                  <div class="contr">
+                    <div class="rewind icon"></div>
+                    <div class="playback icon"></div>
+                    <div class="fastforward icon"></div>
+                  </div>
+                  <div class="right">
+                    <div class="liebiao icon"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ssBtn">
+              <img src="/img/22.png" class="music">
+              <div class="adf"></div>
+            </div>
+          </div>
+          <ol id="playlist"></ol>
+        </div>
+
+        <script src="/js/qplayer/jquery.min.js"></script>
+        <script src="/js/qplayer/jquery.marquee.min.js"></script>
+        <script src="/js/qplayer/menu.js"></script>
+        <script src="/js/qplayer/player.js"></script>
+        <script>
+          function bgChange() {
+            var lis = $('.lib');
+            for (var i = 0; i < lis.length; i += 2)
+              lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+          }
+          window.onload = bgChange;
+
+        </script>
+
       </div>
     </header>
 
@@ -240,7 +286,7 @@
 
               <div id="posts" class="posts-collapse">
                 <div class="collection-title">
-                  <h2>OpenStack<small>标签</small>
+                  <h2>openstack<small>标签</small>
                   </h2>
                 </div>
 
@@ -249,19 +295,19 @@
 
                     <h3 class="post-title">
 
-                      <a class="post-title-link" href="/posts/2462062835.html"
+                      <a class="post-title-link" href="/posts/1681399788.html"
                                                                                                       itemprop="url">
 
-                        <span itemprop="name">OpenStack各服务组件及架构</span>
+                        <span itemprop="name">OpenStack部署</span>
 
                       </a>
 
                     </h3>
 
                     <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2019-04-16T08:50:11+08:00"
-                                                                                                      content="2019-04-16">
-                        04-16
+                      <time class="post-time" itemprop="dateCreated" datetime="2019-03-29T13:42:07+08:00"
+                                                                                                      content="2019-03-29">
+                        03-29
                       </time>
                     </div>
 
@@ -881,6 +927,10 @@
 
   <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
   <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+</body>
+
+</html>
 
 </body>
 
