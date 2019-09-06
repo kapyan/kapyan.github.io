@@ -47,24 +47,22 @@
 
   <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
 
-  <meta name="keywords" content="hung_task_timeout_secs disables this message">
+  <meta name="keywords" content="mysql安装">
 
   <link rel="alternate" href="/atom.xml" title="运维之窗" type="application/atom+xml">
 
-  <meta name="description" content="用xshell连接服务器出错:ssh_exchange_identification: Connection closed by     remote host在阿里云控制台通过vnc连接服务器后出现如下信息：    问题原因：默认情况下，linux会最多使用40%的可用内存作为文件系统缓存。当超过此阈值后，文件系统会将缓存中的内存全部写入磁盘，导致后续的I/O请求都是同步的。将缓存写入磁盘时，有">
-  <meta name="keywords" content="hung_task_timeout_secs disables this message">
+  <meta name="description" content="MySQL版本简介 MySQL发行版本分为企业版和社区版，这两个大版本又各自分为以下四个版本：    Alpha版：主要是开发者对产品进行测试，一般不对外公开。   Beta版：一般是完成功能的开发和所有测试工作之后的产品，通常会邀请或提供给用户体验与测试，以便更全面测测试软件的不足或问题。   RC版：跟据Beta版测试结果完善或修复的版本。   GA版：稳定版本，一般用于生产环境。  MySQ">
+  <meta name="keywords" content="mysql安装">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="echo 0 &gt; &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;hung_task_timeout_secs disables this message故障处理">
-  <meta property="og:url" content="https://www.kapyan.top/posts/3397780315.html">
+  <meta property="og:title" content="Centos系统安装MySQL">
+  <meta property="og:url" content="https://www.kapyan.top/posts/1886981114.html">
   <meta property="og:site_name" content="运维之窗">
-  <meta property="og:description" content="用xshell连接服务器出错:ssh_exchange_identification: Connection closed by     remote host在阿里云控制台通过vnc连接服务器后出现如下信息：    问题原因：默认情况下，linux会最多使用40%的可用内存作为文件系统缓存。当超过此阈值后，文件系统会将缓存中的内存全部写入磁盘，导致后续的I/O请求都是同步的。将缓存写入磁盘时，有">
+  <meta property="og:description" content="MySQL版本简介 MySQL发行版本分为企业版和社区版，这两个大版本又各自分为以下四个版本：    Alpha版：主要是开发者对产品进行测试，一般不对外公开。   Beta版：一般是完成功能的开发和所有测试工作之后的产品，通常会邀请或提供给用户体验与测试，以便更全面测测试软件的不足或问题。   RC版：跟据Beta版测试结果完善或修复的版本。   GA版：稳定版本，一般用于生产环境。  MySQ">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:image" content="https://www.kapyan.top/posts/3397780315/erro.png">
-  <meta property="og:updated_time" content="2019-02-12T08:31:17.108Z">
+  <meta property="og:updated_time" content="2019-09-06T08:12:38.872Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="echo 0 &gt; &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;hung_task_timeout_secs disables this message故障处理">
-  <meta name="twitter:description" content="用xshell连接服务器出错:ssh_exchange_identification: Connection closed by     remote host在阿里云控制台通过vnc连接服务器后出现如下信息：    问题原因：默认情况下，linux会最多使用40%的可用内存作为文件系统缓存。当超过此阈值后，文件系统会将缓存中的内存全部写入磁盘，导致后续的I/O请求都是同步的。将缓存写入磁盘时，有">
-  <meta name="twitter:image" content="https://www.kapyan.top/posts/3397780315/erro.png">
+  <meta name="twitter:title" content="Centos系统安装MySQL">
+  <meta name="twitter:description" content="MySQL版本简介 MySQL发行版本分为企业版和社区版，这两个大版本又各自分为以下四个版本：    Alpha版：主要是开发者对产品进行测试，一般不对外公开。   Beta版：一般是完成功能的开发和所有测试工作之后的产品，通常会邀请或提供给用户体验与测试，以便更全面测测试软件的不足或问题。   RC版：跟据Beta版测试结果完善或修复的版本。   GA版：稳定版本，一般用于生产环境。  MySQ">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -114,10 +112,9 @@
 
   </script>
 
-  <link rel="canonical" href="https://www.kapyan.top/posts/3397780315.html">
+  <link rel="canonical" href="https://www.kapyan.top/posts/1886981114.html">
 
-  <title>echo 0 > /proc/sys/kernel/hung_task_timeout_secs disables this
-    message故障处理 | 运维之窗</title>
+  <title>Centos系统安装MySQL | 运维之窗</title>
 
 </head>
 
@@ -295,7 +292,7 @@
               <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
 
                 <div class="post-block">
-                  <link itemprop="mainEntityOfPage" href="https://www.kapyan.top/posts/3397780315.html">
+                  <link itemprop="mainEntityOfPage" href="https://www.kapyan.top/posts/1886981114.html">
 
                   <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
                     <meta itemprop="name" content="没有风的晴天">
@@ -309,9 +306,7 @@
 
                   <header class="post-header">
 
-                    <h2 class="post-title" itemprop="name headline">echo 0 >
-                      /proc/sys/kernel/hung_task_timeout_secs disables this
-                      message故障处理</h2>
+                    <h2 class="post-title" itemprop="name headline">Centos系统安装MySQL</h2>
 
                     <div class="post-meta">
                       <span class="post-time">
@@ -323,8 +318,8 @@
                         <span class="post-meta-item-text">发表于</span>
 
                         <time title="创建于" itemprop="dateCreated datePublished"
-                                                                                                        datetime="2019-02-12T15:41:15+08:00">
-                          2019-02-12
+                                                                                                        datetime="2019-09-06T13:48:43+08:00">
+                          2019-09-06
                         </time>
 
                         <span class="post-meta-divider">|</span>
@@ -335,8 +330,8 @@
 
                         <span class="post-meta-item-text">更新于&#58;</span>
 
-                        <time title="更新于" itemprop="dateModified" datetime="2019-02-12T16:31:17+08:00">
-                          2019-02-12
+                        <time title="更新于" itemprop="dateModified" datetime="2019-09-06T16:12:38+08:00">
+                          2019-09-06
                         </time>
 
                       </span>
@@ -352,8 +347,8 @@
                         <span class="post-meta-item-text">分类于</span>
 
                         <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                          <a href="/categories/linux系统故障/" itemprop="url" rel="index">
-                            <span itemprop="name">linux系统故障</span>
+                          <a href="/categories/mysql/" itemprop="url" rel="index">
+                            <span itemprop="name">mysql</span>
                           </a>
                         </span>
 
@@ -364,9 +359,9 @@
                         <span class="post-meta-item-icon">
                           <i class="fa fa-comment-o"></i>
                         </span>
-                        <a href="/posts/3397780315.html#comments" itemprop="discussionUrl">
+                        <a href="/posts/1886981114.html#comments" itemprop="discussionUrl">
                           <span class="post-comments-count valine-comment-count"
-                                                                                                          data-xid="/posts/3397780315.html"
+                                                                                                          data-xid="/posts/1886981114.html"
                                                                                                           itemprop="commentCount"></span>
                         </a>
                       </span>
@@ -385,7 +380,7 @@
                         <span class="post-meta-item-text">字数统计&#58;</span>
 
                         <span title="字数统计">
-                          424
+                          776
                         </span>
 
                         <span class="post-meta-divider">|</span>
@@ -397,7 +392,7 @@
                         <span class="post-meta-item-text">阅读时长 &asymp;</span>
 
                         <span title="阅读时长">
-                          1
+                          3
                         </span>
 
                       </div>
@@ -407,38 +402,167 @@
 
                   <div class="post-body" itemprop="articleBody">
 
-                    <p>用xshell连接服务器出错:<code>ssh_exchange_identification:
-                        Connection closed by
-                        remote host</code><br>在阿里云控制台通过vnc连接服务器后出现如下信息：<br><img
-                                                                                                      src="/posts/3397780315/erro.png"
-                                                                                                      alt="error"></p>
+                    <h2 id="MySQL版本简介"><a href="#MySQL版本简介" class="headerlink"
+                                                                                                      title="MySQL版本简介"></a>MySQL版本简介</h2>
+                    <p>MySQL发行版本分为企业版和社区版，这两个大版本又各自分为以下四个版本：</p>
+                    <ul>
+                      <li>Alpha版：主要是开发者对产品进行测试，一般不对外公开。</li>
+                      <li>Beta版：一般是完成功能的开发和所有测试工作之后的产品，通常会邀请或提供给用户体验与测试，以便更全面测测试软件的不足或问题。</li>
+                      <li>RC版：跟据Beta版测试结果完善或修复的版本。</li>
+                      <li>GA版：稳定版本，一般用于生产环境。</li>
+                    </ul>
+                    <p>MySQL软件的版本号由3个数字和一个后缀组成，如：mysql-5.6.45.tar.gz。目前主流版本是5.5和5.6。</p>
                     <blockquote>
-                      <p><strong>问题原因：</strong><br>默认情况下，linux会最多使用40%的可用内存作为文件系统缓存。当超过此阈值后，文件系统会将缓存中的内存全部写入磁盘，导致后续的I/O请求都是同步的。<br>将缓存写入磁盘时，有一个默认120秒的超时时间。出现上面问题的原因是I/O子系统的处理速度不够快，不能在120秒将缓存中的数据全部写入磁盘。<br>I/O系统响应缓慢，导致越来越多的请求堆积，最终系统内存全部被占用，导致系统失去响应。</p>
+                      <ul>
+                        <li>第一个数字是主版本号，描述了文件格式，文件格式相同的主版本号相同</li>
+                        <li>第二个数字是发行级别，与主版本号构成了发行系列号</li>
+                        <li>第三个数字是此发行系列的版本号</li>
+                      </ul>
                     </blockquote>
-                    <p><strong>解决方法</strong><br>根据应用程序情况，对<br>vm.dirty_ratio:当文件系统缓存脏页数量达到系统内存百分之多少时（如10%），系统不得不开始处理缓存脏页（因为此时脏页数量已经比较多，为了避免数据丢失需要将一定脏页刷入外存）；在此过程中很多应用进程可能会因系统转而处理文件I/O而阻塞<br>vm.dirty_background_ratio:当文件系统缓存脏页数量达到系统内存百分之多少时（5%）就会触发pdflush/flush/kdmflush等后台会写进程运行，将一定缓存的脏页异步地刷入外存<br>两个参数进行调优设置
-                      。<br>推荐如下设置：<br>
+                    <h2 id="RPM安装MySQL"><a href="#RPM安装MySQL" class="headerlink"
+                                                                                                      title="RPM安装MySQL"></a>RPM安装MySQL</h2>
+                    <p>搜狐镜像站MySQL下载地址：<a href="http://mirrors.sohu.com/mysql/MySQL-5.6/">http://mirrors.sohu.com/mysql/MySQL-5.6/</a><br>此安装方式安装速度较快，适合测试环境，缺点是不能更改安装路径和编译参数。<br>如果系统装有MySQL需先卸载，用<code>rpm
+                        -qa|grep mysql</code>查看是否存在。<br>以下命令用于在Centos7中安装mysql-5.6.45版本：<br>
                       <figure class="highlight bash">
                         <table>
                           <tr>
                             <td class="gutter">
-                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
                             </td>
                             <td class="code">
-                              <pre><span class="line">sysctl -w vm.dirty_ratio=10</span><br><span class="line">sysctl -w vm.dirty_background_ratio=5</span><br><span class="line">sysctl -p</span><br></pre>
+                              <pre><span class="line">rpm -ivh http://mirrors.sohu.com/mysql/MySQL-5.6/MySQL-client-5.6.45-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh http://mirrors.sohu.com/mysql/MySQL-5.6/MySQL-devel-5.6.45-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh http://mirrors.sohu.com/mysql/MySQL-5.6/MySQL-server-5.6.45-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh http://mirrors.sohu.com/mysql/MySQL-5.6/MySQL-shared-5.6.45-1.el7.x86_64.rpm</span><br></pre>
                             </td>
                           </tr>
                         </table>
                       </figure>
                     </p>
-                    <p>如果让系统永久生效<br>
+                    <blockquote>
+                      <p>el7.x86_64：表示适合的操作系统版本为Redhat7系列64位<br>
+                        el6.x86_64：表示适合的操作系统版本为Redhat6系列64位</p>
+                    </blockquote>
+                    <h2 id="编译安装MySQL"><a href="#编译安装MySQL" class="headerlink"
+                                                                                                      title="编译安装MySQL"></a>编译安装MySQL</h2>
+                    <h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">yum -y install gcc make cmake ncurses-devel libxml2-devel libtool-ltdl-devel gcc-c++ autoconf automake bison zlib-devel</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="创建mysql账号"><a href="#创建mysql账号" class="headerlink"
+                                                                                                      title="创建mysql账号"></a>创建mysql账号</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">useradd -s /sbin/nologin -M mysql    <span class="comment">#无登录权限和家目录</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="下载MySQL源码包并解压"><a href="#下载MySQL源码包并解压" class="headerlink"
+                                                                                                      title="下载MySQL源码包并解压"></a>下载MySQL源码包并解压</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">wget http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.45.tar.gz    <span class="comment">#下载</span></span><br><span class="line">tar xf mysql-5.6.45.tar.gz   <span class="comment">#解压</span></span><br><span class="line"><span class="built_in">cd</span> mysql-5.6.45   <span class="comment">#切换目录</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">cmake . -DCMAKE_INSTALL_PREFIX=/application/mysql-5.6.45 \</span><br><span class="line">-DMYSQL_DATADIR=/application/mysql-5.6.45/data \</span><br><span class="line">-DMYSQL_UNIX_ADDR=/application/mysql-5.6.45/tmp/mysql.sock \</span><br><span class="line">-DDEFAULT_CHARSET=utf8 \</span><br><span class="line">-DDEFAULT_COLLATION=utf8_general_ci \</span><br><span class="line">-DWITH_EXTRA_CHARSETS=all \</span><br><span class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_FEDERZATED_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_ZLIB=bundled \</span><br><span class="line">-DWITH_SSL=bundled \</span><br><span class="line">-DENABLED_LOCAL_INFILE=1 \</span><br><span class="line">-DWITH_EMBEDDED_SERVER=1 \</span><br><span class="line">-DENABLE_DOWNLOADS=1 \</span><br><span class="line">-DWITH_DEBUG=0		<span class="comment">#编译</span></span><br><span class="line">make &amp;&amp; make install   <span class="comment">#安装</span></span><br><span class="line">mv /etc/my.cnf /etc/my.cnf.bak 		<span class="comment">#备份存在的my.cnf</span></span><br><span class="line">mkdir -p /application/mysql-5.6.45/tmp</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="创建软链接并授权"><a href="#创建软链接并授权" class="headerlink"
+                                                                                                      title="创建软链接并授权"></a>创建软链接并授权</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">ln -s /application/mysql-5.6.45 /application/mysql</span><br><span class="line">chown -R mysql.mysql /application/mysql/</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="初始化数据库文件"><a href="#初始化数据库文件" class="headerlink"
+                                                                                                      title="初始化数据库文件"></a>初始化数据库文件</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">/application/mysql/scripts/mysql_install_db --basedir=/application/mysql/  --datadir=/application/mysql/data --user=mysql</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="配置mysql并启动"><a href="#配置mysql并启动" class="headerlink"
+                                                                                                      title="配置mysql并启动"></a>配置mysql并启动</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">cp support-files/mysql.server /etc/init.d/mysqld   <span class="comment">#复制启动脚本到/etc/init.d/mysqld</span></span><br><span class="line">chmod 700 /etc/init.d/mysqld       <span class="comment">#改变脚本权限</span></span><br><span class="line">/etc/init.d/mysqld  start</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="将mysql加入全局环境变量"><a href="#将mysql加入全局环境变量" class="headerlink"
+                                                                                                      title="将mysql加入全局环境变量"></a>将mysql加入全局环境变量</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line"><span class="built_in">echo</span>  <span class="string">'export PATH=/application/mysql/bin:$PATH'</span> &gt;&gt;/etc/profile</span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h2 id="MySQL安全配置"><a href="#MySQL安全配置" class="headerlink"
+                                                                                                      title="MySQL安全配置"></a>MySQL安全配置</h2>
+                    <p>mysql安装完成后默认无密码<br>
                       <figure class="highlight bash">
                         <table>
                           <tr>
                             <td class="gutter">
-                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+                              <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                             </td>
                             <td class="code">
-                              <pre><span class="line"><span class="built_in">echo</span> <span class="string">"vm.dirty_background_ratio = 5"</span>&gt;&gt;/etc/sysctl.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"vm.dirty_ratio = 10"</span>&gt;&gt;/etc/sysctl.conf</span><br><span class="line">sysctl -p</span><br></pre>
+                              <pre><span class="line">mysqladmin -u root password <span class="string">'123456'</span>	<span class="comment">#设置mysql的root密码为123456</span></span><br><span class="line">mysql -uroot -p123456 -e <span class="string">'drop database test;'</span>	<span class="comment">#删除test库</span></span><br></pre>
                             </td>
                           </tr>
                         </table>
@@ -534,8 +658,8 @@
                       </li>
                       <li class="post-copyright-link">
                         <strong>本文链接：</strong>
-                        <a href="https://www.kapyan.top/posts/3397780315.html"
-                                                                                                        title="echo 0 > /proc/sys/kernel/hung_task_timeout_secs disables this message故障处理">https://www.kapyan.top/posts/3397780315.html</a>
+                        <a href="https://www.kapyan.top/posts/1886981114.html"
+                                                                                                        title="Centos系统安装MySQL">https://www.kapyan.top/posts/1886981114.html</a>
                       </li>
                       <li class="post-copyright-license">
                         <strong>版权声明： </strong>
@@ -552,10 +676,8 @@
 
                     <div class="post-tags">
 
-                      <a href="/tags/hung-task-timeout-secs-disables-this-message/"
-                                                                                                      rel="tag"><i
-                                                                                                        class="fa fa-tag"></i>
-                        hung_task_timeout_secs disables this message</a>
+                      <a href="/tags/mysql/" rel="tag"><i class="fa fa-tag"></i>
+                        mysql</a>
 
                     </div>
 
@@ -572,8 +694,8 @@
                     <div class="post-nav">
                       <div class="post-nav-next post-nav-item">
 
-                        <a href="/posts/2273748276.html" rel="next" title="Redis管理">
-                          <i class="fa fa-chevron-left"></i> Redis管理
+                        <a href="/posts/1873029367.html" rel="next" title="tigase8配置">
+                          <i class="fa fa-chevron-left"></i> tigase8配置
                         </a>
 
                       </div>
@@ -581,10 +703,6 @@
                       <span class="post-nav-divider"></span>
 
                       <div class="post-nav-prev post-nav-item">
-
-                        <a href="/posts/655286048.html" rel="prev" title="Redis主从复制和集群">
-                          Redis主从复制和集群 <i class="fa fa-chevron-right"></i>
-                        </a>
 
                       </div>
                     </div>
@@ -621,7 +739,16 @@
 
           <div class="sidebar-inner">
 
-            <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+            <ul class="sidebar-nav motion-element">
+              <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                文章目录
+              </li>
+              <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+                站点概览
+              </li>
+            </ul>
+
+            <section class="site-overview-wrap sidebar-panel">
               <div class="site-overview">
                 <div class="site-author motion-element" itemprop="author"
                                                                                                 itemscope=""
@@ -691,6 +818,66 @@
 
               </div>
             </section>
+
+            <!--noindex-->
+            <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+              <div class="post-toc">
+
+                <div class="post-toc-content">
+                  <ol class="nav">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL版本简介"><span
+                                                                                                        class="nav-number">1.</span>
+                        <span class="nav-text">MySQL版本简介</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#RPM安装MySQL"><span
+                                                                                                        class="nav-number">2.</span>
+                        <span class="nav-text">RPM安装MySQL</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#编译安装MySQL"><span
+                                                                                                        class="nav-number">3.</span>
+                        <span class="nav-text">编译安装MySQL</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#安装依赖"><span
+                                                                                                            class="nav-number">3.1.</span>
+                            <span class="nav-text">安装依赖</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#创建mysql账号"><span
+                                                                                                            class="nav-number">3.2.</span>
+                            <span class="nav-text">创建mysql账号</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#下载MySQL源码包并解压"><span
+                                                                                                            class="nav-number">3.3.</span>
+                            <span class="nav-text">下载MySQL源码包并解压</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#编译安装"><span
+                                                                                                            class="nav-number">3.4.</span>
+                            <span class="nav-text">编译安装</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#创建软链接并授权"><span
+                                                                                                            class="nav-number">3.5.</span>
+                            <span class="nav-text">创建软链接并授权</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#初始化数据库文件"><span
+                                                                                                            class="nav-number">3.6.</span>
+                            <span class="nav-text">初始化数据库文件</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#配置mysql并启动"><span
+                                                                                                            class="nav-number">3.7.</span>
+                            <span class="nav-text">配置mysql并启动</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#将mysql加入全局环境变量"><span
+                                                                                                            class="nav-number">3.8.</span>
+                            <span class="nav-text">将mysql加入全局环境变量</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL安全配置"><span
+                                                                                                        class="nav-number">4.</span>
+                        <span class="nav-text">MySQL安全配置</span></a></li>
+                  </ol>
+                </div>
+
+              </div>
+            </section>
+            <!--/noindex-->
 
           </div>
         </aside>
