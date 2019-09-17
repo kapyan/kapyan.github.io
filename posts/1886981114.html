@@ -54,14 +54,14 @@
   <meta name="description" content="MySQL版本简介 MySQL发行版本分为企业版和社区版，这两个大版本又各自分为以下四个版本：    Alpha版：主要是开发者对产品进行测试，一般不对外公开。   Beta版：一般是完成功能的开发和所有测试工作之后的产品，通常会邀请或提供给用户体验与测试，以便更全面测测试软件的不足或问题。   RC版：跟据Beta版测试结果完善或修复的版本。   GA版：稳定版本，一般用于生产环境。  MySQ">
   <meta name="keywords" content="mysql安装">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Centos系统安装MySQL">
+  <meta property="og:title" content="Centos系统安装MySQL5.6">
   <meta property="og:url" content="https://www.kapyan.top/posts/1886981114.html">
   <meta property="og:site_name" content="运维之窗">
   <meta property="og:description" content="MySQL版本简介 MySQL发行版本分为企业版和社区版，这两个大版本又各自分为以下四个版本：    Alpha版：主要是开发者对产品进行测试，一般不对外公开。   Beta版：一般是完成功能的开发和所有测试工作之后的产品，通常会邀请或提供给用户体验与测试，以便更全面测测试软件的不足或问题。   RC版：跟据Beta版测试结果完善或修复的版本。   GA版：稳定版本，一般用于生产环境。  MySQ">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2019-09-06T08:12:38.872Z">
+  <meta property="og:updated_time" content="2019-09-12T02:50:03.605Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Centos系统安装MySQL">
+  <meta name="twitter:title" content="Centos系统安装MySQL5.6">
   <meta name="twitter:description" content="MySQL版本简介 MySQL发行版本分为企业版和社区版，这两个大版本又各自分为以下四个版本：    Alpha版：主要是开发者对产品进行测试，一般不对外公开。   Beta版：一般是完成功能的开发和所有测试工作之后的产品，通常会邀请或提供给用户体验与测试，以便更全面测测试软件的不足或问题。   RC版：跟据Beta版测试结果完善或修复的版本。   GA版：稳定版本，一般用于生产环境。  MySQ">
 
   <script type="text/javascript" id="hexo.configurations">
@@ -114,7 +114,7 @@
 
   <link rel="canonical" href="https://www.kapyan.top/posts/1886981114.html">
 
-  <title>Centos系统安装MySQL | 运维之窗</title>
+  <title>Centos系统安装MySQL5.6 | 运维之窗</title>
 
 </head>
 
@@ -306,7 +306,7 @@
 
                   <header class="post-header">
 
-                    <h2 class="post-title" itemprop="name headline">Centos系统安装MySQL</h2>
+                    <h2 class="post-title" itemprop="name headline">Centos系统安装MySQL5.6</h2>
 
                     <div class="post-meta">
                       <span class="post-time">
@@ -330,8 +330,8 @@
 
                         <span class="post-meta-item-text">更新于&#58;</span>
 
-                        <time title="更新于" itemprop="dateModified" datetime="2019-09-06T16:12:38+08:00">
-                          2019-09-06
+                        <time title="更新于" itemprop="dateModified" datetime="2019-09-12T10:50:03+08:00">
+                          2019-09-12
                         </time>
 
                       </span>
@@ -380,7 +380,7 @@
                         <span class="post-meta-item-text">字数统计&#58;</span>
 
                         <span title="字数统计">
-                          776
+                          877
                         </span>
 
                         <span class="post-meta-divider">|</span>
@@ -419,27 +419,23 @@
                         <li>第三个数字是此发行系列的版本号</li>
                       </ul>
                     </blockquote>
-                    <h2 id="RPM安装MySQL"><a href="#RPM安装MySQL" class="headerlink"
-                                                                                                      title="RPM安装MySQL"></a>RPM安装MySQL</h2>
+                    <h2 id="YUM安装MySQL"><a href="#YUM安装MySQL" class="headerlink"
+                                                                                                      title="YUM安装MySQL"></a>YUM安装MySQL</h2>
                     <p>搜狐镜像站MySQL下载地址：<a href="http://mirrors.sohu.com/mysql/MySQL-5.6/">http://mirrors.sohu.com/mysql/MySQL-5.6/</a><br>此安装方式安装速度较快，适合测试环境，缺点是不能更改安装路径和编译参数。<br>如果系统装有MySQL需先卸载，用<code>rpm
                         -qa|grep mysql</code>查看是否存在。<br>以下命令用于在Centos7中安装mysql-5.6.45版本：<br>
                       <figure class="highlight bash">
                         <table>
                           <tr>
                             <td class="gutter">
-                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
+                              <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
                             </td>
                             <td class="code">
-                              <pre><span class="line">rpm -ivh http://mirrors.sohu.com/mysql/MySQL-5.6/MySQL-client-5.6.45-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh http://mirrors.sohu.com/mysql/MySQL-5.6/MySQL-devel-5.6.45-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh http://mirrors.sohu.com/mysql/MySQL-5.6/MySQL-server-5.6.45-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh http://mirrors.sohu.com/mysql/MySQL-5.6/MySQL-shared-5.6.45-1.el7.x86_64.rpm</span><br></pre>
+                              <pre><span class="line">wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">yum install mysql-community-server</span><br></pre>
                             </td>
                           </tr>
                         </table>
                       </figure>
                     </p>
-                    <blockquote>
-                      <p>el7.x86_64：表示适合的操作系统版本为Redhat7系列64位<br>
-                        el6.x86_64：表示适合的操作系统版本为Redhat6系列64位</p>
-                    </blockquote>
                     <h2 id="编译安装MySQL"><a href="#编译安装MySQL" class="headerlink"
                                                                                                       title="编译安装MySQL"></a>编译安装MySQL</h2>
                     <h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3>
@@ -491,7 +487,7 @@
                             <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
                           </td>
                           <td class="code">
-                            <pre><span class="line">cmake . -DCMAKE_INSTALL_PREFIX=/application/mysql-5.6.45 \</span><br><span class="line">-DMYSQL_DATADIR=/application/mysql-5.6.45/data \</span><br><span class="line">-DMYSQL_UNIX_ADDR=/application/mysql-5.6.45/tmp/mysql.sock \</span><br><span class="line">-DDEFAULT_CHARSET=utf8 \</span><br><span class="line">-DDEFAULT_COLLATION=utf8_general_ci \</span><br><span class="line">-DWITH_EXTRA_CHARSETS=all \</span><br><span class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_FEDERZATED_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_ZLIB=bundled \</span><br><span class="line">-DWITH_SSL=bundled \</span><br><span class="line">-DENABLED_LOCAL_INFILE=1 \</span><br><span class="line">-DWITH_EMBEDDED_SERVER=1 \</span><br><span class="line">-DENABLE_DOWNLOADS=1 \</span><br><span class="line">-DWITH_DEBUG=0		<span class="comment">#编译</span></span><br><span class="line">make &amp;&amp; make install   <span class="comment">#安装</span></span><br><span class="line">mv /etc/my.cnf /etc/my.cnf.bak 		<span class="comment">#备份存在的my.cnf</span></span><br><span class="line">mkdir -p /application/mysql-5.6.45/tmp</span><br></pre>
+                            <pre><span class="line">cmake . -DCMAKE_INSTALL_PREFIX=/application/mysql-5.6.45 \</span><br><span class="line">-DMYSQL_DATADIR=/application/mysql-5.6.45/data \</span><br><span class="line">-DMYSQL_UNIX_ADDR=/application/mysql-5.6.45/tmp/mysql.sock \</span><br><span class="line">-DDEFAULT_CHARSET=utf8 \</span><br><span class="line">-DDEFAULT_COLLATION=utf8_general_ci \</span><br><span class="line">-DWITH_EXTRA_CHARSETS=all \</span><br><span class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_FEDERATED_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_ZLIB=bundled \</span><br><span class="line">-DWITH_SSL=bundled \</span><br><span class="line">-DENABLED_LOCAL_INFILE=1 \</span><br><span class="line">-DWITH_EMBEDDED_SERVER=1 \</span><br><span class="line">-DENABLE_DOWNLOADS=1 \</span><br><span class="line">-DWITH_DEBUG=0		<span class="comment">#编译</span></span><br><span class="line">make &amp;&amp; make install   <span class="comment">#安装</span></span><br><span class="line">mv /etc/my.cnf /etc/my.cnf.bak 		<span class="comment">#备份存在的my.cnf</span></span><br><span class="line">mkdir -p /application/mysql-5.6.45/tmp</span><br></pre>
                           </td>
                         </tr>
                       </table>
@@ -568,6 +564,91 @@
                         </table>
                       </figure>
                     </p>
+                    <h2 id="MySQL5-6常用编译参数及说明"><a href="#MySQL5-6常用编译参数及说明"
+                                                                                                      class="headerlink"
+                                                                                                      title="MySQL5.6常用编译参数及说明"></a>MySQL5.6常用编译参数及说明</h2>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>编译参数</th>
+                          <th>说明</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>-DCMAKE_INSTALL_PREFIX=</td>
+                          <td>mysql安装目录</td>
+                        </tr>
+                        <tr>
+                          <td>-DMYSQL_DATADIR=</td>
+                          <td>mysql数据文件目录</td>
+                        </tr>
+                        <tr>
+                          <td>-DMYSQL_UNIX_ADDR=</td>
+                          <td>mysql.sock路径</td>
+                        </tr>
+                        <tr>
+                          <td>-DDEFAULT_CHARSET=utf8</td>
+                          <td>默认字符集</td>
+                        </tr>
+                        <tr>
+                          <td>-DDEFAULT_COLLATION=utf8_general_ci</td>
+                          <td>默认排序规则</td>
+                        </tr>
+                        <tr>
+                          <td>-DEXTRA_CHARSETS=gbk,gb2312,utf8,ascii</td>
+                          <td>启用额外的字符集类型</td>
+                        </tr>
+                        <tr>
+                          <td>-DENABLED_LOCAL_INFILE=ON</td>
+                          <td>启用本地数据导入支持</td>
+                        </tr>
+                        <tr>
+                          <td>-DWITH_INNOBASE_STORAGE_ENGINE=1</td>
+                          <td>支持innode引擎</td>
+                        </tr>
+                        <tr>
+                          <td>-DWITH_FEDERATED_STORAGE_ENGINE=1</td>
+                          <td>支持federated引擎</td>
+                        </tr>
+                        <tr>
+                          <td>-DWITH_BLACKHOLE_STORAGE_ENGINE=1</td>
+                          <td>支持黑洞存储引擎</td>
+                        </tr>
+                        <tr>
+                          <td>-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1</td>
+                          <td>禁用模板引擎</td>
+                        </tr>
+                        <tr>
+                          <td>-DWITHOUT_PARTTION_STORAGE_ENGINE=1</td>
+                          <td>支持安装数据库分区</td>
+                        </tr>
+                        <tr>
+                          <td>-DWITH_FAST_MUTEXES=1</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>-DWITH_ZLIB=bundled</td>
+                          <td>启用libz库支持</td>
+                        </tr>
+                        <tr>
+                          <td>-DENABLED_LOCAL_INFILE=1</td>
+                          <td>启用本地数据导入支持(和-DENABLED_LOCAL_INFILE一样)</td>
+                        </tr>
+                        <tr>
+                          <td>-DWITH_READLINE=1</td>
+                          <td>启用readline库支持（提供可编辑的命令行）</td>
+                        </tr>
+                        <tr>
+                          <td>-DWITH_EMBEDDED_SERVER=1</td>
+                          <td>编译嵌入式服务器支持</td>
+                        </tr>
+                        <tr>
+                          <td>-DWITH_DEBUG=0</td>
+                          <td>禁用debug（默认禁用）</td>
+                        </tr>
+                      </tbody>
+                    </table>
 
                   </div>
 
@@ -659,7 +740,7 @@
                       <li class="post-copyright-link">
                         <strong>本文链接：</strong>
                         <a href="https://www.kapyan.top/posts/1886981114.html"
-                                                                                                        title="Centos系统安装MySQL">https://www.kapyan.top/posts/1886981114.html</a>
+                                                                                                        title="Centos系统安装MySQL5.6">https://www.kapyan.top/posts/1886981114.html</a>
                       </li>
                       <li class="post-copyright-license">
                         <strong>版权声明： </strong>
@@ -703,6 +784,10 @@
                       <span class="post-nav-divider"></span>
 
                       <div class="post-nav-prev post-nav-item">
+
+                        <a href="/posts/949382825.html" rel="prev" title="mysql常用操作">
+                          mysql常用操作 <i class="fa fa-chevron-right"></i>
+                        </a>
 
                       </div>
                     </div>
@@ -767,7 +852,7 @@
 
                     <a href="/archives/">
 
-                      <span class="site-state-item-count">44</span>
+                      <span class="site-state-item-count">46</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
@@ -828,9 +913,9 @@
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL版本简介"><span
                                                                                                         class="nav-number">1.</span>
                         <span class="nav-text">MySQL版本简介</span></a></li>
-                    <li class="nav-item nav-level-2"><a class="nav-link" href="#RPM安装MySQL"><span
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#YUM安装MySQL"><span
                                                                                                         class="nav-number">2.</span>
-                        <span class="nav-text">RPM安装MySQL</span></a></li>
+                        <span class="nav-text">YUM安装MySQL</span></a></li>
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#编译安装MySQL"><span
                                                                                                         class="nav-number">3.</span>
                         <span class="nav-text">编译安装MySQL</span></a>
@@ -872,6 +957,9 @@
                     <li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL安全配置"><span
                                                                                                         class="nav-number">4.</span>
                         <span class="nav-text">MySQL安全配置</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL5-6常用编译参数及说明"><span
+                                                                                                        class="nav-number">5.</span>
+                        <span class="nav-text">MySQL5.6常用编译参数及说明</span></a></li>
                   </ol>
                 </div>
 
@@ -900,7 +988,7 @@
 
           <span class="post-meta-item-text">Site words total count&#58;</span>
 
-          <span title="Site words total count">72.7k</span>
+          <span title="Site words total count">76k</span>
 
         </div>
 

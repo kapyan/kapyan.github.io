@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+
+<head>
+  <meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="baidu-site-verification" content="8zMDGR7I0p">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#222">
+
+  <script>
+    (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet"
+                                                                                  type="text/css">
+
+  <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"
+                                                                                  type="text/css">
+
+  <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+  <meta name="keywords" content="mysql数据备份">
+
+  <link rel="alternate" href="/atom.xml" title="运维之窗" type="application/atom+xml">
+
+  <meta name="description" content="mysqldump命令备份与恢复 利用mysqldump命令备份时是把数据从MySQL里以SQL语句的形式写入备份文件中，这种备份方式为逻辑备份。这种备份方式效率不是很高，适用于数据量不大的情况（30GB以内的数据），如果数据量较大，备份和恢复的时间会很长。 压缩备份 1mysqldump -uusername -ppassword 数据库名 |gzip &amp;gt; 数据库名.sql.gz 			#">
+  <meta name="keywords" content="mysql数据备份">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="mysql数据备份与恢复">
+  <meta property="og:url" content="https://www.kapyan.top/posts/3868423296.html">
+  <meta property="og:site_name" content="运维之窗">
+  <meta property="og:description" content="mysqldump命令备份与恢复 利用mysqldump命令备份时是把数据从MySQL里以SQL语句的形式写入备份文件中，这种备份方式为逻辑备份。这种备份方式效率不是很高，适用于数据量不大的情况（30GB以内的数据），如果数据量较大，备份和恢复的时间会很长。 压缩备份 1mysqldump -uusername -ppassword 数据库名 |gzip &amp;gt; 数据库名.sql.gz 			#">
+  <meta property="og:locale" content="zh-Hans">
+  <meta property="og:updated_time" content="2019-09-17T06:55:39.156Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="mysql数据备份与恢复">
+  <meta name="twitter:description" content="mysqldump命令备份与恢复 利用mysqldump命令备份时是把数据从MySQL里以SQL语句的形式写入备份文件中，这种备份方式为逻辑备份。这种备份方式效率不是很高，适用于数据量不大的情况（30GB以内的数据），如果数据量较大，备份和恢复的时间会很长。 压缩备份 1mysqldump -uusername -ppassword 数据库名 |gzip &amp;gt; 数据库名.sql.gz 			#">
+
+  <script type="text/javascript" id="hexo.configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      root: '/',
+      scheme: 'Pisces',
+      version: '5.1.4',
+      sidebar: {
+        "position": "left",
+        "display": "post",
+        "offset": 12,
+        "b2t": false,
+        "scrollpercent": true,
+        "onmobile": true
+      },
+      fancybox: true,
+      tabs: true,
+      motion: {
+        "enable": true,
+        "async": false,
+        "transition": {
+          "post_block": "fadeIn",
+          "post_header": "slideDownIn",
+          "post_body": "slideDownIn",
+          "coll_header": "slideLeftIn",
+          "sidebar": "slideUpIn"
+        }
+      },
+      duoshuo: {
+        userId: '0',
+        author: '没有风的晴天'
+      },
+      algolia: {
+        applicationID: '',
+        apiKey: '',
+        indexName: '',
+        hits: {
+          "per_page": 10
+        },
+        labels: {
+          "input_placeholder": "Search for Posts",
+          "hits_empty": "We didn't find any results for the search: ${query}",
+          "hits_stats": "${hits} results found in ${time} ms"
+        }
+      }
+    };
+
+  </script>
+
+  <link rel="canonical" href="https://www.kapyan.top/posts/3868423296.html">
+
+  <title>mysql数据备份与恢复 | 运维之窗</title>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        <div class="site-brand-wrapper">
+          <div class="site-meta ">
+
+            <div class="custom-logo-site-title">
+              <a href="/" class="brand" rel="start">
+                <span class="logo-line-before"><i></i></span>
+                <span class="site-title">运维之窗</span>
+                <span class="logo-line-after"><i></i></span>
+              </a>
+            </div>
+
+            <h1 class="site-subtitle" itemprop="description"></h1>
+
+          </div>
+
+          <div class="site-nav-toggle">
+            <button>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+            </button>
+          </div>
+        </div>
+
+        <nav class="site-nav">
+
+          <ul id="menu" class="menu">
+
+            <li class="menu-item menu-item-home">
+              <a href="/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+
+                首页
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-tags">
+              <a href="/tags/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+
+                标签
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-categories">
+              <a href="/categories/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+
+                分类
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-archives">
+              <a href="/archives/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+
+                归档
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-about">
+              <a href="/about/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+
+                关于
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-search">
+
+              <a href="javascript:;" class="popup-trigger">
+
+                <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+
+                搜索
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="site-search">
+
+            <div class="popup search-popup local-search-popup">
+              <div class="local-search-header clearfix">
+                <span class="search-icon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <span class="popup-btn-close">
+                  <i class="fa fa-times-circle"></i>
+                </span>
+                <div class="local-search-input-wrapper">
+                  <input autocomplete="off" placeholder="搜索..." spellcheck="false"
+                                                                                                  type="text"
+                                                                                                  id="local-search-input">
+                </div>
+              </div>
+              <div id="local-search-result"></div>
+            </div>
+
+          </div>
+
+        </nav>
+
+        <link rel="stylesheet" href="/css/mycss/player.css">
+        <div id="QPlayer">
+          <div id="pContent">
+            <div id="player">
+              <span class="cover"></span>
+              <div class="ctrl">
+                <div class="musicTag marquee">
+                  <strong>Title</strong>
+                  <span> - </span>
+                  <span class="artist">Artist</span>
+                </div>
+                <div class="progress">
+                  <div class="timer left">0:00</div>
+                  <div class="contr">
+                    <div class="rewind icon"></div>
+                    <div class="playback icon"></div>
+                    <div class="fastforward icon"></div>
+                  </div>
+                  <div class="right">
+                    <div class="liebiao icon"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ssBtn">
+              <img src="/img/22.png" class="music">
+              <div class="adf"></div>
+            </div>
+          </div>
+          <ol id="playlist"></ol>
+        </div>
+
+        <script src="/js/qplayer/jquery.min.js"></script>
+        <script src="/js/qplayer/jquery.marquee.min.js"></script>
+        <script src="/js/qplayer/menu.js"></script>
+        <script src="/js/qplayer/player.js"></script>
+        <script>
+          function bgChange() {
+            var lis = $('.lib');
+            for (var i = 0; i < lis.length; i += 2)
+              lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+          }
+          window.onload = bgChange;
+
+        </script>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+
+            <div id="posts" class="posts-expand">
+
+              <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="https://www.kapyan.top/posts/3868423296.html">
+
+                  <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="没有风的晴天">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.png">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="运维之窗">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h2 class="post-title" itemprop="name headline">mysql数据备份与恢复</h2>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">发表于</span>
+
+                        <time title="创建于" itemprop="dateCreated datePublished"
+                                                                                                        datetime="2019-09-11T10:28:30+08:00">
+                          2019-09-11
+                        </time>
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-check-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">更新于&#58;</span>
+
+                        <time title="更新于" itemprop="dateModified" datetime="2019-09-17T14:55:39+08:00">
+                          2019-09-17
+                        </time>
+
+                      </span>
+
+                      <span class="post-category">
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-folder-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">分类于</span>
+
+                        <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                          <a href="/categories/mysql/" itemprop="url" rel="index">
+                            <span itemprop="name">mysql</span>
+                          </a>
+                        </span>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/posts/3868423296.html#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count valine-comment-count"
+                                                                                                          data-xid="/posts/3868423296.html"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                      <span class="post-meta-divider">|</span>
+                      <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+                        <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+                      </span>
+
+                      <div class="post-wordcount">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-file-word-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">字数统计&#58;</span>
+
+                        <span title="字数统计">
+                          2.1k
+                        </span>
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-clock-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">阅读时长 &asymp;</span>
+
+                        <span title="阅读时长">
+                          8
+                        </span>
+
+                      </div>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <h2 id="mysqldump命令备份与恢复"><a href="#mysqldump命令备份与恢复" class="headerlink"
+                                                                                                      title="mysqldump命令备份与恢复"></a>mysqldump命令备份与恢复</h2>
+                    <p>利用mysqldump命令备份时是把数据从MySQL里以SQL语句的形式写入备份文件中，这种备份方式为逻辑备份。这种备份方式效率不是很高，适用于数据量不大的情况（30GB以内的数据），如果数据量较大，备份和恢复的时间会很长。</p>
+                    <h3 id="压缩备份"><a href="#压缩备份" class="headerlink" title="压缩备份"></a>压缩备份</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump -uusername -ppassword 数据库名 |gzip &gt; 数据库名.sql.gz 			<span class="comment">#使用压缩备份可节省大约2/3的空间</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="多库备份"><a href="#多库备份" class="headerlink" title="多库备份"></a>多库备份</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump -uusername -ppassword -B 数据库1 数据库2 数据库3 ... |gzip &gt; 文件名.sql.gz   	<span class="comment">#-B后跟要备份的数据库名，该参数会加入use database和create database语句</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="多表备份"><a href="#多表备份" class="headerlink" title="多表备份"></a>多表备份</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump -uusername -ppassword 数据库名 表1 表2 表3 ... |gzip &gt; 文件名.sql.gz</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="只备份表结构-不含数据"><a href="#只备份表结构-不含数据" class="headerlink"
+                                                                                                      title="只备份表结构(不含数据)"></a>只备份表结构(不含数据)</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump -uusername -ppassword -d 数据库名 &gt; 文件名.sql</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="只备份数据-不含结构"><a href="#只备份数据-不含结构" class="headerlink"
+                                                                                                      title="只备份数据(不含结构)"></a>只备份数据(不含结构)</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump -uusername -ppassword -t 数据库名 &gt; 文件名.sql</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="binlog文件刷新"><a href="#binlog文件刷新" class="headerlink"
+                                                                                                      title="binlog文件刷新"></a>binlog文件刷新</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump -F -B 数据库名 &gt; 文件名.sql</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <blockquote>
+                      <p>-F参数会备份完成时生成新的binlog文件，记录之后的binlog日志，方便全量备份之后和mysql故障之前的数据恢复（前提是开启了binlog日志，打开my.cnf中的“log-bin=mysql-bin”）</p>
+                    </blockquote>
+                    <h3 id="记录binlog位置的特殊参数"><a href="#记录binlog位置的特殊参数" class="headerlink"
+                                                                                                      title="记录binlog位置的特殊参数"></a>记录binlog位置的特殊参数</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump -uusername -ppassword --master-data=2 数据库名 &gt; 文件名.sql</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <blockquote>
+                      <p>–master-data参数可以不用刷新binlog找到全量备份前后的临界点，使用该参数备份后，在备份的文件的对应SQL语句会加入“CHANGE
+                        MASTER…”语句及binlog文件及位置点信息。当“–master-data=1”时，备份结果为可执行的“CHANGE
+                        MASTER”语句，当“–master-data=2”时，备份结果为注释的“–CHANGE
+                        MASTER…”语句，进行主从复制时作用更大。</p>
+                    </blockquote>
+                    <h3 id="锁定所有表备份"><a href="#锁定所有表备份" class="headerlink"
+                                                                                                      title="锁定所有表备份"></a>锁定所有表备份</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump -uusername -ppassword -x 数据库名 &gt; 文件名.sql</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <blockquote>
+                      <p>在使用mysqldump备份时，默认数据库是可以写入数据的，备份的数据就不是在某一个时刻的一致性备份了，加上-x参数可以保持同一时刻的一致性备份。</p>
+                    </blockquote>
+                    <h3 id="innodb表特有的备份参数（–single-transaction）"><a href="#innodb表特有的备份参数（–single-transaction）"
+                                                                                                      class="headerlink"
+                                                                                                      title="innodb表特有的备份参数（–single-transaction）"></a>innodb表特有的备份参数（–single-transaction）</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump  -B --master-data=2 --single-transaction 数据库名|gzip &gt; 文件名.sql.gz</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <blockquote>
+                      <p>使用“–single-transaction”参数对innodb表进行备份时，会开启一个事务，并将整个备份过程放到一个事务里，以确保执行本次dump会话时，不会看到其他连接会话已经提交了的数据，相当于锁表之后备份的数据，允许在备份期间写入数据（只有事务型引擎才支持此功能）。</p>
+                    </blockquote>
+                    <h3 id="备份存储过程和函数数据"><a href="#备份存储过程和函数数据" class="headerlink"
+                                                                                                      title="备份存储过程和函数数据"></a>备份存储过程和函数数据</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump -uusername -ppassword -R 数据库名 &gt; 文件名.sql</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="备份触发器数据"><a href="#备份触发器数据" class="headerlink"
+                                                                                                      title="备份触发器数据"></a>备份触发器数据</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqldump -uusername -ppassword --triggers 数据库名 &gt; 文件名.sql</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="数据恢复"><a href="#数据恢复" class="headerlink" title="数据恢复"></a>数据恢复</h3>
+                    <figure class="highlight plain">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysql -uusername -ppassword 数据库名 &lt; dbbackup.sql		#如果备份时使用了-B参数，可以不指定数据库名</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <blockquote>
+                      <p>如果使用压缩备份，则先要解压压缩文件，解压可使用<code>gzip -cd dbbackup.sql.gz
+                          dbbackup.sql</code>命令。</p>
+                    </blockquote>
+                    <h3 id="mysqlbinlog解析binlog文件"><a href="#mysqlbinlog解析binlog文件"
+                                                                                                      class="headerlink"
+                                                                                                      title="mysqlbinlog解析binlog文件"></a>mysqlbinlog解析binlog文件</h3>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>mysqlbinlog命令参数</th>
+                          <th>参数说明</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>-d,–database=name</td>
+                          <td>根据指定库拆分binlog</td>
+                        </tr>
+                        <tr>
+                          <td>-r,–result-file-name</td>
+                          <td>指定解析binlog输出SQL语句的文件</td>
+                        </tr>
+                        <tr>
+                          <td>-R,–read-from-remote-server</td>
+                          <td>从MySQL服务器读取binlog日志</td>
+                        </tr>
+                        <tr>
+                          <td>-j,–start-position=#</td>
+                          <td>读取binlog的起始位置点，#号是具体的位置点</td>
+                        </tr>
+                        <tr>
+                          <td>–stop-position=#</td>
+                          <td>读取binlog的停止位置点，#号是具体的位置点</td>
+                        </tr>
+                        <tr>
+                          <td>–start-datetime=name</td>
+                          <td>读取binlog的起始时间点，name是具体时间，格式：年-月-日 时:分:秒</td>
+                        </tr>
+                        <tr>
+                          <td>–stop-datetime=name</td>
+                          <td>读取binlog的停止时间点，name是具体时间，格式：年-月-日 时:分:秒</td>
+                        </tr>
+                        <tr>
+                          <td>–base64-output=decode-rows</td>
+                          <td>解析ROW级别binlog的方法</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h2 id="Xtrabackup备份与恢复"><a href="#Xtrabackup备份与恢复" class="headerlink"
+                                                                                                      title="Xtrabackup备份与恢复"></a>Xtrabackup备份与恢复</h2>
+                    <p>xtrabackup是Percona公司专门针对MySQL数据库开发的一款开源免费的物理备份（热备）工具，可以对InnoDB和XtraDB等事务引擎的数据库实现非阻塞（即不锁表）方式的备份，也可以针对MyISAM等非事务引擎实现锁表方式备份。<br>xtrabackup软件主要包含两个常用工具：</p>
+                    <ul>
+                      <li>xtrabackup:专门用于对InnoDB和XtarDB等事务引擎的数据热备份的工具，不能用于备份MyISAM等其他类型的引擎数据，其主要特点是备份数据时完全不用锁表。</li>
+                      <li>innobackupex:是将xtrabackup命令使用perl脚本进行的二次封装，增加了对MyISAM及多种引擎混合使用，可以备份非事务引擎数据，但要锁表。</li>
+                    </ul>
+                    <h3 id="innobackupex工具参数说明"><a href="#innobackupex工具参数说明"
+                                                                                                      class="headerlink"
+                                                                                                      title="innobackupex工具参数说明"></a>innobackupex工具参数说明</h3>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>参数</th>
+                          <th>说明</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>--user=username</td>
+                          <td>用于备份数据的用户</td>
+                        </tr>
+                        <tr>
+                          <td>--password=PASSWD</td>
+                          <td>用于备份数据的用户对应的密码</td>
+                        </tr>
+                        <tr>
+                          <td>--port=PORT</td>
+                          <td>数据库端口</td>
+                        </tr>
+                        <tr>
+                          <td>--host=HOST</td>
+                          <td>备份的主机，主机可以是远程数据库的服务器</td>
+                        </tr>
+                        <tr>
+                          <td>--defaults-file</td>
+                          <td>指定MySQL的配置文件备份</td>
+                        </tr>
+                        <tr>
+                          <td>--defaults-group=GROUP-NAME</td>
+                          <td>在多实例的时候使用</td>
+                        </tr>
+                        <tr>
+                          <td>--databases</td>
+                          <td>指定需要备份的数据库，多个数据库之间以空格分开</td>
+                        </tr>
+                        <tr>
+                          <td>--incremental</td>
+                          <td>增量备份，后面跟要增量备份的路径</td>
+                        </tr>
+                        <tr>
+                          <td>--incremental-basedir=DIRECTORY</td>
+                          <td>增量备份使用，上一次（全备）增量备份所在目录</td>
+                        </tr>
+                        <tr>
+                          <td>--incremental-dir=DIRECTORY</td>
+                          <td>增量备份还原的时候用来合并增量备份到全备份，指定增量备份的路径</td>
+                        </tr>
+                        <tr>
+                          <td>--no-timestamp</td>
+                          <td>生成的备份文件不以时间戳为目录</td>
+                        </tr>
+                        <tr>
+                          <td>--slave-info</td>
+                          <td>会记录主库binlog的位置点，并保存到xtrabackup_slave_info文件里，用于主从复制</td>
+                        </tr>
+                        <tr>
+                          <td>--safe-slave-backup</td>
+                          <td>该参数的作用是暂停SLAVE库的SQL线程，待备份结束后又会启动SQL线程，目的是保证备份前后数据的一致性，类似锁表停止写入数据到数据库</td>
+                        </tr>
+                        <tr>
+                          <td>--stream=tar</td>
+                          <td>备份结果以tar的文件流方式输出</td>
+                        </tr>
+                        <tr>
+                          <td>--include=</td>
+                          <td>备份包含的库表</td>
+                        </tr>
+                        <tr>
+                          <td>--throttle=500</td>
+                          <td>I/O较多的话，可以限定I/0操作</td>
+                        </tr>
+                        <tr>
+                          <td>--apply-log</td>
+                          <td>回滚未提交的事务数据，应用redo日志数据</td>
+                        </tr>
+                        <tr>
+                          <td>--use-memory</td>
+                          <td>恢复时使用内存大小选项（需要和--apply-log一起使用）</td>
+                        </tr>
+                        <tr>
+                          <td>--copy-back</td>
+                          <td>将备份数据复制回原始位置（也可以用mv直接复制）</td>
+                        </tr>
+                        <tr>
+                          <td>--redo-only</td>
+                          <td>用于合并多分增量备份，只应用redo日志数据，而不应用undo日志回滚数据，执行最后一次增量合并应忽略该参数</td>
+                        </tr>
+                        <tr>
+                          <td>--rsync</td>
+                          <td>加快本地文件传输，适用于non-InnoDB数据库引擎</td>
+                        </tr>
+                        <tr>
+                          <td>--parallel=N</td>
+                          <td>当数据库比较大的时候，增加多线程备份，N为数字</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h3 id="Centos7安装xtrabackup"><a href="#Centos7安装xtrabackup"
+                                                                                                      class="headerlink"
+                                                                                                      title="Centos7安装xtrabackup"></a>Centos7安装xtrabackup</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo  <span class="comment">#安装阿里yum源</span></span><br><span class="line">yum makecache</span><br><span class="line">yum -y install perl perl-devel libaio baio-devel perlTime-HiRes perl-DBD-MySQL 	<span class="comment">#安装依赖</span></span><br><span class="line">wget https://www.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.15/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.15-1.el7.x86_64.rpm</span><br><span class="line">yum install -y percona-xtrabackup-24-2.4.15-1.el7.x86_64.rpm</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="全量备份"><a href="#全量备份" class="headerlink" title="全量备份"></a>全量备份</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">innobackupex --defaults-file=/etc/my.cnf --user=root --password=password --socket=socket_dir --no-timestamp /backup/base_full  <span class="comment">#首先全量备份一次</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="增量备份"><a href="#增量备份" class="headerlink" title="增量备份"></a>增量备份</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">innobackupex --defaults-file=/etc/my.cnf --user=root --password=password --socket=socket_dir --no-timestamp --incremental-basedir=/backup/base_full --incremental /backup/one_inc 	<span class="comment">#第一次增量备份</span></span><br><span class="line">innobackupex --defaults-file=/etc/my.cnf --user=root --password=password --socket=socket_dir --no-timestamp --incremental-basedir=/backup/one_inc --incremental /backup/two_inc   <span class="comment">#第二增量备份，注意：--incremental-basedir为上次一次增量备份的目录</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="数据恢复-1"><a href="#数据恢复-1" class="headerlink" title="数据恢复"></a>数据恢复</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">innobackupex --apply-log --use-memory=32M --redo-only /backup/base_full/  	<span class="comment">#先恢复全量备份</span></span><br><span class="line">innobackupex --apply-log --use-memory=32M --redo-only --incremental-dir=/backup/one_inc/ /backup/base_full/			<span class="comment">#再合并第一次增量备份到全备份数据目录</span></span><br><span class="line">innobackupex --apply-log --use-memory=32M --redo-only --incremental-dir=/backup/two_inc/ /backup/base_full/ 		<span class="comment">#再合并第二次增量备份到全备份数据目录</span></span><br><span class="line">innobackupex --apply-log --use-memory=32M /backup/base_full/		<span class="comment">#对最终全量数据做redo日志应用，并执行undo回滚数据</span></span><br><span class="line">/etc/init.d/mysqld stop 	<span class="comment">#停止数据库</span></span><br><span class="line">innobackupex --defaults-file=/etc/my.cnf  --copy-back --rsync /backup/base_full    <span class="comment">#恢复数据，执行此命令时mysql的数据目录需为空，否则会报错。可以用mv命令将/backup/base_full中的mysql数据文件移动到mysql数据目录来代替此命令（注意mysql数据的用户是否为mysql服务运行用户）</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <blockquote>
+                      <p>要恢复最后一次增量备份之后的数据，需要通过binlog文件进行恢复，可以通过查看最后一次增量备份目录内的“xtrabackup_binlog_info”文件获取binlog文件的起始位置，通过mysqlbinlog命令进行数据恢复。</p>
+                    </blockquote>
+
+                  </div>
+
+                  <div style="text-align:center;color: #ccc;font-size:14px;">----------------
+                    (*￣︶￣)我是结束线(*￣︶￣) ----------------</div>
+
+                  <div>
+
+                    <div class="post-gallery" itemscope="" itemtype="http://schema.org/ImageGallery">
+
+                      <div class="post-gallery-row">
+                        <a class="post-gallery-img fancybox" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DSUCWOY3%2BBcYcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAhROzK0r%2FipA8gO5GkiwvqvWzFsOF3mje37PuJWXWgt8YXjK4%2Fnv6rkAyGePqTIbhHPEjEiQKVf8iYWStHE%2B0ceFSvfO0N66nzO5MaXTjVACyw%2Bb0Sl2aPhWYetMiZZgV1Jkp%2BJs%2BBdiBdV7fC66ychXxEY72iEjRQ%3D%3D"
+                                                                                                        rel="gallery_"
+                                                                                                        target="_blank"
+                                                                                                        itemscope=""
+                                                                                                        itemtype="http://schema.org/ImageObject"
+                                                                                                        itemprop="url">
+                          <img src="https://img.alicdn.com/tfs/TB1QJC6dOrpK1RjSZFhXXXSdXXa-300-100.jpg"
+                                                                                                          itemprop="contentUrl"
+                                                                                                          alt="轻量应用服务器">
+                        </a>
+
+                        <a class="post-gallery-img fancybox" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DpAHlfmw0xfkcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAuWVfj%2Fo%2BBN9Ezdo621fDJXWzFsOF3mje37PuJWXWgt8YXjK4%2Fnv6rkAyGePqTIbhHPEjEiQKVf8iYWStHE%2B0ceFSvfO0N66nzO5MaXTjVACyw%2Bb0Sl2aPhWYetMiZZgV1Jkp%2BJs%2BBdilZRNs4W5M1%2FGDF1NzTQoPw%3D%3D"
+                                                                                                        rel="gallery_"
+                                                                                                        target="_blank"
+                                                                                                        itemscope=""
+                                                                                                        itemtype="http://schema.org/ImageObject"
+                                                                                                        itemprop="url">
+                          <img src="https://img.alicdn.com/tfs/TB1J7lVCTtYBeNjy1XdXXXXyVXa-300-100.jpg"
+                                                                                                          itemprop="contentUrl"
+                                                                                                          alt="短信资源包">
+                        </a>
+
+                        <a class="post-gallery-img fancybox" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DucUY2%2FfSXswcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAuWVfj%2Fo%2BBN9XXtn8%2BQA8JrWzFsOF3mje37PuJWXWgt8YXjK4%2Fnv6rkAyGePqTIbhHPEjEiQKVf8iYWStHE%2B0ceFSvfO0N66nzO5MaXTjVACyw%2Bb0Sl2aPhWYetMiZZgV7gsYVzi6cpVaVnUjc%2B1pxfEn65QSclhw0C4uCmQt5oMqWN1EIapX4T%2FPGojz88nqKJn5AyUbPoV"
+                                                                                                        rel="gallery_"
+                                                                                                        target="_blank"
+                                                                                                        itemscope=""
+                                                                                                        itemtype="http://schema.org/ImageObject"
+                                                                                                        itemprop="url">
+                          <img src="https://img.alicdn.com/tfs/TB1TDIoCxGYBuNjy0FnXXX5lpXa-300-100.png"
+                                                                                                          itemprop="contentUrl"
+                                                                                                          alt="海外云服务器">
+                        </a>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+                      <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg"
+                                                                                                      alt="没有风的晴天 wechat"
+                                                                                                      style="width: 200px; max-width: 100%;">
+                      <div>扫一扫，加我微信</div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>打赏</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wechatpay.jpg" alt="没有风的晴天 微信支付">
+                          <p>微信支付</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/alipay.jpg" alt="没有风的晴天 支付宝">
+                          <p>支付宝</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <ul class="post-copyright">
+                      <li class="post-copyright-author">
+                        <strong>本文作者：</strong>
+                        没有风的晴天
+                      </li>
+                      <li class="post-copyright-link">
+                        <strong>本文链接：</strong>
+                        <a href="https://www.kapyan.top/posts/3868423296.html"
+                                                                                                        title="mysql数据备份与恢复">https://www.kapyan.top/posts/3868423296.html</a>
+                      </li>
+                      <li class="post-copyright-license">
+                        <strong>版权声明： </strong>
+                        本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
+                                                                                                        rel="external nofollow"
+                                                                                                        target="_blank">CC
+                          BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+                      </li>
+                    </ul>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-tags">
+
+                      <a href="/tags/mysql/" rel="tag"><i class="fa fa-tag"></i>
+                        mysql</a>
+
+                    </div>
+
+                    <div class="post-widgets">
+
+                      <div id="needsharebutton-postbottom">
+                        <span class="btn">
+                          <i class="fa fa-share-alt" aria-hidden="true"></i>
+                        </span>
+                      </div>
+
+                    </div>
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/posts/949382825.html" rel="next" title="mysql常用操作">
+                          <i class="fa fa-chevron-left"></i> mysql常用操作
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                      </div>
+                    </div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <div class="post-spread">
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="comments" id="comments">
+            <div id="SOHUCS"></div>
+          </div>
+
+        </div>
+
+        <div class="sidebar-toggle">
+          <div class="sidebar-toggle-line-wrap">
+            <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+          </div>
+        </div>
+
+        <aside id="sidebar" class="sidebar">
+
+          <div id="sidebar-dimmer"></div>
+
+          <div class="sidebar-inner">
+
+            <ul class="sidebar-nav motion-element">
+              <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                文章目录
+              </li>
+              <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+                站点概览
+              </li>
+            </ul>
+
+            <section class="site-overview-wrap sidebar-panel">
+              <div class="site-overview">
+                <div class="site-author motion-element" itemprop="author"
+                                                                                                itemscope=""
+                                                                                                itemtype="http://schema.org/Person">
+
+                  <img class="site-author-image" itemprop="image" src="/images/avatar.png"
+                                                                                                  alt="没有风的晴天">
+
+                  <p class="site-author-name" itemprop="name">没有风的晴天</p>
+                  <p class="site-description motion-element" itemprop="description"></p>
+                </div>
+
+                <nav class="site-state motion-element">
+
+                  <div class="site-state-item site-state-posts">
+
+                    <a href="/archives/">
+
+                      <span class="site-state-item-count">46</span>
+                      <span class="site-state-item-name">日志</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-categories">
+                    <a href="/categories/index.html">
+                      <span class="site-state-item-count">24</span>
+                      <span class="site-state-item-name">分类</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-tags">
+                    <a href="/tags/index.html">
+                      <span class="site-state-item-count">27</span>
+                      <span class="site-state-item-name">标签</span>
+                    </a>
+                  </div>
+
+                </nav>
+
+                <div class="feed-link motion-element">
+                  <a href="/atom.xml" rel="alternate">
+                    <i class="fa fa-rss"></i>
+                    RSS
+                  </a>
+                </div>
+
+                <div class="links-of-author motion-element">
+
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kapyan" target="_blank" title="GitHub">
+
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+
+                  <span class="links-of-author-item">
+                    <a href="mailto:15929461370@163.com" target="_blank" title="E-Mail">
+
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+
+                </div>
+
+                <!-- CloudCalendar -->
+                <div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+                  <div class="widget" id="CloudCalendar"></div>
+                </div>
+
+              </div>
+            </section>
+
+            <!--noindex-->
+            <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+              <div class="post-toc">
+
+                <div class="post-toc-content">
+                  <ol class="nav">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#mysqldump命令备份与恢复"><span
+                                                                                                        class="nav-number">1.</span>
+                        <span class="nav-text">mysqldump命令备份与恢复</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#压缩备份"><span
+                                                                                                            class="nav-number">1.1.</span>
+                            <span class="nav-text">压缩备份</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#多库备份"><span
+                                                                                                            class="nav-number">1.2.</span>
+                            <span class="nav-text">多库备份</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#多表备份"><span
+                                                                                                            class="nav-number">1.3.</span>
+                            <span class="nav-text">多表备份</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#只备份表结构-不含数据"><span
+                                                                                                            class="nav-number">1.4.</span>
+                            <span class="nav-text">只备份表结构(不含数据)</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#只备份数据-不含结构"><span
+                                                                                                            class="nav-number">1.5.</span>
+                            <span class="nav-text">只备份数据(不含结构)</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#binlog文件刷新"><span
+                                                                                                            class="nav-number">1.6.</span>
+                            <span class="nav-text">binlog文件刷新</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#记录binlog位置的特殊参数"><span
+                                                                                                            class="nav-number">1.7.</span>
+                            <span class="nav-text">记录binlog位置的特殊参数</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#锁定所有表备份"><span
+                                                                                                            class="nav-number">1.8.</span>
+                            <span class="nav-text">锁定所有表备份</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#innodb表特有的备份参数（–single-transaction）"><span
+                                                                                                            class="nav-number">1.9.</span>
+                            <span class="nav-text">innodb表特有的备份参数（–single-transaction）</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#备份存储过程和函数数据"><span
+                                                                                                            class="nav-number">1.10.</span>
+                            <span class="nav-text">备份存储过程和函数数据</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#备份触发器数据"><span
+                                                                                                            class="nav-number">1.11.</span>
+                            <span class="nav-text">备份触发器数据</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#数据恢复"><span
+                                                                                                            class="nav-number">1.12.</span>
+                            <span class="nav-text">数据恢复</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#mysqlbinlog解析binlog文件"><span
+                                                                                                            class="nav-number">1.13.</span>
+                            <span class="nav-text">mysqlbinlog解析binlog文件</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#Xtrabackup备份与恢复"><span
+                                                                                                        class="nav-number">2.</span>
+                        <span class="nav-text">Xtrabackup备份与恢复</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#innobackupex工具参数说明"><span
+                                                                                                            class="nav-number">2.1.</span>
+                            <span class="nav-text">innobackupex工具参数说明</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#Centos7安装xtrabackup"><span
+                                                                                                            class="nav-number">2.2.</span>
+                            <span class="nav-text">Centos7安装xtrabackup</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#全量备份"><span
+                                                                                                            class="nav-number">2.3.</span>
+                            <span class="nav-text">全量备份</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#增量备份"><span
+                                                                                                            class="nav-number">2.4.</span>
+                            <span class="nav-text">增量备份</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#数据恢复-1"><span
+                                                                                                            class="nav-number">2.5.</span>
+                            <span class="nav-text">数据恢复</span></a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </div>
+
+              </div>
+            </section>
+            <!--/noindex-->
+
+          </div>
+        </aside>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+          <span class="with-love">
+            <i class="fa fa-user"></i>
+          </span>
+          <span class="author" itemprop="copyrightHolder">没有风的晴天</span>
+
+          <span class="post-meta-divider">|</span>
+          <span class="post-meta-item-icon">
+            <i class="fa fa-area-chart"></i>
+          </span>
+
+          <span class="post-meta-item-text">Site words total count&#58;</span>
+
+          <span title="Site words total count">76k</span>
+
+        </div>
+
+        <div class="footer-custom">
+          <div class="BbeiAn-info">陕ICP备-<a target="_blank" href="http://www.miitbeian.gov.cn/">17003351号-1</a></div>
+        </div>
+
+        <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+        <script>
+          if (window.mermaid) {
+            mermaid.initialize("");
+          }
+
+        </script>
+
+        <div class="busuanzi-count">
+          <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+          <span class="site-uv">
+            <i class="fa fa-user"></i> 访问人数
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+
+          </span>
+
+          <span class="site-pv">
+            <i class="fa fa-eye"></i> 总访问量
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+
+          </span>
+
+        </div>
+
+        <div>
+          <!-- 填写你的友盟代码 -->
+          <script type="text/javascript">
+            var cnzz_protocol = (("https:" == document.location.protocol) ?
+              " https://" : " http://");
+            document.write(unescape(
+                  "%3Cspan id='cnzz_stat_icon_12'%3E%3C/span%3E%3Cscript
+                  src =
+                  '" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D12%2show%3Dpic'
+                  type = 'text/javascript' % 3 E % 3 C / script % 3 E "));
+
+          </script>
+          <script type="text/javascript">
+            var cnzz_protocol = (("https:" == document.location.protocol) ?
+              "https://" : "http://");
+            document.write(unescape(
+              "%3Cspan id='cnzz_stat_icon_1277954876'%3E%3C/span%3E%3Cscript src='" +
+              cnzz_protocol +
+              "v1.cnzz.com/z_stat.php%3Fid%3D1277954876%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"
+            ));
+
+          </script>
+        </div>
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+
+      <span id="scrollpercent"><span>0</span>%</span>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+      window.Promise = null;
+    }
+
+  </script>
+
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments',
+      verify: false,
+      notify: false,
+      appId: '1uJhiP6vGE0RaH5RJqLlYUox-gzGzoHsz',
+      appKey: '4EOLRvSTdvlcznGaj6HrfHKs',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      guest_info: guest,
+      pageSize: '10' || 10,
+    });
+
+  </script>
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+    var onPopupClose = function(e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append(
+          '<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css(
+        'text-align', 'center');
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(
+                  /<[^>]+>/g, "");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if (title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text,
+                      caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0,
+                        position = [],
+                        index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word,
+                          startPosition)) > -1) {
+                        index.push({
+                          position: position,
+                          word: word
+                        });
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+                    indexOfTitle = indexOfTitle.concat(
+                      getIndexByWord(keyword,
+                        titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(
+                      getIndexByWord(keyword,
+                        contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length >
+                    0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length +
+                      indexOfContent.length;
+                  }
+                }
+                // show search results
+                if (isMatch) {
+                  // sort index by position of keyword
+                  [indexOfTitle, indexOfContent].forEach(function(
+                    index) {
+                    index.sort(function(itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft
+                        .position) {
+                        return itemRight.position -
+                          itemLeft.position;
+                      } else {
+                        return itemLeft.word.length -
+                          itemRight.word.length;
+                      }
+                    });
+                  });
+                  // merge hits into slices
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index
+                      .length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({
+                        position: position,
+                        length: word.length
+                      });
+                      var wordEnd = position + word.length;
+                      // move to next position of hit
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0,
+                      title.length, indexOfTitle));
+                  }
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length -
+                      1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content,
+                      start, end, indexOfContent));
+                  }
+                  // sort slices in content by search text's count and hits' count
+                  slicesOfContent.sort(function(sliceLeft,
+                    sliceRight) {
+                    if (sliceLeft.searchTextCount !==
+                      sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount -
+                        sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !==
+                      sliceRight.hits.length) {
+                      return sliceRight.hits.length -
+                        sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+                  // select top N slices in content
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0,
+                      upperBound);
+                  }
+                  // highlight title and content
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function(hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' +
+                        text.substring(hit.position, end) +
+                        '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+                  var resultItem = '';
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" +
+                      highlightKeyword(title, slicesOfTitle[0]) +
+                      "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" + title +
+                      "</a>";
+                  }
+                  slicesOfContent.forEach(function(slice) {
+                    resultItem += "<a href='" + articleUrl +
+                      "'>" +
+                      "<p class=\"search-result\">" +
+                      highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function(resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft
+                    .searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList =
+                '<ul class=\"search-result-list\">';
+              resultItems.forEach(function(result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function(event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+          proceedsearch();
+        }
+      });
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function(event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+  </script>
+
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    pbOptions = {};
+    pbOptions.iconStyle = "default";
+    pbOptions.boxForm = "horizontal";
+    pbOptions.position = "bottomCenter";
+    pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+
+  </script>
+
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+  <!-- calendar widget -->
+
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+</body>
+
+</html>
