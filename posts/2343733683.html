@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+
+<head>
+  <meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="baidu-site-verification" content="8zMDGR7I0p">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#222">
+
+  <script>
+    (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet"
+                                                                                  type="text/css">
+
+  <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"
+                                                                                  type="text/css">
+
+  <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+  <meta name="keywords" content="mysql日志分析,">
+
+  <link rel="alternate" href="/atom.xml" title="运维之窗" type="application/atom+xml">
+
+  <meta name="description" content="mysql日志分析工具对比                工具       一般统计       高级统计       语言       优势       针对日志类型                       mysqldumpslow       支持       不支持       perl       mysql官方自带       slow                 myprof">
+  <meta name="keywords" content="mysql日志分析">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="mysql日志分析工具-mysqlsla">
+  <meta property="og:url" content="https://www.kapyan.top/posts/2343733683.html">
+  <meta property="og:site_name" content="运维之窗">
+  <meta property="og:description" content="mysql日志分析工具对比                工具       一般统计       高级统计       语言       优势       针对日志类型                       mysqldumpslow       支持       不支持       perl       mysql官方自带       slow                 myprof">
+  <meta property="og:locale" content="zh-Hans">
+  <meta property="og:updated_time" content="2019-09-19T09:45:53.063Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="mysql日志分析工具-mysqlsla">
+  <meta name="twitter:description" content="mysql日志分析工具对比                工具       一般统计       高级统计       语言       优势       针对日志类型                       mysqldumpslow       支持       不支持       perl       mysql官方自带       slow                 myprof">
+
+  <script type="text/javascript" id="hexo.configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      root: '/',
+      scheme: 'Pisces',
+      version: '5.1.4',
+      sidebar: {
+        "position": "left",
+        "display": "post",
+        "offset": 12,
+        "b2t": false,
+        "scrollpercent": true,
+        "onmobile": true
+      },
+      fancybox: true,
+      tabs: true,
+      motion: {
+        "enable": true,
+        "async": false,
+        "transition": {
+          "post_block": "fadeIn",
+          "post_header": "slideDownIn",
+          "post_body": "slideDownIn",
+          "coll_header": "slideLeftIn",
+          "sidebar": "slideUpIn"
+        }
+      },
+      duoshuo: {
+        userId: '0',
+        author: '没有风的晴天'
+      },
+      algolia: {
+        applicationID: '',
+        apiKey: '',
+        indexName: '',
+        hits: {
+          "per_page": 10
+        },
+        labels: {
+          "input_placeholder": "Search for Posts",
+          "hits_empty": "We didn't find any results for the search: ${query}",
+          "hits_stats": "${hits} results found in ${time} ms"
+        }
+      }
+    };
+
+  </script>
+
+  <link rel="canonical" href="https://www.kapyan.top/posts/2343733683.html">
+
+  <title>mysql日志分析工具-mysqlsla | 运维之窗</title>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        <div class="site-brand-wrapper">
+          <div class="site-meta ">
+
+            <div class="custom-logo-site-title">
+              <a href="/" class="brand" rel="start">
+                <span class="logo-line-before"><i></i></span>
+                <span class="site-title">运维之窗</span>
+                <span class="logo-line-after"><i></i></span>
+              </a>
+            </div>
+
+            <h1 class="site-subtitle" itemprop="description"></h1>
+
+          </div>
+
+          <div class="site-nav-toggle">
+            <button>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+            </button>
+          </div>
+        </div>
+
+        <nav class="site-nav">
+
+          <ul id="menu" class="menu">
+
+            <li class="menu-item menu-item-home">
+              <a href="/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+
+                首页
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-tags">
+              <a href="/tags/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+
+                标签
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-categories">
+              <a href="/categories/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+
+                分类
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-archives">
+              <a href="/archives/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+
+                归档
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-about">
+              <a href="/about/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+
+                关于
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-search">
+
+              <a href="javascript:;" class="popup-trigger">
+
+                <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+
+                搜索
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="site-search">
+
+            <div class="popup search-popup local-search-popup">
+              <div class="local-search-header clearfix">
+                <span class="search-icon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <span class="popup-btn-close">
+                  <i class="fa fa-times-circle"></i>
+                </span>
+                <div class="local-search-input-wrapper">
+                  <input autocomplete="off" placeholder="搜索..." spellcheck="false"
+                                                                                                  type="text"
+                                                                                                  id="local-search-input">
+                </div>
+              </div>
+              <div id="local-search-result"></div>
+            </div>
+
+          </div>
+
+        </nav>
+
+        <link rel="stylesheet" href="/css/mycss/player.css">
+        <div id="QPlayer">
+          <div id="pContent">
+            <div id="player">
+              <span class="cover"></span>
+              <div class="ctrl">
+                <div class="musicTag marquee">
+                  <strong>Title</strong>
+                  <span> - </span>
+                  <span class="artist">Artist</span>
+                </div>
+                <div class="progress">
+                  <div class="timer left">0:00</div>
+                  <div class="contr">
+                    <div class="rewind icon"></div>
+                    <div class="playback icon"></div>
+                    <div class="fastforward icon"></div>
+                  </div>
+                  <div class="right">
+                    <div class="liebiao icon"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ssBtn">
+              <img src="/img/22.png" class="music">
+              <div class="adf"></div>
+            </div>
+          </div>
+          <ol id="playlist"></ol>
+        </div>
+
+        <script src="/js/qplayer/jquery.min.js"></script>
+        <script src="/js/qplayer/jquery.marquee.min.js"></script>
+        <script src="/js/qplayer/menu.js"></script>
+        <script src="/js/qplayer/player.js"></script>
+        <script>
+          function bgChange() {
+            var lis = $('.lib');
+            for (var i = 0; i < lis.length; i += 2)
+              lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+          }
+          window.onload = bgChange;
+
+        </script>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+
+            <div id="posts" class="posts-expand">
+
+              <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="https://www.kapyan.top/posts/2343733683.html">
+
+                  <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="没有风的晴天">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.png">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="运维之窗">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h2 class="post-title" itemprop="name headline">mysql日志分析工具-mysqlsla</h2>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">发表于</span>
+
+                        <time title="创建于" itemprop="dateCreated datePublished"
+                                                                                                        datetime="2019-09-19T15:09:43+08:00">
+                          2019-09-19
+                        </time>
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-check-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">更新于&#58;</span>
+
+                        <time title="更新于" itemprop="dateModified" datetime="2019-09-19T17:45:53+08:00">
+                          2019-09-19
+                        </time>
+
+                      </span>
+
+                      <span class="post-category">
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-folder-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">分类于</span>
+
+                        <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                          <a href="/categories/mysql/" itemprop="url" rel="index">
+                            <span itemprop="name">mysql</span>
+                          </a>
+                        </span>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/posts/2343733683.html#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count valine-comment-count"
+                                                                                                          data-xid="/posts/2343733683.html"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                      <span class="post-meta-divider">|</span>
+                      <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+                        <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+                      </span>
+
+                      <div class="post-wordcount">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-file-word-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">字数统计&#58;</span>
+
+                        <span title="字数统计">
+                          589
+                        </span>
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-clock-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">阅读时长 &asymp;</span>
+
+                        <span title="阅读时长">
+                          2
+                        </span>
+
+                      </div>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <h2 id="mysql日志分析工具对比"><a href="#mysql日志分析工具对比" class="headerlink"
+                                                                                                      title="mysql日志分析工具对比"></a>mysql日志分析工具对比</h2>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>工具</th>
+                          <th>一般统计</th>
+                          <th>高级统计</th>
+                          <th>语言</th>
+                          <th>优势</th>
+                          <th>针对日志类型</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>mysqldumpslow</td>
+                          <td>支持</td>
+                          <td>不支持</td>
+                          <td>perl</td>
+                          <td>mysql官方自带</td>
+                          <td>slow</td>
+                        </tr>
+                        <tr>
+                          <td>myprofi</td>
+                          <td>支持</td>
+                          <td>不支持</td>
+                          <td>php</td>
+                          <td>简单</td>
+                          <td>slow</td>
+                        </tr>
+                        <tr>
+                          <td>mysql-log-filter</td>
+                          <td>支持</td>
+                          <td>部分支持</td>
+                          <td>python</td>
+                          <td>简单</td>
+                          <td>slow</td>
+                        </tr>
+                        <tr>
+                          <td>mysql-explain-slow-log</td>
+                          <td>支持</td>
+                          <td>不支持</td>
+                          <td>perl</td>
+                          <td>无</td>
+                          <td>slow</td>
+                        </tr>
+                        <tr>
+                          <td>mysqlbinlog</td>
+                          <td>支持</td>
+                          <td>不支持</td>
+                          <td>二进制</td>
+                          <td>mysql官方自带</td>
+                          <td>binary log</td>
+                        </tr>
+                        <tr>
+                          <td>mysqlsla</td>
+                          <td>支持</td>
+                          <td>支持</td>
+                          <td>perl</td>
+                          <td>功能强大、使用简单、自定义功能强</td>
+                          <td>所有日志，包括自定义日志</td>
+                        </tr>
+                        <tr>
+                          <td>pt-query-digest</td>
+                          <td>支持</td>
+                          <td>支持</td>
+                          <td>perl</td>
+                          <td>功能强大、使用简单、自定义功能强</td>
+                          <td>所有日志，包括自定义日志</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h2 id="mysqlsla安装"><a href="#mysqlsla安装" class="headerlink"
+                                                                                                      title="mysqlsla安装"></a>mysqlsla安装</h2>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">yum install -y perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker perl-Time-HiRes perl-DBI	perl-DBD-MySQL perl-devel 		<span class="comment">#安装依赖</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/daniel-nichter/hackmysql.com.git</span><br><span class="line"><span class="built_in">cd</span> hackmysql.com/mysqlsla</span><br><span class="line">perl Makefile.PL</span><br><span class="line">make &amp;&amp; make install</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h2 id="mysqlsla基本命令和使用"><a href="#mysqlsla基本命令和使用" class="headerlink"
+                                                                                                      title="mysqlsla基本命令和使用"></a>mysqlsla基本命令和使用</h2>
+                    <h3 id="指定解析日志的类型"><a href="#指定解析日志的类型" class="headerlink"
+                                                                                                      title="指定解析日志的类型"></a>指定解析日志的类型</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqlsla -lt slow /var/<span class="built_in">log</span>/mysql/slow.log  <span class="comment">#不指定也会自动判断基本日志类型（slow、general、binary、msl 、udl）</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="正则匹配结果"><a href="#正则匹配结果" class="headerlink" title="正则匹配结果"></a>正则匹配结果</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqlsla --grep  <span class="string">'(\btable_lc\b)|(\btable_cl\b)'</span> -lt slow /var/<span class="built_in">log</span>/mysql/slow.log  <span class="comment">#匹配表table_1c和table_c1</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqlsla --sort <span class="string">'t_sum'</span> -lt slow /var/<span class="built_in">log</span>/mysql/slow.log   <span class="comment">#参数格式--sort META</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h3 id="显示结果集条数"><a href="#显示结果集条数" class="headerlink"
+                                                                                                      title="显示结果集条数"></a>显示结果集条数</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqlsla --top 100 -lt slow /var/<span class="built_in">log</span>/mysql/slow.log  <span class="comment">#--top参数为默认显示结果集的条数，默认为10条</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <h2 id="mysqlsla过滤（filter）"><a href="#mysqlsla过滤（filter）"
+                                                                                                      class="headerlink"
+                                                                                                      title="mysqlsla过滤（filter）"></a>mysqlsla过滤（filter）</h2>
+                    <h3 id="statement过滤"><a href="#statement过滤" class="headerlink"
+                                                                                                      title="statement过滤"></a>statement过滤</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqlsla -sf <span class="string">'+SELECT,CREATE'</span> -lt slow /var/<span class="built_in">log</span>/mysql/slow.log</span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <blockquote>
+                      <p>参数: -sf [+/-][type],[type]。如：</p>
+                      <ul>
+                        <li>‘+SELECT,CREATE’：只看select类型和create类型的结果。</li>
+                        <li>‘-SELECT’：除了select以外所有结果。</li>
+                      </ul>
+                    </blockquote>
+                    <h3 id="­­meta过滤"><a href="#­­meta过滤" class="headerlink"
+                                                                                                      title="­­meta过滤"></a>­­meta过滤</h3>
+                    <figure class="highlight bash">
+                      <table>
+                        <tr>
+                          <td class="gutter">
+                            <pre><span class="line">1</span><br></pre>
+                          </td>
+                          <td class="code">
+                            <pre><span class="line">mysqlsla -mf <span class="string">'db=test_db'</span> -lt slow /var/<span class="built_in">log</span>/mysql/slow.log <span class="comment">#查看test_db库的所有结果</span></span><br></pre>
+                          </td>
+                        </tr>
+                      </table>
+                    </figure>
+                    <p>meta最常用的参数：</p>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>log类型</th>
+                          <th>meta</th>
+                          <th>解释</th>
+                          <th>限制</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>all</td>
+                          <td>c_sum</td>
+                          <td>SQL次数总和</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>all</td>
+                          <td>db</td>
+                          <td>db名称</td>
+                          <td>只能用作meta-filter,不能用作sort</td>
+                        </tr>
+                        <tr>
+                          <td>all</td>
+                          <td>exec</td>
+                          <td>真实执行时间</td>
+                          <td>只能用作sort，不能filter</td>
+                        </tr>
+                        <tr>
+                          <td>all</td>
+                          <td>exec_sum</td>
+                          <td>c_sum*exec</td>
+                          <td>只能用作sort，不能filter</td>
+                        </tr>
+                        <tr>
+                          <td>slow</td>
+                          <td>host</td>
+                          <td>主机名</td>
+                          <td>只能用作meta-filter,不能用作sort</td>
+                        </tr>
+                        <tr>
+                          <td>slow</td>
+                          <td>ip</td>
+                          <td>ip地址</td>
+                          <td>只能用作meta-filter,不能用作sort</td>
+                        </tr>
+                        <tr>
+                          <td>slow</td>
+                          <td>l_avg</td>
+                          <td>锁的平均等待时间</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>slow</td>
+                          <td>re_sum</td>
+                          <td>rows_examined的总和</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>slow</td>
+                          <td>re_avg</td>
+                          <td>rows_examined的平均值</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>slow</td>
+                          <td>rs_sum</td>
+                          <td>rows_sent的总和</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>slow</td>
+                          <td>rs_avg</td>
+                          <td>rows_sent的平均值</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>slow</td>
+                          <td>t_sum</td>
+                          <td>SQL执行时间的总和</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>slow</td>
+                          <td>t_avg</td>
+                          <td>SQL执行时间的平均值</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>slow</td>
+                          <td>user</td>
+                          <td>用户名</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>general</td>
+                          <td>cid</td>
+                          <td>连接id</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>general</td>
+                          <td>host</td>
+                          <td>主机名</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>general</td>
+                          <td>user</td>
+                          <td>用户名</td>
+                          <td>无</td>
+                        </tr>
+                        <tr>
+                          <td>binary</td>
+                          <td>ext</td>
+                          <td>执行时间</td>
+                          <td>无</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+
+                  <div style="text-align:center;color: #ccc;font-size:14px;">----------------
+                    (*￣︶￣)我是结束线(*￣︶￣) ----------------</div>
+
+                  <div>
+
+                    <div class="post-gallery" itemscope="" itemtype="http://schema.org/ImageGallery">
+
+                      <div class="post-gallery-row">
+                        <a class="post-gallery-img fancybox" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DSUCWOY3%2BBcYcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAhROzK0r%2FipA8gO5GkiwvqvWzFsOF3mje37PuJWXWgt8YXjK4%2Fnv6rkAyGePqTIbhHPEjEiQKVf8iYWStHE%2B0ceFSvfO0N66nzO5MaXTjVACyw%2Bb0Sl2aPhWYetMiZZgV1Jkp%2BJs%2BBdiBdV7fC66ychXxEY72iEjRQ%3D%3D"
+                                                                                                        rel="gallery_"
+                                                                                                        target="_blank"
+                                                                                                        itemscope=""
+                                                                                                        itemtype="http://schema.org/ImageObject"
+                                                                                                        itemprop="url">
+                          <img src="https://img.alicdn.com/tfs/TB1QJC6dOrpK1RjSZFhXXXSdXXa-300-100.jpg"
+                                                                                                          itemprop="contentUrl"
+                                                                                                          alt="轻量应用服务器">
+                        </a>
+
+                        <a class="post-gallery-img fancybox" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DpAHlfmw0xfkcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAuWVfj%2Fo%2BBN9Ezdo621fDJXWzFsOF3mje37PuJWXWgt8YXjK4%2Fnv6rkAyGePqTIbhHPEjEiQKVf8iYWStHE%2B0ceFSvfO0N66nzO5MaXTjVACyw%2Bb0Sl2aPhWYetMiZZgV1Jkp%2BJs%2BBdilZRNs4W5M1%2FGDF1NzTQoPw%3D%3D"
+                                                                                                        rel="gallery_"
+                                                                                                        target="_blank"
+                                                                                                        itemscope=""
+                                                                                                        itemtype="http://schema.org/ImageObject"
+                                                                                                        itemprop="url">
+                          <img src="https://img.alicdn.com/tfs/TB1J7lVCTtYBeNjy1XdXXXXyVXa-300-100.jpg"
+                                                                                                          itemprop="contentUrl"
+                                                                                                          alt="短信资源包">
+                        </a>
+
+                        <a class="post-gallery-img fancybox" href="https://s.click.taobao.com/t?e=m%3D2%26s%3DucUY2%2FfSXswcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAuWVfj%2Fo%2BBN9XXtn8%2BQA8JrWzFsOF3mje37PuJWXWgt8YXjK4%2Fnv6rkAyGePqTIbhHPEjEiQKVf8iYWStHE%2B0ceFSvfO0N66nzO5MaXTjVACyw%2Bb0Sl2aPhWYetMiZZgV7gsYVzi6cpVaVnUjc%2B1pxfEn65QSclhw0C4uCmQt5oMqWN1EIapX4T%2FPGojz88nqKJn5AyUbPoV"
+                                                                                                        rel="gallery_"
+                                                                                                        target="_blank"
+                                                                                                        itemscope=""
+                                                                                                        itemtype="http://schema.org/ImageObject"
+                                                                                                        itemprop="url">
+                          <img src="https://img.alicdn.com/tfs/TB1TDIoCxGYBuNjy0FnXXX5lpXa-300-100.png"
+                                                                                                          itemprop="contentUrl"
+                                                                                                          alt="海外云服务器">
+                        </a>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+                      <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg"
+                                                                                                      alt="没有风的晴天 wechat"
+                                                                                                      style="width: 200px; max-width: 100%;">
+                      <div>扫一扫，加我微信</div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>打赏</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wechatpay.jpg" alt="没有风的晴天 微信支付">
+                          <p>微信支付</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/alipay.jpg" alt="没有风的晴天 支付宝">
+                          <p>支付宝</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <ul class="post-copyright">
+                      <li class="post-copyright-author">
+                        <strong>本文作者：</strong>
+                        没有风的晴天
+                      </li>
+                      <li class="post-copyright-link">
+                        <strong>本文链接：</strong>
+                        <a href="https://www.kapyan.top/posts/2343733683.html"
+                                                                                                        title="mysql日志分析工具-mysqlsla">https://www.kapyan.top/posts/2343733683.html</a>
+                      </li>
+                      <li class="post-copyright-license">
+                        <strong>版权声明： </strong>
+                        本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"
+                                                                                                        rel="external nofollow"
+                                                                                                        target="_blank">CC
+                          BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+                      </li>
+                    </ul>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-tags">
+
+                      <a href="/tags/mysql日志分析/" rel="tag"><i class="fa fa-tag"></i>
+                        mysql日志分析</a>
+
+                    </div>
+
+                    <div class="post-widgets">
+
+                      <div id="needsharebutton-postbottom">
+                        <span class="btn">
+                          <i class="fa fa-share-alt" aria-hidden="true"></i>
+                        </span>
+                      </div>
+
+                    </div>
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/posts/2609191648.html" rel="next" title="mysql优化">
+                          <i class="fa fa-chevron-left"></i> mysql优化
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                        <a href="/posts/3623090341.html" rel="prev" title="mysql的InnoDB引擎">
+                          mysql的InnoDB引擎 <i class="fa fa-chevron-right"></i>
+                        </a>
+
+                      </div>
+                    </div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <div class="post-spread">
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="comments" id="comments">
+            <div id="SOHUCS"></div>
+          </div>
+
+        </div>
+
+        <div class="sidebar-toggle">
+          <div class="sidebar-toggle-line-wrap">
+            <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+          </div>
+        </div>
+
+        <aside id="sidebar" class="sidebar">
+
+          <div id="sidebar-dimmer"></div>
+
+          <div class="sidebar-inner">
+
+            <ul class="sidebar-nav motion-element">
+              <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                文章目录
+              </li>
+              <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+                站点概览
+              </li>
+            </ul>
+
+            <section class="site-overview-wrap sidebar-panel">
+              <div class="site-overview">
+                <div class="site-author motion-element" itemprop="author"
+                                                                                                itemscope=""
+                                                                                                itemtype="http://schema.org/Person">
+
+                  <img class="site-author-image" itemprop="image" src="/images/avatar.png"
+                                                                                                  alt="没有风的晴天">
+
+                  <p class="site-author-name" itemprop="name">没有风的晴天</p>
+                  <p class="site-description motion-element" itemprop="description"></p>
+                </div>
+
+                <nav class="site-state motion-element">
+
+                  <div class="site-state-item site-state-posts">
+
+                    <a href="/archives/">
+
+                      <span class="site-state-item-count">49</span>
+                      <span class="site-state-item-name">日志</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-categories">
+                    <a href="/categories/index.html">
+                      <span class="site-state-item-count">24</span>
+                      <span class="site-state-item-name">分类</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-tags">
+                    <a href="/tags/index.html">
+                      <span class="site-state-item-count">30</span>
+                      <span class="site-state-item-name">标签</span>
+                    </a>
+                  </div>
+
+                </nav>
+
+                <div class="feed-link motion-element">
+                  <a href="/atom.xml" rel="alternate">
+                    <i class="fa fa-rss"></i>
+                    RSS
+                  </a>
+                </div>
+
+                <div class="links-of-author motion-element">
+
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kapyan" target="_blank" title="GitHub">
+
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+
+                  <span class="links-of-author-item">
+                    <a href="mailto:15929461370@163.com" target="_blank" title="E-Mail">
+
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+
+                </div>
+
+                <!-- CloudCalendar -->
+                <div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+                  <div class="widget" id="CloudCalendar"></div>
+                </div>
+
+              </div>
+            </section>
+
+            <!--noindex-->
+            <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+              <div class="post-toc">
+
+                <div class="post-toc-content">
+                  <ol class="nav">
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#mysql日志分析工具对比"><span
+                                                                                                        class="nav-number">1.</span>
+                        <span class="nav-text">mysql日志分析工具对比</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#mysqlsla安装"><span
+                                                                                                        class="nav-number">2.</span>
+                        <span class="nav-text">mysqlsla安装</span></a></li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#mysqlsla基本命令和使用"><span
+                                                                                                        class="nav-number">3.</span>
+                        <span class="nav-text">mysqlsla基本命令和使用</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#指定解析日志的类型"><span
+                                                                                                            class="nav-number">3.1.</span>
+                            <span class="nav-text">指定解析日志的类型</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#正则匹配结果"><span
+                                                                                                            class="nav-number">3.2.</span>
+                            <span class="nav-text">正则匹配结果</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#排序"><span
+                                                                                                            class="nav-number">3.3.</span>
+                            <span class="nav-text">排序</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#显示结果集条数"><span
+                                                                                                            class="nav-number">3.4.</span>
+                            <span class="nav-text">显示结果集条数</span></a></li>
+                      </ol>
+                    </li>
+                    <li class="nav-item nav-level-2"><a class="nav-link" href="#mysqlsla过滤（filter）"><span
+                                                                                                        class="nav-number">4.</span>
+                        <span class="nav-text">mysqlsla过滤（filter）</span></a>
+                      <ol class="nav-child">
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#statement过滤"><span
+                                                                                                            class="nav-number">4.1.</span>
+                            <span class="nav-text">statement过滤</span></a></li>
+                        <li class="nav-item nav-level-3"><a class="nav-link"
+                                                                                                          href="#­­meta过滤"><span
+                                                                                                            class="nav-number">4.2.</span>
+                            <span class="nav-text">­­meta过滤</span></a></li>
+                      </ol>
+                    </li>
+                  </ol>
+                </div>
+
+              </div>
+            </section>
+            <!--/noindex-->
+
+          </div>
+        </aside>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+          <span class="with-love">
+            <i class="fa fa-user"></i>
+          </span>
+          <span class="author" itemprop="copyrightHolder">没有风的晴天</span>
+
+          <span class="post-meta-divider">|</span>
+          <span class="post-meta-item-icon">
+            <i class="fa fa-area-chart"></i>
+          </span>
+
+          <span class="post-meta-item-text">Site words total count&#58;</span>
+
+          <span title="Site words total count">78.1k</span>
+
+        </div>
+
+        <div class="footer-custom">
+          <div class="BbeiAn-info">陕ICP备-<a target="_blank" href="http://www.miitbeian.gov.cn/">17003351号-1</a></div>
+        </div>
+
+        <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+        <script>
+          if (window.mermaid) {
+            mermaid.initialize("");
+          }
+
+        </script>
+
+        <div class="busuanzi-count">
+          <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+          <span class="site-uv">
+            <i class="fa fa-user"></i> 访问人数
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+
+          </span>
+
+          <span class="site-pv">
+            <i class="fa fa-eye"></i> 总访问量
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+
+          </span>
+
+        </div>
+
+        <div>
+          <!-- 填写你的友盟代码 -->
+          <script type="text/javascript">
+            var cnzz_protocol = (("https:" == document.location.protocol) ?
+              " https://" : " http://");
+            document.write(unescape(
+                  "%3Cspan id='cnzz_stat_icon_12'%3E%3C/span%3E%3Cscript
+                  src =
+                  '" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D12%2show%3Dpic'
+                  type = 'text/javascript' % 3 E % 3 C / script % 3 E "));
+
+          </script>
+          <script type="text/javascript">
+            var cnzz_protocol = (("https:" == document.location.protocol) ?
+              "https://" : "http://");
+            document.write(unescape(
+              "%3Cspan id='cnzz_stat_icon_1277954876'%3E%3C/span%3E%3Cscript src='" +
+              cnzz_protocol +
+              "v1.cnzz.com/z_stat.php%3Fid%3D1277954876%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"
+            ));
+
+          </script>
+        </div>
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+
+      <span id="scrollpercent"><span>0</span>%</span>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+      window.Promise = null;
+    }
+
+  </script>
+
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments',
+      verify: false,
+      notify: false,
+      appId: '1uJhiP6vGE0RaH5RJqLlYUox-gzGzoHsz',
+      appKey: '4EOLRvSTdvlcznGaj6HrfHKs',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      guest_info: guest,
+      pageSize: '10' || 10,
+    });
+
+  </script>
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+    var onPopupClose = function(e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append(
+          '<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css(
+        'text-align', 'center');
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(
+                  /<[^>]+>/g, "");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if (title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text,
+                      caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0,
+                        position = [],
+                        index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word,
+                          startPosition)) > -1) {
+                        index.push({
+                          position: position,
+                          word: word
+                        });
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+                    indexOfTitle = indexOfTitle.concat(
+                      getIndexByWord(keyword,
+                        titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(
+                      getIndexByWord(keyword,
+                        contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length >
+                    0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length +
+                      indexOfContent.length;
+                  }
+                }
+                // show search results
+                if (isMatch) {
+                  // sort index by position of keyword
+                  [indexOfTitle, indexOfContent].forEach(function(
+                    index) {
+                    index.sort(function(itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft
+                        .position) {
+                        return itemRight.position -
+                          itemLeft.position;
+                      } else {
+                        return itemLeft.word.length -
+                          itemRight.word.length;
+                      }
+                    });
+                  });
+                  // merge hits into slices
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index
+                      .length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({
+                        position: position,
+                        length: word.length
+                      });
+                      var wordEnd = position + word.length;
+                      // move to next position of hit
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0,
+                      title.length, indexOfTitle));
+                  }
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length -
+                      1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content,
+                      start, end, indexOfContent));
+                  }
+                  // sort slices in content by search text's count and hits' count
+                  slicesOfContent.sort(function(sliceLeft,
+                    sliceRight) {
+                    if (sliceLeft.searchTextCount !==
+                      sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount -
+                        sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !==
+                      sliceRight.hits.length) {
+                      return sliceRight.hits.length -
+                        sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+                  // select top N slices in content
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0,
+                      upperBound);
+                  }
+                  // highlight title and content
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function(hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' +
+                        text.substring(hit.position, end) +
+                        '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+                  var resultItem = '';
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" +
+                      highlightKeyword(title, slicesOfTitle[0]) +
+                      "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" + title +
+                      "</a>";
+                  }
+                  slicesOfContent.forEach(function(slice) {
+                    resultItem += "<a href='" + articleUrl +
+                      "'>" +
+                      "<p class=\"search-result\">" +
+                      highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function(resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft
+                    .searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList =
+                '<ul class=\"search-result-list\">';
+              resultItems.forEach(function(result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function(event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+          proceedsearch();
+        }
+      });
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function(event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+  </script>
+
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    pbOptions = {};
+    pbOptions.iconStyle = "default";
+    pbOptions.boxForm = "horizontal";
+    pbOptions.position = "bottomCenter";
+    pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+
+  </script>
+
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+  <!-- calendar widget -->
+
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+</body>
+
+</html>
